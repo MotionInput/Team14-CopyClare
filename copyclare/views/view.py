@@ -34,6 +34,7 @@ class View(QMainWindow):
             page-(:obj:`str`)
         """
         new_page = self.pages[page](self)
+        self.ui.verticalLayout.addWidget(new_page)
         new_page.show()
 
     def update(self):
