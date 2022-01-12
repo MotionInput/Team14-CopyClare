@@ -2,9 +2,10 @@ import numpy as np
 import mediapipe as mp
 
 
-class PoseModule():
-    def __init__(self, mode=False, up_body=False, smooth=True,
-                 detection_con=0.5, track_con=0.5):
+class PoseModule:
+    def __init__(
+        self, mode=False, up_body=False, smooth=True, detection_con=0.5, track_con=0.5
+    ):
         self.mode = mode
         self.up_body = up_body
         self.smooth = smooth
@@ -13,8 +14,9 @@ class PoseModule():
 
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
-        self.pose = self.mp_pose.Pose(self.mode, self.up_body, self.smooth,
-                                      self.detection_con, self.track_con)
+        self.pose = self.mp_pose.Pose(
+            self.mode, self.up_body, self.smooth, self.detection_con, self.track_con
+        )
 
     def find_person(self, img, draw=True):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
