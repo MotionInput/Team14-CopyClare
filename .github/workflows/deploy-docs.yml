@@ -32,7 +32,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
         with:
-          source-directory: 'docs'
+          source-directory: 'docs/build/html'
           destination-github-username: 'sys-eng-team14'
           destination-repository-name: 'sys-eng-team14.github.io'
           user-email: bozzhanov.at@gmail.com
