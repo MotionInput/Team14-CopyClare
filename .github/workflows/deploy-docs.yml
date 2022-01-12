@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: DOCS
 
 # Controls when the workflow will run
 on:
@@ -26,7 +26,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
         with:
           source-directory: 'docs'
-          destination-github-username: 'sys-eng-team14'
+          destination-repository-username: 'sys-eng-team14'
           destination-repository-name: 'sys-eng-team14.github.io'
           user-email: bozzhanov.at@gmail.com
           target-branch: main
