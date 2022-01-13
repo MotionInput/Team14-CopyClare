@@ -13,11 +13,8 @@ Here you can find all necessary information to help you get around our codebase!
 Getting Started
 ---------------
 
-   
-   
+.. toctree::
+   :maxdepth: 1
+   :caption: Documentation
 
-
-
-
-
-
+   docs
