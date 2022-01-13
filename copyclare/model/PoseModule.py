@@ -1,5 +1,7 @@
 import numpy as np
 import mediapipe as mp
+import cv2
+import math
 
 
 class PoseModule:
@@ -18,16 +20,16 @@ class PoseModule:
             self.mode, self.up_body, self.smooth, self.detection_con, self.track_con
         )
 
-    def find_person(self,img,draw=True):
-        img_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    def find_person(self, img, draw=True):
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
             self.mp_draw.draw_landmarks(
-                img,self.results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS
+                img, self.results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS
             )
         return img
 
-    def find_landmarks(self,img,draw=True):
+    def find_landmarks(self, img, draw=True):
         self.landmark_list = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
@@ -39,7 +41,7 @@ class PoseModule:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return self.landmark_list
 
-def find_angle(self,img,p1,p2,p3,draw=True):
+    def find_angle(self, img, p1, p2, p3, draw=True):
         # Get the landmarks
         x1, y1 = self.landmark_list[p1][1:]
         x2, y2 = self.landmark_list[p2][1:]
@@ -62,13 +64,12 @@ def find_angle(self,img,p1,p2,p3,draw=True):
             cv2.circle(img, (x2, y2), 16, (255, 60, 0), 2)
             cv2.circle(img, (x3, y3), 11, (0, 0, 255), cv2.FILLED)
             cv2.circle(img, (x3, y3), 16, (255, 60, 0), 2)
-        
+
             cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 60),
-            cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
+                        cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
         return angle
 
-    def Output_angle(self, frame_num, angle):
+    def output_angle(self, frame_num, angle):
         output_file = open(frame_num + ".csv", mode="a")
         output_file.write(angle + " , ")
         output_file.close()
-        pass
