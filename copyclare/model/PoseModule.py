@@ -69,7 +69,7 @@ class PoseModule:
                         cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
         return angle
 
-    def output_angle(self, frame_num, angle):
+    def store_data(self, frame_num, angle):
         output_file = open(frame_num + ".csv", mode="a")
         output_file.write(angle + " , ")
         output_file.close()
