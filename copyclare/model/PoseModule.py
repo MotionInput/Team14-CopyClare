@@ -4,6 +4,9 @@ import cv2
 import math
 
 
+
+
+
 class PoseModule:
     def __init__(
         self, mode=False, up_body=False, smooth=True, detection_con=True, track_con=True

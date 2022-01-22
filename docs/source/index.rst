@@ -6,15 +6,27 @@
 Welcome to CopyClare's documentation!
 =====================================
 
+.. note::
+   here is a note about copyclare
+
 
 Here you can find all necessary information to help you get around our codebase!
 
 
-Getting Started
----------------
+.. toctree::
+   :maxdepth: 1
+   :caption: Getting Started
+
+   getting-started
 
 .. toctree::
    :maxdepth: 1
    :caption: Documentation
 
    docs
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Blog
+
+   blog
