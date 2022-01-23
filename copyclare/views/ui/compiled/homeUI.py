@@ -22,7 +22,8 @@ class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(900, 500)
+        Home.resize(900, 600)
+        Home.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout = QVBoxLayout(Home)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.copyclare_logo = QLabel(Home)
