@@ -80,11 +80,13 @@ class Ui_Exercise(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.sample_video_holder = QGraphicsView(self.video_layer)
         self.sample_video_holder.setObjectName(u"sample_video_holder")
+        self.sample_video_holder.setMinimumSize(QSize(0, 200))
 
         self.horizontalLayout_2.addWidget(self.sample_video_holder)
 
         self.user_video_holder = QGraphicsView(self.video_layer)
         self.user_video_holder.setObjectName(u"user_video_holder")
+        self.user_video_holder.setMinimumSize(QSize(0, 200))
 
         self.horizontalLayout_2.addWidget(self.user_video_holder)
 
@@ -137,7 +139,8 @@ class Ui_Exercise(object):
 
         self.graph_holder = QWidget(self.bottom_layer)
         self.graph_holder.setObjectName(u"graph_holder")
-        self.graph_holder.setStyleSheet(u"border-color: rgb(185, 189, 189);")
+        self.graph_holder.setMinimumSize(QSize(0, 180))
+        self.graph_holder.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.graph_holder)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
 
