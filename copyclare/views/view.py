@@ -2,20 +2,24 @@ import sys
 
 from PySide6.QtWidgets import QMainWindow, QApplication
 
-from ui.compiled.main_window import Ui_MainWindow
-from pages.home import HomePage
+from .ui.compiled.main_window import Ui_MainWindow
+from .pages.home import HomePage
 
 
-class View(QMainWindow):
+class View:
 
     pages = {
         "home": HomePage,
     }
 
-    def __init__(self):
-        super().__init__()
+    def start_ui(self):
+        app = QApplication(sys.argv)
+        self.window = QMainWindow()
         self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+        sys.exit(app.exec())
 
     def get_pages(self):
         """
@@ -33,8 +37,8 @@ class View(QMainWindow):
         Parameters:
             page-(:obj:`str`)
         """
-        new_page = self.pages[page](self)
-        self.ui.verticalLayout.addWidget(new_page)
+        new_page = self.pages[page](self.ui.pages_frame)
+        self.ui.pages_layout.addWidget(new_page)
         new_page.show()
 
     def update(self):
@@ -51,13 +55,3 @@ class View(QMainWindow):
         """
 
         pass
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    View = View()
-    View.show()
-
-    View.load_page("home")
-
-    sys.exit(app.exec())
