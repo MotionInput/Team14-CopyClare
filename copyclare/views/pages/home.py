@@ -1,8 +1,11 @@
-from .page import Page
+from views.widgets import ExerciseListWidget
 
-from ..ui.compiled.homeUI import Ui_Home
+from .page import Page
 
 
 class HomePage(Page):
     def __init__(self, master):
-        super().__init__(master, Ui_Home)
+        super().__init__(master, "home")
+
+        self.ex_list = ExerciseListWidget(self)
+        self.ui.content_layout.addWidget(self.ex_list)
