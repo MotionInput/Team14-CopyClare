@@ -16,6 +16,20 @@ class ExercisePage(Page):
         self.thr.update_frame.connect(self.setImage)
         self.thr.start()
 
-    @Slot(QImage)
-    def setImage(self, image):
+        # TODO: REMOVE LATER
+        self.rep = True
+        self.numRep = 0
+
+    @Slot(QImage, str)
+    def setImage(self, image, angle):
         self.ui.video_2.setPixmap(QPixmap.fromImage(image))
+
+        if float(angle) < 15 and float(angle) > 0:
+            if self.rep:
+                self.rep = False
+                self.numRep += 1
+        else:
+            self.rep = True
+
+        self.ui.rep_label.setText(f"Repetition: {self.numRep}")
+        self.ui.angle_label.setText(f"Angle: {int(float(angle))}")

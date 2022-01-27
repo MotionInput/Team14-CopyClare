@@ -4,16 +4,15 @@ from common import load_ui
 
 
 class ExerciseListWidget(QFrame):
-    def __init__(self, master):
+    def __init__(self, master,exercises):
         super().__init__(master)
 
         self.ui = load_ui("exercise_list_widget")
         self.ui.setupUi(self)
-        self.load_exercises()
+        self.load_exercises(exercises)
 
-    def load_exercises(self):
+    def load_exercises(self, exercises):
         # TODO: Replace with a database call
-        exercises = ["Shoulder Main", "Hand exercise 2", "Another Exercise"]
 
         for each in exercises:
             btn = QPushButton(self.ui.main_frame)

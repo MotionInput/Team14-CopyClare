@@ -25,11 +25,12 @@ class Model:
             person = self.detector.find_person(frame)
             landmark_list = self.detector.find_landmarks(person, draw=False)
             # print(landmark_list)
+            angle = -1
             if len(landmark_list) != 0:
                 cv2.circle(person, (landmark_list[13][1],landmark_list[13][2]),15,(0,0,255),cv2.FILLED)
                 angle = self.detector.find_angle(person,11,13,15)
             #cv2.imshow("Image", person)
-            yield person
+            yield person, angle
             if cv2.waitKey(1) == ord('q'):
                 break
         self.close_capture()

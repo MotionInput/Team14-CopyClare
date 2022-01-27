@@ -13,6 +13,7 @@ class View:
         "home": HomePage,
         "not_found": NotFound,
         "exercise": ExercisePage,
+        "profile": ProfilePage,
     }
 
     def start_ui(self):

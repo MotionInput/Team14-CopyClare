@@ -23,7 +23,7 @@ class PoseModule:
             self.mode, self.up_body, self.smooth, self.detection_con, self.track_con
         )
 
-    def find_person(self, img, draw=True):
+    def find_person(self, img, draw=False):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
@@ -68,8 +68,8 @@ class PoseModule:
             cv2.circle(img, (x3, y3), 11, (0, 0, 255), cv2.FILLED)
             cv2.circle(img, (x3, y3), 16, (255, 60, 0), 2)
 
-            cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 60),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
+            #cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 60),
+            #            cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
         return angle
 
     def store_data(self, frame_num, angle):
