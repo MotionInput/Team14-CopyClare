@@ -1,9 +1,6 @@
 """
 Main code runner
-
-
 """
-
 from views import View
 
 

@@ -1,5 +1,5 @@
 import cv2
-from PoseModule import PoseModule
+from .PoseModule import PoseModule
 
 
 class Model:
@@ -28,7 +28,8 @@ class Model:
             if len(landmark_list) != 0:
                 cv2.circle(person, (landmark_list[13][1],landmark_list[13][2]),15,(0,0,255),cv2.FILLED)
                 angle = self.detector.find_angle(person,11,13,15)
-            cv2.imshow("Image", person)
+            #cv2.imshow("Image", person)
+            yield person
             if cv2.waitKey(1) == ord('q'):
                 break
         self.close_capture()
