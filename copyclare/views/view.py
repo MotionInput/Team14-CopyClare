@@ -1,10 +1,9 @@
-import os
 import sys
 
-from PySide6.QtWidgets import QMainWindow, QApplication, QFrame
+from PySide6.QtWidgets import QMainWindow, QApplication
 from common import load_ui
 
-from .pages import *
+from .pages import HomePage, NotFound, ExercisePage, ProfilePage
 
 
 class View:
@@ -66,7 +65,13 @@ class View:
         self.current_page.show()
 
     def init_buttons(self):
-        self.ui.exercise_button.clicked.connect(lambda x: self.load_page("exercise"))
+        self.ui.exercise_button.clicked.connect(
+            lambda x: self.load_page("exercise"))
+
         self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))
-        self.ui.profile_button.clicked.connect(lambda x: self.load_page("profile"))
-        self.ui.analysis_button.clicked.connect(lambda x: self.load_page("analysis"))
+
+        self.ui.profile_button.clicked.connect(
+            lambda x: self.load_page("profile"))
+
+        self.ui.analysis_button.clicked.connect(
+            lambda x: self.load_page("analysis"))
