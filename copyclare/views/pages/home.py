@@ -11,15 +11,6 @@ class HomePage(Page):
                 ["Left Hand", "Right Hand", "Shoulder", "Another Exercise"]
             )
         )
-        self.ui.categories_button.clicked.connect(
-            lambda x: self.button_click(
-                [
-                    "Sports",
-                    "Injuries",
-                    "Stroke",
-                ]
-            )
-        )
         self.ui.groups_button.clicked.connect(
             lambda x: self.button_click(["Group_1", "Group_2", "My Group", "Favourite"])
         )

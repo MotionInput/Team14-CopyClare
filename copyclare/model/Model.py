@@ -2,7 +2,7 @@ import csv
 from email import header
 import math
 import cv2
-from PoseModule import PoseModule
+from .PoseModule import PoseModule
 import numpy as np
 import os
 
@@ -30,6 +30,7 @@ class Model:
             person = self.detector.find_person(frame)
             landmark_list = self.detector.find_landmarks(person, draw=False)
             # print(landmark_list)
+            angle = 0
             if len(landmark_list) != 0:
                 cv2.circle(person,
                            (landmark_list[13][1], landmark_list[13][2]), 15,

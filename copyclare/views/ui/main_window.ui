@@ -166,6 +166,13 @@ QPushButton:pressed {
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="library_button">
+         <property name="text">
+          <string>Library</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
