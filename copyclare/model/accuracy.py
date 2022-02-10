@@ -21,13 +21,13 @@ class AccuracyModel:
             joints: a set of joint strings or id's
         """
         dirname = os.path.dirname(os.path.realpath(__file__))
-        self.video_path = dirname + "/sample1.mp4"
-        self.joints = {"left_elbow"}
-        #self.src_joint_dict = self._init_exercise()
-        #self.time_range = self._time_range(self.src_joint_dict)
-        #self.user_joint_dict = self._init_user_buffer()
-        #self.src_area = self._find_area(self.src_joint_dict)
         self.detector = PoseModule()
+        self.video_path = dirname + "/sample1.mp4"
+        self.joints = {"13"}
+        self.src_joint_dict = self._init_exercise()
+        self.time_range = self._time_range(self.src_joint_dict)
+        self.user_joint_dict = self._init_user_buffer()
+        self.src_area = self._find_area(self.src_joint_dict)
 
     def accuracy_session(self):
         """
@@ -43,16 +43,16 @@ class AccuracyModel:
         # for each frame
         while cap.isOpened():
 
-            success, frame = self.cap.read()
+            success, frame = cap.read()
             if not success:
                 print("Can't read from camera")
                 break
 
-            frame_angles = self._process_frame(frame, frame_count)
+            frame_angles = self._process_frame(frame)
 
             # if buffer is about the same as the input video
             # this also controls buffer size
-            if self._update_user_buffer(frame_angles):
+            if self._update_user_buffer(frame_angles, frame_count):
                 accuracy = self._calculate_accuracy()
 
             self._highlight_landmarks(frame)
@@ -68,7 +68,6 @@ class AccuracyModel:
 
         while cap.isOpened():
             success, frame = cap.read()
-            print(success)
 
             if not success:
                 print("Can't read from camera")
@@ -89,8 +88,8 @@ class AccuracyModel:
         """
         dif = 0
         for key in joint_dict:
-            start = joint_dict[key][0]
-            end = joint_dict[key][-1]
+            start = joint_dict[key][0][0]
+            end = joint_dict[key][-1][0]
             dif += end - start
 
         dif /= len(joint_dict)
@@ -109,21 +108,21 @@ class AccuracyModel:
         """
         Takes in an image of the frame.
 
-        returns a dictionary where keys are joints and values are tuples of timestamps
-        and angles
+        returns a dictionary where keys are joints and values are tuples of
+        timestamps and angles
         {"left_elbow": (1,30.1321), (2,"left_shoulder"): (3,20.12312)}
         """
         time_stamp = time.time()
-        dict = {}
+        joint_dict = {}
         person = self.detector.find_person(frame)
-        landmark_list = self.detector.find_landmarks(person,draw=False)
+        landmark_list = self.detector.find_landmarks(person, draw=False)
         if len(landmark_list) != 0:
             for joint in self.joints:
                 num = int(joint)
-                angle = self.detector.find_angle(person,num-2,num,num+2)
-                dict.update({joint:(time_stamp,angle)})            
+                angle = self.detector.find_angle(person, num - 2, num, num + 2)
+                joint_dict.update({joint: (time_stamp, angle)})
 
-        return dict
+        return joint_dict
 
     def _calculate_accuracy(self):
         """
@@ -173,14 +172,14 @@ class AccuracyModel:
             success, frame = cap.read()
 
             if not success:
-                print("Can't receive frame (stream end?). Exiting ...")
+                print("Exercise initialised")
                 break
 
             frame_angles = self._process_frame(frame)
 
             for key in self.joints:
-                if key not in self.joints:
-                    self.joints[key] = []
+                if key not in joint_dict:
+                    joint_dict[key] = []
 
                 joint_dict[key].append(frame_angles[key])
 

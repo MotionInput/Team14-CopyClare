@@ -25,6 +25,7 @@ class PoseModule:
 
     def find_person(self, img, draw=False):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        print(img_rgb)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
             self.mp_draw.draw_landmarks(
@@ -54,8 +55,6 @@ class PoseModule:
                              math.atan2(y1 - y2, x1 - x2))
         if angle < 0:
             angle += 360
-        print("ANGLE")
-        print(angle)
 
         # Draw
         if draw:

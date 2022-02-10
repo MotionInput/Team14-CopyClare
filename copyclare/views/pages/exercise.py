@@ -16,11 +16,10 @@ class ExercisePage(Page):
         self.thr.update_frame.connect(self.setImage)
         self.thr.start()
 
-        self.thr2 = VideoThread(None, "/sample1.mp4")
-        self.thr2.finished.connect(self.close)
-        self.thr2.update_frame2.connect(self.setImagee)
-        print("hello")
-        self.thr2.start()
+        #self.thr2 = VideoThread(None, "/sample1.mp4")
+        #self.thr2.finished.connect(self.close)
+        #self.thr2.update_frame2.connect(self.setImagee)
+        #self.thr2.start()
 
         # TODO: REMOVE LATER
         self.rep = True
@@ -31,15 +30,8 @@ class ExercisePage(Page):
 
         self.ui.video_2.setPixmap(QPixmap.fromImage(image))
 
-        if float(angle) < 15 and float(angle) > 0:
-            if self.rep:
-                self.rep = False
-                self.numRep += 1
-        else:
-            self.rep = True
-
         self.ui.rep_label.setText(f"Repetition: {self.numRep}")
-        self.ui.angle_label.setText(f"Angle: {int(float(angle))}")
+        self.ui.angle_label.setText(f"Accuracy: {int(float(angle))}")
 
         pass
 

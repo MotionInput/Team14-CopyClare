@@ -18,8 +18,9 @@ class VideoThread(QThread):
 
     def run(self):
 
-        if self.src_file is not None:
-            """
+        if self.src_file is None:
+            print("hello")
+
             for frame, accuracy in self.model.accuracy_session():
 
                 color_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -29,8 +30,7 @@ class VideoThread(QThread):
                              QImage.Format_RGB888)
                 scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
 
-                self.update_frame.emit(scaled_img, str(accuracy))"""
-            pass
+                self.update_frame.emit(scaled_img, str(accuracy))
 
         else:
             for frame in self.model._raw_video():
