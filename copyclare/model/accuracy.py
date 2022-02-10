@@ -137,7 +137,20 @@ class AccuracyModel:
         cap = cv2.VideoCapture(self.video_path)
 
         while cap.isOpened():
-            print("debug: _init_exercise loop")
+
+            success, frame = cap.read()
+
+            if not success:
+                print("Can't receive frame (stream end?). Exiting ...")
+                break
+
+            frame_angles = self._process_frame(frame)
+
+            for key in self.joints:
+                if key is not in self.joints:
+                    self.joints[key] = []
+
+                joint_dict[key].append(frame_angles[key])
 
         return joint_dict
 
