@@ -1,3 +1,5 @@
+import os
+
 import cv2
 import numpy as np
 import time
@@ -16,7 +18,8 @@ class AccuracyModel:
             video_path: relative path to the video file
             joints: a set of joint strings or id's
         """
-        self.video_path = video_path
+        dirname = os.path.dirname(os.path.realpath(__file__))
+        self.video_path = dirname + "/sample1.mp4"
         self.joints = {"left_elbow"}
         self.src_joint_dict = self._init_exercise()
         self.time_range = self._time_range(self.src_joint_dict)
