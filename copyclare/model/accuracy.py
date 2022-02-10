@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 import time
 
 
@@ -22,6 +21,7 @@ class AccuracyModel:
         self.src_joint_dict = self._init_exercise()
         self.time_range = self._time_range(self.src_joint_dict)
         self.user_joint_dict = self._init_user_buffer()
+        self.src_area = self._find_area(self.src_joint_dict)
 
     def accuracy_session(self):
         """
@@ -95,9 +95,32 @@ class AccuracyModel:
 
         find area under each of those and returns the difference
         """
-        difference = 0
 
-        return difference
+        # find area under the src_curve
+        area = self._find_area(self.user_joint_dict)
+
+        dif = abs(self.src_area - area)
+
+        return dif
+
+    def _find_area(self, joint_dict):
+
+        area = 0
+        ys = []
+        times = []
+
+        for key in self.src_joint_dict:
+
+            for each in self.src_joint_dict[key]:
+                ts, y = each
+                ys.append(y)
+                times.append(ts)
+
+            dt = sum(times) / len(times)
+
+            area += np.trapz(ys, dx=dt)
+
+        return area
 
     # run with care cuz now it will just loop infinitely
     def _init_exercise(self):
@@ -130,7 +153,6 @@ class AccuracyModel:
         """
         All user timestamp calculations happen here
         """
-
         for key in self.joints:
             self.user_joint_dict[key].append(frame_angles[key])
 
@@ -145,3 +167,7 @@ class AccuracyModel:
                     # NOTE: replace with a linked list for efficient
                     # first element removal
                     self.user_joint_dict[key].pop(0)
+
+                return True
+
+        return False
