@@ -4,6 +4,8 @@ import cv2
 import numpy as np
 import time
 
+from .PoseModule import PoseModule
+
 
 class AccuracyModel:
     """
@@ -25,6 +27,7 @@ class AccuracyModel:
         #self.time_range = self._time_range(self.src_joint_dict)
         #self.user_joint_dict = self._init_user_buffer()
         #self.src_area = self._find_area(self.src_joint_dict)
+        self.detector = PoseModule()
 
     def accuracy_session(self):
         """
@@ -111,8 +114,16 @@ class AccuracyModel:
         {"left_elbow": (1,30.1321), (2,"left_shoulder"): (3,20.12312)}
         """
         time_stamp = time.time()
+        dict = {}
+        person = self.detector.find_person(frame)
+        landmark_list = self.detector.find_landmarks(person,draw=False)
+        if len(landmark_list) != 0:
+            for joint in self.joints:
+                num = int(joint)
+                angle = self.detector.find_angle(person,num-2,num,num+2)
+                dict.update({joint:(time_stamp,angle)})            
 
-        pass
+        return dict
 
     def _calculate_accuracy(self):
         """
