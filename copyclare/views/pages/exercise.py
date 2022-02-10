@@ -16,10 +16,10 @@ class ExercisePage(Page):
         self.thr.update_frame.connect(self.setImage)
         self.thr.start()
 
-        #self.thr2 = VideoThread(None, "/sample1.mp4")
-        #self.thr2.finished.connect(self.close)
-        #self.thr2.update_frame2.connect(self.setImagee)
-        #self.thr2.start()
+        self.thr2 = VideoThread(None, "/sample1.mp4")
+        self.thr2.finished.connect(self.close)
+        self.thr2.update_frame2.connect(self.setImagee)
+        self.thr2.start()
 
         # TODO: REMOVE LATER
         self.rep = True

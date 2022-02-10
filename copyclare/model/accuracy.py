@@ -48,20 +48,22 @@ class AccuracyModel:
                 print("Can't read from camera")
                 break
 
-            frame_angles = self._process_frame(frame)
+            #frame_angles = self._process_frame(frame)
 
             # if buffer is about the same as the input video
             # this also controls buffer size
-            if self._update_user_buffer(frame_angles, frame_count):
-                accuracy = self._calculate_accuracy()
+            #if self._update_user_buffer(frame_angles, frame_count):
+            #    accuracy = self._calculate_accuracy()
 
-            self._highlight_landmarks(frame)
-            frame_count += 1
+            #self._highlight_landmarks(frame)
+            #frame_count += 1
 
             yield frame, accuracy
 
     def _raw_video(self):
         print(self.video_path)
+
+        time.sleep(1)
 
         cap = cv2.VideoCapture(self.video_path)
         frames = []

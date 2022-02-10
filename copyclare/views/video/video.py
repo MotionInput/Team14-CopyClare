@@ -19,7 +19,6 @@ class VideoThread(QThread):
     def run(self):
 
         if self.src_file is None:
-            print("hello")
 
             for frame, accuracy in self.model.accuracy_session():
 
