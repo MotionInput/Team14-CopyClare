@@ -33,7 +33,6 @@ class VideoThread(QThread):
             pass
 
         else:
-            print("hello")
             for frame in self.model._raw_video():
                 color_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 

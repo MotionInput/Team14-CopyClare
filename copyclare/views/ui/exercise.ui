@@ -43,8 +43,17 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="video_1">
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string/>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignHCenter|Qt::AlignTop</set>
            </property>
           </widget>
          </item>

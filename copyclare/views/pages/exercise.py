@@ -18,7 +18,8 @@ class ExercisePage(Page):
 
         self.thr2 = VideoThread(None, "/sample1.mp4")
         self.thr2.finished.connect(self.close)
-        self.thr2.update_frame.connect(self.setImage2)
+        self.thr2.update_frame2.connect(self.setImagee)
+        print("hello")
         self.thr2.start()
 
         # TODO: REMOVE LATER
@@ -43,5 +44,6 @@ class ExercisePage(Page):
         pass
 
     @Slot(QImage)
-    def setImage2(self, image):
+    def setImagee(self, image):
+        print("2")
         self.ui.video_1.setPixmap(QPixmap.fromImage(image))

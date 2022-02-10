@@ -60,16 +60,24 @@ class AccuracyModel:
     def _raw_video(self):
         print(self.video_path)
 
-        cap = cv2.VideoCapture("sample.mp4")
+        cap = cv2.VideoCapture(self.video_path)
+        frames = []
 
         while cap.isOpened():
             success, frame = cap.read()
+            print(success)
 
             if not success:
                 print("Can't read from camera")
                 break
 
-            yield frame
+            frames.append(frame)
+
+        frame_ind = 0
+        while True:
+            frame_ind += 1
+            frame_ind %= len(frames)
+            yield frames[frame_ind]
 
     def _time_range(self, joint_dict):
         """
