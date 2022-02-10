@@ -1,5 +1,5 @@
 import os
-C:\Users\chent\Desktop\study\COMP16\Team14-CopyClare\copyclare\model\PoseModule.py
+
 import cv2
 import numpy as np
 import time
