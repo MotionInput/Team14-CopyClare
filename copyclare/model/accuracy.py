@@ -125,7 +125,6 @@ class AccuracyModel:
 
         return area
 
-    # run with care cuz now it will just loop infinitely
     def _init_exercise(self):
         """
         Convert source video into a joint_dict
@@ -147,7 +146,7 @@ class AccuracyModel:
             frame_angles = self._process_frame(frame)
 
             for key in self.joints:
-                if key is not in self.joints:
+                if key not in self.joints:
                     self.joints[key] = []
 
                 joint_dict[key].append(frame_angles[key])
@@ -160,7 +159,7 @@ class AccuracyModel:
         """
         joint_dict = {}
 
-        for key in self.src_joint_dict:
+        for key in self.joints:
             joint_dict[key] = []
 
         return joint_dict
