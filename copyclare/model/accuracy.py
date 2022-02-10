@@ -21,10 +21,10 @@ class AccuracyModel:
         dirname = os.path.dirname(os.path.realpath(__file__))
         self.video_path = dirname + "/sample1.mp4"
         self.joints = {"left_elbow"}
-        self.src_joint_dict = self._init_exercise()
-        self.time_range = self._time_range(self.src_joint_dict)
-        self.user_joint_dict = self._init_user_buffer()
-        self.src_area = self._find_area(self.src_joint_dict)
+        #self.src_joint_dict = self._init_exercise()
+        #self.time_range = self._time_range(self.src_joint_dict)
+        #self.user_joint_dict = self._init_user_buffer()
+        #self.src_area = self._find_area(self.src_joint_dict)
 
     def accuracy_session(self):
         """
@@ -56,6 +56,20 @@ class AccuracyModel:
             frame_count += 1
 
             yield frame, accuracy
+
+    def _raw_video(self):
+        print(self.video_path)
+
+        cap = cv2.VideoCapture("sample.mp4")
+
+        while cap.isOpened():
+            success, frame = cap.read()
+
+            if not success:
+                print("Can't read from camera")
+                break
+
+            yield frame
 
     def _time_range(self, joint_dict):
         """

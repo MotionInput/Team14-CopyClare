@@ -2,25 +2,44 @@ import cv2
 from PySide6.QtGui import QImage
 from PySide6.QtCore import Qt, QThread, Signal, Slot
 
-from model import Model
+from model import AccuracyModel
+
 
 class VideoThread(QThread):
     update_frame = Signal(QImage, str)
+    update_frame2 = Signal(QImage)
 
-    def __init__(self, master=None):
+    def __init__(self, master=None, src_file=None):
+
         super().__init__(master)
-        self.model = Model()
-        self.cap = True
-        self.status = True
+        # TODO: change the params to something meaningfull
+        self.model = AccuracyModel("1", "2")
+        self.src_file = src_file
 
     def run(self):
 
-        for (frame,angle) in self.model.show_capture():
+        if self.src_file is not None:
+            """
+            for frame, accuracy in self.model.accuracy_session():
 
-            color_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                color_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-            h, w, ch = color_frame.shape
-            img = QImage(color_frame.data, w, h, ch * w, QImage.Format_RGB888)
-            scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
-            
-            self.update_frame.emit(scaled_img, str(angle))
+                h, w, ch = color_frame.shape
+                img = QImage(color_frame.data, w, h, ch * w,
+                             QImage.Format_RGB888)
+                scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
+
+                self.update_frame.emit(scaled_img, str(accuracy))"""
+            pass
+
+        else:
+            print("hello")
+            for frame in self.model._raw_video():
+                color_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                h, w, ch = color_frame.shape
+                img = QImage(color_frame.data, w, h, ch * w,
+                             QImage.Format_RGB888)
+                scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
+
+                self.update_frame2.emit(scaled_img)
