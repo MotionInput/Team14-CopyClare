@@ -1,4 +1,4 @@
-from views.widgets import ExerciseListWidget
+from copyclare.widgets import ExerciseListWidget
 
 from .page import Page
 

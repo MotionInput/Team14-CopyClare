@@ -2,7 +2,7 @@ import os
 
 from PySide6.QtWidgets import QFrame
 
-from common import load_ui
+from copyclare.common import load_ui
 
 
 class Page(QFrame):

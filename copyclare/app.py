@@ -1,12 +1,13 @@
 import sys
 
 from PySide6.QtWidgets import QMainWindow, QApplication
-from common import load_ui
 
+
+from .common import load_ui
 from .pages import HomePage, NotFound, ExercisePage, ProfilePage
 
 
-class View:
+class App:
 
     pages = {
         "home": HomePage,

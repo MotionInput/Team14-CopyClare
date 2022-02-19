@@ -1,8 +1,8 @@
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtCore import Slot
 
-from common import load_ui
-from views.video import VideoThread
+
+from copyclare.video import VideoThread
 
 from .page import Page
 

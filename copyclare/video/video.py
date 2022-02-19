@@ -2,7 +2,7 @@ import cv2
 from PySide6.QtGui import QImage
 from PySide6.QtCore import Qt, QThread, Signal, Slot
 
-from model import AccuracyModel
+from copyclare.model import AccuracyModel
 
 
 class VideoThread(QThread):

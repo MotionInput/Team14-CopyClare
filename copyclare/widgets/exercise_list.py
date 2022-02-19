@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QFrame, QPushButton
 
-from common import load_ui
+from copyclare.common import load_ui
 
 
 class ExerciseListWidget(QFrame):
-    def __init__(self, master,exercises):
+    def __init__(self, master, exercises):
         super().__init__(master)
 
         self.ui = load_ui("exercise_list_widget")
