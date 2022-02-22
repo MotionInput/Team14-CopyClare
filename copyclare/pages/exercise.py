@@ -27,9 +27,7 @@ class ExercisePage(Page):
 
     @Slot(QImage, str)
     def setImage(self, image, angle):
-
         self.ui.video_2.setPixmap(QPixmap.fromImage(image))
-
         self.ui.rep_label.setText(f"Repetition: {self.numRep}")
         self.ui.angle_label.setText(f"Accuracy: {int(float(angle))}")
 
@@ -37,5 +35,5 @@ class ExercisePage(Page):
 
     @Slot(QImage)
     def setImagee(self, image):
-        print("2")
+
         self.ui.video_1.setPixmap(QPixmap.fromImage(image))

@@ -3,7 +3,7 @@ from PySide6.QtGui import QImage
 from PySide6.QtCore import Qt, QThread, Signal, Slot
 
 from copyclare.model import AccuracyModel
-
+import time
 
 class VideoThread(QThread):
     update_frame = Signal(QImage, str)
@@ -28,6 +28,7 @@ class VideoThread(QThread):
                 img = QImage(color_frame.data, w, h, ch * w,
                              QImage.Format_RGB888)
                 scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
+                
 
                 self.update_frame.emit(scaled_img, str(accuracy))
 
@@ -39,5 +40,6 @@ class VideoThread(QThread):
                 img = QImage(color_frame.data, w, h, ch * w,
                              QImage.Format_RGB888)
                 scaled_img = img.scaled(640, 480, Qt.KeepAspectRatio)
+                time.sleep(0.2)
 
                 self.update_frame2.emit(scaled_img)

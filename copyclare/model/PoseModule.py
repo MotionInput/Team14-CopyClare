@@ -9,23 +9,32 @@ import math
 
 class PoseModule:
     def __init__(
-        self, mode=False, up_body=False, smooth=True, detection_con=True, track_con=True
+            self,
+            mode=False,
+            up_body=False,
+            smooth=True,
+            detection_con=True,
+            track_con=True,
+            smooth_segmentation=False,
+            
     ):
         self.mode = mode
         self.up_body = up_body
         self.smooth = smooth
         self.detection_con = detection_con
         self.track_con = track_con
+        self.smooth_segmentation=smooth_segmentation
 
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose(
-            self.mode, self.up_body, self.smooth, self.detection_con, self.track_con
+            static_image_mode = True,
+            model_complexity = 1,
+            enable_segmentation=False,
         )
 
     def find_person(self, img, draw=False):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        print(img_rgb)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
             self.mp_draw.draw_landmarks(
