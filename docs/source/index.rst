@@ -27,6 +27,60 @@ Here you can find all necessary information to help you get around our codebase!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Introduction
+
+   introduction
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Requirements
+
+   requirements
+
+.. toctree::
+   :maxdepth: 1
+   :caption: HCI
+
+   hci
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Research
+
+   research
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Design
+
+   design
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Implementation
+
+   implementation
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Testing
+
+   testing
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Evaluation
+
+   evaluation
+
+.. toctree::
+   :maxdepth: 1
    :caption: Blog
 
    blog
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Appendix
+
+   appendix
