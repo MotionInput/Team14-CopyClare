@@ -72,7 +72,7 @@ class App:
         self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))
 
         self.ui.profile_button.clicked.connect(
-            lambda x: self.load_page("profile"))
+            lambda x: self.load_page("settings"))
 
-        self.ui.analysis_button.clicked.connect(
-            lambda x: self.load_page("analysis"))
+        self.ui.progress_button.clicked.connect(
+            lambda x: self.load_page("progress"))
