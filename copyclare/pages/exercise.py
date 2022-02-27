@@ -1,5 +1,5 @@
 from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, Signal
 from PySide6.QtCharts import QChart, QChartView, QLineSeries
 
 from PySide6.QtMultimedia import (QMediaPlayer)
@@ -17,11 +17,21 @@ from .page import Page
 
 
 class ExercisePage(Page):
+    done = Signal()
+
     def __init__(self, master):
         super().__init__(master, "exercise")
+
         self.init_chart()
         self.init_video()
         self.init_camera()
+        self.ui.end_button.clicked.connect(self.stop_all)
+
+    def stop_all(self):
+        print("Trying to stop stuff")
+        self.video_thread._running = False
+        self.camera_thread._running = False
+        self.done.emit()
 
     def init_chart(self):
         self.series = QLineSeries()
@@ -38,12 +48,11 @@ class ExercisePage(Page):
         self.ui.graph_layout.addWidget(self.chartView)
 
     def init_video(self):
-        self.video_thread = VideoThread()
+        self.video_thread = VideoThread(self.ui.video_frame)
         self.video_thread.update_frame.connect(self.update_video)
         self.video_thread.start()
 
     def init_camera(self):
-
         self.camera_thread = CameraThread(self.ui.camera_frame)
         self.camera_thread.update_frame.connect(self.update_camera)
         self.camera_thread.start()
