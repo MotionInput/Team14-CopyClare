@@ -48,15 +48,16 @@ class AccuracyModel:
                 print("Can't read from camera")
                 break
 
-            #frame_angles = self._process_frame(frame)
+            frame_angles = self._process_frame(frame)
 
             # if buffer is about the same as the input video
             # this also controls buffer size
-            #if self._update_user_buffer(frame_angles, frame_count):
-            #    accuracy = self._calculate_accuracy()
+            if self._update_user_buffer(frame_angles, frame_count):
+                
+                accuracy = self._calculate_accuracy()
 
-            #self._highlight_landmarks(frame)
-            #frame_count += 1
+            self._highlight_landmarks(frame)
+            frame_count += 1
 
             yield frame, accuracy
 
@@ -94,7 +95,10 @@ class AccuracyModel:
             end = joint_dict[key][-1][0]
             dif += end - start
 
-        dif /= len(joint_dict)
+        dif /= len(joint_dict[key])
+
+        print(dif)
+
 
         return dif
 
@@ -123,7 +127,6 @@ class AccuracyModel:
                 num = int(joint)
                 angle = self.detector.find_angle(person, num - 2, num, num + 2)
                 joint_dict.update({joint: (time_stamp, angle)})
-
         return joint_dict
 
     def _calculate_accuracy(self):
@@ -146,14 +149,16 @@ class AccuracyModel:
         ys = []
         times = []
 
-        for key in self.src_joint_dict:
+        for key in joint_dict:
 
-            for each in self.src_joint_dict[key]:
+            for each in joint_dict[key]:
                 ts, y = each
                 ys.append(y)
                 times.append(ts)
 
-            dt = sum(times) / len(times)
+            rang = times[-1] - times[1]
+
+            dt = rang / len(times)
 
             area += np.trapz(ys, dx=dt)
 
@@ -202,12 +207,21 @@ class AccuracyModel:
         """
         All user timestamp calculations happen here
         """
+        
+
+        
         for key in self.joints:
             self.user_joint_dict[key].append(frame_angles[key])
+
+            print(f"length: {len(self.user_joint_dict[key])}")
 
         # make sure we have at least 2 frames loaded in the buffer
         if frame_count > 2:
             # if buffer just became longer than the input video
+
+            print(self._time_range(self.user_joint_dict))
+            print(self.time_range)
+
             if self._time_range(self.user_joint_dict) > self.time_range:
 
                 # pop the first element of all joints
