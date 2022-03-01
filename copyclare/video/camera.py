@@ -3,6 +3,7 @@ from PySide6.QtGui import QImage
 from PySide6.QtCore import Qt, QThread, Signal, QRect
 
 from copyclare.model import AccuracyModel
+from copyclare import DATA_PATH
 
 
 class CameraThread(QThread):
@@ -23,8 +24,7 @@ class CameraThread(QThread):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = frame.shape
             img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
-            offset = (w - (width * h / height)) / 2
-            rect = QRect(offset, 0, w, h)
+
             scaled_img = img.scaled(width, height,
                                     Qt.KeepAspectRatioByExpanding)
 
@@ -32,19 +32,28 @@ class CameraThread(QThread):
 
 
 class CameraWorker:
-    def work(self):
+    def __init__(self):
+        joints = {"left_shoulder", "left_elbow"}
+        self.model = AccuracyModel(DATA_PATH + "/videos/sample2.mp4", joints)
 
+        pass
+
+    def work(self):
         cap = cv2.VideoCapture(0)
 
         if not cap.isOpened():
             print("Error opening a video file")
 
-        while cap.isOpened():
+        while (cap.isOpened):
 
             success, frame = cap.read()
-            frame = cv2.flip(frame, 1)
+
+            self.model.accuracy(frame)
+            self.model.color_frame(frame)
 
             if not success:
                 print("Can't read from Camera")
+
+            frame = cv2.flip(frame, 1)
 
             yield frame

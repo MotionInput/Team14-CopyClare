@@ -3,10 +3,6 @@ import mediapipe as mp
 import cv2
 import math
 
-
-
-
-
 class PoseModule:
     def __init__(
             self,
@@ -16,7 +12,7 @@ class PoseModule:
             detection_con=True,
             track_con=True,
             smooth_segmentation=False,
-            
+
     ):
         self.mode = mode
         self.up_body = up_body
