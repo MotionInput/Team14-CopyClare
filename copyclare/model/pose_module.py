@@ -1,3 +1,4 @@
+from cmath import acos
 import numpy as np
 import mediapipe as mp
 import cv2
@@ -52,12 +53,14 @@ class PoseModule:
 
     def find_angle(self, img, p1, p2, p3, draw=True):
         # Get the landmarks
-        x1, y1 = self.landmark_list[p1][1:]
-        x2, y2 = self.landmark_list[p2][1:]
-        x3, y3 = self.landmark_list[p3][1:]
+        x1, y1, z1 = self.landmark_list[p1]
+        x2, y2, z2= self.landmark_list[p2]
+        x3, y3, z3 = self.landmark_list[p3]
+        len12 = math.sqrt((x1-x2)**2+(y1-y2)**2+(z1-z2)**2)
+        len23 = math.sqrt((x2-x3)**2+(y2-y3)**2+(z2-z3)**2)
+        len13 = math.sqrt((x1-x3)**2+(y1-y3)**2+(z1-z3)**2)
         # Calculate the Angle
-        angle = math.degrees(math.atan2(y3 - y2, x3 - x2) -
-                             math.atan2(y1 - y2, x1 - x2))
+        angle = math.degrees(math.acos((len12**2+len23**2-len13**2)/2/len12/len23))
         if angle < 0:
             angle += 360
 
