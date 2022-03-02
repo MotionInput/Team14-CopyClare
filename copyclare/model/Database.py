@@ -36,19 +36,49 @@ class Database:
         user = User(name)
         return user
     
-    def add_exercise(self,exercise_name,video_directory,image_directory,descriptions,category):
-        cursor = self.c.execute("INSERT INTO exercises (name, video_directory, image_directory, descriptions, category) \
-                                VALUE (%s,%s,%s,%s,%s,%s)" % (exercise_name,video_directory,image_directory,descriptions,category))
+    def add_exercise(self,exercise):
+        # input an exercise object and keep it in the database
+        cursor = self.c.execute("INSERT INTO exercises (name, video_directory, image_directory, descriptions, category, angle_over_time) \
+                                VALUE (%s,%s,%s,%s,%s,%s)" % (exercise.name,exercise.video_directory,exercise.image_directory,exercise.descriptions,exercise.category,exercise.AngleOverTime))
         self.conn.commit()
 
-    def get_exercise(self,exercise_name):
+    def get_exercises(self,key_type,key):
+        # use the data here to get exercise instances
+        if key_type == "all":
+            cursor = self.c.execute("SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises")
+        else:
+            cursor = self.c.execute("SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE %s = %s") %(key_type,key)
+        exercises = []
+        for row in cursor:            
+            exercise = Exercise(row[0],row[1],row[2],row[3],row[4],row[5])
+            exercises.append(exercise)
+        return exercises         
+    
+    """def get_exercise(self,exercise_name = None):
         # use the data here to create a new exercise instance
-        cursor = self.c.execute("SELECT video_directory, image_directory, descriptions, category FROM exercises WHERE name = %s") %(exercise_name)
-        for row in cursor:
-            exercise = Exercise(exercise_name,row[0],row[1],row[2],row[3])
-            return exercise
+        if exercise_name == None:
+            cursor = self.c.execute("SELECT video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE name = %s") %(exercise_name)
+            for row in cursor:
+                exercise = Exercise(exercise_name,row[0],row[1],row[2],row[3],row[4])
+                return exercise
+        else:
+            cursor = self.c.execute("SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises")
+            exercises = []
+            for row in cursor:
+                exercise = Exercise(row[0],row[1],row[2],row[3],row[4],row[5])
+                exercises.append(exercise)
+            return exercises
         print("can not find the corresponding exercise")
-        return None
+        return None"""
+    
+    def get_all_categories(self):
+        # return a list of name of categories
+        cursor = self.c.execute("SELECT category FROM exercises")
+        categories = []
+        for row in cursor:
+            if row[0] not in categories:
+                categories.append(row[0])
+        return categories        
 
     def add_attempt(self,date,nums_of_repetition,duration,accuracy,user_name,exercise_name):
         self.c.execute("INSERT INTO attempts (date,nums_of_repition,duration,accuracy,user_name,exercise_name) \
@@ -80,6 +110,7 @@ def main():
                             image_directory TEXT,
                             descriptions TEXT,
                             category TEXT,
+                            angle_over_time TEXT
                         ); """
 
     attempts_table = """CREATE TABLE IF NOT EXISTS attempts(
