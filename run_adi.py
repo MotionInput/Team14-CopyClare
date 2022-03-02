@@ -43,7 +43,7 @@ def test_ui():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
-    from copyclare.model import Database
+    test_ui()
 
 
 
