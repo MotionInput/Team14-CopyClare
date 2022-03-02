@@ -1,6 +1,6 @@
 import sqlite3
-from copyclare.model.attempt import Attempt
 
+from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
 from copyclare.model.user import User
 class Database:

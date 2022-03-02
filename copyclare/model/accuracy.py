@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import time
 
-from .PoseModule import PoseModule
+from .pose_module import PoseModule
 
 
 class AccuracyModel:
