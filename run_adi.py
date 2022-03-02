@@ -29,27 +29,18 @@ def test_accuracy():
             print("can't ")
             break
 
-    pass
-
 
 def test_ui():
 
     app = QApplication(sys.argv)
-
     window = QMainWindow()
     window.showMaximized()
     ui = load_ui("main_window")
     ui.setupUi(window)
-
     ex = ExercisePage(window)
     ui.pages_layout.addWidget(ex)
-
     window.show()
-
     sys.exit(app.exec())
-
-    pass
-
 
 if __name__ == "__main__":
     test_ui()

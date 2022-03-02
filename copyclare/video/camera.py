@@ -43,13 +43,14 @@ class CameraWorker:
 
         if not cap.isOpened():
             print("Error opening a video file")
-
+            
+        print(self.model.angles)
         while (cap.isOpened):
 
             success, frame = cap.read()
 
             self.model.accuracy(frame)
-            self.model.color_frame(frame)
+
 
             if not success:
                 print("Can't read from Camera")

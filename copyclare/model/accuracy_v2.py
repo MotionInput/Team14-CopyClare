@@ -5,7 +5,20 @@ import cv2
 import statsmodels.api as sm
 import math
 
+
 from copyclare.model import PoseModule
+
+
+def round_decimals_up(number:float, decimals:int=1):
+    if not isinstance(decimals, int):
+        raise TypeError("decimal places must be an integer")
+    elif decimals < 0:
+        raise ValueError("decimal places needs to be 0 or more")
+    elif decimals == 0:
+        return math.ceil(number)
+
+    factor = 10 ** decimals
+    return math.ceil(number * factor) / factor
 
 
 class AccuracyModel:
@@ -33,7 +46,7 @@ class AccuracyModel:
     def _init_angles(self):
         angles = {}
         for joint in self.joints:
-            angles[joint] = [[], []]
+            angles[joint] = {}
         return angles
 
     def get_angles(self, video_path):
@@ -58,51 +71,80 @@ class AccuracyModel:
 
             for joint in self.joints:
                 t = count / fps
-                a = self.find_angle(frame, joint)
-                angles[joint][0].append(a)
-                angles[joint][1].append(t)
+                person = self.detector.find_person(frame)
+                landmark_list = self.detector.find_landmarks(person, draw=False)
+                a = self.find_angle(person, joint, landmark_list)
+                angles[joint][round_decimals_up(t, 4)] = a
             count += 1
 
         self.duration = count / fps
 
         # Smoothing with local regression
         for joint in self.joints:
-            lowess = sm.nonparametric.lowess(angles[joint][0],
-                                             angles[joint][1],
+            tmp = []
+            for time_stamp in angles[joint]:
+                tmp.append(angles[joint][time_stamp])
+            
+            lowess = sm.nonparametric.lowess(tmp,
+                                             list(angles[joint].keys()),
                                              frac=0.1)
             ts, angs = list(lowess[:, 0]), list(lowess[:, 1])
-            angles[joint][0] = angs
-            angles[joint][1] = ts
+            for i in range(len(ts)):
+                angles[joint][ts[i]] = angs[i]
 
         return angles
 
-    def color_frame(self, frame):
-
-        for joint in self.joints_map:
-
-            x, y = self.detector.landmark_list[self.joints_map[joint]][1:]
+    def color_frame(self, frame, landmark_list):
+        done = set()
+        
+        for joint in self.joints:
+            x, y = landmark_list[self.joints_map[joint]][1:]
+            x_left, y_left = landmark_list[self.joint_adjacent[joint][0]][1:]
+            x_right, y_right = landmark_list[self.joint_adjacent[joint][1]][1:]
             cv2.circle(frame, (x, y), 5, (255, 0, 0), cv2.FILLED)
 
-        pass
+            p1 = (x,y)
+            p2 = (x_left, y_left)
+            if not (p1, p2) in done and not(p2,p1) in done:
+                cv2.line(frame, p1, p2, (255, 255, 255), 5)
+                done.add((p1,p2))
 
-    def find_angle(self, frame, joint):
-        person = self.detector.find_person(frame)
-        landmark_list = self.detector.find_landmarks(person, draw=False)
+            p2 = (x_right, y_right)
+            if not (p1, p2) in done and not(p2,p1) in done:
+                cv2.line(frame, p1, p2, (255, 255, 255), 5)
+                done.add((p1,p2))
+
+
+
+
+    def find_angle(self, frame, joint, landmark_list):
         if len(landmark_list) != 0:
             middle = self.joints_map[joint]
             left, right = self.joint_adjacent[joint]
-            angle = self.detector.find_angle(person,
+            angle = self.detector.find_angle(frame,
                                              left,
                                              middle,
                                              right,
                                              draw=False)
             return angle
 
-    def accuracy(self, frame):
+    def check_angle(self, angle, reltime):
 
+        
+
+        
+        return 
+
+    def accuracy(self, frame):
+        person = self.detector.find_person(frame)
+        landmark_list = self.detector.find_landmarks(person, draw=False)
         accuracy = 0
+        
+        
         for joint in self.joints:
-            self.find_angle(frame, joint)
+            self.find_angle(person, joint, landmark_list)
+
+        self.color_frame(person, landmark_list)
 
         return accuracy
 

@@ -15,94 +15,140 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QSizePolicy, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
+    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 
-class Ui_Exercise(object):
-    def setupUi(self, Exercise):
-        if not Exercise.objectName():
-            Exercise.setObjectName(u"Exercise")
-        Exercise.resize(900, 600)
-        Exercise.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        Exercise.setFrameShape(QFrame.StyledPanel)
-        Exercise.setFrameShadow(QFrame.Raised)
-        self.verticalLayout = QVBoxLayout(Exercise)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.frame_2 = QFrame(Exercise)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_2 = QVBoxLayout(self.frame_2)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame_3 = QFrame(self.frame_2)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.frame_3)
+class Ui_exercise_frame(object):
+    def setupUi(self, exercise_frame):
+        if not exercise_frame.objectName():
+            exercise_frame.setObjectName(u"exercise_frame")
+        exercise_frame.resize(900, 628)
+        exercise_frame.setLayoutDirection(Qt.LeftToRight)
+        exercise_frame.setFrameShape(QFrame.NoFrame)
+        exercise_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(exercise_frame)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.video_1 = QLabel(self.frame_3)
-        self.video_1.setObjectName(u"video_1")
-        self.video_1.setFrameShape(QFrame.NoFrame)
-        self.video_1.setTextFormat(Qt.PlainText)
-        self.video_1.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.controls_frame = QFrame(exercise_frame)
+        self.controls_frame.setObjectName(u"controls_frame")
+        self.controls_frame.setMaximumSize(QSize(300, 16777215))
+        self.controls_frame.setStyleSheet(u"")
+        self.controls_frame.setFrameShape(QFrame.NoFrame)
+        self.controls_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.controls_frame)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.video_frame = QFrame(self.controls_frame)
+        self.video_frame.setObjectName(u"video_frame")
+        self.video_frame.setMinimumSize(QSize(300, 300))
+        self.video_frame.setMaximumSize(QSize(16777215, 300))
+        self.video_frame.setFrameShape(QFrame.NoFrame)
+        self.video_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.video_frame)
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.video_label = QLabel(self.video_frame)
+        self.video_label.setObjectName(u"video_label")
+        self.video_label.setMinimumSize(QSize(300, 300))
+        self.video_label.setMaximumSize(QSize(16777215, 300))
 
-        self.horizontalLayout.addWidget(self.video_1)
-
-        self.video_2 = QLabel(self.frame_3)
-        self.video_2.setObjectName(u"video_2")
-        self.video_2.setFrameShape(QFrame.NoFrame)
-        self.video_2.setTextFormat(Qt.PlainText)
-        self.video_2.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
-
-        self.horizontalLayout.addWidget(self.video_2)
+        self.horizontalLayout_3.addWidget(self.video_label)
 
 
-        self.verticalLayout_2.addWidget(self.frame_3)
+        self.verticalLayout.addWidget(self.video_frame)
 
-        self.frame = QFrame(self.frame_2)
-        self.frame.setObjectName(u"frame")
-        self.frame.setStyleSheet(u"QLabel {\n"
-"	color: rgb(0,0,0); \n"
-"	font-size: 30px;\n"
+        self.graph_frame = QFrame(self.controls_frame)
+        self.graph_frame.setObjectName(u"graph_frame")
+        self.graph_frame.setMaximumSize(QSize(16777215, 200))
+        self.graph_frame.setFrameShape(QFrame.NoFrame)
+        self.graph_frame.setFrameShadow(QFrame.Plain)
+        self.graph_frame.setLineWidth(0)
+        self.graph_layout = QHBoxLayout(self.graph_frame)
+        self.graph_layout.setSpacing(0)
+        self.graph_layout.setObjectName(u"graph_layout")
+        self.graph_layout.setContentsMargins(0, 0, 0, 0)
+
+        self.verticalLayout.addWidget(self.graph_frame)
+
+        self.data_frame = QFrame(self.controls_frame)
+        self.data_frame.setObjectName(u"data_frame")
+        self.data_frame.setFrameShape(QFrame.NoFrame)
+        self.data_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.data_frame)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label = QLabel(self.data_frame)
+        self.label.setObjectName(u"label")
+        self.label.setFrameShape(QFrame.NoFrame)
+
+        self.verticalLayout_2.addWidget(self.label)
+
+
+        self.verticalLayout.addWidget(self.data_frame)
+
+        self.end_button = QPushButton(self.controls_frame)
+        self.end_button.setObjectName(u"end_button")
+        font = QFont()
+        font.setPointSize(15)
+        self.end_button.setFont(font)
+        self.end_button.setStyleSheet(u"QPushButton {\n"
+"	border: none;\n"
+"	background-color: #fc8892;\n"
+"	color: rgb(0,0,0);\n"
+"	height: 50;\n"
+"}\n"
 "\n"
+"QPushButton:hover {\n"
+"	background-color: #ff5260;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: #ff949d;\n"
 "}")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.gridLayout = QGridLayout(self.frame)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.label_2 = QLabel(self.frame)
-        self.label_2.setObjectName(u"label_2")
+        self.end_button.setFlat(False)
 
-        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
-
-        self.angle_label = QLabel(self.frame)
-        self.angle_label.setObjectName(u"angle_label")
-
-        self.gridLayout.addWidget(self.angle_label, 0, 0, 1, 1)
-
-        self.rep_label = QLabel(self.frame)
-        self.rep_label.setObjectName(u"rep_label")
-
-        self.gridLayout.addWidget(self.rep_label, 1, 0, 1, 1)
+        self.verticalLayout.addWidget(self.end_button)
 
 
-        self.verticalLayout_2.addWidget(self.frame)
+        self.horizontalLayout.addWidget(self.controls_frame)
+
+        self.camera_frame = QFrame(exercise_frame)
+        self.camera_frame.setObjectName(u"camera_frame")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.camera_frame.sizePolicy().hasHeightForWidth())
+        self.camera_frame.setSizePolicy(sizePolicy)
+        self.camera_frame.setFrameShape(QFrame.NoFrame)
+        self.camera_frame.setFrameShadow(QFrame.Raised)
+        self.camera_frame.setLineWidth(3)
+        self.horizontalLayout_4 = QHBoxLayout(self.camera_frame)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.camera_label = QLabel(self.camera_frame)
+        self.camera_label.setObjectName(u"camera_label")
+
+        self.horizontalLayout_4.addWidget(self.camera_label)
 
 
-        self.verticalLayout.addWidget(self.frame_2)
+        self.horizontalLayout.addWidget(self.camera_frame)
 
 
-        self.retranslateUi(Exercise)
+        self.retranslateUi(exercise_frame)
 
-        QMetaObject.connectSlotsByName(Exercise)
+        QMetaObject.connectSlotsByName(exercise_frame)
     # setupUi
 
-    def retranslateUi(self, Exercise):
-        Exercise.setWindowTitle(QCoreApplication.translate("Exercise", u"Frame", None))
-        self.video_1.setText("")
-        self.video_2.setText("")
-        self.label_2.setText(QCoreApplication.translate("Exercise", u"Accuracy:", None))
-        self.angle_label.setText(QCoreApplication.translate("Exercise", u"Angle:", None))
-        self.rep_label.setText(QCoreApplication.translate("Exercise", u"Repetitions:", None))
+    def retranslateUi(self, exercise_frame):
+        exercise_frame.setWindowTitle(QCoreApplication.translate("exercise_frame", u"Frame", None))
+        self.video_label.setText(QCoreApplication.translate("exercise_frame", u"TextLabel", None))
+        self.label.setText(QCoreApplication.translate("exercise_frame", u"Reps: 5/16", None))
+        self.end_button.setText(QCoreApplication.translate("exercise_frame", u"END EXERCISE", None))
+        self.camera_label.setText(QCoreApplication.translate("exercise_frame", u"TextLabel", None))
     # retranslateUi
 
