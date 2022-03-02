@@ -1,4 +1,3 @@
-from copyclare.model.user import user
 
 
 class Attempt:
@@ -9,4 +8,3 @@ class Attempt:
         self.accuracy = accuracy
         self.user_name = user_name
         self.exercise_name = exerceise_name
- 

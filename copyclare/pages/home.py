@@ -1,5 +1,5 @@
 from copyclare.widgets import ExerciseListWidget
-from copyclare.widgets import VideoCard
+
 
 from .page import Page
 

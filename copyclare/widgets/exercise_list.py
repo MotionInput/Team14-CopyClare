@@ -1,7 +1,5 @@
 from PySide6.QtWidgets import QFrame, QPushButton
 
-from copyclare import Database
-
 from copyclare.common import load_ui
 
 

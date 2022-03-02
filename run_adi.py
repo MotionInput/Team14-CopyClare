@@ -43,7 +43,9 @@ def test_ui():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
-    test_ui()
+    from copyclare.model import Database
+
+
 
     # accuracy = am.accuracy(frame)
     # print(accuracy)
