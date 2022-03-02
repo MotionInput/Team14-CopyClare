@@ -1,6 +1,2 @@
-from .Model import Model
-from .accuracy import AccuracyModel
-
-
-
-
+from .pose_module import PoseModule
+from .accuracy_v2 import AccuracyModel

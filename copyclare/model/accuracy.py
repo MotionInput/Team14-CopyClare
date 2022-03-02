@@ -1,5 +1,6 @@
 import os
 
+import mediapipe as mp
 import cv2
 import numpy as np
 import time
@@ -53,7 +54,7 @@ class AccuracyModel:
             # if buffer is about the same as the input video
             # this also controls buffer size
             if self._update_user_buffer(frame_angles, frame_count):
-                
+
                 accuracy = self._calculate_accuracy()
 
             self._highlight_landmarks(frame)
@@ -98,7 +99,6 @@ class AccuracyModel:
         dif /= len(joint_dict[key])
 
         print(dif)
-
 
         return dif
 
@@ -207,9 +207,7 @@ class AccuracyModel:
         """
         All user timestamp calculations happen here
         """
-        
 
-        
         for key in self.joints:
             self.user_joint_dict[key].append(frame_angles[key])
 
