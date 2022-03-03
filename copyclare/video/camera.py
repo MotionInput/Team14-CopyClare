@@ -58,6 +58,7 @@ class CameraWorker:
             correct = self.model.accuracy(frame, time.time() - start)
 
             if correct:
+                print(correct)
             else:
                 start = time.time()
 
