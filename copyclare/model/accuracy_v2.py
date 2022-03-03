@@ -5,11 +5,10 @@ import cv2
 import statsmodels.api as sm
 import math
 
-
 from copyclare.model import PoseModule
 
 
-def round_decimals_up(number:float, decimals:int=1):
+def round_decimals_up(number: float, decimals: int = 1):
     if not isinstance(decimals, int):
         raise TypeError("decimal places must be an integer")
     elif decimals < 0:
@@ -17,7 +16,7 @@ def round_decimals_up(number:float, decimals:int=1):
     elif decimals == 0:
         return math.ceil(number)
 
-    factor = 10 ** decimals
+    factor = 10**decimals
     return math.ceil(number * factor) / factor
 
 
@@ -42,6 +41,7 @@ class AccuracyModel:
         self.joints = joints
         self.angles = self.get_angles(video_path)
         self.camera_buffer = deque()
+        self.offset = 20
 
     def _init_angles(self):
         angles = {}
@@ -62,6 +62,7 @@ class AccuracyModel:
         if not video.isOpened():
             print("Error Opening a video file")
         fps = video.get(cv2.CAP_PROP_FPS)
+        self.step = 1 / fps
         count = 0
         while video.isOpened():
             success, frame = video.read()
@@ -72,7 +73,8 @@ class AccuracyModel:
             for joint in self.joints:
                 t = count / fps
                 person = self.detector.find_person(frame)
-                landmark_list = self.detector.find_landmarks(person, draw=False)
+                landmark_list = self.detector.find_landmarks(person,
+                                                             draw=False)
                 a = self.find_angle(person, joint, landmark_list)
                 angles[joint][round_decimals_up(t, 4)] = a
             count += 1
@@ -84,7 +86,7 @@ class AccuracyModel:
             tmp = []
             for time_stamp in angles[joint]:
                 tmp.append(angles[joint][time_stamp])
-            
+
             lowess = sm.nonparametric.lowess(tmp,
                                              list(angles[joint].keys()),
                                              frac=0.1)
@@ -94,30 +96,32 @@ class AccuracyModel:
 
         return angles
 
-    def color_frame(self, frame, landmark_list):
+    def color_frame(self, frame, landmark_list, accuracy):
         done = set()
-        
-        for joint in self.joints:
-            x, y = landmark_list[self.joints_map[joint]][1:]
-            x_left, y_left = landmark_list[self.joint_adjacent[joint][0]][1:]
-            x_right, y_right = landmark_list[self.joint_adjacent[joint][1]][1:]
-            cv2.circle(frame, (x, y), 5, (255, 0, 0), cv2.FILLED)
+        clr = (0, 255, 0) if accuracy else (255, 255, 255)
+        if landmark_list:
+            for joint in self.joints:
+                x, y = landmark_list[self.joints_map[joint]][1:]
+                x_left, y_left = landmark_list[self.joint_adjacent[joint]
+                                               [0]][1:]
+                x_right, y_right = landmark_list[self.joint_adjacent[joint]
+                                                 [1]][1:]
 
-            p1 = (x,y)
-            p2 = (x_left, y_left)
-            if not (p1, p2) in done and not(p2,p1) in done:
-                cv2.line(frame, p1, p2, (255, 255, 255), 5)
-                done.add((p1,p2))
+                p1 = (x, y)
+                p2 = (x_left, y_left)
+                if not (p1, p2) in done and not (p2, p1) in done:
+                    cv2.line(frame, p1, p2, clr, 5)
+                    done.add((p1, p2))
 
-            p2 = (x_right, y_right)
-            if not (p1, p2) in done and not(p2,p1) in done:
-                cv2.line(frame, p1, p2, (255, 255, 255), 5)
-                done.add((p1,p2))
+                p2 = (x_right, y_right)
+                if not (p1, p2) in done and not (p2, p1) in done:
+                    cv2.line(frame, p1, p2, clr, 5)
+                    done.add((p1, p2))
 
-
-
+                cv2.circle(frame, (x, y), 5, (255, 0, 0), cv2.FILLED)
 
     def find_angle(self, frame, joint, landmark_list):
+        angle = -1
         if len(landmark_list) != 0:
             middle = self.joints_map[joint]
             left, right = self.joint_adjacent[joint]
@@ -126,25 +130,28 @@ class AccuracyModel:
                                              middle,
                                              right,
                                              draw=False)
-            return angle
+        return angle
 
-    def check_angle(self, angle, reltime):
+    def check_angle(self, angle, reltime, joint):
 
-        
+        form_time = round_decimals_up(int(reltime / self.step) * self.step, 4)
 
-        
-        return 
+        top = self.angles[joint][form_time] + self.offset
+        bottom = self.angles[joint][form_time] - self.offset
+        ret = (angle < top) and (angle > bottom)
 
-    def accuracy(self, frame):
+        return ret
+
+    def accuracy(self, frame, reltime):
         person = self.detector.find_person(frame)
         landmark_list = self.detector.find_landmarks(person, draw=False)
-        accuracy = 0
-        
-        
-        for joint in self.joints:
-            self.find_angle(person, joint, landmark_list)
+        accuracy = True
 
-        self.color_frame(person, landmark_list)
+        for joint in self.joints:
+            angle = self.find_angle(person, joint, landmark_list)
+            accuracy &= self.check_angle(angle, reltime, joint)
+
+        self.color_frame(person, landmark_list, accuracy)
 
         return accuracy
 

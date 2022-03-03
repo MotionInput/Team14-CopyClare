@@ -1,4 +1,6 @@
 import cv2
+import time
+
 from PySide6.QtGui import QImage
 from PySide6.QtCore import Qt, QThread, Signal, QRect
 
@@ -33,7 +35,10 @@ class CameraThread(QThread):
 
 class CameraWorker:
     def __init__(self):
-        joints = {"left_shoulder", "left_elbow"}
+        joints = {
+            #"left_shoulder",
+            "left_elbow",
+        }
         self.model = AccuracyModel(DATA_PATH + "/videos/sample2.mp4", joints)
 
         pass
@@ -43,14 +48,18 @@ class CameraWorker:
 
         if not cap.isOpened():
             print("Error opening a video file")
-            
+
         print(self.model.angles)
+        start = time.time()
         while (cap.isOpened):
 
             success, frame = cap.read()
 
-            self.model.accuracy(frame)
+            correct = self.model.accuracy(frame, time.time() - start)
 
+            if correct:
+            else:
+                start = time.time()
 
             if not success:
                 print("Can't read from Camera")
