@@ -53,6 +53,7 @@ exclude_patterns = []
 html_permalinks_icon = '<span>#</span>'
 html_theme = 'sphinxawesome_theme'
 html_collapsible_definitions = True
+html_awesome_headerlinks = False
 
 html_theme_options = {
     "show_scrolltop": True,
