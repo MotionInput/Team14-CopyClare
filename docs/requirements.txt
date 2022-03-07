@@ -3,3 +3,4 @@ sphinx-rtd-theme
 sphinx-markdown-tables
 recommonmark
 sphinx-panels
+sphinxawesome-theme
