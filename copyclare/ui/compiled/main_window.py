@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(811, 600)
+        MainWindow.resize(872, 603)
         MainWindow.setMinimumSize(QSize(800, 600))
         MainWindow.setStyleSheet(u"QMainWindow{\n"
 "	background-color: #f8f9fa;\n"
@@ -82,34 +82,19 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.home_button)
 
-        self.profile_button = QPushButton(self.side_nav)
-        self.profile_button.setObjectName(u"profile_button")
-
-        self.verticalLayout.addWidget(self.profile_button)
-
-        self.exercise_button = QPushButton(self.side_nav)
-        self.exercise_button.setObjectName(u"exercise_button")
-
-        self.verticalLayout.addWidget(self.exercise_button)
-
-        self.analysis_button = QPushButton(self.side_nav)
-        self.analysis_button.setObjectName(u"analysis_button")
-
-        self.verticalLayout.addWidget(self.analysis_button)
-
         self.settings_button = QPushButton(self.side_nav)
         self.settings_button.setObjectName(u"settings_button")
 
         self.verticalLayout.addWidget(self.settings_button)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout.addItem(self.verticalSpacer)
-
         self.library_button = QPushButton(self.side_nav)
         self.library_button.setObjectName(u"library_button")
 
         self.verticalLayout.addWidget(self.library_button)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
 
 
         self.horizontalLayout.addWidget(self.side_nav)
@@ -135,10 +120,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.home_button.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.profile_button.setText(QCoreApplication.translate("MainWindow", u"Profile", None))
-        self.exercise_button.setText(QCoreApplication.translate("MainWindow", u"Exercise", None))
-        self.analysis_button.setText(QCoreApplication.translate("MainWindow", u"Analysis", None))
-        self.settings_button.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
-        self.library_button.setText(QCoreApplication.translate("MainWindow", u"Library", None))
+        self.settings_button.setText(QCoreApplication.translate("MainWindow", u"Profile", None))
+        self.library_button.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
     # retranslateUi
 

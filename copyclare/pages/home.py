@@ -1,5 +1,6 @@
 from copyclare.widgets import ExerciseListWidget
 
+
 from .page import Page
 
 
@@ -15,6 +16,7 @@ class HomePage(Page):
             lambda x: self.button_click(["Group_1", "Group_2", "My Group", "Favourite"])
         )
         self.ex_list = None
+
 
     def button_click(self, exercises):
         if self.ex_list is not None:

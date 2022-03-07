@@ -17,5 +17,7 @@ class ExerciseListWidget(QFrame):
         for each in exercises:
             btn = QPushButton(self.ui.main_frame)
             btn.setText(each)
+
+            name = Database.get_exercise()
             btn.clicked.connect(lambda x: print(f"hello {x}"))
             self.ui.main_layout.insertWidget(0, btn)

@@ -2,7 +2,7 @@ import csv
 from email import header
 import math
 import cv2
-from .PoseModule import PoseModule
+from pose_module import PoseModule
 import numpy as np
 import os
 
@@ -33,12 +33,12 @@ class Model:
             angle = 0
             if len(landmark_list) != 0:
                 cv2.circle(person,
-                           (landmark_list[13][1], landmark_list[13][2]), 15,
+                           (landmark_list[13][0], landmark_list[13][1]), 15,
                            (0, 0, 255), cv2.FILLED)
 
                 angle = self.detector.find_angle(person, 11, 13, 15)
-            # cv2.imshow("Image", person)
-            yield person, angle
+            cv2.imshow("Image", person)
+            # yield person, angle
             if cv2.waitKey(1) == ord('q'):
                 break
         self.close_capture()
@@ -160,3 +160,4 @@ class Model:
 if __name__ == '__main__':
     model = Model()
     model.show_capture()
+    model.close_capture()

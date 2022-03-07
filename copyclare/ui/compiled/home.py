@@ -16,33 +16,34 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QLayout, QPushButton, QSizePolicy, QSpacerItem,
+    QLayout, QPushButton, QScrollArea, QSizePolicy,
     QVBoxLayout, QWidget)
 
 class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(721, 452)
+        Home.resize(933, 869)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Home.sizePolicy().hasHeightForWidth())
         Home.setSizePolicy(sizePolicy)
+        Home.setMinimumSize(QSize(933, 717))
         Home.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout = QVBoxLayout(Home)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.title_frame = QFrame(Home)
-        self.title_frame.setObjectName(u"title_frame")
-        self.title_frame.setMaximumSize(QSize(16777215, 100))
-        self.title_frame.setFrameShape(QFrame.NoFrame)
-        self.title_frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.title_frame)
+        self.motivation_frame = QFrame(Home)
+        self.motivation_frame.setObjectName(u"motivation_frame")
+        self.motivation_frame.setMaximumSize(QSize(16777215, 100))
+        self.motivation_frame.setFrameShape(QFrame.NoFrame)
+        self.motivation_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(self.motivation_frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.title_frame)
+        self.label = QLabel(self.motivation_frame)
         self.label.setObjectName(u"label")
         font = QFont()
         font.setPointSize(30)
@@ -56,7 +57,7 @@ class Ui_Home(object):
         self.horizontalLayout.addWidget(self.label)
 
 
-        self.verticalLayout.addWidget(self.title_frame)
+        self.verticalLayout.addWidget(self.motivation_frame)
 
         self._frame = QFrame(Home)
         self._frame.setObjectName(u"_frame")
@@ -66,73 +67,112 @@ class Ui_Home(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.general_frame = QFrame(self._frame)
-        self.general_frame.setObjectName(u"general_frame")
-        self.general_frame.setMinimumSize(QSize(0, 140))
-        self.general_frame.setMaximumSize(QSize(16777215, 140))
-        self.general_frame.setStyleSheet(u"QFrame{\n"
-"	background-color: #c8c8c8;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton {\n"
-"	border: none;\n"
-"	background-color: #ced4da;\n"
-"	color: rgb(0,0,0);\n"
-"	border-radius: 10;\n"
-"	max-width: 120;\n"
-"	min-width: 120;\n"
-"	height: 120;\n"
-"	margin-left: 10;\n"
-"	margin-right: 10;\n"
-"	margin-top: 5;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"	background-color: #adb5bd;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"	background-color: #dee2e6;\n"
-"}")
-        self.general_frame.setFrameShape(QFrame.NoFrame)
-        self.general_frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.general_frame)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer)
-
-        self.latest_button = QPushButton(self.general_frame)
-        self.latest_button.setObjectName(u"latest_button")
-
-        self.horizontalLayout_2.addWidget(self.latest_button)
-
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_3)
-
-        self.groups_button = QPushButton(self.general_frame)
-        self.groups_button.setObjectName(u"groups_button")
-
-        self.horizontalLayout_2.addWidget(self.groups_button)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
-
-
-        self.verticalLayout_2.addWidget(self.general_frame)
-
         self.content_frame = QFrame(self._frame)
         self.content_frame.setObjectName(u"content_frame")
         self.content_frame.setFrameShape(QFrame.NoFrame)
         self.content_frame.setFrameShadow(QFrame.Raised)
-        self.content_layout = QHBoxLayout(self.content_frame)
-        self.content_layout.setObjectName(u"content_layout")
+        self.verticalLayout_4 = QVBoxLayout(self.content_frame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.todays_work_frame = QFrame(self.content_frame)
+        self.todays_work_frame.setObjectName(u"todays_work_frame")
+        self.todays_work_frame.setFrameShape(QFrame.StyledPanel)
+        self.todays_work_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_3 = QVBoxLayout(self.todays_work_frame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.title_frame = QFrame(self.todays_work_frame)
+        self.title_frame.setObjectName(u"title_frame")
+        self.title_frame.setFrameShape(QFrame.StyledPanel)
+        self.title_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.title_frame)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.title = QLabel(self.title_frame)
+        self.title.setObjectName(u"title")
+
+        self.horizontalLayout_3.addWidget(self.title)
+
+
+        self.verticalLayout_3.addWidget(self.title_frame)
+
+        self.frame = QFrame(self.todays_work_frame)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_6 = QHBoxLayout(self.frame)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.scrollArea = QScrollArea(self.frame)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 841, 290))
+        self.horizontalLayout_4 = QHBoxLayout(self.scrollAreaWidgetContents)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.horizontalLayout_6.addWidget(self.scrollArea)
+
+        self.nextButton = QPushButton(self.frame)
+        self.nextButton.setObjectName(u"nextButton")
+        self.nextButton.setMaximumSize(QSize(30, 900))
+
+        self.horizontalLayout_6.addWidget(self.nextButton)
+
+
+        self.verticalLayout_3.addWidget(self.frame)
+
+
+        self.verticalLayout_4.addWidget(self.todays_work_frame)
+
+        self.library_frame = QFrame(self.content_frame)
+        self.library_frame.setObjectName(u"library_frame")
+        self.library_frame.setFrameShape(QFrame.StyledPanel)
+        self.library_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_5 = QVBoxLayout(self.library_frame)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.library_title_frame = QFrame(self.library_frame)
+        self.library_title_frame.setObjectName(u"library_title_frame")
+        self.library_title_frame.setFrameShape(QFrame.StyledPanel)
+        self.library_title_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.library_title_frame)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.title_2 = QLabel(self.library_title_frame)
+        self.title_2.setObjectName(u"title_2")
+
+        self.horizontalLayout_2.addWidget(self.title_2)
+
+
+        self.verticalLayout_5.addWidget(self.library_title_frame)
+
+        self.frame_2 = QFrame(self.library_frame)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.scrollArea_2 = QScrollArea(self.frame_2)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 841, 290))
+        self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaWidgetContents_2)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.horizontalLayout_7.addWidget(self.scrollArea_2)
+
+        self.nextButton2 = QPushButton(self.frame_2)
+        self.nextButton2.setObjectName(u"nextButton2")
+        self.nextButton2.setMaximumSize(QSize(30, 900))
+
+        self.horizontalLayout_7.addWidget(self.nextButton2)
+
+
+        self.verticalLayout_5.addWidget(self.frame_2)
+
+
+        self.verticalLayout_4.addWidget(self.library_frame)
+
 
         self.verticalLayout_2.addWidget(self.content_frame)
 
@@ -147,8 +187,10 @@ class Ui_Home(object):
 
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"Frame", None))
-        self.label.setText(QCoreApplication.translate("Home", u"Welcome Back, User!", None))
-        self.latest_button.setText(QCoreApplication.translate("Home", u"Latest", None))
-        self.groups_button.setText(QCoreApplication.translate("Home", u"Groups", None))
+        self.label.setText(QCoreApplication.translate("Home", u"You can do this, <name>!", None))
+        self.title.setText(QCoreApplication.translate("Home", u"Today's Exercises", None))
+        self.nextButton.setText(QCoreApplication.translate("Home", u">", None))
+        self.title_2.setText(QCoreApplication.translate("Home", u"Library", None))
+        self.nextButton2.setText(QCoreApplication.translate("Home", u">", None))
     # retranslateUi
 
