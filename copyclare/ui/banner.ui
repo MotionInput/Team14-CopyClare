@@ -84,7 +84,11 @@ font-size: 30px</string>
         <height>345</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout"/>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+      </layout>
      </widget>
     </widget>
    </item>
