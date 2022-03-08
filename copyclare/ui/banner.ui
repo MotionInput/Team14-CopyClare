@@ -54,7 +54,7 @@
      <property name="styleSheet">
       <string notr="true">background-color: #955fff;
 padding: 15px;
-font-size: 20px</string>
+font-size: 30px</string>
      </property>
      <property name="text">
       <string>CategoryTitle</string>
