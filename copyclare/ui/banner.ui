@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>790</width>
-    <height>457</height>
+    <height>900</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>900</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -26,7 +32,7 @@
 }</string>
   </property>
   <property name="frameShape">
-   <enum>QFrame::StyledPanel</enum>
+   <enum>QFrame::NoFrame</enum>
   </property>
   <property name="frameShadow">
    <enum>QFrame::Raised</enum>
@@ -57,6 +63,9 @@ font-size: 20px</string>
    </item>
    <item>
     <widget class="QScrollArea" name="scrollArea">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -71,8 +80,8 @@ font-size: 20px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>762</width>
-        <height>367</height>
+        <width>766</width>
+        <height>814</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout"/>
