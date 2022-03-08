@@ -1,1 +1,1 @@
-from .exercise_list import ExerciseListWidget
+from .banner import BannerWidget
