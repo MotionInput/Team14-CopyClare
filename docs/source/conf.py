@@ -21,8 +21,8 @@ sys.path.insert(0, os.path.abspath('../../copyclare'))
 # -- Project information -----------------------------------------------------
 
 project = 'CopyClare'
-copyright = '2022, Team-14'
-author = 'Team-14'
+copyright = '2022, Motion Input'
+author = 'Adi Bozzhanov, Yan Lai, Tianhao Chen, Sree Sanakkayala'
 
 # -- General configuration ---------------------------------------------------
 
@@ -53,6 +53,8 @@ exclude_patterns = []
 html_permalinks_icon = '<span>#</span>'
 html_theme = 'sphinxawesome_theme'
 html_collapsible_definitions = True
+html_awesome_headerlinks = False
+
 html_theme_options = {
     "show_scrolltop": True,
     "show_breadcrumbs": False,
