@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>790</width>
-    <height>900</height>
+    <height>457</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>900</height>
+    <height>450</height>
    </size>
   </property>
   <property name="font">
@@ -81,7 +81,7 @@ font-size: 20px</string>
         <x>0</x>
         <y>0</y>
         <width>766</width>
-        <height>814</height>
+        <height>371</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout"/>
