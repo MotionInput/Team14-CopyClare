@@ -73,28 +73,9 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background-color: #dee2e6;
-}
-QPushButton {
-	border: none;
-	background-color: #ced4da;
-	color: rgb(0,0,0);
-	border-radius: 20;
-	max-width: 70;
-	min-width: 70;
-	height: 70;
-	margin-left: 5;
-	margin-top: 5;
-}
+	background-color: #ccc7fd;
 
-QPushButton:hover {
-	background-color: #adb5bd;
-}
-
-QPushButton:pressed {
-	background-color: #dee2e6;
-}
-</string>
+}</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -119,24 +100,116 @@ QPushButton:pressed {
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="home_button">
+        <widget class="QPushButton" name="nav_button">
          <property name="text">
-          <string>Home</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../data/icon-navlines.png</normaloff>../../data/icon-navlines.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="settings_button">
-         <property name="text">
-          <string>Profile</string>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="library_button">
-         <property name="text">
-          <string>Settings</string>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="home_button">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../data/home.png</normaloff>../../data/home.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>64</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="progress_button">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../data/progress.png</normaloff>../../data/progress.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>64</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="settings_button">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../data/settings.png</normaloff>../../data/settings.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>64</width>
+              <height>64</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>

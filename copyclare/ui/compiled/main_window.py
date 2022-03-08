@@ -48,29 +48,6 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.side_nav.setFont(font)
         self.side_nav.setMouseTracking(False)
-        self.side_nav.setStyleSheet(u"QFrame{\n"
-"	background-color: #dee2e6;\n"
-"}\n"
-"QPushButton {\n"
-"	border: none;\n"
-"	background-color: #ced4da;\n"
-"	color: rgb(0,0,0);\n"
-"	border-radius: 20;\n"
-"	max-width: 70;\n"
-"	min-width: 70;\n"
-"	height: 70;\n"
-"	margin-left: 5;\n"
-"	margin-top: 5;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"	background-color: #adb5bd;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"	background-color: #dee2e6;\n"
-"}\n"
-"")
         self.side_nav.setFrameShape(QFrame.NoFrame)
         self.side_nav.setFrameShadow(QFrame.Plain)
         self.verticalLayout = QVBoxLayout(self.side_nav)
@@ -79,18 +56,21 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.home_button = QPushButton(self.side_nav)
         self.home_button.setObjectName(u"home_button")
+        icon = QIcon()
+        icon.addFile(u"../../data/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.home_button.setIcon(icon)
+        self.home_button.setIconSize(QSize(64, 64))
 
         self.verticalLayout.addWidget(self.home_button)
 
-        self.settings_button = QPushButton(self.side_nav)
-        self.settings_button.setObjectName(u"settings_button")
+        self.progress_button = QPushButton(self.side_nav)
+        self.progress_button.setObjectName(u"progress_button")
+        icon1 = QIcon()
+        icon1.addFile(u"../../data/progress.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.progress_button.setIcon(icon1)
+        self.progress_button.setIconSize(QSize(64, 64))
 
-        self.verticalLayout.addWidget(self.settings_button)
-
-        self.library_button = QPushButton(self.side_nav)
-        self.library_button.setObjectName(u"library_button")
-
-        self.verticalLayout.addWidget(self.library_button)
+        self.verticalLayout.addWidget(self.progress_button)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -119,8 +99,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.home_button.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.settings_button.setText(QCoreApplication.translate("MainWindow", u"Profile", None))
-        self.library_button.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.home_button.setText("")
+        self.progress_button.setText("")
     # retranslateUi
 
