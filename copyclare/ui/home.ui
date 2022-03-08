@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QScrollArea{
-	background-color: #fffff;
+	background-color: #ffffff;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
