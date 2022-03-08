@@ -21,7 +21,8 @@
   </property>
   <property name="styleSheet">
    <string notr="true">border: 2px solid;
-border-color: #929292;</string>
+border-color: #929292;
+color: #000000;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
