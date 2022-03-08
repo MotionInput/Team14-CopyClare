@@ -32,7 +32,6 @@ author = 'Team-14'
 extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.autodoc',
-    'sphinxawesome_theme',
     'recommonmark',
     'sphinx_panels',
 ]
