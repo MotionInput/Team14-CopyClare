@@ -26,9 +26,15 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QScrollArea{
+   <string notr="true">QFrame{
 	background-color: #ffffff;
-}</string>
+}
+
+QWidget{
+	background-color: #ffffff;
+}
+
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">

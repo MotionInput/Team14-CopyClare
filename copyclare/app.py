@@ -47,7 +47,7 @@ class App:
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
         icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/icon-navlines.png", QSize(), QIcon.Normal,
+        icon3.addFile(DATA_PATH + "/navlines.png", QSize(), QIcon.Normal,
                       QIcon.Off)
         self.ui.nav_button.setIcon(icon3)
         self.ui.settings_button.setIconSize(QSize(64, 64))
