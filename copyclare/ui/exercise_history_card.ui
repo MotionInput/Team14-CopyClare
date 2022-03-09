@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>300</height>
+    <width>867</width>
+    <height>194</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,28 +25,40 @@
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QLabel" name="label">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>20</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Shoulder Exercise</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+          <widget class="QLabel" name="label_2">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
            </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
+           <property name="font">
+            <font>
+             <pointsize>20</pointsize>
+            </font>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLabel" name="date_and_time">
-              <property name="text">
-               <string>22-02-2022 16:30</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <property name="text">
+            <string>Date</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -58,14 +70,40 @@
    <item>
     <widget class="QPushButton" name="pushButton">
      <property name="text">
-      <string>Analysis</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Documents/📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-analysis.png</normaloff>../../../../../Documents/📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-analysis.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>90</width>
+       <height>90</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="pushButton_2">
      <property name="text">
-      <string>Export</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Documents/📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-export.png</normaloff>../../../../../Documents/📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-export.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>90</width>
+       <height>90</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

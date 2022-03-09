@@ -2,6 +2,7 @@ import csv
 from email import header
 import math
 import cv2
+from matplotlib.pyplot import cool
 from pose_module import PoseModule
 import numpy as np
 import os
@@ -21,6 +22,8 @@ class Model:
         self.score = []
 
     def show_capture(self):
+        init = None
+        coo_dict = {}
         while self.cap.isOpened():
             success, frame = self.cap.read()
             # if frame is read correctly success is True
@@ -28,16 +31,28 @@ class Model:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
             person = self.detector.find_person(frame)
+            if init == None:
+                heatmap = person
+                init = True
             landmark_list = self.detector.find_landmarks(person, draw=False)
             # print(landmark_list)
             angle = 0
             if len(landmark_list) != 0:
-                cv2.circle(person,
-                           (landmark_list[13][0], landmark_list[13][1]), 15,
-                           (0, 0, 255), cv2.FILLED)
-
+                #cv2.circle(person,
+                #           (landmark_list[13][1], landmark_list[13][2]), 15,
+                #           (0, 0, 255), cv2.FILLED)
+                landmark = landmark_list[13]
+                S_landmark = self.trans_cooList_keyString(landmark)
+                print(landmark)
+                if not S_landmark in coo_dict:
+                    coo_dict.update({S_landmark:1})
+                    cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),3,(0,255,255),cv2.FILLED)
+                else:
+                    num = coo_dict[S_landmark] + 1
+                    coo_dict[S_landmark] = num
+                    cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),4,(0,255-num*25,255),cv2.FILLED)
                 angle = self.detector.find_angle(person, 11, 13, 15)
-            cv2.imshow("Image", person)
+            cv2.imshow("Image", heatmap)
             # yield person, angle
             if cv2.waitKey(1) == ord('q'):
                 break
@@ -116,6 +131,10 @@ class Model:
         for accuracy in self.score:
             total_accuracy += accuracy
         return total_accuracy / len(self.score)
+
+    def trans_cooList_keyString(self,cooList):
+        z,x,y = cooList[:]
+        return "%f+%f+%f"%(z,x//10*10,y//10*10)
 
 
 # def main():
