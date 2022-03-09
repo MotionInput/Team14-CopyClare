@@ -24,7 +24,7 @@
        <widget class="QFrame" name="verticalFrame">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="title">
            <property name="minimumSize">
             <size>
              <width>250</width>
@@ -44,7 +44,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="date">
            <property name="minimumSize">
             <size>
              <width>250</width>
@@ -68,7 +68,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="analysis_button">
      <property name="text">
       <string/>
      </property>
@@ -88,7 +88,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="export_button">
      <property name="text">
       <string/>
      </property>
