@@ -18,6 +18,9 @@ class Database:
         try:
             self.conn = sqlite3.connect(db_file)
             self.c = self.conn.cursor()
+            self.c.execute("PRAGMA FOREIGN_KEYS = ON")
+            self.c.execute("PRAGMA foreign_keys")
+            self.c.fetchone()
         except sqlite3.DatabaseError as e:
             print(e)
 
@@ -28,7 +31,6 @@ class Database:
         :return:
         """
         try:
-            print(1)
             self.c.execute(create_table_sql)
         except sqlite3.DataError as e:
             print(e)
@@ -137,8 +139,10 @@ def main():
                             nums_of_repetition INTEGER,
                             duration REAL,
                             accuracy REAL,
+                            user_name TEXT,
+                            exercise_name TEXT,
                             FOREIGN KEY (user_name) REFERENCES user (name),
-                            FOREIGN KEY (exercise_name TEXT) REFERENCES exercises (name)
+                            FOREIGN KEY (exercise_name) REFERENCES exercises (name)
                         );"""
 
     user_table = """ CREATE TABLE IF NOT EXISTS user(
