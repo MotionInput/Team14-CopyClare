@@ -1,10 +1,12 @@
 import sys
 
 from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtCore import QSize
+from PySide6.QtGui import QIcon
 
-
+from copyclare import DATA_PATH
 from .common import load_ui
-from .pages import HomePage, NotFound, ExercisePage, ProfilePage
+from .pages import HomePage, NotFound, ProfilePage
 
 
 class App:
@@ -12,8 +14,7 @@ class App:
     pages = {
         "home": HomePage,
         "not_found": NotFound,
-        "exercise": ExercisePage,
-        "profile": ProfilePage,
+        "progress": ProfilePage,
     }
 
     def start_ui(self):
@@ -25,12 +26,46 @@ class App:
         self.window.showMaximized()
         self.ui = load_ui("main_window")
         self.ui.setupUi(self.window)
+
+        # edit for the ui button
+        icon = QIcon()
+        print(DATA_PATH + "/home.png")
+        icon.addFile(DATA_PATH + "/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.ui.home_button.setIcon(icon)
+        self.ui.home_button.setIconSize(QSize(64, 64))
+
+        icon1 = QIcon()
+        icon1.addFile(DATA_PATH + "/progress.png", QSize(), QIcon.Normal,
+                      QIcon.Off)
+        self.ui.progress_button.setIcon(icon1)
+        self.ui.progress_button.setIconSize(QSize(64, 64))
+
+        icon2 = QIcon()
+        icon2.addFile(DATA_PATH + "/settings.png", QSize(), QIcon.Normal,
+                      QIcon.Off)
+        self.ui.settings_button.setIcon(icon2)
+        self.ui.settings_button.setIconSize(QSize(64, 64))
+
+        icon3 = QIcon()
+        icon3.addFile(DATA_PATH + "/icon-navlines.png", QSize(), QIcon.Normal,
+                      QIcon.Off)
+        self.ui.nav_button.setIcon(icon3)
+        self.ui.settings_button.setIconSize(QSize(64, 64))
+
         self.window.show()
 
         # UI setup
         self.init_pages()
-        self.init_buttons()
         self.load_page("home")
+
+        # buttons init
+        self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))
+        self.ui.settings_button.clicked.connect(
+            lambda x: self.load_page("settings"))
+        self.ui.progress_button.clicked.connect(
+            lambda x: self.load_page("progress"))
+
+        self.ui.nav_button.clicked.connect(self.nav_click)
 
         sys.exit(app.exec())
 
@@ -65,14 +100,6 @@ class App:
 
         self.current_page.show()
 
-    def init_buttons(self):
-        self.ui.exercise_button.clicked.connect(
-            lambda x: self.load_page("exercise"))
+    def nav_click(self):
 
-        self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))
-
-        self.ui.profile_button.clicked.connect(
-            lambda x: self.load_page("settings"))
-
-        self.ui.progress_button.clicked.connect(
-            lambda x: self.load_page("progress"))
+        print("nav clicked!")
