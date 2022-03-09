@@ -3,6 +3,7 @@ import sqlite3
 from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
 from copyclare.model.user import User
+from copyclare import DATA_PATH
 
 
 class Database:
@@ -27,6 +28,7 @@ class Database:
         :return:
         """
         try:
+            print(1)
             self.c.execute(create_table_sql)
         except sqlite3.DataError as e:
             print(e)
@@ -119,7 +121,7 @@ class Database:
 
 
 def main():
-    database_directory = "..data/Copyclare.db"
+    database_directory = DATA_PATH + "/Copyclare.db"
 
     exercises_table = """ CREATE TABLE IF NOT EXISTS exercises(
                             name TEXT PRIMARY KEY UNIQUE,
@@ -153,9 +155,9 @@ def main():
         database.create_table(exercises_table)
 
         # create attempt table
-        database.create_table(attempts_table)
+        database.create_table(user_table)
 
         # create user table
-        database.create_table(user_table)
+        database.create_table(attempts_table)
     else:
         print("Error! cannot create the database connection.")
