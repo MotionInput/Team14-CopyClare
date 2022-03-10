@@ -28,7 +28,8 @@ class Database:
     def _file_to_commands(self, sql_path):
         """
         Given a file name of the script file
-        returns the string of the script
+        returns a list of string representations
+        of all commands
 
         the script MUST be in the sql directory
         """
