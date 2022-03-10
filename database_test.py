@@ -4,8 +4,6 @@ from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
 from copyclare.model.user import User
 
-
-
 if __name__ == "__main__":
     data = database.main()
     

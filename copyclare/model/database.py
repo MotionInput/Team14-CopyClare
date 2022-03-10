@@ -1,9 +1,13 @@
+import os
 import sqlite3
 
 from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
-from copyclare.model.user import User
+from copyclare.model.tag import Tag
 from copyclare import DATA_PATH
+
+SQL_DIR = os.path.dirname(os.path.realpath(__file__)) + "/sql/"
+DB_DIR = DATA_PATH + "/Copyclare.db"
 
 
 class Database:
@@ -18,95 +22,92 @@ class Database:
         try:
             self.conn = sqlite3.connect(db_file)
             self.c = self.conn.cursor()
-            self.c.execute("PRAGMA FOREIGN_KEYS = ON")
-            self.c.execute("PRAGMA foreign_keys")
-            self.c.fetchone()
         except sqlite3.DatabaseError as e:
             print(e)
 
-    def create_table(self, create_table_sql):
-        """ create a table from the create_table_sql statement
-        :param conn: Connection object
-        :param create_table_sql: a CREATE TABLE statement
-        :return:
+    def _file_to_commands(self, sql_path):
         """
-        try:
-            self.c.execute(create_table_sql)
-        except sqlite3.DataError as e:
-            print(e)
+        Given a file name of the script file
+        returns a list of string representations
+        of all commands
 
-    def init_user(self, name):
-        cursor = self.c.execute(f"INSERT INTO user (name) \
-                                VALUES ('{name}')")
+        the script MUST be in the sql directory
+        """
+        path = SQL_DIR + sql_path
+        with open(path, "r") as scripts:
+            text = "".join(scripts.readlines())
+            commands = [
+                each for each in text.split(";") if len(each.strip()) > 0
+            ]
+        return commands
+
+    def _execute_sql(self, sql_path):
+        """
+        The script file can have more that 1 command
+
+        Will return results of the last ran command
+        """
+        commands = self._file_to_commands(sql_path)
+        for com in commands:
+            self.c.execute(com)
+
+        return [row for row in self.c]
+
+    def _execute_with_params(self, sql_path, params):
+        """
+        This function will only execute the first
+        command from the script file.
+        """
+
+        command = self._file_to_commands(sql_path)[0]
+        formatted = command % params
+        self.c.execute(formatted)
+
+    def add_tag(self, tag):
+        params = tag.get_sql_tuple()
+        self._execute_with_params("insert_tag.sql", params)
         self.conn.commit()
-        user = User(name)
-        return user
+
+    def get_all_tags(self):
+        result = self._execute_sql("get_all_tags.sql")
+        tags = []
+        for id, name in result:
+            tags.append(Tag(id, name))
+        return tags
 
     def add_exercise(self, exercise):
         # input an exercise object and keep it in the database
-        cursor = self.c.execute(
-            f"INSERT INTO exercises (name, video_directory, image_directory, descriptions, category, angle_over_time) \
-                                VALUES ('{exercise.name}', '{exercise.video_directory}', '{exercise.image_directory}','{exercise.descriptions}', '{exercise.category}', '{exercise.AngleOverTime}')")
+        # TODO: add code to also add the tags of the exercise
+        params = exercise.get_sql_tuple()
+        self._execute_with_params("insert_exercise.sql", params)
         self.conn.commit()
 
-    def get_exercises(self, key_type, key):
-        # use the data here to get exercise instances
-        if key_type == "all":
-            cursor = self.c.execute(
-                "SELECT name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises"
-            )
-        else:
-            cursor = self.c.execute(
-                f"SELECT name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE '{key_type}' = '{key}'")
+    def get_all_exercises(self):
+        """
+        Returns a list of all exercise objects
+        """
+
+        result = self._execute_sql("get_all_exercises.sql")
         exercises = []
-        for row in cursor:
-            print(row)
-            exercise = Exercise(row[0], row[1], row[2], row[3], row[4], row[5])
-            exercises.append(exercise)
+        for p1, p2, p3, p4, p5, p6 in result:
+            exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
+
         return exercises
 
-    """def get_exercise(self,exercise_name = None):
-        # use the data here to create a new exercise instance
-        if exercise_name == None:
-            cursor = self.c.execute("SELECT video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE name = %s") %(exercise_name)
-            for row in cursor:
-                exercise = Exercise(exercise_name,row[0],row[1],row[2],row[3],row[4])
-                return exercise
-        else:
-            cursor = self.c.execute("SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises")
-            exercises = []
-            for row in cursor:
-                exercise = Exercise(row[0],row[1],row[2],row[3],row[4],row[5])
-                exercises.append(exercise)
-            return exercises
-        print("can not find the corresponding exercise")
-        return None"""
+    def add_attempt(self, attempt):
 
-    def get_all_categories(self):
-        # return a list of name of categories
-        cursor = self.c.execute("SELECT category FROM exercises")
-        categories = []
-        for row in cursor:
-            if row[0] not in categories:
-                categories.append(row[0])
-        return categories
-
-    def add_attempt(self, date, nums_of_repetition, duration, accuracy,
-                    user_name, exercise_name):
-        self.c.execute(
-            f"INSERT INTO attempts (date,nums_of_repetition,duration,accuracy,user_name,exercise_name) \
-                                    VALUES ('{date}', '{nums_of_repetition}', '{duration}', '{accuracy}', '{user_name}','{exercise_name}')")
+        params = attempt.get_sql_tuple()
+        self._execute_with_params("insert_attempt.sql", params)
         self.conn.commit()
 
-    def get_attempts_in_past(self, date1, date2=None):
-        # return all attempt instances whose date is between the two given dates in a list
+    def get_all_attempts(self):
+
+        result = self._execute_sql("get_all_attempts.sql")
         attempts = []
-        cursor = self.c.execute(
-            "SELETE date nums_of_repetition duration accuracy user_name exercise_name FROM attempts WHERE date BETWEEN %s AND %s"
-            % (date1, date2))
-        for row in cursor:
-            attempt = Attempt(row[0], row[1], row[2], row[3], row[4], row[5])
-            attempts.append(attempt)
+
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7))
+
         return attempts
 
     def delete(self, table_name, key_name, key):
@@ -119,47 +120,24 @@ class Database:
 
 
 def main():
-    database_directory = DATA_PATH + "/Copyclare.db"
-
-    exercises_table = """ CREATE TABLE IF NOT EXISTS exercises(
-                            name TEXT PRIMARY KEY UNIQUE,
-                            video_directory TEXT,
-                            image_directory TEXT,
-                            descriptions TEXT,
-                            category TEXT,
-                            angle_over_time TEXT
-                        ); """
-
-    attempts_table = """CREATE TABLE IF NOT EXISTS attempts(
-                            date TEXT PRIMARY KEY UNIQUE,
-                            nums_of_repetition INTEGER,
-                            duration REAL,
-                            accuracy REAL,
-                            user_name TEXT,
-                            exercise_name TEXT,
-                            FOREIGN KEY (user_name) REFERENCES user (name),
-                            FOREIGN KEY (exercise_name) REFERENCES exercises (name)
-                        );"""
-
-    user_table = """ CREATE TABLE IF NOT EXISTS user(
-                        name TEXT PRIMARY KEY UNIQUE,
-                        age INTEGER
-                    ); """
 
     # create a database connection
-    database = Database(database_directory)
+    database = Database(DB_DIR)
 
     # create tables
     if database.conn is not None:
-        # create exercises table
-        database.create_table(exercises_table)
+        script = "init_db.sql"
+        database._execute_sql(script)
 
-        # create user table
-        database.create_table(user_table)
+        at = Attempt(None, "2020-10-21", 10, 1.345, "text", 0.95, 1)
+        ex = Exercise(None, "1", "2", "3", "4", "5")
+        tag = Tag(None, "Today")
 
-        # create attempts table
-        database.create_table(attempts_table)
+        database.add_attempt(at)
+        database.add_tag(tag)
+        database.add_exercise(ex)
+        print(database.get_all_exercises())
+        print(database.get_all_tags())
+        print(database.get_all_attempts())
     else:
         print("Error! cannot create the database connection.")
-    
-    return database
