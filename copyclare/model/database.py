@@ -36,8 +36,8 @@ class Database:
             print(e)
 
     def init_user(self, name):
-        cursor = self.c.execute("INSERT INTO user (name,age) \
-                                VALUE (%s)" % (name))
+        cursor = self.c.execute(f"INSERT INTO user (name) \
+                                VALUES ('{name}')")
         self.conn.commit()
         user = User(name)
         return user
@@ -45,24 +45,22 @@ class Database:
     def add_exercise(self, exercise):
         # input an exercise object and keep it in the database
         cursor = self.c.execute(
-            "INSERT INTO exercises (name, video_directory, image_directory, descriptions, category, angle_over_time) \
-                                VALUE (%s,%s,%s,%s,%s,%s)" %
-            (exercise.name, exercise.video_directory, exercise.image_directory,
-             exercise.descriptions, exercise.category, exercise.AngleOverTime))
+            f"INSERT INTO exercises (name, video_directory, image_directory, descriptions, category, angle_over_time) \
+                                VALUES ('{exercise.name}', '{exercise.video_directory}', '{exercise.image_directory}','{exercise.descriptions}', '{exercise.category}', '{exercise.AngleOverTime}')")
         self.conn.commit()
 
     def get_exercises(self, key_type, key):
         # use the data here to get exercise instances
         if key_type == "all":
             cursor = self.c.execute(
-                "SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises"
+                "SELECT name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises"
             )
         else:
             cursor = self.c.execute(
-                "SELECT exercise_name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE %s = %s"
-            ) % (key_type, key)
+                f"SELECT name, video_directory, image_directory, descriptions, category, angle_over_time FROM exercises WHERE '{key_type}' = '{key}'")
         exercises = []
         for row in cursor:
+            print(row)
             exercise = Exercise(row[0], row[1], row[2], row[3], row[4], row[5])
             exercises.append(exercise)
         return exercises
@@ -96,17 +94,15 @@ class Database:
     def add_attempt(self, date, nums_of_repetition, duration, accuracy,
                     user_name, exercise_name):
         self.c.execute(
-            "INSERT INTO attempts (date,nums_of_repition,duration,accuracy,user_name,exercise_name) \
-                                            VALUE (%s,%d,%f,%f,%s,%s)" %
-            (date, nums_of_repetition, duration, accuracy, user_name,
-             exercise_name))
+            f"INSERT INTO attempts (date,nums_of_repetition,duration,accuracy,user_name,exercise_name) \
+                                    VALUES ('{date}', '{nums_of_repetition}', '{duration}', '{accuracy}', '{user_name}','{exercise_name}')")
         self.conn.commit()
 
     def get_attempts_in_past(self, date1, date2=None):
         # return all attempt instances whose date is between the two given dates in a list
         attempts = []
         cursor = self.c.execute(
-            "SELETE date nums_of_retetition duration accuracy user_name exercise_name FROM attempts WHERE date BETWEEN %s AND %s"
+            "SELETE date nums_of_repetition duration accuracy user_name exercise_name FROM attempts WHERE date BETWEEN %s AND %s"
             % (date1, date2))
         for row in cursor:
             attempt = Attempt(row[0], row[1], row[2], row[3], row[4], row[5])
@@ -158,10 +154,12 @@ def main():
         # create exercises table
         database.create_table(exercises_table)
 
-        # create attempt table
+        # create user table
         database.create_table(user_table)
 
-        # create user table
+        # create attempts table
         database.create_table(attempts_table)
     else:
         print("Error! cannot create the database connection.")
+    
+    return database

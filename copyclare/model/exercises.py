@@ -6,6 +6,6 @@ class Exercise:
         self.image_directory = image_directory
         self.descriptions = description
         self.category = category
-        self.AngleOfTime = AngleOverTime
+        self.AngleOverTime = AngleOverTime
 
      
