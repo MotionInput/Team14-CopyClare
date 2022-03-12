@@ -64,6 +64,12 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="title">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <pointsize>30</pointsize>
@@ -71,8 +77,8 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel{
-	color: #000000;
-
+	color: #ffffff;
+	background-color: #955fff;
 }</string>
         </property>
         <property name="text">
@@ -139,6 +145,12 @@
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
                 <widget class="QLabel" name="name_frame_title">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Name of Exercise:</string>
                  </property>
@@ -165,6 +177,12 @@
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
                 <widget class="QLabel" name="descriptions_frame_title">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Description:</string>
                  </property>
@@ -191,6 +209,12 @@
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
                 <widget class="QLabel" name="date_frame_title">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Date:</string>
                  </property>
@@ -217,15 +241,21 @@
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
                 <widget class="QLabel" name="repetitions_frame_title">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
-                  <string># of reps</string>
+                  <string># of sets   |   # of reps</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="repetitions">
                  <property name="text">
-                  <string>10</string>
+                  <string>3   |   10</string>
                  </property>
                 </widget>
                </item>
@@ -243,6 +273,12 @@
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QLabel" name="accuracy_frame_title">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Avg. Accuracy:</string>
                  </property>
@@ -260,6 +296,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="back_button">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(171, 185, 255);</string>
+              </property>
               <property name="text">
                <string>Back</string>
               </property>
