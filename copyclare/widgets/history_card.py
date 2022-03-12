@@ -27,4 +27,7 @@ class HistoryCardWidget(QFrame):
         self.ui.export_button.setIconSize(QSize(64, 64))
 
         # TODO: linking button to analysis page
-        self.ui.analysis_button.clicked.connect()
+        self.ui.analysis_button.clicked.connect(lambda x: self._create_analysis_page(attempt))
+
+    def _create_analysis_page(self, attempt):
+        print("create analysis page: " + attempt.exercise_id)
