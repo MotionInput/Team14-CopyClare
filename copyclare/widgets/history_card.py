@@ -25,3 +25,6 @@ class HistoryCardWidget(QFrame):
         icon.addFile(DATA_PATH + "/export.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.export_button.setIcon(icon)
         self.ui.export_button.setIconSize(QSize(64, 64))
+
+        # TODO: linking button to analysis page
+        self.ui.analysis_button.clicked.connect()
