@@ -6,13 +6,13 @@ from copyclare import DATA_PATH
 from copyclare.common import load_ui
 
 class HistoryCardWidget(QFrame):
-    def __init__(self, master, title, date, img_path):
+    def __init__(self, master, attempt, img_path):
         super().__init__(master)
         self.ui = load_ui("history_card")
         self.ui.setupUi(self)
 
-        self.ui.title.setText(title)
-        self.ui.date.setText(date)
+        self.ui.title.setText(attempt.exercise_id)
+        self.ui.date.setText(attempt.date)
 
         icon = QIcon()
         print(DATA_PATH + "/analysis.png")
