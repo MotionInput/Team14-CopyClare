@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from unittest import result
 
 from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
@@ -62,6 +63,7 @@ class Database:
         command = self._file_to_commands(sql_path)[0]
         formatted = command % params
         self.c.execute(formatted)
+        return [row for row in self.c]
 
     def add_tag(self, tag):
         params = tag.get_sql_tuple()
@@ -93,6 +95,12 @@ class Database:
             exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
 
         return exercises
+    
+    def get_one_exercise_by_ID(self,id):
+        result = self._execute_with_params("get_certain_exercise_by_id.sql",id)
+        for p1, p2, p3, p4, p5, p6 in result:
+            print(p6)
+            return Exercise(p1, p2, p3, p4, p5, p6)
 
     def add_attempt(self, attempt):
 
@@ -130,14 +138,15 @@ def main():
         database._execute_sql(script)
 
         at = Attempt(None, "2020-10-21", 10, 1.345, "text", 0.95, 1)
-        ex = Exercise(None, "1", "2", "3", "4", "5")
+        ex = Exercise(None, "1", "2", "3", "des", "5")
         tag = Tag(None, "Today")
 
         database.add_attempt(at)
         database.add_tag(tag)
         database.add_exercise(ex)
-        print(database.get_all_exercises())
-        print(database.get_all_tags())
-        print(database.get_all_attempts())
+        #print(database.get_all_exercises())
+        #print(database.get_all_tags())
+        #print(database.get_all_attempts())
     else:
         print("Error! cannot create the database connection.")
+    return database
