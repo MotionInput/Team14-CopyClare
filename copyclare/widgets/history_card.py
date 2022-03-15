@@ -29,5 +29,11 @@ class HistoryCardWidget(QFrame):
         # TODO: linking button to analysis page
         self.ui.analysis_button.clicked.connect(lambda x: self._create_analysis_page(attempt))
 
+        # TODO: SREEEEEEEEEE
+        self.ui.export_button.clicked.connect(lambda x: self._export())
+
     def _create_analysis_page(self, attempt):
         print("create analysis page: " + attempt.exercise_id)
+
+    def _export(self):
+        print("sree work here")
