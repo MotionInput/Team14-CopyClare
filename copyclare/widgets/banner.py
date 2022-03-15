@@ -4,6 +4,7 @@ from copyclare.widgets import VideoCardWidget
 from copyclare.common import load_ui
 
 
+
 class BannerWidget(QFrame):
     def __init__(self, master, title):
         super().__init__(master)

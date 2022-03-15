@@ -26,6 +26,21 @@ class Database:
         except sqlite3.DatabaseError as e:
             print(e)
 
+
+    def _init_debug_data(self):
+
+        exercises = [
+            Exercise(None,
+                     "Adi Shoulder",
+                     "/videos/"
+                     
+            )
+            
+        ]
+        
+
+        
+
     def _file_to_commands(self, sql_path):
         """
         Given a file name of the script file

@@ -11,7 +11,6 @@ from .pages import HomePage, NotFound, ProfilePage
 
 class App:
 
-    _app = None
 
     pages = {
         "home": HomePage,
@@ -19,10 +18,7 @@ class App:
         "progress": ProfilePage,
     }
 
-    def __new__(self):
-        if self._app is None:
-            self._app = super(App, self).__new__(self)
-        return self._app
+
 
     def start_ui(self):
         self.current_page = None
