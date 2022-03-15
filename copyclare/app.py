@@ -16,6 +16,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
+
     }
 
 

@@ -26,20 +26,46 @@ class Database:
         except sqlite3.DatabaseError as e:
             print(e)
 
-
     def _init_debug_data(self):
 
         exercises = [
-            Exercise(None,
-                     "Adi Shoulder",
-                     "/videos/"
-                     
-            )
-            
+            Exercise(
+                None,
+                "Adi Elbow",
+                "/videos/adi-elbow.mp4",
+                "null",
+                "Adi performing an elbow exercise.",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 1",
+                "/videos/sample.mp4",
+                "null",
+                "Video sample from masters students 1",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 2",
+                "/videos/sample1.mp4",
+                "null",
+                "Video sample from masters students 2",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 3",
+                "/videos/sample2.mp4",
+                "null",
+                "Video sample from masters students 3",
+                "null",
+            ),
         ]
-        
 
-        
+        for ex in exercises:
+            self.add_exercise(ex)
+            
 
     def _file_to_commands(self, sql_path):
         """
@@ -110,9 +136,10 @@ class Database:
             exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
 
         return exercises
-    
-    def get_one_exercise_by_ID(self,id):
-        result = self._execute_with_params("get_certain_exercise_by_id.sql",id)
+
+    def get_one_exercise_by_ID(self, id):
+        result = self._execute_with_params("get_certain_exercise_by_id.sql",
+                                           id)
         for p1, p2, p3, p4, p5, p6 in result:
             print(p6)
             return Exercise(p1, p2, p3, p4, p5, p6)
@@ -152,13 +179,7 @@ def main():
         script = "init_db.sql"
         database._execute_sql(script)
 
-        at = Attempt(None, "2020-10-21", 10, 1.345, "text", 0.95, 1)
-        ex = Exercise(None, "1", "2", "3", "des", "5")
-        tag = Tag(None, "Today")
-
-        database.add_attempt(at)
-        database.add_tag(tag)
-        database.add_exercise(ex)
+        database._init_debug_data()
         #print(database.get_all_exercises())
         #print(database.get_all_tags())
         #print(database.get_all_attempts())

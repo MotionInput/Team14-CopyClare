@@ -48,29 +48,68 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.side_nav.setFont(font)
         self.side_nav.setMouseTracking(False)
+        self.side_nav.setStyleSheet(u"QFrame{\n"
+"	background-color: #ccc7fd;\n"
+"\n"
+"}")
         self.side_nav.setFrameShape(QFrame.NoFrame)
         self.side_nav.setFrameShadow(QFrame.Plain)
         self.verticalLayout = QVBoxLayout(self.side_nav)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.home_button = QPushButton(self.side_nav)
-        self.home_button.setObjectName(u"home_button")
+        self.nav_button = QPushButton(self.side_nav)
+        self.nav_button.setObjectName(u"nav_button")
         icon = QIcon()
-        icon.addFile(u"../../data/home.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.home_button.setIcon(icon)
-        self.home_button.setIconSize(QSize(64, 64))
+        icon.addFile(u"../../data/icon-navlines.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.nav_button.setIcon(icon)
+        self.nav_button.setIconSize(QSize(64, 64))
+        self.nav_button.setFlat(True)
 
-        self.verticalLayout.addWidget(self.home_button)
+        self.verticalLayout.addWidget(self.nav_button)
 
-        self.progress_button = QPushButton(self.side_nav)
-        self.progress_button.setObjectName(u"progress_button")
+        self.frame = QFrame(self.side_nav)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.NoFrame)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.frame.setLineWidth(0)
+        self.verticalLayout_2 = QVBoxLayout(self.frame)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.home_button = QPushButton(self.frame)
+        self.home_button.setObjectName(u"home_button")
         icon1 = QIcon()
-        icon1.addFile(u"../../data/progress.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.progress_button.setIcon(icon1)
-        self.progress_button.setIconSize(QSize(64, 64))
+        icon1.addFile(u"../../data/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.home_button.setIcon(icon1)
+        self.home_button.setIconSize(QSize(64, 64))
+        self.home_button.setAutoDefault(False)
+        self.home_button.setFlat(True)
 
-        self.verticalLayout.addWidget(self.progress_button)
+        self.verticalLayout_2.addWidget(self.home_button)
+
+        self.progress_button = QPushButton(self.frame)
+        self.progress_button.setObjectName(u"progress_button")
+        icon2 = QIcon()
+        icon2.addFile(u"../../data/progress.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.progress_button.setIcon(icon2)
+        self.progress_button.setIconSize(QSize(64, 64))
+        self.progress_button.setFlat(True)
+
+        self.verticalLayout_2.addWidget(self.progress_button)
+
+        self.settings_button = QPushButton(self.frame)
+        self.settings_button.setObjectName(u"settings_button")
+        icon3 = QIcon()
+        icon3.addFile(u"../../data/settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settings_button.setIcon(icon3)
+        self.settings_button.setIconSize(QSize(64, 64))
+        self.settings_button.setFlat(True)
+
+        self.verticalLayout_2.addWidget(self.settings_button)
+
+
+        self.verticalLayout.addWidget(self.frame)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -99,7 +138,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.nav_button.setText("")
         self.home_button.setText("")
         self.progress_button.setText("")
+        self.settings_button.setText("")
     # retranslateUi
 
