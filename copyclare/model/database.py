@@ -204,6 +204,12 @@ class Database:
 
         return attempts
 
+    def get_one_attempt_by_ID(self, id):
+        result = self._execute_with_params("get_certain_attempt_by_id.sql",
+                                           id)
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            return Attempt(p1, p2, p3, p4, p5, p6, p7)
+
     def delete(self, table_name, key_name, key):
         self.c.execute("DELETE FROM %s WHERE %s = %s" %
                        (table_name, key_name, key))

@@ -1,0 +1,1 @@
+SELECT attempt_id, attempt_name, num_of_repetitions, duration, session_json, accuracy, exercise_id FROM attempts WHERE attempt_id = %d; 
