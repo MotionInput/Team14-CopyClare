@@ -4,6 +4,8 @@ from PySide6.QtWidgets import QMainWindow, QApplication
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 
+from copyclare.model.database import DB_DIR
+from copyclare.model import Database
 from copyclare import DATA_PATH
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage
@@ -11,18 +13,16 @@ from .pages import HomePage, NotFound, ProfilePage
 
 class App:
 
-
     pages = {
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
-
     }
-
-
 
     def start_ui(self):
         self.current_page = None
+        self.db = Database(DB_DIR)
+        print(self.db.get_all_exercises())
 
         # App necessary setup
         app = QApplication(sys.argv)
@@ -60,7 +60,7 @@ class App:
 
         # UI setup
         self.init_pages()
-        self.load_page("home")
+        self.load_page()
 
         # buttons init
         self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))

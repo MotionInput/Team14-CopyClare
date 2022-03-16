@@ -13,19 +13,18 @@ CREATE TABLE IF NOT EXISTS exercises(
 -- Tags table storing stuff like Today's
 
 CREATE TABLE IF NOT EXISTS tags(
-       tag_id INTEGER NOT NULL UNIQUE,
-       tag_name TEXT,
-       PRIMARY KEY (tag_id AUTOINCREMENT)
+       tag_name TEXT NOT NULL UNIQUE,
+       PRIMARY KEY (tag_name)
 );
 
 -- Transition table to allow many to many relationship between tags and exercises
 
 CREATE TABLE IF NOT EXISTS tag_to_exercise(
-       tag_id INTEGER,
+       tag_name TEXT,
        exercise_id INTEGER,
-       FOREIGN KEY (tag_id) REFERENCES tags (tag_id),
+       FOREIGN KEY (tag_name) REFERENCES tags (tag_name),
        FOREIGN KEY (exercise_id) REFERENCES exercises (exercise_id),
-       CONSTRAINT PK_tag_to_exercise PRIMARY KEY (tag_id, exercise_id)
+       CONSTRAINT PK_tag_to_exercise PRIMARY KEY (tag_name, exercise_id)
 );
 
 -- Creating attempts table

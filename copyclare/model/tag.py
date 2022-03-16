@@ -1,6 +1,5 @@
 class Tag:
-    def __init__(self, id, tag_name):
-        self.id = id
+    def __init__(self, tag_name):
         self.tag_name = tag_name
 
     def __repr__(self):

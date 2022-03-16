@@ -7,16 +7,9 @@ class Exercise:
         self.image_directory = image_directory
         self.description = description
         self.angles_json = angles_json
-        self.tags_ids = []  # a list of tag_ids
 
     def __repr__(self):
-        return f"<Exercise: {self.name}, {self.description}>"
-
-    def get_tags(self):
-        pass
-
-    def set_tags(self, tag_ids):
-        pass
+        return f"<Exercise[{self.id}]: {self.name}>"
 
     def get_sql_tuple(self):
         return (self.name, self.video_directory, self.image_directory,
