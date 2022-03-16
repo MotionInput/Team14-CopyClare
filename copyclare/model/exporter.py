@@ -18,7 +18,7 @@ class Exporter():
                 self.get_data(attempt, quantitative_data, qualitative_data)
         else:
             export_title = "Results for attempt %s" % attempt_id
-            attempt = self.database.get_one_attempt_by_id(attempt_id)
+            attempt = self.database.get_one_attempt_by_ID(attempt_id)
             self.get_data(attempt, quantitative_data, qualitative_data)
         self.doc.create_document(
             export_title, quantitative_data, qualitative_data)
