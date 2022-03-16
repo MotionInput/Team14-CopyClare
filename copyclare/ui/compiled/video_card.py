@@ -15,43 +15,50 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsView, QLabel,
-    QSizePolicy, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 300)
+        Form.resize(338, 367)
+        Form.setMinimumSize(QSize(300, 0))
+        Form.setStyleSheet(u"border: 2px solid;\n"
+"border-color: #929292;\n"
+"color: #000000;")
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.video_card = QFrame(Form)
-        self.video_card.setObjectName(u"video_card")
-        self.video_card.setMaximumSize(QSize(900, 300))
-        self.verticalLayout_6 = QVBoxLayout(self.video_card)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.graphicsView = QGraphicsView(self.video_card)
-        self.graphicsView.setObjectName(u"graphicsView")
+        self.video_image = QLabel(Form)
+        self.video_image.setObjectName(u"video_image")
+        self.video_image.setMinimumSize(QSize(0, 150))
+        self.video_image.setMaximumSize(QSize(16777215, 150))
+        self.video_image.setStyleSheet(u"border: none;")
 
-        self.verticalLayout_6.addWidget(self.graphicsView)
+        self.verticalLayout.addWidget(self.video_image)
 
-        self.label_7 = QLabel(self.video_card)
-        self.label_7.setObjectName(u"label_7")
+        self.title = QLabel(Form)
+        self.title.setObjectName(u"title")
+        self.title.setMaximumSize(QSize(16777215, 30))
+        font = QFont()
+        font.setBold(True)
+        self.title.setFont(font)
+        self.title.setStyleSheet(u"border: none;")
 
-        self.verticalLayout_6.addWidget(self.label_7)
+        self.verticalLayout.addWidget(self.title)
 
-        self.label_3 = QLabel(self.video_card)
-        self.label_3.setObjectName(u"label_3")
+        self.duration = QLabel(Form)
+        self.duration.setObjectName(u"duration")
+        self.duration.setMaximumSize(QSize(16777215, 20))
+        self.duration.setStyleSheet(u"border: none;")
 
-        self.verticalLayout_6.addWidget(self.label_3)
+        self.verticalLayout.addWidget(self.duration)
 
-        self.label_4 = QLabel(self.video_card)
-        self.label_4.setObjectName(u"label_4")
+        self.description = QLabel(Form)
+        self.description.setObjectName(u"description")
+        self.description.setStyleSheet(u"border: none;")
 
-        self.verticalLayout_6.addWidget(self.label_4)
-
-
-        self.verticalLayout.addWidget(self.video_card)
+        self.verticalLayout.addWidget(self.description)
 
 
         self.retranslateUi(Form)
@@ -61,8 +68,9 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"00:30", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"Push ups", None))
-        self.label_4.setText(QCoreApplication.translate("Form", u"This is a good exercise", None))
+        self.video_image.setText(QCoreApplication.translate("Form", u"Video Image here", None))
+        self.title.setText(QCoreApplication.translate("Form", u"Title", None))
+        self.duration.setText(QCoreApplication.translate("Form", u"Duration", None))
+        self.description.setText(QCoreApplication.translate("Form", u"Description here.", None))
     # retranslateUi
 

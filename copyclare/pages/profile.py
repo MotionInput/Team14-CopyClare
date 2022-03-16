@@ -27,4 +27,3 @@ class ProfilePage(Page):
         for _attempt in _all_attempts:
             _history_card = HistoryCardWidget(_banner.ui.scrollArea, _attempt, None)
             _banner.ui.verticalLayout_2.addWidget(_history_card)
-

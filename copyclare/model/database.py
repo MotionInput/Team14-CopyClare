@@ -18,6 +18,8 @@ class Database:
         :param db_file: database file
         :return: Connection object or None
         """
+
+        exists = os.path.exists(db_file)
         self.conn = None
         self.c = None
         try:
@@ -25,6 +27,63 @@ class Database:
             self.c = self.conn.cursor()
         except sqlite3.DatabaseError as e:
             print(e)
+
+        if not exists:
+            print("Database not found, creating and populating a new one")
+            self._execute_sql("init_db.sql")
+            self._init_debug_data()
+            self.conn.commit()
+        else:
+            print("Database exists")
+
+    def _init_debug_data(self):
+
+        tags = [
+            Tag("Todays"),
+            Tag("Assignment1"),
+            Tag("MondaySet"),
+        ]
+
+        exercises = [
+            Exercise(
+                None,
+                "Adi Elbow",
+                "/videos/adi-elbow.mp4",
+                "null",
+                "Adi performing an elbow exercise.",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 1",
+                "/videos/sample.mp4",
+                "null",
+                "Video sample from masters students 1",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 2",
+                "/videos/sample1.mp4",
+                "null",
+                "Video sample from masters students 2",
+                "null",
+            ),
+            Exercise(
+                None,
+                "Sample Video 3",
+                "/videos/sample2.mp4",
+                "null",
+                "Video sample from masters students 3",
+                "null",
+            ),
+        ]
+
+        for tag in tags:
+            self.add_tag(tag)
+
+        for ex in exercises:
+            self.add_exercise(ex)
 
     def _file_to_commands(self, sql_path):
         """
@@ -67,14 +126,41 @@ class Database:
 
     def add_tag(self, tag):
         params = tag.get_sql_tuple()
-        self._execute_with_params("insert_tag.sql", params)
+        try:
+            self._execute_with_params("insert_tag.sql", params)
+        except sqlite3.IntegrityError as err:  # tag already exists
+            print(f"Tag '{tag.tag_name}' already exists")
+        else:
+            self.conn.commit()
+
+    def add_tag_to_exercise(self, tag, exercise):
+
+        self.add_tag(tag)
+        t_name = tag.tag_name
+        e_id = exercise.id
+        try:
+            self._execute_with_params("insert_tags_to_exercise.sql",
+                                      (t_name, e_id))
+        except sqlite3.IntegrityError as err:
+            print(f"Excercise already has tag '{t_name}'")
         self.conn.commit()
+
+    def get_exercise_tags(self, exercise):
+        """
+        Given the exercise id returns a list of tag objects
+        """
+        e_id = exercise.id
+
+        result = self._execute_with_params("get_exercise_tags.sql", e_id)
+        tags = [Tag(each[0]) for each in result]
+
+        return tags
 
     def get_all_tags(self):
         result = self._execute_sql("get_all_tags.sql")
         tags = []
-        for id, name in result:
-            tags.append(Tag(id, name))
+        for name in result:
+            tags.append(Tag(name))
         return tags
 
     def add_exercise(self, exercise):
@@ -95,11 +181,11 @@ class Database:
             exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
 
         return exercises
-    
-    def get_one_exercise_by_ID(self,id):
-        result = self._execute_with_params("get_certain_exercise_by_id.sql",id)
+
+    def get_one_exercise_by_ID(self, id):
+        result = self._execute_with_params("get_certain_exercise_by_id.sql",
+                                           id)
         for p1, p2, p3, p4, p5, p6 in result:
-            print(p6)
             return Exercise(p1, p2, p3, p4, p5, p6)
 
     def add_attempt(self, attempt):
@@ -134,16 +220,21 @@ def main():
 
     # create tables
     if database.conn is not None:
-        script = "init_db.sql"
-        database._execute_sql(script)
 
-        at = Attempt(None, "2020-10-21", 10, 1.345, "text", 0.95, 1)
-        ex = Exercise(None, "1", "2", "3", "des", "5")
-        tag = Tag(None, "Today")
+        database.get_all_tags()
+        t = Tag("Todays")
+        t1 = Tag("MondaySet")
+        t2 = Tag("Assignment1")
+        exercise = database.get_one_exercise_by_ID(2)
+        exercise2 = database.get_one_exercise_by_ID(3)
+        database.add_tag_to_exercise(t, exercise)
+        database.add_tag_to_exercise(t1, exercise)
+        database.add_tag_to_exercise(t2, exercise)
+        database.add_tag_to_exercise(t2, exercise2)
+        database.add_tag_to_exercise(t, exercise2)
 
-        database.add_attempt(at)
-        database.add_tag(tag)
-        database.add_exercise(ex)
+        print(database.get_exercise_tags(exercise))
+        print(database.get_exercise_tags(exercise2))
         #print(database.get_all_exercises())
         #print(database.get_all_tags())
         #print(database.get_all_attempts())

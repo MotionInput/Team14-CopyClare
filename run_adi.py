@@ -42,10 +42,9 @@ def test_ui():
     window.show()
     sys.exit(app.exec())
 
+
 if __name__ == "__main__":
     test_ui()
-
-
 
     # accuracy = am.accuracy(frame)
     # print(accuracy)
