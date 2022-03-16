@@ -11,6 +11,8 @@ mediapipe==0.8.9.1
 numpy==1.22.0
 opencv-contrib-python==4.5.5.62
 packaging==21.3
+pandas==1.4.1
+patsy==0.5.2
 Pillow==9.0.0
 protobuf==3.19.3
 pycodestyle==2.8.0
@@ -22,8 +24,11 @@ PySide6==6.2.2.1
 python-dateutil==2.8.2
 python-docx==0.8.11
 python-dotenv==0.19.2
+pytz==2021.3
 qt5-applications==5.15.2.2.2
 qt5-tools==5.15.2.1.2
+scipy==1.8.0
 shiboken6==6.2.2.1
 six==1.16.0
+statsmodels==0.13.2
 toml==0.10.2

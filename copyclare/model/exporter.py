@@ -1,43 +1,85 @@
 from database import Database
 from docx import Document
-from docx.shared import Inches
 
 
 class Exporter():
     def __init__(self):
-        self.database = Database.main()
+        self.database = Database()
+        self.doc = DocumentWriter()
 
-    def export_all(self):
-        attempts = self.database.get_all_attempts()
-        for attempt in attempts:
-            exe_id = attempt.exercise_id
-            exe = self.database.get_one_exercise_by_ID(exe_id)
-            exe_name = exe.name
-            exe_des = exe.description
-            print(exe_id, exe_name, exe_des)
+    def export(self, attempt_id=None):
+        quantitative_data = []
+        qualitative_data = []
+        export_title = ""
+        if attempt_id is None:
+            export_title = "Results for all attempts"
+            attempts = self.database.get_all_attempts()
+            for attempt in attempts:
+                self.get_data(attempt, quantitative_data, qualitative_data)
+        else:
+            export_title = "Results for attempt %s" % attempt_id
+            attempt = self.database.get_one_attempt_by_id(attempt_id)
+            self.get_data(attempt, quantitative_data, qualitative_data)
+        self.doc.create_document(
+            export_title, quantitative_data, qualitative_data)
 
-    def export(self, exe_id):
+    def get_data(self, attempt, quantitative_data, qualitative_data):
+        exe_id = attempt.exercise_id
         exe = self.database.get_one_exercise_by_ID(exe_id)
-        exe_name = exe.name
-        exe_des = exe.description
-        print(exe_id, exe_name, exe_des)
+        quantitative_data.append(
+            {"name": exe.name,
+             "reps": attempt.num_of_repetitons,
+             "duration": attempt.duration,
+             })
+        quantitative_data.append(
+            {"name": exe.name,
+             "accuracy": attempt.accuracy,
+             })
 
+# reference: https://roytuts.com/a-guide-to-write-word-file-using-python/
 
 
 class DocumentWriter():
     def __init__(self):
         self.document = Document()
 
-    def create_document(self):
-        self.document.add_heading('Results', 0)
-        self.add_quantitative_section()
-        self.add_qualitative_section()
+    def create_document(self, export_title, quantitative_data, qualitative_data):
+        self.document.add_heading(export_title, 0)
+        self.add_quantitative_section(quantitative_data)
+        self.add_qualitative_section(qualitative_data)
 
-# which different exercises they performed, number of sets,
-# number of repetition, time take, Number of time
-# they get to the range required.
-    def add_quantitative_section(self):
+# which different exercises they performed
+# number of repetition, time take
+    def add_quantitative_section(self, quantitative_data):
         self.document.add_heading('Quantitative', level=1)
+        table = self.document.add_table(rows=1, cols=3)
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = 'Exercise Name'
+        hdr_cells[1].text = 'Repetitions'
+        hdr_cells[2].text = 'Duration'
+        for item in quantitative_data:
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(item['name'])
+            row_cells[1].text = str(item['reps'])
+            row_cells[2].text = str(item['duration'])
 
-    def add_qualitative_section(self):
+
+# What we would ideally like to see is information
+# about the person as they made the movement,
+# and how that movement matched against the
+# normal movement/reference movement.
+# Ideally, we would like to get whole limb through
+# range read out(Basically, how much they deviated
+# from the normal range). For this we would want whole
+# limb through range data in relation to the reference movement.
+
+    def add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=1)
+        table = self.document.add_table(rows=1, cols=2)
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = 'Exercise Name'
+        hdr_cells[1].text = 'Accuracy'
+        for item in qualitative_data:
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(item['name'])
+            row_cells[1].text = str(item['accuracy'])
