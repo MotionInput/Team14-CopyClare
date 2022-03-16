@@ -73,6 +73,17 @@ class App:
 
         sys.exit(app.exec())
 
+
+    def start_exercise(self, exercise):
+        """
+        Hide all the contents including navbar
+        and create and exercise instacne
+
+        Upon completion of the exercise process,
+        log the results of the attempt in the database.
+        """
+
+
     def get_pages(self):
         """
         Spits out a set of pages.
@@ -80,6 +91,7 @@ class App:
         Returns:
             :obj:`set`
         """
+
         return self.pages.keys()
 
     def init_pages(self):
