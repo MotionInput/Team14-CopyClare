@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS attempts(
        duration REAL,
        session_json TEXT,
        accuracy REAL,
+       heatmap TEXT,
        exercise_id INTEGER,
        PRIMARY KEY (attempt_id AUTOINCREMENT),
        FOREIGN KEY (exercise_id) REFERENCES exercises(exercise_id)

@@ -10,6 +10,7 @@ from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage
+from .pages.video_addition import Video_Addition
 
 
 class App:
@@ -18,6 +19,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
+        "video_addition": Video_Addition,
     }
 
     def start_ui(self):
@@ -74,6 +76,17 @@ class App:
         
         sys.exit(app.exec())
 
+
+    def start_exercise(self, exercise):
+        """
+        Hide all the contents including navbar
+        and create and exercise instacne
+
+        Upon completion of the exercise process,
+        log the results of the attempt in the database.
+        """
+
+
     def get_pages(self):
         """
         Spits out a set of pages.
@@ -81,6 +94,7 @@ class App:
         Returns:
             :obj:`set`
         """
+
         return self.pages.keys()
 
     def init_pages(self):

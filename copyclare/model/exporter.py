@@ -1,13 +1,13 @@
-from database import Database
+from copyclare.model.database import Database
 from docx import Document
 
 
 class Exporter():
-    def __init__(self):
-        self.database = Database()
+    def __init__(self, database):
+        self.database = database
         self.doc = DocumentWriter()
 
-    def export(self, attempt_id=None):
+    def export(self, saveAs, attempt_id=None):
         quantitative_data = []
         qualitative_data = []
         export_title = ""
@@ -20,8 +20,8 @@ class Exporter():
             export_title = "Results for attempt %s" % attempt_id
             attempt = self.database.get_one_attempt_by_ID(attempt_id)
             self.get_data(attempt, quantitative_data, qualitative_data)
-        self.doc.create_document(
-            export_title, quantitative_data, qualitative_data)
+        self.doc.create_document(saveAs,
+                                 export_title, quantitative_data, qualitative_data)
 
     def get_data(self, attempt, quantitative_data, qualitative_data):
         exe_id = attempt.exercise_id
@@ -31,7 +31,7 @@ class Exporter():
              "reps": attempt.num_of_repetitons,
              "duration": attempt.duration,
              })
-        quantitative_data.append(
+        qualitative_data.append(
             {"name": exe.name,
              "accuracy": attempt.accuracy,
              })
@@ -43,10 +43,11 @@ class DocumentWriter():
     def __init__(self):
         self.document = Document()
 
-    def create_document(self, export_title, quantitative_data, qualitative_data):
+    def create_document(self, saveAs, export_title, quantitative_data, qualitative_data):
         self.document.add_heading(export_title, 0)
         self.add_quantitative_section(quantitative_data)
         self.add_qualitative_section(qualitative_data)
+        self.document.save(saveAs)
 
 # which different exercises they performed
 # number of repetition, time take
@@ -72,6 +73,7 @@ class DocumentWriter():
 # range read out(Basically, how much they deviated
 # from the normal range). For this we would want whole
 # limb through range data in relation to the reference movement.
+
 
     def add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=1)

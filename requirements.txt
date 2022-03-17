@@ -32,3 +32,4 @@ shiboken6==6.2.2.1
 six==1.16.0
 statsmodels==0.13.2
 toml==0.10.2
+python-docx
