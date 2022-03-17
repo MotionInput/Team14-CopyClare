@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QFrame
 from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPixmap
 
 from copyclare import DATA_PATH
 from copyclare.model import Exporter
@@ -12,6 +12,9 @@ class HistoryCardWidget(QFrame):
         self.app = AppSingleton.get_app()
         self.ui = load_ui("history_card")
         self.ui.setupUi(self)
+
+        self.ui.exercise_img.setPixmap(
+            QPixmap(DATA_PATH + "/assets/default-video-img.png"))
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(attempt.exercise_id)
         self.ui.title.setText(name)

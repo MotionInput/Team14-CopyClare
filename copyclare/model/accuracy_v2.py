@@ -115,7 +115,7 @@ class AccuracyModel:
 
     def color_frame(self, frame, landmark_list, accuracy):
         done = set()
-        clr = (0, 255, 0) if accuracy else (255, 255, 255)
+        clr = (255,255,0) if accuracy else (255, 255, 255)
         if landmark_list:
             for joint in self.joints:
                 x, y = landmark_list[self.joints_map[joint]][1:]

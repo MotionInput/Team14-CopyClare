@@ -9,7 +9,6 @@ from copyclare.model import Database, Attempt
 from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
 
-
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage, ExercisePage
 from .pages.video_addition import Video_Addition
@@ -40,26 +39,27 @@ class App:
 
         # edit for the ui button
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(DATA_PATH + "/assets/home.png", QSize(), QIcon.Normal,
+                     QIcon.Off)
 
         self.ui.home_button.setIcon(icon)
         self.ui.home_button.setIconSize(QSize(64, 64))
 
         icon1 = QIcon()
-        icon1.addFile(DATA_PATH + "/assets/progress.png", QSize(), QIcon.Normal,
-                      QIcon.Off)
+        icon1.addFile(DATA_PATH + "/assets/progress.png", QSize(),
+                      QIcon.Normal, QIcon.Off)
         self.ui.progress_button.setIcon(icon1)
         self.ui.progress_button.setIconSize(QSize(64, 64))
 
         icon2 = QIcon()
-        icon2.addFile(DATA_PATH + "/assets/settings.png", QSize(), QIcon.Normal,
-                      QIcon.Off)
+        icon2.addFile(DATA_PATH + "/assets/settings.png", QSize(),
+                      QIcon.Normal, QIcon.Off)
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
         icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(), QIcon.Normal,
-                      QIcon.Off)
+        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(),
+                      QIcon.Normal, QIcon.Off)
         self.ui.nav_button.setIcon(icon3)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
@@ -80,7 +80,6 @@ class App:
 
         sys.exit(app.exec())
 
-
     def start_exercise(self, exercise):
         """
         Hide all the contents including navbar
@@ -90,19 +89,13 @@ class App:
         log the results of the attempt in the database.
         """
 
-
         self.ui.side_nav.hide()
         self.ui.pages_frame.hide()
-
 
         self.ui.exercise_frame.show()
         ex_page = ExercisePage(self.ui.exercise_frame, exercise)
         self.current_exercise_page = ex_page
         self.ui.exercise_layout.addWidget(ex_page)
-
-
-
-
 
     def end_exercise(self, attempt):
         self.ui.exercise_frame.hide()
@@ -114,7 +107,6 @@ class App:
         if self.current_exercise_page is not None:
             self.current_exercise_page.deleteLater()
             self.current_exercise_page = None
-
 
     def get_pages(self):
         """
@@ -144,7 +136,7 @@ class App:
             _analysis_page_obj = AnalysisPage(self.ui.pages_frame, attempt)
             self.ui.pages_layout.addWidget(_analysis_page_obj)
             self.current_page = _analysis_page_obj
-        elif page in self.pages: # these pages are the same each time you load
+        elif page in self.pages:  # these pages are the same each time you load
             self.current_page = self.pages[page]
         else:
             print(f"Could not find page: {page}")
