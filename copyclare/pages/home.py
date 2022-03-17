@@ -14,5 +14,7 @@ class HomePage(Page):
         tags = self.app.db.get_all_tags()
 
         for tag in tags:
-            _banner = BannerWidget(self.ui.scroll_area, tag.tag_name)
+            exercises = self.app.db.get_exercises_by_tag(tag)
+            _banner = BannerWidget(self.ui.scroll_area, tag.tag_name,
+                                   exercises)
             self.ui.vertical_layout.addWidget(_banner)
