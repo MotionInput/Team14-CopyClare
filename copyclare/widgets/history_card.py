@@ -17,13 +17,11 @@ class HistoryCardWidget(QFrame):
         self.ui.date.setText(desc)
 
         icon = QIcon()
-        print(DATA_PATH + "/assets/analysis.png")
         icon.addFile(DATA_PATH + "/assets/analysis.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.analysis_button.setIcon(icon)
         self.ui.analysis_button.setIconSize(QSize(64, 64))
 
         icon = QIcon()
-        print(DATA_PATH + "/assets/export.png")
         icon.addFile(DATA_PATH + "/assets/export.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.export_button.setIcon(icon)
         self.ui.export_button.setIconSize(QSize(64, 64))

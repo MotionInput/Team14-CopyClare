@@ -36,7 +36,6 @@ class App:
 
         # edit for the ui button
         icon = QIcon()
-        print(DATA_PATH + "/assets/home.png")
         icon.addFile(DATA_PATH + "/assets/home.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.home_button.setIcon(icon)
         self.ui.home_button.setIconSize(QSize(64, 64))
