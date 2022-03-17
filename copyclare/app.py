@@ -7,6 +7,7 @@ from PySide6.QtGui import QIcon
 from copyclare.model.database import DB_DIR
 from copyclare.model import Database
 from copyclare import DATA_PATH
+from copyclare.pages.analysis import AnalysisPage
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage
 
@@ -70,7 +71,7 @@ class App:
             lambda x: self.load_page("progress"))
 
         self.ui.nav_button.clicked.connect(self.nav_click)
-
+        
         sys.exit(app.exec())
 
     def get_pages(self):
@@ -89,19 +90,21 @@ class App:
             self.pages[page] = _page_obj
             self.ui.pages_layout.addWidget(_page_obj)
 
-    def load_page(self, page="home"):
+    def load_page(self, page="home", attempt=None):
         """
         Loads a page given the page name
         """
         if self.current_page is not None:
             self.current_page.hide()
 
-        if page in self.pages:
+        if page == "analysis":
+            self.current_page = AnalysisPage(attempt)
+        elif page in self.pages: # these pages are the same each time you load       
             self.current_page = self.pages[page]
         else:
             print(f"Could not find page: {page}")
             self.current_page = self.pages["not_found"]
-
+            
         self.current_page.show()
 
     def nav_click(self):

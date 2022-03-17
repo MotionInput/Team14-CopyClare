@@ -210,6 +210,10 @@ class Database:
         for p1, p2, p3, p4, p5, p6, p7 in result:
             return Attempt(p1, p2, p3, p4, p5, p6, p7)
 
+    def get_exercise_name_and_desc_by_ID(self, id):
+        exercise = self.get_one_exercise_by_ID(id)
+        return exercise.name, exercise.description
+
     def delete(self, table_name, key_name, key):
         self.c.execute("DELETE FROM %s WHERE %s = %s" %
                        (table_name, key_name, key))
