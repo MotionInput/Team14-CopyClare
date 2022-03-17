@@ -112,7 +112,9 @@ class App:
             self.current_page.hide()
 
         if page == "analysis":
-            self.current_page = AnalysisPage(attempt)
+            _analysis_page_obj = AnalysisPage(self.ui.pages_frame, attempt)
+            self.ui.pages_layout.addWidget(_analysis_page_obj)
+            self.current_page = _analysis_page_obj
         elif page in self.pages: # these pages are the same each time you load
             self.current_page = self.pages[page]
         else:

@@ -1,8 +1,8 @@
-from copyclare.model import database
 from PySide6.QtCore import Qt
 from copyclare.widgets.history_card import HistoryCardWidget
 
 from copyclare.widgets.progress_banner import ProgressBannerWidget
+from copyclare.common import AppSingleton
 
 from .page import Page
 
@@ -23,8 +23,8 @@ class ProfilePage(Page):
         
         # TODO: get a list of attempts with newest attempt as 1st element
         #_all_attempts = [adis_good_attempt, ths_good_attempt, yans_good_attempt, srees_failed_attempt]
-        data = database.main()
-        _all_attempts = data.get_all_attempts()
+        self.app = AppSingleton.get_app()
+        _all_attempts = self.app.db.get_all_attempts()
 
         for _attempt in _all_attempts:
             _history_card = HistoryCardWidget(_banner.ui.scrollArea, _attempt, None)
