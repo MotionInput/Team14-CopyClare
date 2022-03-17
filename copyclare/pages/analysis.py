@@ -17,5 +17,5 @@ class AnalysisPage(Page):
 
         # TODO things to set for QGraphicsView
         # heatmap, accuracy_graph
-        
-        # TODO back_button
+
+        self.ui.back_button.clicked.connect(lambda x: self.app.load_page("progress"))

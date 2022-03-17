@@ -3,6 +3,7 @@ from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 
 from copyclare import DATA_PATH
+from copyclare.model import Exporter
 from copyclare.common import load_ui, AppSingleton
 
 class HistoryCardWidget(QFrame):
@@ -28,11 +29,13 @@ class HistoryCardWidget(QFrame):
 
         self.ui.analysis_button.clicked.connect(lambda x: self._create_analysis_page(attempt))
 
-        # TODO: SREEEEEEEEEE
         self.ui.export_button.clicked.connect(lambda x: self._export())
 
     def _create_analysis_page(self, attempt):
         self.app.load_page("analysis", attempt)
 
+    # TODO link export button to function
     def _export(self):
+        exporter = Exporter(self.app.db)
+        exporter.export("saveAs(?)") # TODO idk what the args are supposed to be
         print("sree work here")
