@@ -11,7 +11,8 @@ class HomePage(Page):
 
         self.app = AppSingleton.get_app()
 
-
         tags = self.app.db.get_all_tags()
 
-        print(tags)
+        for tag in tags:
+            _banner = BannerWidget(self.ui.scroll_area, tag.tag_name)
+            self.ui.vertical_layout.addWidget(_banner)

@@ -25,7 +25,6 @@ class App:
     def start_ui(self):
         self.current_page = None
         self.db = Database(DB_DIR)
-        print(self.db.get_all_exercises())
 
         # App necessary setup
         app = QApplication(sys.argv)
@@ -36,7 +35,6 @@ class App:
 
         # edit for the ui button
         icon = QIcon()
-        print(DATA_PATH + "/home.png")
         icon.addFile(DATA_PATH + "/home.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.home_button.setIcon(icon)
         self.ui.home_button.setIconSize(QSize(64, 64))
