@@ -42,7 +42,7 @@ class CameraWorker:
             "left_shoulder",
             "left_elbow",
         }
-        self.model = AccuracyModel(DATA_PATH + exercise.video_directory, joints)
+        self.model = AccuracyModel(exercise, joints)
 
     def work(self):
         cap = cv2.VideoCapture(0)
