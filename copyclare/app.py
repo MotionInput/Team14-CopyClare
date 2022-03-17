@@ -9,6 +9,7 @@ from copyclare.model import Database
 from copyclare import DATA_PATH
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage
+from .pages.video_addition import Video_Addition
 
 
 class App:
@@ -17,6 +18,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
+        "video_addition": Video_Addition,
     }
 
     def start_ui(self):

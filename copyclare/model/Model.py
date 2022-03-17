@@ -1,11 +1,12 @@
 import csv
-from email import header
 import math
+import random
 import cv2
 from matplotlib.pyplot import cool
 from pose_module import PoseModule
 import numpy as np
 import os
+
 
 
 class Model:
@@ -22,7 +23,7 @@ class Model:
         self.score = []
 
     def show_capture(self):
-        init = None
+        init = 0
         coo_dict = {}
         while self.cap.isOpened():
             success, frame = self.cap.read()
@@ -31,32 +32,37 @@ class Model:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
             person = self.detector.find_person(frame)
-            if init == None:
+            if init < 10:
                 heatmap = person
-                init = True
+                init += 1
             landmark_list = self.detector.find_landmarks(person, draw=False)
             # print(landmark_list)
-            angle = 0
-            if len(landmark_list) != 0:
-                #cv2.circle(person,
-                #           (landmark_list[13][1], landmark_list[13][2]), 15,
-                #           (0, 0, 255), cv2.FILLED)
-                landmark = landmark_list[13]
-                S_landmark = self.trans_cooList_keyString(landmark)
-                print(landmark)
-                if not S_landmark in coo_dict:
-                    coo_dict.update({S_landmark:1})
-                    cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),3,(0,255,255),cv2.FILLED)
-                else:
-                    num = coo_dict[S_landmark] + 1
-                    coo_dict[S_landmark] = num
-                    cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),4,(0,255-num*25,255),cv2.FILLED)
-                angle = self.detector.find_angle(person, 11, 13, 15)
-            cv2.imshow("Image", heatmap)
+            # angle = 0
+            self.heatmap(coo_dict, heatmap, landmark_list)
+            cv2.imshow("image1",person)
             # yield person, angle
             if cv2.waitKey(1) == ord('q'):
+                cv2.imwrite("data/heatmap/"+str(random.randint(0,9999))+".jpg",heatmap)
                 break
         self.close_capture()
+
+    def heatmap(self, coo_dict, heatmap, landmark_list):
+        
+        if len(landmark_list) != 0:
+            landmark = landmark_list[13]
+            S_landmark = self.trans_cooList_keyString(landmark)
+            
+            if not S_landmark in coo_dict:
+                coo_dict.update({S_landmark:1})
+                cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),3,(0,255,255),cv2.FILLED)
+            else:
+                # print("overlap")
+                num = coo_dict[S_landmark] + 1
+                coo_dict[S_landmark] = num
+                cv2.circle(heatmap,(landmark_list[13][1], landmark_list[13][2]),4,(0,255-num*25,255),cv2.FILLED)
+                
+        cv2.imshow("Image", heatmap)
+        
 
     def gather_video_angle_data(self, csv_name):
         try:
