@@ -160,7 +160,7 @@ class Database:
     def get_all_tags(self):
         result = self._execute_sql("get_all_tags.sql")
         tags = []
-        for name in result:
+        for name, in result:
             tags.append(Tag(name))
         return tags
 
