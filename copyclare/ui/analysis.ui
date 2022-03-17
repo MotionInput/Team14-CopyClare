@@ -118,6 +118,9 @@
       </property>
       <item>
        <widget class="QFrame" name="content_frame">
+        <property name="styleSheet">
+         <string notr="true">color: #000000;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>

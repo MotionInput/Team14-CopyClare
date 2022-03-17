@@ -15,7 +15,7 @@ class HistoryCardWidget(QFrame):
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(attempt.exercise_id)
         self.ui.title.setText(name)
-        self.ui.date.setText(desc)
+        self.ui.date.setText(attempt.date)
 
         icon = QIcon()
         icon.addFile(DATA_PATH + "/assets/analysis.png", QSize(), QIcon.Normal, QIcon.Off)
