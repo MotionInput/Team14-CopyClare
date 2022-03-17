@@ -9,11 +9,11 @@ import time
 class VideoThread(QThread):
     update_frame = Signal(QImage)
 
-    def __init__(self, container):
+    def __init__(self, container, exercise):
         QThread.__init__(self, None)
         self.container = container
         self._running = True
-        self.worker = VideoWorker()
+        self.worker = VideoWorker(exercise)
 
     def run(self):
 
@@ -33,35 +33,27 @@ class VideoThread(QThread):
             img = img.copy(rect)
             img = img.scaled(width, height, Qt.KeepAspectRatioByExpanding)
             self.update_frame.emit(img)
+        self.quit()
 
 
 class VideoWorker:
+    def __init__(self, exercise):
+        self.video_path = DATA_PATH + exercise.video_directory
+
     def work(self):
-
         # TODO: Replace with a model call
-        video_path = DATA_PATH + "/videos/sample2.mp4"
-
-        cap = cv2.VideoCapture(video_path)
+        cap = cv2.VideoCapture(self.video_path)
         fps = cap.get(cv2.CAP_PROP_FPS)
-
         if not cap.isOpened():
             print("Error opening a video file")
-
         frame_count = 0
-
         while (cap.isOpened):
-
             success, frame = cap.read()
-
             if not success:
                 print("Can't read from Camera")
-
             frame_count += 1
-
             if frame_count == cap.get(cv2.CAP_PROP_FRAME_COUNT):
                 frame_count = 0
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-
             time.sleep(1 / fps)
-
             yield frame

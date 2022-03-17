@@ -7,7 +7,9 @@ from PySide6.QtMultimedia import (QMediaPlayer)
 # for testing
 import random
 
-from copyclare.video import VideoThread, CameraThread
+from copyclare.video import VideoThread, CameraThread, ThreadManager
+from copyclare.common import AppSingleton
+
 
 from .page import Page
 
@@ -19,9 +21,11 @@ from .page import Page
 class ExercisePage(Page):
     done = Signal()
 
-    def __init__(self, master):
+    def __init__(self, master, exercise):
         super().__init__(master, "exercise")
 
+        self.exercise = exercise
+        self.tm = ThreadManager()
         self.init_chart()
         self.init_video()
         self.init_camera()
@@ -31,7 +35,8 @@ class ExercisePage(Page):
         print("Trying to stop stuff")
         self.video_thread._running = False
         self.camera_thread._running = False
-        self.done.emit()
+
+
 
     def init_chart(self):
         self.series = QLineSeries()
@@ -48,12 +53,14 @@ class ExercisePage(Page):
         self.ui.graph_layout.addWidget(self.chartView)
 
     def init_video(self):
-        self.video_thread = VideoThread(self.ui.video_frame)
+        self.video_thread = VideoThread(self.ui.video_frame, self.exercise)
+        self.tm.add_thread(self.video_thread)
         self.video_thread.update_frame.connect(self.update_video)
         self.video_thread.start()
 
     def init_camera(self):
-        self.camera_thread = CameraThread(self.ui.camera_frame)
+        self.camera_thread = CameraThread(self.ui.camera_frame, self.exercise)
+        self.tm.add_thread(self.camera_thread)
         self.camera_thread.update_frame.connect(self.update_camera)
         self.camera_thread.start()
 

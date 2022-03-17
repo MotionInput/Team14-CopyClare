@@ -2,7 +2,6 @@ from copyclare.model import database
 from copyclare import DATA_PATH
 from copyclare.model.attempt import Attempt
 from copyclare.model.exercises import Exercise
-from copyclare.model.user import User
 from copyclare.model.exporter import Exporter
 
 if __name__ == "__main__":

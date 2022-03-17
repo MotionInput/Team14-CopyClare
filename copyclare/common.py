@@ -12,6 +12,8 @@ def load_ui(fname):
 
 
 
+
+
 class AppSingleton:
 
     _app = None

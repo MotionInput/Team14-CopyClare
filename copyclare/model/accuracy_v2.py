@@ -1,4 +1,7 @@
+import os
+
 import time
+import json
 from collections import deque
 
 import cv2
@@ -6,6 +9,8 @@ import statsmodels.api as sm
 import math
 
 from copyclare.model import PoseModule
+from copyclare.common import AppSingleton
+from copyclare import DATA_PATH
 
 
 def round_decimals_up(number: float, decimals: int = 1):
@@ -36,10 +41,20 @@ class AccuracyModel:
         "right_shoulder": (11, 14),
     }
 
-    def __init__(self, video_path, joints):
+    def __init__(self, exercise, joints):
         self.detector = PoseModule()
         self.joints = joints
-        self.angles = self.get_angles(video_path)
+
+        if exercise.angles_json != "null":
+            print(exercise.angles_json)
+            self.angles = json.loads(exercise.angles_json)
+        else:
+            print("angles json not found, creating one")
+            print(exercise.video_directory)
+            self.angles = self.get_angles(DATA_PATH + exercise.video_directory)
+            with open(DATA_PATH + f"/test/{exercise.name}.json", "w") as f:
+                f.write(json.dumps(self.angles, indent=4))
+
         self.camera_buffer = deque()
         self.offset = 20
 

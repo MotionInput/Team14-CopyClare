@@ -18,5 +18,5 @@ class BannerWidget(QFrame):
     def init_exercises(self, exercises):
 
         for exercise in exercises:
-            _vid = VideoCardWidget(self.ui.scrollArea, exercise.name, exercise.description, "None")
-            self.ui.horizontalLayout.addWidget(_vid)
+            _vid = VideoCardWidget(self.ui.scrollArea, exercise)
+            self.ui.horizontalLayout.insertWidget(0, _vid)

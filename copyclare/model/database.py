@@ -40,8 +40,6 @@ class Database:
 
         tags = [
             Tag("Todays"),
-            Tag("Assignment1"),
-            Tag("MondaySet"),
         ]
 
         exercises = [
@@ -84,6 +82,13 @@ class Database:
 
         for ex in exercises:
             self.add_exercise(ex)
+
+        t = Tag("Todays")
+
+        exercises = self.get_all_exercises()
+        self.add_tag_to_exercise(t,exercises[0])
+        self.add_tag_to_exercise(t,exercises[1])
+
 
     def _file_to_commands(self, sql_path):
         """
@@ -237,30 +242,4 @@ def main():
 
     # create a database connection
     database = Database(DB_DIR)
-
-    # create tables
-    if database.conn is not None:
-
-        #database.add_attempt(Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
-        #database.add_attempt(Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
-        database.get_all_tags()
-        t = Tag("Todays")
-        t1 = Tag("MondaySet")
-        t2 = Tag("Assignment1")
-        exercise = database.get_one_exercise_by_ID(2)
-        exercise2 = database.get_one_exercise_by_ID(3)
-        database.add_tag_to_exercise(t, exercise)
-        database.add_tag_to_exercise(t1, exercise)
-        database.add_tag_to_exercise(t2, exercise)
-        database.add_tag_to_exercise(t2, exercise2)
-        database.add_tag_to_exercise(t, exercise2)
-
-        # print(database.get_exercise_tags(exercise))
-        # print(database.get_exercise_tags(exercise2))
-        # print(database.get_exercises_by_tag(t))
-        # print(database.get_all_exercises())
-        # print(database.get_all_tags())
-        # print(database.get_all_attempts())
-    else:
-        print("Error! cannot create the database connection.")
     return database

@@ -11,11 +11,11 @@ from copyclare import DATA_PATH
 class CameraThread(QThread):
     update_frame = Signal(QImage)
 
-    def __init__(self, container):
+    def __init__(self, container, exercise):
         QThread.__init__(self, None)
         self.container = container
         self._running = True
-        self.worker = CameraWorker()
+        self.worker = CameraWorker(exercise)
 
     def run(self):
 
@@ -31,17 +31,18 @@ class CameraThread(QThread):
                                     Qt.KeepAspectRatioByExpanding)
 
             self.update_frame.emit(scaled_img)
+        self.quit()
 
 
 class CameraWorker:
-    def __init__(self):
+    def __init__(self, exercise):
+
+
         joints = {
-            #"left_shoulder",
+            "left_shoulder",
             "left_elbow",
         }
-        self.model = AccuracyModel(DATA_PATH + "/videos/sample2.mp4", joints)
-
-        pass
+        self.model = AccuracyModel(DATA_PATH + exercise.video_directory, joints)
 
     def work(self):
         cap = cv2.VideoCapture(0)
@@ -49,7 +50,6 @@ class CameraWorker:
         if not cap.isOpened():
             print("Error opening a video file")
 
-        print(self.model.angles)
         start = time.time()
         while (cap.isOpened):
 

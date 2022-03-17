@@ -79,22 +79,6 @@ color: #000000;</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="duration">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: none;</string>
-     </property>
-     <property name="text">
-      <string>Duration</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QLabel" name="description">
      <property name="styleSheet">
       <string notr="true">border: none;</string>

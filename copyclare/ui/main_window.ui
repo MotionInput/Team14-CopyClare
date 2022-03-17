@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>872</width>
+    <width>820</width>
     <height>603</height>
    </rect>
   </property>
@@ -237,6 +237,36 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="pages_layout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="exercise_frame">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <layout class="QHBoxLayout" name="exercise_layout">
        <property name="spacing">
         <number>0</number>
        </property>

@@ -1,6 +1,6 @@
 import sys
 
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 
@@ -8,8 +8,10 @@ from copyclare.model.database import DB_DIR
 from copyclare.model import Database
 from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
+
+
 from .common import load_ui
-from .pages import HomePage, NotFound, ProfilePage
+from .pages import HomePage, NotFound, ProfilePage, ExercisePage
 from .pages.video_addition import Video_Addition
 
 
@@ -32,6 +34,9 @@ class App:
         self.window.showMaximized()
         self.ui = load_ui("main_window")
         self.ui.setupUi(self.window)
+
+        self.ui.exercise_frame.hide()
+        self.current_exercise_page = None
 
         # edit for the ui button
         icon = QIcon()
@@ -84,6 +89,29 @@ class App:
         Upon completion of the exercise process,
         log the results of the attempt in the database.
         """
+
+
+        self.ui.side_nav.hide()
+        self.ui.pages_frame.hide()
+
+
+        self.ui.exercise_frame.show()
+        ex_page = ExercisePage(self.ui.exercise_frame, exercise)
+        self.current_exercise_page = ex_page
+        self.ui.exercise_layout.addWidget(ex_page)
+
+
+
+
+
+    def end_exercise(self):
+        self.ui.exercise_frame.hide()
+        self.ui.side_nav.show()
+        self.ui.pages_frame.show()
+
+        if self.current_exercise_page is not None:
+            self.current_exercise_page.deleteLater()
+            self.current_exercise_page = None
 
 
     def get_pages(self):
