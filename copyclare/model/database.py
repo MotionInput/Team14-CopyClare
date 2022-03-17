@@ -121,7 +121,7 @@ class Database:
 
         command = self._file_to_commands(sql_path)[0]
         formatted = command % params
-        print(formatted)
+        # print(formatted)
         self.c.execute(formatted)
         return [row for row in self.c]
 
@@ -185,13 +185,13 @@ class Database:
 
     def get_exercises_by_tag(self, tag):
 
-        result = self._execute_with_params("get_exercises_by_tag.sql", tag.get_sql_tuple())
+        result = self._execute_with_params(
+            "get_exercises_by_tag.sql", tag.get_sql_tuple())
         exercises = []
-        for p1,p2,p3,p4,p5,p6 in result:
-            exercises.append(Exercise(p1,p2,p3,p4,p5,p6))
+        for p1, p2, p3, p4, p5, p6 in result:
+            exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
 
         return exercises
-
 
     def get_one_exercise_by_ID(self, id):
         result = self._execute_with_params("get_certain_exercise_by_id.sql",
@@ -204,9 +204,6 @@ class Database:
         params = attempt.get_sql_tuple()
         self._execute_with_params("insert_attempt.sql", params)
         self.conn.commit()
-
-
-
 
     def get_all_attempts(self):
 
@@ -241,6 +238,10 @@ def main():
     # create tables
     if database.conn is not None:
 
+        database.add_attempt(
+            Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
+        database.add_attempt(
+            Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
         database.get_all_tags()
         t = Tag("Todays")
         t1 = Tag("MondaySet")
@@ -253,12 +254,12 @@ def main():
         database.add_tag_to_exercise(t2, exercise2)
         database.add_tag_to_exercise(t, exercise2)
 
-        print(database.get_exercise_tags(exercise))
-        print(database.get_exercise_tags(exercise2))
-        print(database.get_exercises_by_tag(t))
-        #print(database.get_all_exercises())
-        #print(database.get_all_tags())
-        #print(database.get_all_attempts())
+        # print(database.get_exercise_tags(exercise))
+        # print(database.get_exercise_tags(exercise2))
+        # print(database.get_exercises_by_tag(t))
+        # print(database.get_all_exercises())
+        # print(database.get_all_tags())
+        # print(database.get_all_attempts())
     else:
         print("Error! cannot create the database connection.")
     return database

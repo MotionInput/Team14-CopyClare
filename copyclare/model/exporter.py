@@ -31,7 +31,7 @@ class Exporter():
              "reps": attempt.num_of_repetitons,
              "duration": attempt.duration,
              })
-        quantitative_data.append(
+        qualitative_data.append(
             {"name": exe.name,
              "accuracy": attempt.accuracy,
              })
