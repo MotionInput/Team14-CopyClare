@@ -10,6 +10,8 @@ class HomePage(Page):
         super().__init__(master, "home")
 
         self.app = AppSingleton.get_app()
-        print(self.app)
 
-        tags = self.app.db.get_all_categories()
+
+        tags = self.app.db.get_all_tags()
+
+        print(tags)

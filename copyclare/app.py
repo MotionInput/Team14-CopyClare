@@ -19,7 +19,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
-        "video_addition": Video_Addition,
+        #"video_addition": Video_Addition,
     }
 
     def start_ui(self):
@@ -73,7 +73,7 @@ class App:
             lambda x: self.load_page("progress"))
 
         self.ui.nav_button.clicked.connect(self.nav_click)
-        
+
         sys.exit(app.exec())
 
 
@@ -113,12 +113,12 @@ class App:
 
         if page == "analysis":
             self.current_page = AnalysisPage(attempt)
-        elif page in self.pages: # these pages are the same each time you load       
+        elif page in self.pages: # these pages are the same each time you load
             self.current_page = self.pages[page]
         else:
             print(f"Could not find page: {page}")
             self.current_page = self.pages["not_found"]
-            
+
         self.current_page.show()
 
     def nav_click(self):

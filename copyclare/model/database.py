@@ -210,8 +210,8 @@ class Database:
         result = self._execute_sql("get_all_attempts.sql")
         attempts = []
 
-        for p1, p2, p3, p4, p5, p6, p7, p8 in result:
-            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7, p8))
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7))
 
         return attempts
 
@@ -241,8 +241,8 @@ def main():
     # create tables
     if database.conn is not None:
 
-        database.add_attempt(Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
-        database.add_attempt(Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
+        #database.add_attempt(Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
+        #database.add_attempt(Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
         database.get_all_tags()
         t = Tag("Todays")
         t1 = Tag("MondaySet")
