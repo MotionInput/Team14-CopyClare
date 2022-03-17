@@ -60,7 +60,7 @@ class ExercisePage(Page):
 
     def init_camera(self):
         self.camera_thread = CameraThread(self.ui.camera_frame, self.exercise)
-        self.tm.add_thread(self.camera_thread)
+        self.tm.add_thread(self.camera_thread, True)
         self.camera_thread.update_frame.connect(self.update_camera)
         self.camera_thread.start()
 

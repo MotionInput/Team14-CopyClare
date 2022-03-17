@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 from unittest import result
 
 from copyclare.model.attempt import Attempt
@@ -42,6 +43,18 @@ class Database:
             Tag("Todays"),
         ]
 
+        with open(DATA_PATH + "/test/adi-elbow.json", "r") as f:
+            json1 = f.read()
+        with open(DATA_PATH + "/test/sample-video-1.json", "r") as f:
+            json2 = f.read()
+
+        with open(DATA_PATH + "/test/sample-video-2.json", "r") as f:
+            json3 = f.read()
+        with open(DATA_PATH + "/test/sample-video-3.json", "r") as f:
+            json4 = f.read()
+
+
+
         exercises = [
             Exercise(
                 None,
@@ -49,7 +62,7 @@ class Database:
                 "/videos/adi-elbow.mp4",
                 "null",
                 "Adi performing an elbow exercise.",
-                "null",
+                json1,
             ),
             Exercise(
                 None,
@@ -57,7 +70,7 @@ class Database:
                 "/videos/sample.mp4",
                 "null",
                 "Video sample from masters students 1",
-                "null",
+                json2,
             ),
             Exercise(
                 None,
@@ -65,7 +78,7 @@ class Database:
                 "/videos/sample1.mp4",
                 "null",
                 "Video sample from masters students 2",
-                "null",
+                json3,
             ),
             Exercise(
                 None,
@@ -73,7 +86,7 @@ class Database:
                 "/videos/sample2.mp4",
                 "null",
                 "Video sample from masters students 3",
-                "null",
+                json4,
             ),
         ]
 

@@ -46,14 +46,16 @@ class AccuracyModel:
         self.joints = joints
 
         if exercise.angles_json != "null":
-            print(exercise.angles_json)
             self.angles = json.loads(exercise.angles_json)
         else:
-            print("angles json not found, creating one")
-            print(exercise.video_directory)
             self.angles = self.get_angles(DATA_PATH + exercise.video_directory)
             with open(DATA_PATH + f"/test/{exercise.name}.json", "w") as f:
                 f.write(json.dumps(self.angles, indent=4))
+        video = cv2.VideoCapture(DATA_PATH + exercise.video_directory)
+        if not video.isOpened():
+            print("Error Opening a video file")
+        fps = video.get(cv2.CAP_PROP_FPS)
+        self.step = 1 / fps
 
         self.camera_buffer = deque()
         self.offset = 20
@@ -107,7 +109,7 @@ class AccuracyModel:
                                              frac=0.1)
             ts, angs = list(lowess[:, 0]), list(lowess[:, 1])
             for i in range(len(ts)):
-                angles[joint][ts[i]] = angs[i]
+                angles[joint][str(ts[i])] = angs[i]
 
         return angles
 
@@ -151,8 +153,8 @@ class AccuracyModel:
 
         form_time = round_decimals_up(int(reltime / self.step) * self.step, 4)
 
-        top = self.angles[joint][form_time] + self.offset
-        bottom = self.angles[joint][form_time] - self.offset
+        top = self.angles[joint][str(form_time)] + self.offset
+        bottom = self.angles[joint][str(form_time)] - self.offset
         ret = (angle < top) and (angle > bottom)
 
         return ret

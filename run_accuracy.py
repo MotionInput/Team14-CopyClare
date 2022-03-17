@@ -8,4 +8,5 @@ if __name__ == "__main__":
     db = Database(DB_DIR)
     exercises = db.get_all_exercises()
     for ex in exercises:
+        ex.angles_json = "null"
         a = AccuracyModel(ex,joints)
