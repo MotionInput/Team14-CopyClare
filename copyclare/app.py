@@ -35,24 +35,26 @@ class App:
 
         # edit for the ui button
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/home.png", QSize(), QIcon.Normal, QIcon.Off)
+
+        icon.addFile(DATA_PATH + "/assets/home.png", QSize(), QIcon.Normal, QIcon.Off)
+
         self.ui.home_button.setIcon(icon)
         self.ui.home_button.setIconSize(QSize(64, 64))
 
         icon1 = QIcon()
-        icon1.addFile(DATA_PATH + "/progress.png", QSize(), QIcon.Normal,
+        icon1.addFile(DATA_PATH + "/assets/progress.png", QSize(), QIcon.Normal,
                       QIcon.Off)
         self.ui.progress_button.setIcon(icon1)
         self.ui.progress_button.setIconSize(QSize(64, 64))
 
         icon2 = QIcon()
-        icon2.addFile(DATA_PATH + "/settings.png", QSize(), QIcon.Normal,
+        icon2.addFile(DATA_PATH + "/assets/settings.png", QSize(), QIcon.Normal,
                       QIcon.Off)
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
         icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/navlines.png", QSize(), QIcon.Normal,
+        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(), QIcon.Normal,
                       QIcon.Off)
         self.ui.nav_button.setIcon(icon3)
         self.ui.settings_button.setIconSize(QSize(64, 64))
