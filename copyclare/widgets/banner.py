@@ -8,14 +8,15 @@ from copyclare.common import load_ui
 
 
 class BannerWidget(QFrame):
-    def __init__(self, master, title):
+    def __init__(self, master, title, exercises):
         super().__init__(master)
         self.ui = load_ui("banner")
         self.ui.setupUi(self)
         self.ui.category_title.setText(title)
+        self.init_exercises(exercises)
 
     def init_exercises(self, exercises):
 
         for exercise in exercises:
-            _vid = VideoCardWidget(self.ui.scrollArea, exercise.title, exercise.description, exercise, "None")
+            _vid = VideoCardWidget(self.ui.scrollArea, exercise.name, exercise.description, "None")
             self.ui.horizontalLayout.addWidget(_vid)
