@@ -15,4 +15,4 @@ class Attempt:
 
     def get_sql_tuple(self):
         return (self.date, self.num_of_repetitons, self.duration,
-                self.session_json, self.accuracy, self.heatmap, self.exercise_id)
+                self.session_json, self.accuracy, self.exercise_id)

@@ -37,18 +37,24 @@ class CameraThread(QThread):
 class CameraWorker:
     def __init__(self, exercise):
 
-
+        self.exercise = exercise
         joints = {
             "left_shoulder",
             "left_elbow",
         }
         self.model = AccuracyModel(exercise, joints)
 
+
     def work(self):
+
         cap = cv2.VideoCapture(0)
 
         if not cap.isOpened():
             print("Error opening a video file")
+
+        self.beginning = time.time()
+        self.accuracy = 0
+        self.num_of_repetitions = 0
 
         start = time.time()
         while (cap.isOpened):
@@ -58,7 +64,8 @@ class CameraWorker:
             correct = self.model.accuracy(frame, time.time() - start)
 
             if correct:
-                print(correct)
+                self.accuracy += 1
+                self.num_of_repetitions += 1
             else:
                 start = time.time()
 

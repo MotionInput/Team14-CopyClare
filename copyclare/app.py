@@ -5,7 +5,7 @@ from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 
 from copyclare.model.database import DB_DIR
-from copyclare.model import Database
+from copyclare.model import Database, Attempt
 from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
 
@@ -104,10 +104,12 @@ class App:
 
 
 
-    def end_exercise(self):
+    def end_exercise(self, attempt):
         self.ui.exercise_frame.hide()
         self.ui.side_nav.show()
         self.ui.pages_frame.show()
+        self.db.add_attempt(attempt)
+        self.pages["progress"].add_attempt(attempt)
 
         if self.current_exercise_page is not None:
             self.current_exercise_page.deleteLater()
