@@ -21,10 +21,4 @@ class AppSingleton:
         from copyclare import App
         if cls._app is None:
             cls._app = App()
-        return cls._app 
-        
-
-
-
-    
-
+        return cls._app

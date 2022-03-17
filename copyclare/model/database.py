@@ -185,8 +185,8 @@ class Database:
 
     def get_exercises_by_tag(self, tag):
 
-        result = self._execute_with_params(
-            "get_exercises_by_tag.sql", tag.get_sql_tuple())
+        result = self._execute_with_params("get_exercises_by_tag.sql",
+                                           tag.get_sql_tuple())
         exercises = []
         for p1, p2, p3, p4, p5, p6 in result:
             exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
@@ -216,8 +216,7 @@ class Database:
         return attempts
 
     def get_one_attempt_by_ID(self, id):
-        result = self._execute_with_params("get_certain_attempt_by_id.sql",
-                                           id)
+        result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
         for p1, p2, p3, p4, p5, p6, p7, p8 in result:
             return Attempt(p1, p2, p3, p4, p5, p6, p7, p8)
 
@@ -238,10 +237,8 @@ def main():
     # create tables
     if database.conn is not None:
 
-        database.add_attempt(
-            Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
-        database.add_attempt(
-            Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
+        database.add_attempt(Attempt(1, "17/3/22", 30, 120, {}, .38, 1))
+        database.add_attempt(Attempt(2, "17/3/22", 30, 10, {}, .59, 3))
         database.get_all_tags()
         t = Tag("Todays")
         t1 = Tag("MondaySet")
