@@ -58,16 +58,6 @@ html_awesome_headerlinks = False
 html_theme_options = {
     "show_scrolltop": True,
     "show_breadcrumbs": False,
-    "extra_header_links": {
-        "Blog": "blog",
-        "HCI": "hci",
-        "Design": "design",
-        "Requirements": "requirements",
-        "Research": "research",
-        "Implementation": "implementation",
-        "Testing": "testing",
-        "Documentation": "documentation",
-    },
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
