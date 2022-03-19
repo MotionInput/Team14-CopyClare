@@ -66,7 +66,7 @@ Blog
 
    For work on MotionInput:
 
-   Adi is still working on the compilation.
+   Adi is still working on the compilation. Sree has begun working on the UX/UI of MotionInput
 
 .. blogfield:: 13-02-2022
 
@@ -78,8 +78,7 @@ Blog
 
    For work on MotionInput:
 
-   Adi’s compilation work is complete.
-   Tianhao and Yan were assigned to work on the Joystick Module in the new architecture.
+   Adi’s compilation work is complete. Tianhao and Yan were assigned to work on the Joystick Module in the new architecture. Sree is using the design guide he worked on with the UI team, and is putting together the UI for the Hands Module
 
 
 .. blogfield:: 27-02-2022
@@ -92,4 +91,4 @@ Blog
 
    For work on MotionInput:
 
-   Tianhao and Yan’s work on the (wrist) Joystick Module is almost complete. However, it has yet to be tested.
+   Tianhao and Yan’s work on the (wrist) Joystick Module is almost complete. However, it has yet to be tested. Sree has completed the Hands Module UI for MotionInput to be used to demo to the Microsoft team.
