@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>933</width>
-    <height>717</height>
+    <width>800</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -194,7 +194,7 @@
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="browse_button">
                  <property name="maximumSize">
                   <size>
                    <width>16000</width>
@@ -220,7 +220,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="upload_button">
                  <property name="maximumSize">
                   <size>
                    <width>16000</width>
