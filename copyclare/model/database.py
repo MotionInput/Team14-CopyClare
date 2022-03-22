@@ -40,7 +40,7 @@ class Database:
     def _init_debug_data(self):
 
         tags = [
-            Tag("Todays"),
+            Tag("My Exercises"),
         ]
 
         with open(DATA_PATH + "/test/adi-elbow.json", "r") as f:
