@@ -1,5 +1,6 @@
 from copyclare.model.database import Database
 from docx import Document
+SAVE_AS = "../data/results"
 
 
 class Exporter():
@@ -7,7 +8,7 @@ class Exporter():
         self.database = database
         self.doc = DocumentWriter()
 
-    def export(self, saveAs, attempt_id=None):
+    def export(self, report_title=None, attempt_id=None):
         quantitative_data = []
         qualitative_data = []
         export_title = ""
@@ -20,7 +21,7 @@ class Exporter():
             export_title = "Results for attempt %s" % attempt_id
             attempt = self.database.get_one_attempt_by_ID(attempt_id)
             self.get_data(attempt, quantitative_data, qualitative_data)
-        self.doc.create_document(saveAs,
+        self.doc.create_document(SAVE_AS + report_title,
                                  export_title, quantitative_data, qualitative_data)
 
     def get_data(self, attempt, quantitative_data, qualitative_data):
@@ -73,7 +74,6 @@ class DocumentWriter():
 # range read out(Basically, how much they deviated
 # from the normal range). For this we would want whole
 # limb through range data in relation to the reference movement.
-
 
     def add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=1)

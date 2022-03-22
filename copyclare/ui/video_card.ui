@@ -57,6 +57,13 @@ color: #000000;</string>
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="play">
+     <property name="text">
+      <string>play/add</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="title">
      <property name="maximumSize">
       <size>
