@@ -53,8 +53,6 @@ class Database:
         with open(DATA_PATH + "/test/sample-video-3.json", "r") as f:
             json4 = f.read()
 
-
-
         exercises = [
             Exercise(
                 None,
@@ -99,9 +97,8 @@ class Database:
         t = Tag("Todays")
 
         exercises = self.get_all_exercises()
-        self.add_tag_to_exercise(t,exercises[0])
-        self.add_tag_to_exercise(t,exercises[1])
-
+        self.add_tag_to_exercise(t, exercises[0])
+        self.add_tag_to_exercise(t, exercises[1])
 
     def _file_to_commands(self, sql_path):
         """
@@ -235,8 +232,8 @@ class Database:
 
     def get_one_attempt_by_ID(self, id):
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
-        for p1, p2, p3, p4, p5, p6, p7, p8 in result:
-            return Attempt(p1, p2, p3, p4, p5, p6, p7, p8)
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            return Attempt(p1, p2, p3, p4, p5, p6, p7)
 
     def get_exercise_name_and_desc_by_ID(self, id):
         exercise = self.get_one_exercise_by_ID(id)
