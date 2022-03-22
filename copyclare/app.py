@@ -20,7 +20,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
-        #"video_addition": Video_Addition,
+        "video_addition": Video_Addition,
     }
 
     def start_ui(self):
