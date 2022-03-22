@@ -1,6 +1,4 @@
-from copyclare.model.database import Database
 from docx import Document
-SAVE_AS = "../data/results"
 
 
 class Exporter():
@@ -8,7 +6,7 @@ class Exporter():
         self.database = database
         self.doc = DocumentWriter()
 
-    def export(self, report_title=None, attempt_id=None):
+    def export(self, saveAs, attempt_id=None):
         quantitative_data = []
         qualitative_data = []
         export_title = ""
@@ -21,7 +19,7 @@ class Exporter():
             export_title = "Results for attempt %s" % attempt_id
             attempt = self.database.get_one_attempt_by_ID(attempt_id)
             self.get_data(attempt, quantitative_data, qualitative_data)
-        self.doc.create_document(SAVE_AS + report_title,
+        self.doc.create_document(saveAs,
                                  export_title, quantitative_data, qualitative_data)
 
     def get_data(self, attempt, quantitative_data, qualitative_data):
