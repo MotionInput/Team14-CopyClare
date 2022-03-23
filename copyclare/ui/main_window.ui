@@ -73,7 +73,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background-color: #ccc7fd;
+	background-color: #90b6d6;
 
 }</string>
       </property>
