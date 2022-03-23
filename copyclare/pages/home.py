@@ -22,4 +22,4 @@ class HomePage(Page):
             exercises = self.app.db.get_exercises_by_tag(tag)
             self.banners[tag.tag_name] = BannerWidget(self.ui.scroll_area, tag.tag_name,
                                    exercises)
-            self.ui.vertical_layout.insertWidget(0, _banner)
+            self.ui.vertical_layout.insertWidget(0, self.banners[tag.tag_name])

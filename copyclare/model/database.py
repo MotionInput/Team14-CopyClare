@@ -43,21 +43,19 @@ class Database:
             Tag("My Exercises"),
         ]
 
-        with open(DATA_PATH + "/test/adi-elbow.json", "r") as f:
+        with open(DATA_PATH + "/test/1.json", "r") as f:
             json1 = f.read()
-        with open(DATA_PATH + "/test/sample-video-1.json", "r") as f:
+        with open(DATA_PATH + "/test/2.json", "r") as f:
             json2 = f.read()
-
-        with open(DATA_PATH + "/test/sample-video-2.json", "r") as f:
+        with open(DATA_PATH + "/test/3.json", "r") as f:
             json3 = f.read()
-        with open(DATA_PATH + "/test/sample-video-3.json", "r") as f:
-            json4 = f.read()
-
 
         with open(DATA_PATH + "/videos/clare1.txt", "r") as f:
             clare1_desc = f.read()
-
-
+        with open(DATA_PATH + "/videos/clare2.txt", "r") as f:
+            clare2_desc = f.read()
+        with open(DATA_PATH + "/videos/clare3.txt", "r") as f:
+            clare3_desc = f.read()
 
         exercises = [
             Exercise(
@@ -70,27 +68,19 @@ class Database:
             ),
             Exercise(
                 None,
-                "Sample Video 1",
-                "/videos/sample.mp4",
+                "Wall Slides",
+                "/videos/clare2.mp4",
                 "null",
-                "Video sample from masters students 1",
+                clare2_desc,
                 json2,
             ),
             Exercise(
                 None,
-                "Sample Video 2",
-                "/videos/sample1.mp4",
+                "Shoulder rotation",
+                "/videos/clare3.mp4",
                 "null",
                 "Video sample from masters students 2",
-                json3,
-            ),
-            Exercise(
-                None,
-                "Sample Video 3",
-                "/videos/sample2.mp4",
-                "null",
-                "Video sample from masters students 3",
-                json4,
+                clare3_desc,
             ),
         ]
 
@@ -242,7 +232,7 @@ class Database:
             return Attempt(p1, p2, p3, p4, p5, p6, p7)
 
     def get_attempt_in_exercise(self):
-        exercises =[[]]
+        exercises = [[]]
         attempts = self.get_all_attempts()
         for attempt in attempts:
             flag = False

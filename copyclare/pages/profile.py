@@ -31,9 +31,10 @@ class ProfilePage(Page):
         self.ui.verticalLayout_2.insertWidget(0, self.progress_chart_banner)
 
         all_ex_attempt = self.app.db.get_attempt_in_exercise()
+        print(all_ex_attempt)
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
         self.progress_chart_banner.ui.verticalLayout_2.insertWidget(0,self.progress_chart)
-        
+
 
         # past attempts
 

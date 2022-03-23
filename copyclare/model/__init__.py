@@ -4,6 +4,7 @@ from .database import Database
 from .exercises import Exercise
 from .attempt import Attempt
 from .exporter import Exporter
+from .tag import Tag
 
 
 # from copyclare.model import <Class>

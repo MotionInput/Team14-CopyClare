@@ -16,23 +16,23 @@ class ProgressChartWidget(QFrame):
         self.tabWidget = QTabWidget()
 
         for ex_type in all_ex_attempt:
-            name, desc = self.app.db.get_exercise_name_and_desc_by_ID(ex_type[0].exercise_id)
+            if ex_type:
+                name, desc = self.app.db.get_exercise_name_and_desc_by_ID(ex_type[0].exercise_id)
 
-            temp_widget = ProgressChartGraphWidget(self)
-            self.series = QLineSeries()
+                temp_widget = ProgressChartGraphWidget(self)
+                self.series = QLineSeries()
 
-            for i in range(len(ex_type)):
-                self.series.append(i + 1, ex_type[i].accuracy)
+                for i in range(len(ex_type)):
+                    self.series.append(i + 1, ex_type[i].accuracy)
 
-            self.chart = QChart()
-            self.chart.addSeries(self.series)
-            self.chart.createDefaultAxes()
-            self.chart.setTitle("Average Accuracy (for each attempt)")
+                self.chart = QChart()
+                self.chart.addSeries(self.series)
+                self.chart.createDefaultAxes()
+                self.chart.setTitle("Average Accuracy (for each attempt)")
 
-            self.chartView = QChartView(self.chart, parent=temp_widget)
-            temp_widget.ui.verticalLayout.addWidget(self.chartView)
+                self.chartView = QChartView(self.chart, parent=temp_widget)
+                temp_widget.ui.verticalLayout.addWidget(self.chartView)
 
-            self.tabWidget.addTab(temp_widget, name)
+                self.tabWidget.addTab(temp_widget, name)
 
-        self.ui.verticalLayout.insertWidget(0, self.tabWidget)
-
+                self.ui.verticalLayout.insertWidget(0, self.tabWidget)

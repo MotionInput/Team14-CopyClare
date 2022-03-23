@@ -19,8 +19,13 @@ class VideoCardWidget(QFrame):
             QPixmap(DATA_PATH + "/assets/default-video-img.png"))
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
+        self.ui.add_btn.clicked.connect(self.add_click)
 
         self.mouseReleaseEvent = self.clicked
+
+    def add_click(self, event):
+        app = AppSingleton.get_app()
+        app.move_to_my_exercises(self.exercise)
 
     def clicked(self, event):
         # spawns an exercise page

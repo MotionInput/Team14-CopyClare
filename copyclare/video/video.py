@@ -22,6 +22,7 @@ class VideoThread(QThread):
             if not self._running:
                 break
             _, _, width, height = self.container.frameGeometry().getRect()
+
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = frame.shape
             img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
@@ -55,5 +56,6 @@ class VideoWorker:
             if frame_count == cap.get(cv2.CAP_PROP_FRAME_COUNT):
                 frame_count = 0
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+            print(frame_count, cap.get(cv2.CAP_PROP_FRAME_COUNT))
             time.sleep(1 / fps)
             yield frame
