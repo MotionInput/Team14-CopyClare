@@ -59,7 +59,14 @@ color: #000000;</string>
    <item>
     <widget class="QPushButton" name="play">
      <property name="text">
-      <string>play/add</string>
+      <string>Play</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Add</string>
      </property>
     </widget>
    </item>
