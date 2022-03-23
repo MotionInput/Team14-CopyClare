@@ -68,7 +68,7 @@ class Database:
             ),
             Exercise(
                 None,
-                "Wall Slides",
+                "Shoulder Rotation",
                 "/videos/clare2.mp4",
                 "null",
                 clare2_desc,
@@ -76,7 +76,7 @@ class Database:
             ),
             Exercise(
                 None,
-                "Shoulder rotation",
+                "Wall Slide",
                 "/videos/clare3.mp4",
                 "null",
                 clare3_desc,
