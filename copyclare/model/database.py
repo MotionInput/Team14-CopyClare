@@ -53,13 +53,19 @@ class Database:
         with open(DATA_PATH + "/test/sample-video-3.json", "r") as f:
             json4 = f.read()
 
+
+        with open(DATA_PATH + "/videos/clare1.txt", "r") as f:
+            clare1_desc = f.read()
+
+
+
         exercises = [
             Exercise(
                 None,
-                "Adi Elbow",
-                "/videos/adi-elbow.mp4",
+                "Push-ups against a wall",
+                "/videos/clare1.mp4",
                 "null",
-                "Adi performing an elbow exercise.",
+                clare1_desc,
                 json1,
             ),
             Exercise(
@@ -94,7 +100,7 @@ class Database:
         for ex in exercises:
             self.add_exercise(ex)
 
-        t = Tag("Todays")
+        t = Tag("My Exercises")
 
         exercises = self.get_all_exercises()
         self.add_tag_to_exercise(t, exercises[0])
@@ -234,7 +240,7 @@ class Database:
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
         for p1, p2, p3, p4, p5, p6, p7 in result:
             return Attempt(p1, p2, p3, p4, p5, p6, p7)
-    
+
     def get_attempt_in_exercise(self):
         exercises =[[]]
         attempts = self.get_all_attempts

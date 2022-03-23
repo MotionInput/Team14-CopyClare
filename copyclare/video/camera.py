@@ -31,6 +31,7 @@ class CameraThread(QThread):
                                     Qt.KeepAspectRatioByExpanding)
 
             self.update_frame.emit(scaled_img)
+
         self.quit()
 
 
@@ -73,5 +74,6 @@ class CameraWorker:
                 print("Can't read from Camera")
 
             frame = cv2.flip(frame, 1)
+
 
             yield frame

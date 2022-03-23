@@ -57,11 +57,6 @@ class App:
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
-        icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.nav_button.setIcon(icon3)
-        self.ui.settings_button.setIconSize(QSize(64, 64))
 
         self.window.show()
 
@@ -76,7 +71,6 @@ class App:
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
 
-        self.ui.nav_button.clicked.connect(self.nav_click)
 
         sys.exit(app.exec())
 
@@ -117,6 +111,19 @@ class App:
         """
 
         return self.pages.keys()
+
+
+    def move_to_my_exercises(self, ex, tag):
+
+        # database stuff
+        self.db.add_tag_to_exercise(tag, exercise)
+
+
+
+        # Video card object
+        self.pages["home"].banners[tag.tag_name].cards[ex.id] =
+
+
 
     def init_pages(self):
         for page in self.pages:

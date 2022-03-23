@@ -100,26 +100,6 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="nav_button">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../../data/icon-navlines.png</normaloff>../../data/icon-navlines.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>64</width>
-           <height>64</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QFrame" name="frame">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>

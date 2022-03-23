@@ -49,7 +49,7 @@ class AccuracyModel:
             self.angles = json.loads(exercise.angles_json)
         else:
             self.angles = self.get_angles(DATA_PATH + exercise.video_directory)
-            with open(DATA_PATH + f"/test/{exercise.name}.json", "w") as f:
+            with open(DATA_PATH + f"/test/{exercise.id}.json", "w") as f:
                 f.write(json.dumps(self.angles, indent=4))
         video = cv2.VideoCapture(DATA_PATH + exercise.video_directory)
         if not video.isOpened():
@@ -115,7 +115,7 @@ class AccuracyModel:
 
     def color_frame(self, frame, landmark_list, accuracy):
         done = set()
-        clr = (255,255,0) if accuracy else (255, 255, 255)
+        clr = (255,255,255) if accuracy else (0,0,0)
         if landmark_list:
             for joint in self.joints:
                 x, y = landmark_list[self.joints_map[joint]][1:]
@@ -135,7 +135,7 @@ class AccuracyModel:
                     cv2.line(frame, p1, p2, clr, 5)
                     done.add((p1, p2))
 
-                cv2.circle(frame, (x, y), 5, (255, 0, 0), cv2.FILLED)
+                cv2.circle(frame, (x, y), 5, clr, cv2.FILLED)
 
     def find_angle(self, frame, joint, landmark_list):
         angle = -1
@@ -167,6 +167,7 @@ class AccuracyModel:
         for joint in self.joints:
             angle = self.find_angle(person, joint, landmark_list)
             accuracy &= self.check_angle(angle, reltime, joint)
+            print(joint, angle)
 
         self.color_frame(person, landmark_list, accuracy)
 

@@ -10,6 +10,7 @@ class HomePage(Page):
         super().__init__(master, "home")
 
         self.app = AppSingleton.get_app()
+        self.banners = {}
 
         all_exercises = self.app.db.get_all_exercises()
         library_banner = BannerWidget(
@@ -19,6 +20,6 @@ class HomePage(Page):
         tags = self.app.db.get_all_tags()
         for tag in tags:
             exercises = self.app.db.get_exercises_by_tag(tag)
-            _banner = BannerWidget(self.ui.scroll_area, tag.tag_name,
+            self.banners[tag.tag_name] = BannerWidget(self.ui.scroll_area, tag.tag_name,
                                    exercises)
             self.ui.vertical_layout.insertWidget(0, _banner)
