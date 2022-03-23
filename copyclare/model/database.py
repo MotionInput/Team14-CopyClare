@@ -234,6 +234,22 @@ class Database:
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
         for p1, p2, p3, p4, p5, p6, p7 in result:
             return Attempt(p1, p2, p3, p4, p5, p6, p7)
+    
+    def get_attempt_in_exercise(self):
+        exercises =[[]]
+        attempts = self.get_all_attempts
+        for attempt in attempts:
+            flag = False
+            for exe in exercises:
+                if len(exe) == 0:
+                    exe.append(attempt)
+                    flag = True
+                elif exe[0].exercise_id == attempt.exercise_id:
+                    exe.append(attempt)
+                    flag = True
+            if flag == False:
+                exercises.append([attempt])
+        return exercises
 
     def get_exercise_name_and_desc_by_ID(self, id):
         exercise = self.get_one_exercise_by_ID(id)
