@@ -14,6 +14,7 @@ class ProgressChartWidget(QFrame):
 
         self.app = AppSingleton.get_app()
         self.tabWidget = QTabWidget()
+        self.tabWidget.setStyleSheet("color: #000000;")
 
         for ex_type in all_ex_attempt:
             if ex_type:
