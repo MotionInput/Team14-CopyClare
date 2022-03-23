@@ -237,7 +237,7 @@ class Database:
     
     def get_attempt_in_exercise(self):
         exercises =[[]]
-        attempts = self.get_all_attempts
+        attempts = self.get_all_attempts()
         for attempt in attempts:
             flag = False
             for exe in exercises:

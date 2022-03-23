@@ -20,16 +20,17 @@ class ProfilePage(Page):
 
         # progress chart
 
-        # TODO tester filtered attempts
-        ex1_attempt = [Attempt(None,"1-1-1",1,1.11,"111",11,1), Attempt(None,"2-2-2",2,2.22,"222",22,1), Attempt(None,"3-3-3",3,3.33,"333",33,1), Attempt(None,"4-4-4",4,4.44,"444",44,1), Attempt(None,"5-5-5",5,5.55,"555",55,1)]
-        ex2_attempt = [Attempt(None,"1-1-1",1,1.11,"111",44,2), Attempt(None,"2-2-2",2,2.22,"222",33,2), Attempt(None,"3-3-3",3,3.33,"333",22,2), Attempt(None,"4-4-4",4,4.44,"444",11,2)]
-        ex3_attempt = [Attempt(None,"1-1-1",1,1.11,"111",33,3), Attempt(None,"2-2-2",2,2.22,"222",22,3), Attempt(None,"3-3-3",3,3.33,"333",11,3), Attempt(None,"4-4-4",4,4.44,"444",44,3), Attempt(None,"5-5-5",5,5.55,"555",55,3)]
-        ex4_attempt = [Attempt(None,"1-1-1",1,1.11,"111",22,4), Attempt(None,"2-2-2",2,2.22,"222",22,4)]
-        all_ex_attempt = [ex1_attempt, ex2_attempt, ex3_attempt, ex4_attempt]
+        # tester filtered attempts
+        #ex1_attempt = [Attempt(None,"1-1-1",1,1.11,"111",11,1), Attempt(None,"2-2-2",2,2.22,"222",22,1), Attempt(None,"3-3-3",3,3.33,"333",33,1), Attempt(None,"4-4-4",4,4.44,"444",44,1), Attempt(None,"5-5-5",5,5.55,"555",55,1)]
+        #ex2_attempt = [Attempt(None,"1-1-1",1,1.11,"111",44,2), Attempt(None,"2-2-2",2,2.22,"222",33,2), Attempt(None,"3-3-3",3,3.33,"333",22,2), Attempt(None,"4-4-4",4,4.44,"444",11,2)]
+        #ex3_attempt = [Attempt(None,"1-1-1",1,1.11,"111",33,3), Attempt(None,"2-2-2",2,2.22,"222",22,3), Attempt(None,"3-3-3",3,3.33,"333",11,3), Attempt(None,"4-4-4",4,4.44,"444",44,3), Attempt(None,"5-5-5",5,5.55,"555",55,3)]
+        #ex4_attempt = [Attempt(None,"1-1-1",1,1.11,"111",22,4), Attempt(None,"2-2-2",2,2.22,"222",22,4)]
+        #all_ex_attempt = [ex1_attempt, ex2_attempt, ex3_attempt, ex4_attempt]
 
         self.progress_chart_banner = ProgressBannerWidget(self, "Progress chart")
         self.ui.verticalLayout_2.insertWidget(0, self.progress_chart_banner)
 
+        all_ex_attempt = self.app.db.get_attempt_in_exercise()
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
         self.progress_chart_banner.ui.verticalLayout_2.insertWidget(0,self.progress_chart)
         
@@ -45,7 +46,7 @@ class ProfilePage(Page):
         #yans_good_attempt = Attempt(2, "20-1-2022", 15, "10:00", 1, 83, "bankai")
         #srees_failed_attempt = Attempt(1, "32-12-2021", 100, "04:20", 1, 5, "code no jutsu") # oldest attempt
 
-        # TODO: get a list of attempts with newest attempt as 1st element
+        # get a list of attempts with newest attempt as 1st element
         #_all_attempts = [adis_good_attempt, ths_good_attempt, yans_good_attempt, srees_failed_attempt]
         _all_attempts = self.app.db.get_all_attempts()
 
