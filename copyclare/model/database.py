@@ -79,8 +79,8 @@ class Database:
                 "Shoulder rotation",
                 "/videos/clare3.mp4",
                 "null",
-                "Video sample from masters students 2",
                 clare3_desc,
+                json3,
             ),
         ]
 

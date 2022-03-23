@@ -6,6 +6,7 @@ from PySide6.QtMultimedia import (QMediaPlayer)
 
 # for testing
 import random
+import json
 
 from copyclare.video import VideoThread, CameraThread, ThreadManager
 from copyclare.common import AppSingleton
@@ -41,8 +42,12 @@ class ExercisePage(Page):
     def init_chart(self):
         self.series = QLineSeries()
 
-        for i in range(10):
-            self.series.append(i, random.randint(0, 20))
+        a = json.loads(self.exercise.angles_json)
+
+        for t in a["left_elbow"]:
+            self.series.append(float(t), a["left_elbow"][t])
+
+
 
         self.chart = QChart()
         self.chart.addSeries(self.series)

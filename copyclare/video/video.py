@@ -23,17 +23,21 @@ class VideoThread(QThread):
                 break
             _, _, width, height = self.container.frameGeometry().getRect()
 
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            h, w, ch = frame.shape
-            img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
-            if (w / h > 1):
-                offset = (w - (width * h / height)) / 2
-            else:
-                offset = 0
-            rect = QRect(offset, 0, w, h)
-            img = img.copy(rect)
-            img = img.scaled(width, height, Qt.KeepAspectRatioByExpanding)
-            self.update_frame.emit(img)
+            try:
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                h, w, ch = frame.shape
+                img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
+                if (w / h > 1):
+                    offset = (w - (width * h / height)) / 2
+                else:
+                    offset = 0
+                rect = QRect(offset, 0, w, h)
+                img = img.copy(rect)
+                img = img.scaled(width, height, Qt.KeepAspectRatioByExpanding)
+                self.update_frame.emit(img)
+            except:
+                pass
         self.quit()
 
 
