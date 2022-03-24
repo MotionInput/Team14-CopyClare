@@ -221,15 +221,15 @@ class Database:
         result = self._execute_sql("get_all_attempts.sql")
         attempts = []
 
-        for p1, p2, p3, p4, p5, p6, p7, p8 in result:
-            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7, p8))
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7))
 
         return attempts
 
     def get_one_attempt_by_ID(self, id):
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
-        for p1, p2, p3, p4, p5, p6, p7, p8 in result:
-            return Attempt(p1, p2, p3, p4, p5, p6, p7, p8)    
+        for p1, p2, p3, p4, p5, p6, p7 in result:
+            return Attempt(p1, p2, p3, p4, p5, p6, p7)    
 
     def get_attempt_in_exercise(self):
         exercises = [[]]
