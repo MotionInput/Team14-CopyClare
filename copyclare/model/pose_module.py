@@ -15,18 +15,13 @@ class PoseModule:
             smooth_segmentation=False,
 
     ):
-        self.mode = mode
-        self.up_body = up_body
-        self.smooth = smooth
-        self.detection_con = detection_con
-        self.track_con = track_con
-        self.smooth_segmentation=smooth_segmentation
 
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose(
             static_image_mode = True,
             model_complexity = 1,
+            smooth_landmarks = True,
             enable_segmentation=False,
         )
 

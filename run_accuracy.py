@@ -5,7 +5,7 @@ from copyclare.model.database import DB_DIR
 import cv2
 
 if __name__ == "__main__":
-    joints = ["left_elbow", "left_shoulder"]
+    joints = ["left_elbow", "left_shoulder", "right_elbow", "right_shoulder"]
     db = Database(DB_DIR)
     exercises = db.get_all_exercises()
     for ex in exercises:

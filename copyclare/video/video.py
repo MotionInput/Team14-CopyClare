@@ -60,6 +60,6 @@ class VideoWorker:
             if frame_count == cap.get(cv2.CAP_PROP_FRAME_COUNT):
                 frame_count = 0
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-            print(frame_count, cap.get(cv2.CAP_PROP_FRAME_COUNT))
             time.sleep(1 / fps)
+            frame = cv2.flip(frame, 1)
             yield frame
