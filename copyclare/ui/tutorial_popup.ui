@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>606</width>
-    <height>435</height>
+    <height>300</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
@@ -47,10 +53,41 @@ color: #000000;</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="desc">
-     <property name="text">
-      <string>Page description</string>
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="desc">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Page description</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="image">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>image here</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
