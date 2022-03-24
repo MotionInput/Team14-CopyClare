@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Frame</class>
- <widget class="QFrame" name="Frame">
+ <class>Tutorial</class>
+ <widget class="QFrame" name="Tutorial">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,8 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);
+color: #000000;</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
