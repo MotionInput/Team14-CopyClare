@@ -1,3 +1,5 @@
+import os
+
 from PySide6.QtWidgets import QFrame
 from PySide6.QtGui import QPixmap
 
@@ -15,12 +17,22 @@ class VideoCardWidget(QFrame):
 
         #self.ui.video_image.setStyleSheet("background-image: url(" + DATA_PATH + "/assets/default-video-img.png)")
 
-        self.ui.video_image.setPixmap(
-            QPixmap(DATA_PATH + "/assets/default-video-img.png"))
+        img_path = DATA_PATH + f"/test/{exercise.id}.png"
+        print(img_path)
+        if os.path.exists(img_path):
+            self.ui.video_image.setPixmap(QPixmap(img_path))
+        else:
+            self.ui.video_image.setPixmap(
+                QPixmap(DATA_PATH + "/assets/default-video-img.png"))
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
+        self.ui.add_btn.clicked.connect(self.add_click)
 
         self.mouseReleaseEvent = self.clicked
+
+    def add_click(self, event):
+        app = AppSingleton.get_app()
+        app.move_to_my_exercises(self.exercise)
 
     def clicked(self, event):
         # spawns an exercise page

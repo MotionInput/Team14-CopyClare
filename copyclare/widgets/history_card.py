@@ -38,7 +38,7 @@ class HistoryCardWidget(QFrame):
             lambda x: self._create_analysis_page(attempt))
 
         self.ui.export_button.clicked.connect(
-            lambda x: self._export(attempt.attempt_id))
+            lambda x: self._export(attempt.id))
 
     def _create_analysis_page(self, attempt):
         self.app.load_page("analysis", attempt)
@@ -46,4 +46,5 @@ class HistoryCardWidget(QFrame):
     # TODO link export button to function
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
-        exporter.export(attempt_id)
+        print(attempt_id)
+        exporter.export(DATA_PATH+"/results/"+"Results.docx", attempt_id)

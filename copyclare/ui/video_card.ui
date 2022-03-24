@@ -57,9 +57,9 @@ color: #000000;</string>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="play">
+    <widget class="QPushButton" name="add_btn">
      <property name="text">
-      <string>play/add</string>
+      <string>add</string>
      </property>
     </widget>
    </item>

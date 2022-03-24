@@ -1,8 +1,11 @@
 import time
+import json
+
 
 from datetime import datetime
 from copyclare.common import AppSingleton
 from copyclare.model import Attempt
+
 
 
 class ThreadManager:
@@ -23,13 +26,17 @@ class ThreadManager:
             # if all threads finished
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            avg = 0
+            for t, each in self.worker.accuracy_vals:
+                avg += each
+            avg /= len(self.worker.accuracy_vals)
             attempt = Attempt(
                 None,
                 dt_string,
                 self.worker.num_of_repetitions,
                 time.time() - self.worker.beginning,
-                "",
-                self.worker.accuracy,
+                json.dumps(self.worker.accuracy_vals, indent = 4),
+                avg,
                 self.worker.exercise.id,
             )
 

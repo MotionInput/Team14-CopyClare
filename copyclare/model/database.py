@@ -43,50 +43,44 @@ class Database:
             Tag("My Exercises"),
         ]
 
-        with open(DATA_PATH + "/test/adi-elbow.json", "r") as f:
+        with open(DATA_PATH + "/test/1.json", "r") as f:
             json1 = f.read()
-        with open(DATA_PATH + "/test/sample-video-1.json", "r") as f:
+        with open(DATA_PATH + "/test/2.json", "r") as f:
             json2 = f.read()
-
-        with open(DATA_PATH + "/test/sample-video-2.json", "r") as f:
+        with open(DATA_PATH + "/test/3.json", "r") as f:
             json3 = f.read()
-        with open(DATA_PATH + "/test/sample-video-3.json", "r") as f:
-            json4 = f.read()
 
-
+        with open(DATA_PATH + "/videos/clare1.txt", "r") as f:
+            clare1_desc = f.read()
+        with open(DATA_PATH + "/videos/clare2.txt", "r") as f:
+            clare2_desc = f.read()
+        with open(DATA_PATH + "/videos/clare3.txt", "r") as f:
+            clare3_desc = f.read()
 
         exercises = [
             Exercise(
                 None,
-                "Adi Elbow",
-                "/videos/adi-elbow.mp4",
+                "Push-ups against a wall",
+                "/videos/clare1.mp4",
                 "null",
-                "Adi performing an elbow exercise.",
+                clare1_desc,
                 json1,
             ),
             Exercise(
                 None,
-                "Sample Video 1",
-                "/videos/sample.mp4",
+                "Shoulder Rotation",
+                "/videos/clare2.mp4",
                 "null",
-                "Video sample from masters students 1",
+                clare2_desc,
                 json2,
             ),
             Exercise(
                 None,
-                "Sample Video 2",
-                "/videos/sample1.mp4",
+                "Wall Slide",
+                "/videos/clare3.mp4",
                 "null",
-                "Video sample from masters students 2",
+                clare3_desc,
                 json3,
-            ),
-            Exercise(
-                None,
-                "Sample Video 3",
-                "/videos/sample2.mp4",
-                "null",
-                "Video sample from masters students 3",
-                json4,
             ),
         ]
 
@@ -96,12 +90,11 @@ class Database:
         for ex in exercises:
             self.add_exercise(ex)
 
-        t = Tag("Todays")
+        t = Tag("My Exercises")
 
         exercises = self.get_all_exercises()
-        self.add_tag_to_exercise(t,exercises[0])
-        self.add_tag_to_exercise(t,exercises[1])
-
+        self.add_tag_to_exercise(t, exercises[0])
+        self.add_tag_to_exercise(t, exercises[1])
 
     def _file_to_commands(self, sql_path):
         """
@@ -236,11 +229,11 @@ class Database:
     def get_one_attempt_by_ID(self, id):
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
         for p1, p2, p3, p4, p5, p6, p7, p8 in result:
-            return Attempt(p1, p2, p3, p4, p5, p6, p7, p8)
-    
+            return Attempt(p1, p2, p3, p4, p5, p6, p7, p8)    
+
     def get_attempt_in_exercise(self):
-        exercises =[[]]
-        attempts = self.get_all_attempts
+        exercises = [[]]
+        attempts = self.get_all_attempts()
         for attempt in attempts:
             flag = False
             for exe in exercises:
@@ -252,7 +245,9 @@ class Database:
                     flag = True
             if flag == False:
                 exercises.append([attempt])
+
         return exercises            
+
 
     def get_exercise_name_and_desc_by_ID(self, id):
         exercise = self.get_one_exercise_by_ID(id)

@@ -5,9 +5,11 @@ from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 
 from copyclare.model.database import DB_DIR
-from copyclare.model import Database, Attempt
+from copyclare.model import Database, Attempt, Tag
 from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
+from copyclare.widgets import VideoCardWidget
+from copyclare.widgets.tutorial_popup import TutorialPopupWidget
 
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage, ExercisePage
@@ -57,12 +59,6 @@ class App:
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
-        icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.nav_button.setIcon(icon3)
-        self.ui.settings_button.setIconSize(QSize(64, 64))
-
         self.window.show()
 
         # UI setup
@@ -76,7 +72,8 @@ class App:
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
 
-        self.ui.nav_button.clicked.connect(self.nav_click)
+        tutorial_popup = TutorialPopupWidget()
+        tutorial_popup.show()
 
         sys.exit(app.exec())
 
@@ -117,6 +114,21 @@ class App:
         """
 
         return self.pages.keys()
+
+    def move_to_my_exercises(self, ex):
+        tag = Tag("My Exercises")
+        banner = self.pages["home"].banners[tag.tag_name]
+
+        # database stuff
+        if str(ex.id) not in banner.cards:
+
+            self.db.add_tag_to_exercise(tag, ex)
+
+            # Video card object
+            banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea,
+                                                       ex)
+            banner.ui.horizontalLayout.insertWidget(0,
+                                                    banner.cards[str(ex.id)])
 
     def init_pages(self):
         for page in self.pages:
