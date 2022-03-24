@@ -190,7 +190,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="reps_label">
            <property name="font">
             <font>
              <pointsize>27</pointsize>
@@ -206,7 +206,7 @@ padding: 10px;</string>
             <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
-            <string>Reps: 5/16</string>
+            <string>Reps: 0</string>
            </property>
           </widget>
          </item>
