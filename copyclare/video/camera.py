@@ -85,10 +85,10 @@ class CameraWorker:
             if rep:
                 start = time.time()
 
-            if not self.accuracy > 80:
+            if not self.accuracy > 90:
                 start = time.time()
                 self.updated = False
-            elif not self.updated:
+            elif not self.updated and time.time() - start > 0.4:
                 self.num_of_repetitions += 1
                 self.updated = True
 
