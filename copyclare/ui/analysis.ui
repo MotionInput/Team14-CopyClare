@@ -78,7 +78,7 @@
         <property name="styleSheet">
          <string notr="true">QLabel{
 	color: #ffffff;
-	background-color: #955fff;
+	background-color: #35638e;
 }</string>
         </property>
         <property name="text">
@@ -300,7 +300,8 @@
             <item>
              <widget class="QPushButton" name="back_button">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(171, 185, 255);</string>
+               <string notr="true">background-color: #90b6d6;
+</string>
               </property>
               <property name="text">
                <string>Back</string>
