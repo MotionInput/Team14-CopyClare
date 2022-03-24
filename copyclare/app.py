@@ -9,6 +9,7 @@ from copyclare.model import Database, Attempt, Tag
 from copyclare import DATA_PATH
 from copyclare.pages.analysis import AnalysisPage
 from copyclare.widgets import VideoCardWidget
+from copyclare.widgets.tutorial_popup import TutorialPopupWidget
 
 from .common import load_ui
 from .pages import HomePage, NotFound, ProfilePage, ExercisePage
@@ -70,6 +71,9 @@ class App:
             lambda x: self.load_page("settings"))
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
+
+        tutorial_popup = TutorialPopupWidget()
+        tutorial_popup.show()
 
         sys.exit(app.exec())
 
