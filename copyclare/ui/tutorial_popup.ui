@@ -69,6 +69,9 @@ color: #000000;</string>
           <height>60</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">padding-bottom: 10px;</string>
+        </property>
         <property name="text">
          <string>Page description</string>
         </property>
