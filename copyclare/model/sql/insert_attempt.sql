@@ -4,6 +4,7 @@ INSERT INTO attempts (
        duration,
        session_json,
        accuracy,
+       heatmap,
        exercise_id
 )
-VALUES ( '%s', %d, %f, '%s', %f, %d);
+VALUES ( '%s', %d, %f, '%s', %f, '%s', %d);

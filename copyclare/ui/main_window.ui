@@ -10,6 +10,12 @@
     <height>603</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
@@ -73,7 +79,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background-color: #ccc7fd;
+	background-color: #90b6d6;
 
 }</string>
       </property>

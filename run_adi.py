@@ -3,7 +3,7 @@ import numpy as np
 
 from PySide6.QtWidgets import QMainWindow, QApplication
 
-from copyclare.pages import ExercisePage
+from copyclare.pages import ExercisePage, Video_Addition
 from copyclare.common import load_ui
 from copyclare.model import AccuracyModel
 from copyclare import DATA_PATH
@@ -37,8 +37,8 @@ def test_ui():
     window.showMaximized()
     ui = load_ui("main_window")
     ui.setupUi(window)
-    ex = ExercisePage(window)
-    ui.pages_layout.addWidget(ex)
+    va = Video_Addition(window)
+    ui.pages_layout.addWidget(va)
     window.show()
     sys.exit(app.exec())
 

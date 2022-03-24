@@ -1,8 +1,11 @@
 import time
 
 from datetime import datetime
+
+import cv2
 from copyclare.common import AppSingleton
 from copyclare.model import Attempt
+from copyclare import DATA_PATH
 
 
 class ThreadManager:
@@ -23,6 +26,7 @@ class ThreadManager:
             # if all threads finished
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            cv2.imwrite("data/heatmap/"+" date:"+dt_string+".jpg",self.worker.hp)
             attempt = Attempt(
                 None,
                 dt_string,
@@ -30,6 +34,7 @@ class ThreadManager:
                 time.time() - self.worker.beginning,
                 "",
                 self.worker.accuracy,
+                DATA_PATH+"data/heatmap/"+" date:"+dt_string+".jpg",
                 self.worker.exercise.id,
             )
 
