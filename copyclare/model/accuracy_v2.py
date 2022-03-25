@@ -115,7 +115,7 @@ class AccuracyModel:
 
     def color_frame(self, frame, landmark_list, accuracy):
         done = set()
-        clr = (255,255,255) if accuracy else (0,0,0)
+        clr = (255, 255, 255) if (accuracy > 90) else (0, 0, 0)
         if landmark_list:
             for joint in self.joints:
                 x, y = landmark_list[self.joints_map[joint]][1:]
@@ -147,31 +147,37 @@ class AccuracyModel:
                                              middle,
                                              right,
                                              draw=False)
+
         return angle
 
-    def check_angle(self, angle, reltime, joint):
-
+    def get_accuracy(self, angle, reltime, joint):
         form_time = round_decimals_up(int(reltime / self.step) * self.step, 4)
+        a1 = angle
+        rep = False
+        if str(form_time) in self.angles[joint]:
+            a2 = self.angles[joint][str(form_time)]
+            accuracy = 100 - (abs((a1 - a2)) / ((a1 + a2) / 2) * 100)
+        else:
+            rep = True
+            accuracy = 100
 
-        top = self.angles[joint][str(form_time)] + self.offset
-        bottom = self.angles[joint][str(form_time)] - self.offset
-        ret = (angle < top) and (angle > bottom)
-
-        return ret
+        return accuracy, rep
 
     def accuracy(self, frame, reltime):
         person = self.detector.find_person(frame)
         landmark_list = self.detector.find_landmarks(person, draw=False)
-        accuracy = True
+        accuracy = 0
 
         for joint in self.joints:
+
             angle = self.find_angle(person, joint, landmark_list)
-            accuracy &= self.check_angle(angle, reltime, joint)
-            print(joint, angle)
+            acc, rep = self.get_accuracy(angle, reltime, joint)
+            accuracy += acc
+        accuracy /= len(self.joints)
 
         self.color_frame(person, landmark_list, accuracy)
 
-        return accuracy
+        return accuracy, rep
 
     def buffer_duration(self):
         if len(self.camera_buffer) < 2:
