@@ -7,14 +7,16 @@ Welcome to Copyclare
    :hidden:
    :caption: CopyClare
 
-   blog
-   hci
-   design
+
    requirements
    research
-   implementation
+   algorithms
+   design
    testing
+   evaluation
    documentation
+   blog
+   appendices
 
 
 Your personal physiotherapy assistant.
