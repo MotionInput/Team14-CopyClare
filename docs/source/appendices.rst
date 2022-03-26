@@ -5,11 +5,10 @@ Appendices
    :maxdepth: 1
 
 
-    appendices/blog
+   appendices/blog
 
 
 
 
 GDPR and Privacy of Data Statement
 ----------------------------------
-
