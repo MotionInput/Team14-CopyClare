@@ -11,7 +11,7 @@ Welcome to Copyclare
    requirements
    research
    algorithms
-   design
+   ui-design
    system-design
    implementation
    testing
