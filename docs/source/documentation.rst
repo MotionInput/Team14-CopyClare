@@ -7,7 +7,6 @@ Documentation
 
 
    documentation/getting-started
+   documentation/compilation
+   documentation/sphinx-docs.rst
    api/copyclare.rst
-
-
-Our documentation is generated using sphinx.
