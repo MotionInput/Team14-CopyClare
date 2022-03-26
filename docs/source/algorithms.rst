@@ -33,6 +33,7 @@ Our model does not require any training to be done for the algorithm to work.
 We do require to preprocess the exercise videos in advance. We iterate over every
 single frame in the source video, and we use mediapipe to find 3D coordinates of joints.
 We then calculate angles between joints of interest and store everything in a JSON format.
+The JSON stores information about every joint and maps joint angles to timestamps in seconds.
 
 Sample JSON:
 
@@ -68,14 +69,6 @@ Sample JSON:
 		"0.16": 148.55592024363725
 	}
     }
-
-
-- Left Shoulder
-- Left Elbow
-- Right Shoulder
-- Right Elbow
-
-
 
 
 
