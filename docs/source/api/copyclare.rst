@@ -1,4 +1,4 @@
-copyclare package
+API Reference
 =================
 
 Subpackages
