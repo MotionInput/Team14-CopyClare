@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'CopyClare'
-copyright = '2022, MotionInput'
+copyright = '2022, MotionInput -'
 author = 'Adi Bozzhanov, Yan Lai, Tianhao Chen, Sricharan Sanakkayala'
 
 # -- General configuration ---------------------------------------------------
