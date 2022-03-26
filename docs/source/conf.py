@@ -16,7 +16,7 @@ import sys
 from sphinx.application import Sphinx
 from sphinx.util.docfields import Field
 
-sys.path.insert(0, os.path.abspath('../../copyclare'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
