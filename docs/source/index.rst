@@ -12,6 +12,8 @@ Welcome to Copyclare
    research
    algorithms
    design
+   system-design
+   implementation
    testing
    evaluation
    documentation
