@@ -17,7 +17,6 @@ Welcome to Copyclare
    testing
    evaluation
    documentation
-   blog
    appendices
 
 
