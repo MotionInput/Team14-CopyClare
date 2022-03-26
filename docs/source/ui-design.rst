@@ -55,7 +55,7 @@ With this design, we were able to accomplish our usablity goals:
 
 
 Feedback & UI Mockup
---------
+--------------------
 
 Our conversations with our clients and the NeuroPhysiotherapy team has led us to modify our sketches. Here is the high fidelity design of our updated designs: https://cheryl237771.invisionapp.com/console/share/FAJ4M6HG3B7/881016074
 
