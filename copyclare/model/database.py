@@ -50,11 +50,11 @@ class Database:
         with open(DATA_PATH + "/test/3.json", "r") as f:
             json3 = f.read()
 
-        with open(DATA_PATH + "/videos/clare1.txt", "r") as f:
+        with open(DATA_PATH + "/videos/clare1.txt", "r",encoding="UTF-8") as f:
             clare1_desc = f.read()
-        with open(DATA_PATH + "/videos/clare2.txt", "r") as f:
+        with open(DATA_PATH + "/videos/clare2.txt", "r",encoding="UTF-8") as f:
             clare2_desc = f.read()
-        with open(DATA_PATH + "/videos/clare3.txt", "r") as f:
+        with open(DATA_PATH + "/videos/clare3.txt", "r",encoding="UTF-8") as f:
             clare3_desc = f.read()
 
         exercises = [
