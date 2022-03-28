@@ -46,4 +46,4 @@ class HistoryCardWidget(QFrame):
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
         print(attempt_id)
-        exporter.export(DATA_PATH + "/results/" + "Results.docx", attempt_id)
+        exporter.export(DATA_DIR + "/results/" + "Results.docx", attempt_id)
