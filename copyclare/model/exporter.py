@@ -19,12 +19,13 @@ class Exporter():
         else:
             export_title = "Results for attempt %s" % attempt_id
             attempt = self.database.get_one_attempt_by_ID(attempt_id)
-            self.get_data(attempt, exercise_info,
-                          quantitative_data, qualitative_data)
-        self.doc.create_document(saveAs,
-                                 export_title, exercise_info, quantitative_data, qualitative_data)
+            self.get_data(attempt, exercise_info, quantitative_data,
+                          qualitative_data)
+        self.doc.create_document(saveAs, export_title, exercise_info,
+                                 quantitative_data, qualitative_data)
 
-    def get_data(self, attempt, exercise_info, quantitative_data, qualitative_data):
+    def get_data(self, attempt, exercise_info, quantitative_data,
+                 qualitative_data):
         exe_id = attempt.exercise_id
         exe = self.database.get_one_exercise_by_ID(exe_id)
         exercise_info.append({
@@ -32,15 +33,14 @@ class Exporter():
             "image": exe.image_directory,
             "description": exe.description
         })
-        quantitative_data.append(
-            {
-                "reps": attempt.num_of_repetitons,
-                "duration": attempt.duration,
-            })
-        qualitative_data.append(
-            {
-                "accuracy": attempt.accuracy,
-            })
+        quantitative_data.append({
+            "reps": attempt.num_of_repetitons,
+            "duration": attempt.duration,
+        })
+        qualitative_data.append({
+            "accuracy": attempt.accuracy,
+        })
+
 
 # reference: https://roytuts.com/a-guide-to-write-word-file-using-python/
 
@@ -49,7 +49,8 @@ class DocumentWriter():
     def __init__(self):
         self.document = Document()
 
-    def create_document(self, saveAs, export_title, exercise_info, quantitative_data, qualitative_data):
+    def create_document(self, saveAs, export_title, exercise_info,
+                        quantitative_data, qualitative_data):
         self.document.add_heading(export_title, 0)
         self.add_name_and_description(exercise_info)
         self.add_quantitative_section(quantitative_data)
@@ -58,13 +59,12 @@ class DocumentWriter():
 
     def add_name_and_description(self, exercise_info):
         for exercise in exercise_info:
-            self.document.add_heading('Exercise Name: %s' %
-                                      exercise["name"], level=2)
+            self.document.add_heading('Exercise Name: %s' % exercise["name"],
+                                      level=2)
             # self.document.add_picture(
             #     exercise["image"])
             self.document.add_paragraph('Descripiton:  %s' %
                                         exercise["description"])
-
 
 # which different exercises they performed
 # number of repetition, time take

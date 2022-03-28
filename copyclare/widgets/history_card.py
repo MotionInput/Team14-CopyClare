@@ -23,14 +23,14 @@ class HistoryCardWidget(QFrame):
         self.ui.date.setText(attempt.date)
 
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/analysis.png",
-                     QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(DATA_PATH + "/assets/analysis.png", QSize(), QIcon.Normal,
+                     QIcon.Off)
         self.ui.analysis_button.setIcon(icon)
         self.ui.analysis_button.setIconSize(QSize(64, 64))
 
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/export.png",
-                     QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(DATA_PATH + "/assets/export.png", QSize(), QIcon.Normal,
+                     QIcon.Off)
         self.ui.export_button.setIcon(icon)
         self.ui.export_button.setIconSize(QSize(64, 64))
 
@@ -47,4 +47,4 @@ class HistoryCardWidget(QFrame):
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
         print(attempt_id)
-        exporter.export(DATA_PATH+"/results/"+"Results.docx", attempt_id)
+        exporter.export(DATA_PATH + "/results/" + "Results.docx", attempt_id)

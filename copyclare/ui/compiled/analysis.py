@@ -9,15 +9,16 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QLayout, QPushButton, QSizePolicy,
-    QVBoxLayout, QWidget)
+                            QMetaObject, QObject, QPoint, QRect, QSize, QTime,
+                            QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+                           QFontDatabase, QGradient, QIcon, QImage,
+                           QKeySequence, QLinearGradient, QPainter, QPalette,
+                           QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsView,
+                               QHBoxLayout, QLabel, QLayout, QPushButton,
+                               QSizePolicy, QVBoxLayout, QWidget)
+
 
 class Ui_Home(object):
     def setupUi(self, Home):
@@ -50,13 +51,12 @@ class Ui_Home(object):
         font.setPointSize(30)
         self.title.setFont(font)
         self.title.setStyleSheet(u"QLabel{\n"
-"	color: #ffffff;\n"
-"	background-color: #955fff;\n"
-"}")
+                                 "	color: #ffffff;\n"
+                                 "	background-color: #955fff;\n"
+                                 "}")
         self.title.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout.addWidget(self.title)
-
 
         self.verticalLayout.addWidget(self.title_frame)
 
@@ -99,7 +99,6 @@ class Ui_Home(object):
 
         self.verticalLayout_5.addWidget(self.name)
 
-
         self.verticalLayout_3.addWidget(self.name_frame)
 
         self.description_frame = QFrame(self.text_frame)
@@ -109,7 +108,8 @@ class Ui_Home(object):
         self.verticalLayout_8 = QVBoxLayout(self.description_frame)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.descriptions_frame_title = QLabel(self.description_frame)
-        self.descriptions_frame_title.setObjectName(u"descriptions_frame_title")
+        self.descriptions_frame_title.setObjectName(
+            u"descriptions_frame_title")
         self.descriptions_frame_title.setFont(font1)
 
         self.verticalLayout_8.addWidget(self.descriptions_frame_title)
@@ -118,7 +118,6 @@ class Ui_Home(object):
         self.description.setObjectName(u"description")
 
         self.verticalLayout_8.addWidget(self.description)
-
 
         self.verticalLayout_3.addWidget(self.description_frame)
 
@@ -139,7 +138,6 @@ class Ui_Home(object):
 
         self.verticalLayout_6.addWidget(self.date)
 
-
         self.verticalLayout_3.addWidget(self.date_frame)
 
         self.repetitions_frame = QFrame(self.text_frame)
@@ -158,7 +156,6 @@ class Ui_Home(object):
         self.repetitions.setObjectName(u"repetitions")
 
         self.verticalLayout_7.addWidget(self.repetitions)
-
 
         self.verticalLayout_3.addWidget(self.repetitions_frame)
 
@@ -179,15 +176,14 @@ class Ui_Home(object):
 
         self.verticalLayout_4.addWidget(self.accuracy)
 
-
         self.verticalLayout_3.addWidget(self.accuracy_frame)
 
         self.back_button = QPushButton(self.text_frame)
         self.back_button.setObjectName(u"back_button")
-        self.back_button.setStyleSheet(u"background-color: rgb(171, 185, 255);")
+        self.back_button.setStyleSheet(
+            u"background-color: rgb(171, 185, 255);")
 
         self.verticalLayout_3.addWidget(self.back_button)
-
 
         self.horizontalLayout_2.addWidget(self.text_frame)
 
@@ -208,34 +204,44 @@ class Ui_Home(object):
 
         self.verticalLayout_9.addWidget(self.accuracy_graph)
 
-
         self.horizontalLayout_2.addWidget(self.graphics_frame)
-
 
         self.verticalLayout_2.addWidget(self.content_frame)
 
-
         self.verticalLayout.addWidget(self._frame)
-
 
         self.retranslateUi(Home)
 
         QMetaObject.connectSlotsByName(Home)
+
     # setupUi
 
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"Frame", None))
-        self.title.setText(QCoreApplication.translate("Home", u"Analysis", None))
-        self.name_frame_title.setText(QCoreApplication.translate("Home", u"Name of Exercise:", None))
-        self.name.setText(QCoreApplication.translate("Home", u"Shoulder exercise", None))
-        self.descriptions_frame_title.setText(QCoreApplication.translate("Home", u"Description:", None))
-        self.description.setText(QCoreApplication.translate("Home", u"Slowy raise your arm and else as well", None))
-        self.date_frame_title.setText(QCoreApplication.translate("Home", u"Date:", None))
-        self.date.setText(QCoreApplication.translate("Home", u"22-02-2022 16:30", None))
-        self.repetitions_frame_title.setText(QCoreApplication.translate("Home", u"# of sets   |   # of reps", None))
-        self.repetitions.setText(QCoreApplication.translate("Home", u"3   |   10", None))
-        self.accuracy_frame_title.setText(QCoreApplication.translate("Home", u"Avg. Accuracy:", None))
+        self.title.setText(
+            QCoreApplication.translate("Home", u"Analysis", None))
+        self.name_frame_title.setText(
+            QCoreApplication.translate("Home", u"Name of Exercise:", None))
+        self.name.setText(
+            QCoreApplication.translate("Home", u"Shoulder exercise", None))
+        self.descriptions_frame_title.setText(
+            QCoreApplication.translate("Home", u"Description:", None))
+        self.description.setText(
+            QCoreApplication.translate(
+                "Home", u"Slowy raise your arm and else as well", None))
+        self.date_frame_title.setText(
+            QCoreApplication.translate("Home", u"Date:", None))
+        self.date.setText(
+            QCoreApplication.translate("Home", u"22-02-2022 16:30", None))
+        self.repetitions_frame_title.setText(
+            QCoreApplication.translate("Home", u"# of sets   |   # of reps",
+                                       None))
+        self.repetitions.setText(
+            QCoreApplication.translate("Home", u"3   |   10", None))
+        self.accuracy_frame_title.setText(
+            QCoreApplication.translate("Home", u"Avg. Accuracy:", None))
         self.accuracy.setText(QCoreApplication.translate("Home", u"74%", None))
-        self.back_button.setText(QCoreApplication.translate("Home", u"Back", None))
-    # retranslateUi
+        self.back_button.setText(
+            QCoreApplication.translate("Home", u"Back", None))
 
+    # retranslateUi

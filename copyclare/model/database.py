@@ -50,11 +50,14 @@ class Database:
         with open(DATA_PATH + "/test/3.json", "r") as f:
             json3 = f.read()
 
-        with open(DATA_PATH + "/videos/clare1.txt", "r",encoding="UTF-8") as f:
+        with open(DATA_PATH + "/videos/clare1.txt", "r",
+                  encoding="UTF-8") as f:
             clare1_desc = f.read()
-        with open(DATA_PATH + "/videos/clare2.txt", "r",encoding="UTF-8") as f:
+        with open(DATA_PATH + "/videos/clare2.txt", "r",
+                  encoding="UTF-8") as f:
             clare2_desc = f.read()
-        with open(DATA_PATH + "/videos/clare3.txt", "r",encoding="UTF-8") as f:
+        with open(DATA_PATH + "/videos/clare3.txt", "r",
+                  encoding="UTF-8") as f:
             clare3_desc = f.read()
 
         exercises = [
@@ -229,7 +232,7 @@ class Database:
     def get_one_attempt_by_ID(self, id):
         result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
         for p1, p2, p3, p4, p5, p6, p7 in result:
-            return Attempt(p1, p2, p3, p4, p5, p6, p7)    
+            return Attempt(p1, p2, p3, p4, p5, p6, p7)
 
     def get_attempt_in_exercise(self):
         exercises = [[]]
@@ -246,8 +249,7 @@ class Database:
             if flag == False:
                 exercises.append([attempt])
 
-        return exercises            
-
+        return exercises
 
     def get_exercise_name_and_desc_by_ID(self, id):
         exercise = self.get_one_exercise_by_ID(id)

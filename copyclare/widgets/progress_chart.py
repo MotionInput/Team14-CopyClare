@@ -19,13 +19,14 @@ class ProgressChartWidget(QFrame):
 
         for ex_type in all_ex_attempt:
             if ex_type:
-                name, desc = self.app.db.get_exercise_name_and_desc_by_ID(ex_type[0].exercise_id)
+                name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
+                    ex_type[0].exercise_id)
 
                 temp_widget = ProgressChartGraphWidget(self)
                 self.series = QLineSeries()
 
                 for i in range(len(ex_type)):
-                    self.series.append(i+1, ex_type[i].accuracy)
+                    self.series.append(i + 1, ex_type[i].accuracy)
 
                 self.chart = QChart()
                 self.chart.addSeries(self.series)
@@ -33,12 +34,11 @@ class ProgressChartWidget(QFrame):
                 self.chart.setAnimationOptions(QChart.AllAnimations)
                 self.chart.setTitle("Average Accuracy (for each attempt)")
                 self.chart.legend().hide()
-                self.chart.setMargins(QMargins(0,0,0,0))
-                self.ax1  = self.chart.axisX(self.series)
-                self.ax2  = self.chart.axisY(self.series)
+                self.chart.setMargins(QMargins(0, 0, 0, 0))
+                self.ax1 = self.chart.axisX(self.series)
+                self.ax2 = self.chart.axisY(self.series)
                 self.ax2.setMin(0)
                 self.ax2.setMax(100)
-
 
                 self.chartView = QChartView(self.chart, parent=temp_widget)
                 temp_widget.ui.verticalLayout.addWidget(self.chartView)
