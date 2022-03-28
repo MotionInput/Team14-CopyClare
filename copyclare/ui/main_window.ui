@@ -189,6 +189,16 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="addvideo_button">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
