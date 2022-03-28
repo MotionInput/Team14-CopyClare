@@ -9,15 +9,14 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect, QSize, Qt,
-                            QTime, QUrl)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-                           QFontDatabase, QGradient, QIcon, QImage,
-                           QKeySequence, QLinearGradient, QPainter, QPalette,
-                           QPixmap, QRadialGradient, QTransform)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-                               QPushButton, QSizePolicy, QVBoxLayout, QWidget)
-
+    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_exercise_frame(object):
     def setupUi(self, exercise_frame):
@@ -58,6 +57,7 @@ class Ui_exercise_frame(object):
 
         self.horizontalLayout_3.addWidget(self.video_label)
 
+
         self.verticalLayout.addWidget(self.video_frame)
 
         self.graph_frame = QFrame(self.controls_frame)
@@ -81,36 +81,44 @@ class Ui_exercise_frame(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.label = QLabel(self.data_frame)
-        self.label.setObjectName(u"label")
-        self.label.setFrameShape(QFrame.NoFrame)
+        self.reps_label = QLabel(self.data_frame)
+        self.reps_label.setObjectName(u"reps_label")
+        font = QFont()
+        font.setPointSize(27)
+        font.setBold(True)
+        self.reps_label.setFont(font)
+        self.reps_label.setStyleSheet(u"color: #000000;\n"
+"padding: 10px;")
+        self.reps_label.setFrameShape(QFrame.NoFrame)
 
-        self.verticalLayout_2.addWidget(self.label)
+        self.verticalLayout_2.addWidget(self.reps_label)
+
 
         self.verticalLayout.addWidget(self.data_frame)
 
         self.end_button = QPushButton(self.controls_frame)
         self.end_button.setObjectName(u"end_button")
-        font = QFont()
-        font.setPointSize(15)
-        self.end_button.setFont(font)
+        font1 = QFont()
+        font1.setPointSize(15)
+        self.end_button.setFont(font1)
         self.end_button.setStyleSheet(u"QPushButton {\n"
-                                      "	border: none;\n"
-                                      "	background-color: #fc8892;\n"
-                                      "	color: rgb(0,0,0);\n"
-                                      "	height: 50;\n"
-                                      "}\n"
-                                      "\n"
-                                      "QPushButton:hover {\n"
-                                      "	background-color: #ff5260;\n"
-                                      "}\n"
-                                      "\n"
-                                      "QPushButton:pressed {\n"
-                                      "	background-color: #ff949d;\n"
-                                      "}")
+"	border: none;\n"
+"	background-color: #fc8892;\n"
+"	color: rgb(0,0,0);\n"
+"	height: 50;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #ff5260;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: #ff949d;\n"
+"}")
         self.end_button.setFlat(False)
 
         self.verticalLayout.addWidget(self.end_button)
+
 
         self.horizontalLayout.addWidget(self.controls_frame)
 
@@ -119,8 +127,7 @@ class Ui_exercise_frame(object):
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
-            self.camera_frame.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.camera_frame.sizePolicy().hasHeightForWidth())
         self.camera_frame.setSizePolicy(sizePolicy)
         self.camera_frame.setFrameShape(QFrame.NoFrame)
         self.camera_frame.setFrameShadow(QFrame.Raised)
@@ -134,25 +141,20 @@ class Ui_exercise_frame(object):
 
         self.horizontalLayout_4.addWidget(self.camera_label)
 
+
         self.horizontalLayout.addWidget(self.camera_frame)
+
 
         self.retranslateUi(exercise_frame)
 
         QMetaObject.connectSlotsByName(exercise_frame)
-
     # setupUi
 
     def retranslateUi(self, exercise_frame):
-        exercise_frame.setWindowTitle(
-            QCoreApplication.translate("exercise_frame", u"Frame", None))
-        self.video_label.setText(
-            QCoreApplication.translate("exercise_frame", u"TextLabel", None))
-        self.label.setText(
-            QCoreApplication.translate("exercise_frame", u"Reps: 5/16", None))
-        self.end_button.setText(
-            QCoreApplication.translate("exercise_frame", u"END EXERCISE",
-                                       None))
-        self.camera_label.setText(
-            QCoreApplication.translate("exercise_frame", u"TextLabel", None))
-
+        exercise_frame.setWindowTitle(QCoreApplication.translate("exercise_frame", u"Frame", None))
+        self.video_label.setText(QCoreApplication.translate("exercise_frame", u"TextLabel", None))
+        self.reps_label.setText(QCoreApplication.translate("exercise_frame", u"Reps: 0", None))
+        self.end_button.setText(QCoreApplication.translate("exercise_frame", u"END EXERCISE", None))
+        self.camera_label.setText(QCoreApplication.translate("exercise_frame", u"TextLabel", None))
     # retranslateUi
+

@@ -4,14 +4,14 @@ from PySide6.QtWidgets import QFrame
 
 from copyclare.common import AppSingleton, load_ui
 from copyclare.data import DATA_DIR, Exporter
+from copyclare.pyui.history_card import Ui_Form
+from copyclare import UiElement
 
 
-class HistoryCardWidget(QFrame):
+class HistoryCardWidget(UiElement):
     def __init__(self, master, attempt, img_path):
-        super().__init__(master)
+        super().__init__(master, "history_card", Ui_Form)
         self.app = AppSingleton.get_app()
-        self.ui = load_ui("history_card")
-        self.ui.setupUi(self)
 
         self.ui.exercise_img.setPixmap(
             QPixmap(DATA_DIR + "/assets/default-video-img.png"))
@@ -45,5 +45,4 @@ class HistoryCardWidget(QFrame):
     # TODO link export button to function
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
-        print(attempt_id)
         exporter.export(DATA_DIR + "/results/" + "Results.docx", attempt_id)

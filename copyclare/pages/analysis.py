@@ -3,15 +3,14 @@ AnalysisPage`
 
 
 """
-
+from copyclare.pyui.analysis import Ui_analysis_page
 from copyclare.common import AppSingleton
+from copyclare import UiElement
 
-from .page import Page
 
-
-class AnalysisPage(Page):
+class AnalysisPage(UiElement):
     def __init__(self, master, attempt):
-        super().__init__(master, "analysis")
+        super().__init__(master, "analysis", Ui_analysis_page)
 
         self.app = AppSingleton.get_app()
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
@@ -22,9 +21,6 @@ class AnalysisPage(Page):
         self.ui.date.setText(attempt.date)
         self.ui.repetitions.setText(str(attempt.num_of_repetitons))
         self.ui.accuracy.setText(str(attempt.accuracy))
-
-        # TODO things to set for QGraphicsView
-        # heatmap, accuracy_graph
 
         self.ui.back_button.clicked.connect(
             lambda x: self.app.load_page("progress"))

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>main_frame</class>
- <widget class="QFrame" name="main_frame">
+ <class>profile_page</class>
+ <widget class="QFrame" name="profile_page">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -55,7 +55,7 @@ QWidget{
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>733</width>
+        <width>745</width>
         <height>700</height>
        </rect>
       </property>

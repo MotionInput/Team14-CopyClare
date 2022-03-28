@@ -2,14 +2,14 @@ from PySide6.QtWidgets import QFrame
 
 from copyclare.common import load_ui
 from copyclare.widgets import VideoCardWidget
+from copyclare.pyui.banner import Ui_Frame
+from copyclare import UiElement
 
 
-class BannerWidget(QFrame):
+class BannerWidget(UiElement):
     def __init__(self, master, title, exercises):
-        super().__init__(master)
+        super().__init__(master, "banner", Ui_Frame)
         self.cards = {}
-        self.ui = load_ui("banner")
-        self.ui.setupUi(self)
         self.ui.category_title.setText(title)
 
         self.init_exercises(exercises)

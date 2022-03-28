@@ -4,13 +4,15 @@ from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
+
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.objects import Attempt, Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, NotFound,
                              ProfilePage, VideoAddition)
 from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
-
+from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
+from copyclare.config import DEBUG
 
 class App:
 
@@ -29,7 +31,14 @@ class App:
         app = QApplication(sys.argv)
         self.window = QMainWindow()
         self.window.showMaximized()
-        self.ui = load_ui("main_window")
+
+
+        # Ui load optimisation
+        if DEBUG:
+            self.ui = load_ui("main_window")
+        else:
+            self.ui = compiled_ui()
+
         self.ui.setupUi(self.window)
 
         self.ui.exercise_frame.hide()
@@ -73,8 +82,8 @@ class App:
             lambda x: self.load_page("settings"))
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
-        self.ui.addvideo_button.clicked.connect(lambda x: self.load_page("video_addition"))
-
+        self.ui.addvideo_button.clicked.connect(
+            lambda x: self.load_page("video_addition"))
 
         tutorial_popup = TutorialPopupWidget()
         tutorial_popup.show()
@@ -94,7 +103,6 @@ class App:
         self.ui.pages_frame.hide()
 
         self.ui.exercise_frame.show()
-        print("HELLO ADI WAS HERE")
         ex_page = ExercisePage(self.ui.exercise_frame, exercise)
         self.current_exercise_page = ex_page
         self.ui.exercise_layout.addWidget(ex_page)
@@ -160,7 +168,3 @@ class App:
             self.current_page = self.pages["not_found"]
 
         self.current_page.show()
-
-    def nav_click(self):
-
-        print("nav clicked!")
