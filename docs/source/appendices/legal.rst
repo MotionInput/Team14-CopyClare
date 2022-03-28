@@ -9,7 +9,8 @@ Since CopyClare deals with medical data, we have put a considerable amount of th
 into legal compliance.
 
 For ease of patient use and privacy of data, all the data that is collected is
-stored locally on the computer of the patient unless exported by themself.
+stored locally on the computer of the patient unless exported by themself. CopyClare
+does not transmit any patient data over the internet.
 
 The sample videos in the this build of CopyClare are from the British Elbow & Shoulder Society (BESS)
 and a NeuroPhysiotherapy team from UCL (Kunica Mehta, Tanisha Gilani, and Sally Davenport)
