@@ -1,10 +1,13 @@
 import os
 import sys
-from tkinter import Frame
 
-from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtMultimedia import QMediaPlayer
+from PySide6.QtMultimediaWidgets import QVideoWidget
 
 from copyclare.common import AppSingleton
+from copyclare.model.accuracy_v2 import AccuracyModel
+from copyclare.model.exercises import Exercise
 
 from .page import Page
 
@@ -26,6 +29,8 @@ class VideoAddition(Page):
         self.ui.confirm_button.clicked.connect(self.confirm)
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
+        self.player = QMediaPlayer()
+        self.player.setVideoOutput(self.ui.video)
 
     def open_file(self):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
@@ -36,17 +41,30 @@ class VideoAddition(Page):
         self.ui.input_area.setVisible(True)
         self.ui.video_trimmer.setVisible(True)
 
-        self.ui.browse_button.setStyleSheet("Qpushbutton{background-color: rgb(186, 186, 186);}")
-        
-        
+        self.ui.browse_button.setStyleSheet(
+            "QPushButton{background-color: rgb(186, 186, 186);}")
+
+        #self.player.setMedia(QMediaContent(QFileDialog.getOpenFileUrl()[0]))
+        self.player.play()
+
     def upload(self):
+        exercise = Exercise(None, self.video_name, self.fileName, "None",
+                            self.description, "-1")
+        joints = [
+            "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
+        ]
+        # accuracymodel = AccuracyModel(exercise,joints)
+        # exercise.angles_json = accuracymodel.get_angles(exercise.video_directory)
+        self.app.db.add_exercise(exercise)
+        self.ui.upload_button.clicked.connect(
+            lambda x: self.app.load_page("home"))
         pass
 
     def confirm(self):
-        self.video_name = self.ui.video_name_editor.getText()
-        self.description = self.ui.description_editor.getText()
-        tags = self.ui.tags_editor.getText()
+        self.video_name = self.ui.video_name_editor.toPlainText()
+        self.description = self.ui.description_editor.toPlainText()
+        tags = self.ui.tags_editor.toPlainText()
         self.tag = tags.split(",")
-        
-        self.ui.upload_button.setStyleSheet("Qpushbutton{background-color: rgb(85, 255, 127)}")
 
+        self.ui.upload_button.setStyleSheet(
+            "QPushButton{background-color: rgb(0, 255, 127);}")

@@ -44,8 +44,8 @@ class AccuracyModel:
         self.detector = PoseModule()
         self.joints = joints
 
-        if exercise.angles_json != "null":
-            self.angles = json.loads(exercise.angles_json)
+        if exercise.angles_json == "-1":
+            pass
         else:
             self.angles = self.get_angles(DATA_DIR + exercise.video_directory)
             with open(DATA_DIR + f"/test/{exercise.id}.json", "w") as f:
