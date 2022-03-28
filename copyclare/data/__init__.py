@@ -17,6 +17,7 @@ SQL_DIR = os.path.dirname(os.path.realpath(__file__)) + "/sql/"
 DB_DIR = DATA_DIR + "/Copyclare.db"
 
 from .database import Database
+from .exporter import
 
 __all__ == [
     "Database",
