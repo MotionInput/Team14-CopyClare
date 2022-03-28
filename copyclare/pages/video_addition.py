@@ -7,7 +7,7 @@ from PySide6.QtMultimediaWidgets import QVideoWidget
 
 from copyclare.common import AppSingleton
 from copyclare.model.accuracy_v2 import AccuracyModel
-from copyclare.model.exercises import Exercise
+from copyclare.data.objects import Exercise
 
 from .page import Page
 

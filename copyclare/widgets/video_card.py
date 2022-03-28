@@ -23,7 +23,7 @@ class VideoCardWidget(QFrame):
             self.ui.video_image.setPixmap(QPixmap(img_path))
         else:
             self.ui.video_image.setPixmap(
-                QPixmap(DATA_PATH + "/assets/default-video-img.png"))
+                QPixmap(DATA_DIR + "/assets/default-video-img.png"))
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
         self.ui.add_btn.clicked.connect(self.add_click)
