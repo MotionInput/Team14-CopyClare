@@ -44,21 +44,24 @@ class AccuracyModel:
     def __init__(self, exercise, joints):
         self.detector = PoseModule()
         self.joints = joints
-
-        if exercise.angles_json != "null":
-            self.angles = json.loads(exercise.angles_json)
+        
+        if exercise.angles_json == "-1":
+            pass
         else:
-            self.angles = self.get_angles(DATA_PATH + exercise.video_directory)
-            with open(DATA_PATH + f"/test/{exercise.id}.json", "w") as f:
-                f.write(json.dumps(self.angles, indent=4))
-        video = cv2.VideoCapture(DATA_PATH + exercise.video_directory)
-        if not video.isOpened():
-            print("Error Opening a video file")
-        fps = video.get(cv2.CAP_PROP_FPS)
-        self.step = 1 / fps
+            if exercise.angles_json != "null":
+                self.angles = json.loads(exercise.angles_json)
+            else:
+                self.angles = self.get_angles(DATA_PATH + exercise.video_directory)
+                with open(DATA_PATH + f"/test/{exercise.id}.json", "w") as f:
+                    f.write(json.dumps(self.angles, indent=4))
+            video = cv2.VideoCapture(DATA_PATH+exercise.video_directory)
+            if not video.isOpened():
+                print("Error Opening a video file")
+            fps = video.get(cv2.CAP_PROP_FPS)
+            self.step = 1 / fps
 
-        self.camera_buffer = deque()
-        self.offset = 20
+            self.camera_buffer = deque()
+            self.offset = 20
 
     def _init_angles(self):
         angles = {}
