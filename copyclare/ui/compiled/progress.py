@@ -9,15 +9,16 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+                            QMetaObject, QObject, QPoint, QRect, QSize, QTime,
+                            QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+                           QFontDatabase, QGradient, QIcon, QImage,
+                           QKeySequence, QLinearGradient, QPainter, QPalette,
+                           QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QLabel, QLayout, QPushButton, QScrollArea,
-    QSizePolicy, QVBoxLayout, QWidget)
+                               QLabel, QLayout, QPushButton, QScrollArea,
+                               QSizePolicy, QVBoxLayout, QWidget)
+
 
 class Ui_Home(object):
     def setupUi(self, Home):
@@ -48,14 +49,10 @@ class Ui_Home(object):
         font = QFont()
         font.setPointSize(30)
         self.title.setFont(font)
-        self.title.setStyleSheet(u"QLabel{\n"
-"	color: #000000;\n"
-"\n"
-"}")
+        self.title.setStyleSheet(u"QLabel{\n" "	color: #000000;\n" "\n" "}")
         self.title.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout.addWidget(self.title)
-
 
         self.verticalLayout.addWidget(self.title_frame)
 
@@ -90,7 +87,6 @@ class Ui_Home(object):
 
         self.horizontalLayout_3.addWidget(self.export_button)
 
-
         self.verticalLayout_4.addWidget(self.header_frame)
 
         self.dropdown_frame = QHBoxLayout()
@@ -106,35 +102,36 @@ class Ui_Home(object):
 
         self.dropdown_frame.addWidget(self.date_dropdown)
 
-
         self.verticalLayout_4.addLayout(self.dropdown_frame)
 
         self.scrollArea = QScrollArea(self.content_frame)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setObjectName(
+            u"scrollAreaWidgetContents")
         self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 917, 654))
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_4.addWidget(self.scrollArea)
 
-
         self.verticalLayout_2.addWidget(self.content_frame)
 
-
         self.verticalLayout.addWidget(self._frame)
-
 
         self.retranslateUi(Home)
 
         QMetaObject.connectSlotsByName(Home)
+
     # setupUi
 
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"Frame", None))
-        self.title.setText(QCoreApplication.translate("Home", u"Progress", None))
-        self.header.setText(QCoreApplication.translate("Home", u"History", None))
-        self.export_button.setText(QCoreApplication.translate("Home", u"Export All", None))
-    # retranslateUi
+        self.title.setText(
+            QCoreApplication.translate("Home", u"Progress", None))
+        self.header.setText(
+            QCoreApplication.translate("Home", u"History", None))
+        self.export_button.setText(
+            QCoreApplication.translate("Home", u"Export All", None))
 
+    # retranslateUi

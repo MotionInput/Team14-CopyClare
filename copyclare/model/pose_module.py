@@ -4,24 +4,24 @@ import mediapipe as mp
 import cv2
 import math
 
+
 class PoseModule:
     def __init__(
-            self,
-            mode=False,
-            up_body=False,
-            smooth=True,
-            detection_con=True,
-            track_con=True,
-            smooth_segmentation=False,
-
+        self,
+        mode=False,
+        up_body=False,
+        smooth=True,
+        detection_con=True,
+        track_con=True,
+        smooth_segmentation=False,
     ):
 
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose(
-            static_image_mode = True,
-            model_complexity = 1,
-            smooth_landmarks = True,
+            static_image_mode=True,
+            model_complexity=1,
+            smooth_landmarks=True,
             enable_segmentation=False,
         )
 
@@ -29,9 +29,8 @@ class PoseModule:
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
-            self.mp_draw.draw_landmarks(
-                img, self.results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS
-            )
+            self.mp_draw.draw_landmarks(img, self.results.pose_landmarks,
+                                        self.mp_pose.POSE_CONNECTIONS)
         return img
 
     def find_landmarks(self, img, draw=True):
@@ -49,13 +48,14 @@ class PoseModule:
     def find_angle(self, img, p1, p2, p3, draw=True):
         # Get the landmarks
         z1, x1, y1 = self.landmark_list[p1]
-        z2, x2, y2= self.landmark_list[p2]
+        z2, x2, y2 = self.landmark_list[p2]
         z3, x3, y3 = self.landmark_list[p3]
-        len12 = math.sqrt((x1-x2)**2+(y1-y2)**2+(z1-z2)**2)
-        len23 = math.sqrt((x2-x3)**2+(y2-y3)**2+(z2-z3)**2)
-        len13 = math.sqrt((x1-x3)**2+(y1-y3)**2+(z1-z3)**2)
+        len12 = math.sqrt((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)
+        len23 = math.sqrt((x2 - x3)**2 + (y2 - y3)**2 + (z2 - z3)**2)
+        len13 = math.sqrt((x1 - x3)**2 + (y1 - y3)**2 + (z1 - z3)**2)
         # Calculate the Angle
-        angle = math.degrees(math.acos((len12**2+len23**2-len13**2)/2/len12/len23))
+        angle = math.degrees(
+            math.acos((len12**2 + len23**2 - len13**2) / 2 / len12 / len23))
         if angle < 0:
             angle += 360
 

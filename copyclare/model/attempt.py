@@ -1,6 +1,6 @@
 class Attempt:
     def __init__(self, id, date, num_of_repetitons, duration, session_json,
-                 accuracy,  exercise_id):
+                 accuracy, exercise_id):
         self.id = id
         self.date = date
         self.num_of_repetitons = num_of_repetitons

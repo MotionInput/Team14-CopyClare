@@ -27,14 +27,15 @@ class ProfilePage(Page):
         #ex4_attempt = [Attempt(None,"1-1-1",1,1.11,"111",22,4), Attempt(None,"2-2-2",2,2.22,"222",22,4)]
         #all_ex_attempt = [ex1_attempt, ex2_attempt, ex3_attempt, ex4_attempt]
 
-        self.progress_chart_banner = ProgressBannerWidget(self, "Progress chart")
+        self.progress_chart_banner = ProgressBannerWidget(
+            self, "Progress chart")
         self.ui.verticalLayout_2.insertWidget(0, self.progress_chart_banner)
 
         all_ex_attempt = self.app.db.get_attempt_in_exercise()
         print(all_ex_attempt)
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
-        self.progress_chart_banner.ui.verticalLayout_2.insertWidget(0,self.progress_chart)
-
+        self.progress_chart_banner.ui.verticalLayout_2.insertWidget(
+            0, self.progress_chart)
 
         # past attempts
 
@@ -52,9 +53,13 @@ class ProfilePage(Page):
         _all_attempts = self.app.db.get_all_attempts()
 
         for _attempt in _all_attempts:
-            _history_card = HistoryCardWidget(self.past_attempts_banner.ui.scrollArea, _attempt, None)
-            self.past_attempts_banner.ui.verticalLayout_2.insertWidget(0,_history_card)
+            _history_card = HistoryCardWidget(
+                self.past_attempts_banner.ui.scrollArea, _attempt, None)
+            self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
+                0, _history_card)
 
     def add_attempt(self, attempt):
-        _history_card = HistoryCardWidget(self.past_attempts_banner.ui.scrollArea, attempt, None)
-        self.past_attempts_banner.ui.verticalLayout_2.insertWidget(0,_history_card)
+        _history_card = HistoryCardWidget(
+            self.past_attempts_banner.ui.scrollArea, attempt, None)
+        self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
+            0, _history_card)

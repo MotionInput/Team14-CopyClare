@@ -4,17 +4,18 @@ AnalysisPage`
 
 """
 
-
 from .page import Page
 
 from copyclare.common import AppSingleton
+
 
 class AnalysisPage(Page):
     def __init__(self, master, attempt):
         super().__init__(master, "analysis")
 
         self.app = AppSingleton.get_app()
-        name, desc = self.app.db.get_exercise_name_and_desc_by_ID(attempt.exercise_id)
+        name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
+            attempt.exercise_id)
 
         self.ui.name.setText(name)
         self.ui.description.setText(desc)
@@ -25,4 +26,5 @@ class AnalysisPage(Page):
         # TODO things to set for QGraphicsView
         # heatmap, accuracy_graph
 
-        self.ui.back_button.clicked.connect(lambda x: self.app.load_page("progress"))
+        self.ui.back_button.clicked.connect(
+            lambda x: self.app.load_page("progress"))

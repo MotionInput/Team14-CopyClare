@@ -1,11 +1,9 @@
 import time
 import json
 
-
 from datetime import datetime
 from copyclare.common import AppSingleton
 from copyclare.model import Attempt
-
 
 
 class ThreadManager:
@@ -35,7 +33,7 @@ class ThreadManager:
                 dt_string,
                 self.worker.num_of_repetitions,
                 time.time() - self.worker.beginning,
-                json.dumps(self.worker.accuracy_vals, indent = 4),
+                json.dumps(self.worker.accuracy_vals, indent=4),
                 avg,
                 self.worker.exercise.id,
             )
