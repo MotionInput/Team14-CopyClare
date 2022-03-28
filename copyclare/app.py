@@ -94,6 +94,7 @@ class App:
         self.ui.pages_frame.hide()
 
         self.ui.exercise_frame.show()
+        print("HELLO ADI WAS HERE")
         ex_page = ExercisePage(self.ui.exercise_frame, exercise)
         self.current_exercise_page = ex_page
         self.ui.exercise_layout.addWidget(ex_page)
