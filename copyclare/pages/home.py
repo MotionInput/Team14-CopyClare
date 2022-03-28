@@ -1,6 +1,6 @@
-from copyclare.model import Database
-from copyclare.widgets import BannerWidget
 from copyclare.common import AppSingleton
+from copyclare.data import Database
+from copyclare.widgets import BannerWidget
 
 from .page import Page
 

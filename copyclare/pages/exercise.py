@@ -1,16 +1,15 @@
-from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtCore import Slot, Signal
-from PySide6.QtCharts import QChart, QChartView, QLineSeries
-
-from PySide6.QtMultimedia import (QMediaPlayer)
-
+import json
 # for testing
 import random
-import json
 import time
 
-from copyclare.video import VideoThread, CameraThread, ThreadManager
+from PySide6.QtCharts import QChart, QChartView, QLineSeries
+from PySide6.QtCore import Signal, Slot
+from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtMultimedia import QMediaPlayer
+
 from copyclare.common import AppSingleton
+from copyclare.video import CameraThread, ThreadManager, VideoThread
 
 from .page import Page
 

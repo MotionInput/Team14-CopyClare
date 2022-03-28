@@ -1,15 +1,28 @@
+"""
+database.py
+
+copyclare.data.Database
+
+Our database module that provides and interface to our SQLITE database
+
+This module allows executing sctipts that are defined in a sql directory
+
+you can reference sql directory in the code by using ``SQL_DIR``.
+
+.. code-block:: python
+
+   # sample usage:
+   from copyclare.data import SQL_DIR
+
+   # SQL_DIR is a string containing the absulute path to our SQL queries.
+"""
+
+import json
 import os
 import sqlite3
-import json
-from unittest import result
 
-from copyclare.model.attempt import Attempt
-from copyclare.model.exercises import Exercise
-from copyclare.model.tag import Tag
-from copyclare import DATA_PATH
-
-SQL_DIR = os.path.dirname(os.path.realpath(__file__)) + "/sql/"
-DB_DIR = DATA_PATH + "/Copyclare.db"
+from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
+from copyclare.data.objects import Attempt, Exercise, Tag
 
 
 class Database:
@@ -43,21 +56,18 @@ class Database:
             Tag("My Exercises"),
         ]
 
-        with open(DATA_PATH + "/test/1.json", "r") as f:
+        with open(DATA_DIR + "/test/1.json", "r") as f:
             json1 = f.read()
-        with open(DATA_PATH + "/test/2.json", "r") as f:
+        with open(DATA_DIR + "/test/2.json", "r") as f:
             json2 = f.read()
-        with open(DATA_PATH + "/test/3.json", "r") as f:
+        with open(DATA_DIR + "/test/3.json", "r") as f:
             json3 = f.read()
 
-        with open(DATA_PATH + "/videos/clare1.txt", "r",
-                  encoding="UTF-8") as f:
+        with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
             clare1_desc = f.read()
-        with open(DATA_PATH + "/videos/clare2.txt", "r",
-                  encoding="UTF-8") as f:
+        with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
-        with open(DATA_PATH + "/videos/clare3.txt", "r",
-                  encoding="UTF-8") as f:
+        with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
             clare3_desc = f.read()
 
         exercises = [

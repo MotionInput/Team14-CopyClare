@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QFrame
 
-from copyclare.widgets import VideoCardWidget
 from copyclare.common import load_ui
+from copyclare.widgets import VideoCardWidget
 
 
 class BannerWidget(QFrame):

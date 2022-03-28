@@ -1,9 +1,9 @@
-import time
 import json
-
+import time
 from datetime import datetime
+
 from copyclare.common import AppSingleton
-from copyclare.model import Attempt
+from copyclare.data.objects import Attempt
 
 
 class ThreadManager:

@@ -1,12 +1,13 @@
 import pyqtgraph as pg
 
 from PySide6.QtWidgets import QFrame, QLabel, QTabWidget
+
 from PySide6.QtCharts import QChart, QChartView, QLineSeries
 from PySide6.QtCore import QMargins
+from PySide6.QtWidgets import QFrame, QLabel, QTabWidget
 
+from copyclare.common import AppSingleton, load_ui
 from copyclare.widgets.progress_chart_graph import ProgressChartGraphWidget
-
-from copyclare.common import load_ui, AppSingleton
 
 
 class ProgressChartWidget(QFrame):
