@@ -1,6 +1,5 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QLabel, QWidget, QStackedWidget, QTabWidget
-from copyclare.widgets.export_all_banner import ExportAllBannerWidget
 
 from copyclare.widgets.history_card import HistoryCardWidget
 from copyclare.widgets.past_attempts_banner import PastAttemptsBannerWidget
