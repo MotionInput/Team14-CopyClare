@@ -22,6 +22,7 @@ class Video_Addition(Page):
             lambda x: self.app.load_page("home"))
         self.ui.browse_button.clicked.connect(self.open_file)
         self.ui.upload_button.clicked.connect(self.upload)
+        self.ui.confirm_button.clicked.connect(self.confirm)
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
 
@@ -33,8 +34,18 @@ class Video_Addition(Page):
 
         self.ui.input_area.setVisible(True)
         self.ui.video_trimmer.setVisible(True)
-        self.ui.upload_button.setStyleSheet(
-            "Qpushbutton{background-color: rgb(85, 255, 127)}")
 
+        self.ui.browse_button.setStyleSheet("Qpushbutton{background-color: rgb(186, 186, 186);}")
+        
+        
     def upload(self):
         pass
+
+    def confirm(self):
+        self.video_name = self.ui.video_name_editor.getText()
+        self.description = self.ui.description_editor.getText()
+        tags = self.ui.tags_editor.getText()
+        self.tag = tags.split(",")
+        
+        self.ui.upload_button.setStyleSheet("Qpushbutton{background-color: rgb(85, 255, 127)}")
+
