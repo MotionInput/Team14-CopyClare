@@ -138,6 +138,9 @@ class App:
             banner.ui.horizontalLayout.insertWidget(0,
                                                     banner.cards[str(ex.id)])
 
+    def remove_from_my_exercises(self, ex):
+        pass
+
     def init_pages(self):
         for page in self.pages:
             _page_obj = self.pages[page](self.ui.pages_frame)

@@ -34,6 +34,11 @@ class VideoCardWidget(QFrame):
         app = AppSingleton.get_app()
         app.move_to_my_exercises(self.exercise)
 
+        # TODO - rename to "remove"; if clicked, moves back to library
+
+    def remove_click(self):
+        pass
+
     def clicked(self, event):
         # spawns an exercise page
 
