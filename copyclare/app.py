@@ -55,6 +55,12 @@ class App:
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
+        icon3 = QIcon()
+        icon3.addFile(DATA_PATH + "/assets/icon-addvideo.png", QSize(),
+                      QIcon.Normal, QIcon.Off)
+        self.ui.addvideo_button.setIcon(icon3)
+        self.ui.addvideo_button.setIconSize(QSize(64, 64))
+
         self.window.show()
 
         # UI setup
@@ -67,6 +73,8 @@ class App:
             lambda x: self.load_page("settings"))
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
+        self.ui.addvideo_button.clicked.connect(lambda x: self.load_page("video_addition"))
+        
 
         tutorial_popup = TutorialPopupWidget()
         tutorial_popup.show()
