@@ -17,16 +17,12 @@ you can reference sql directory in the code by using ``SQL_DIR``.
    # SQL_DIR is a string containing the absulute path to our SQL queries.
 """
 
+import json
 import os
 import sqlite3
-import json
 
-from copyclare.data.objects import Attempt
-from copyclare.data.objects import Exercise
-from copyclare.data.objects import Tag
-from copyclare.data import DATA_DIR
-from copyclare.data import SQL_DIR
-from copyclare.data import DB_DIR
+from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
+from copyclare.data.objects import Attempt, Exercise, Tag
 
 
 class Database:

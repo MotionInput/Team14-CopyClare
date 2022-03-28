@@ -10,19 +10,11 @@ Has functions to export the data from the database as well.
 import os
 
 DATA_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data"))
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../data"))
 
 SQL_DIR = os.path.dirname(os.path.realpath(__file__)) + "/sql/"
 
 DB_DIR = DATA_DIR + "/Copyclare.db"
 
 from .database import Database
-from .exporter import
-
-__all__ == [
-    "Database",
-    "objects",
-    "DATA_DIR",
-    "SQL_DIR",
-    "DB_DIR",
-]
+from .exporter import Exporter

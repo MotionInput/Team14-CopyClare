@@ -1,9 +1,9 @@
-from PySide6.QtWidgets import QFrame
-from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QFrame
 
-from copyclare import DATA_PATH
 from copyclare.common import load_ui
+from copyclare.data import DATA_DIR
 
 
 class TutorialPopupWidget(QFrame):
@@ -43,7 +43,6 @@ class TutorialPopupWidget(QFrame):
     def _load_texts(self):
         self.ui.name.setText(self.tutorial_texts[self.tutorial_page][0])
         self.ui.desc.setText(self.tutorial_texts[self.tutorial_page][1])
-        pixmap = QPixmap(DATA_PATH +
-                         self.tutorial_texts[self.tutorial_page][2])
+        pixmap = QPixmap(DATA_DIR + self.tutorial_texts[self.tutorial_page][2])
         pixmap = pixmap.scaled(700, 500, Qt.KeepAspectRatio)
         self.ui.image.setPixmap(pixmap)

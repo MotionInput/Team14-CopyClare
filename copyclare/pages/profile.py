@@ -1,11 +1,10 @@
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QLabel, QWidget, QStackedWidget, QTabWidget
+from PySide6.QtWidgets import QLabel, QStackedWidget, QTabWidget, QWidget
 
-from copyclare.widgets.history_card import HistoryCardWidget
-from copyclare.widgets.progress_banner import ProgressBannerWidget
-from copyclare.widgets.progress_chart import ProgressChartWidget
 from copyclare.common import AppSingleton
-from copyclare.model.attempt import Attempt
+from copyclare.data.objects import Attempt
+from copyclare.widgets import (HistoryCardWidget, ProgressBannerWidget,
+                               ProgressChartWidget)
 
 from .page import Page
 

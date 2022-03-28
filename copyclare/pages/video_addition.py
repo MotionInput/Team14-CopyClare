@@ -1,14 +1,15 @@
 import os
 import sys
 from tkinter import Frame
-from PySide6 import QtCore, QtWidgets, QtGui
+
+from PySide6 import QtCore, QtGui, QtWidgets
 
 from copyclare.common import AppSingleton
 
 from .page import Page
 
 
-class Video_Addition(Page):
+class VideoAddition(Page):
     def __init__(self, master):
         super().__init__(master, "video_addition")
 

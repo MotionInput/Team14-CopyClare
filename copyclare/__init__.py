@@ -1,8 +1,8 @@
 from .app import App
-from .video import VideoThread
-from .widgets import *
 from .common import *
 from .pages import *
+from .video import VideoThread
+from .widgets import *
 
 __all__ = [
     "App",

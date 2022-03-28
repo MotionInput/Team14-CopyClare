@@ -1,10 +1,9 @@
-from PySide6.QtWidgets import QFrame
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtWidgets import QFrame
 
-from copyclare import DATA_PATH
-from copyclare.model import Exporter
-from copyclare.common import load_ui, AppSingleton
+from copyclare.common import AppSingleton, load_ui
+from copyclare.data import DATA_DIR, Exporter
 
 
 class HistoryCardWidget(QFrame):
@@ -15,7 +14,7 @@ class HistoryCardWidget(QFrame):
         self.ui.setupUi(self)
 
         self.ui.exercise_img.setPixmap(
-            QPixmap(DATA_PATH + "/assets/default-video-img.png"))
+            QPixmap(DATA_DIR + "/assets/default-video-img.png"))
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
             attempt.exercise_id)
@@ -23,13 +22,13 @@ class HistoryCardWidget(QFrame):
         self.ui.date.setText(attempt.date)
 
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/analysis.png", QSize(), QIcon.Normal,
+        icon.addFile(DATA_DIR + "/assets/analysis.png", QSize(), QIcon.Normal,
                      QIcon.Off)
         self.ui.analysis_button.setIcon(icon)
         self.ui.analysis_button.setIconSize(QSize(64, 64))
 
         icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/export.png", QSize(), QIcon.Normal,
+        icon.addFile(DATA_DIR + "/assets/export.png", QSize(), QIcon.Normal,
                      QIcon.Off)
         self.ui.export_button.setIcon(icon)
         self.ui.export_button.setIconSize(QSize(64, 64))

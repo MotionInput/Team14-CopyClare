@@ -1,10 +1,10 @@
 import os
 
-from PySide6.QtWidgets import QFrame
 from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QFrame
 
-from copyclare import DATA_PATH
-from copyclare.common import load_ui, AppSingleton
+from copyclare.common import AppSingleton, load_ui
+from copyclare.data import DATA_DIR
 
 
 class VideoCardWidget(QFrame):
@@ -17,7 +17,7 @@ class VideoCardWidget(QFrame):
 
         #self.ui.video_image.setStyleSheet("background-image: url(" + DATA_PATH + "/assets/default-video-img.png)")
 
-        img_path = DATA_PATH + f"/test/{exercise.id}.png"
+        img_path = DATA_DIR + f"/test/{exercise.id}.png"
         print(img_path)
         if os.path.exists(img_path):
             self.ui.video_image.setPixmap(QPixmap(img_path))

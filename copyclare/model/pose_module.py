@@ -1,8 +1,9 @@
-from cmath import acos
-import numpy as np
-import mediapipe as mp
-import cv2
 import math
+from cmath import acos
+
+import cv2
+import mediapipe as mp
+import numpy as np
 
 
 class PoseModule:

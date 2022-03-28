@@ -1,11 +1,11 @@
-import cv2
 import time
 
+import cv2
+from PySide6.QtCore import QRect, Qt, QThread, Signal
 from PySide6.QtGui import QImage
-from PySide6.QtCore import Qt, QThread, Signal, QRect
 
+from copyclare.data import DATA_DIR
 from copyclare.model import AccuracyModel
-from copyclare import DATA_PATH
 
 
 class CameraThread(QThread):

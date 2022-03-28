@@ -1,9 +1,10 @@
-import cv2
-from PySide6.QtGui import QImage
-from PySide6.QtCore import Qt, QThread, Signal, QRect
-
-from copyclare import DATA_PATH
 import time
+
+import cv2
+from PySide6.QtCore import QRect, Qt, QThread, Signal
+from PySide6.QtGui import QImage
+
+from copyclare.data import DATA_DIR
 
 
 class VideoThread(QThread):
@@ -43,7 +44,7 @@ class VideoThread(QThread):
 
 class VideoWorker:
     def __init__(self, exercise):
-        self.video_path = DATA_PATH + exercise.video_directory
+        self.video_path = DATA_DIR + exercise.video_directory
 
     def work(self):
         # TODO: Replace with a model call

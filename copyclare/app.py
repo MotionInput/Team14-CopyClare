@@ -1,18 +1,15 @@
 import sys
 
-from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
-
-from copyclare.model.database import DB_DIR
-from copyclare.model import Database, Attempt, Tag
-from copyclare.data import DATA_DIR
-from copyclare.pages.analysis import AnalysisPage
-from copyclare.widgets import VideoCardWidget, TutorialPopupWidget
-
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
 from copyclare.common import load_ui
-from copyclare.pages import HomePage, NotFound, ProfilePage, ExercisePage, Video_Addition
+from copyclare.data import DATA_DIR, DB_DIR, Database
+from copyclare.data.objects import Attempt, Tag
+from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, NotFound,
+                             ProfilePage, VideoAddition)
+from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
 
 
 class App:
@@ -21,7 +18,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
-        "video_addition": Video_Addition,
+        "video_addition": VideoAddition,
     }
 
     def start_ui(self):
@@ -47,14 +44,14 @@ class App:
         self.ui.home_button.setIconSize(QSize(64, 64))
 
         icon1 = QIcon()
-        icon1.addFile(DATA_DIR + "/assets/progress.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
+        icon1.addFile(DATA_DIR + "/assets/progress.png", QSize(), QIcon.Normal,
+                      QIcon.Off)
         self.ui.progress_button.setIcon(icon1)
         self.ui.progress_button.setIconSize(QSize(64, 64))
 
         icon2 = QIcon()
-        icon2.addFile(DATA_DIR + "/assets/settings.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
+        icon2.addFile(DATA_DIR + "/assets/settings.png", QSize(), QIcon.Normal,
+                      QIcon.Off)
         self.ui.settings_button.setIcon(icon2)
         self.ui.settings_button.setIconSize(QSize(64, 64))
 
