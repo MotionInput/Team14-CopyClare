@@ -8,6 +8,7 @@ import os
 import json
 import pyqtgraph as pg
 from pyqtgraph import exporters
+from PySide6.QtGui import QPixmap
 
 from copyclare.data import DATA_DIR
 from copyclare.pyui.analysis import Ui_analysis_page
@@ -35,7 +36,13 @@ class AnalysisPage(UiElement):
 
         self.export_accuracy_graph(self.attempt.session_json, self.attempt.id)
 
-        # TODO things to set for QGraphicsView - heatmap
+        # TODO put exercise image here
+        """img_path = DATA_DIR + f"/test/{exercise.id}.png"
+        if os.path.exists(img_path):
+            self.ui.ex_image.setPixmap(QPixmap(img_path))
+        else:
+            self.ui.ex_image.setPixmap(
+                QPixmap(DATA_DIR + "/assets/default-video-img.png"))"""
 
         self.ui.back_button.clicked.connect(
             lambda x: self.app.load_page("progress"))
@@ -67,7 +74,6 @@ class AnalysisPage(UiElement):
         path = DATA_DIR + '/accuracy-graphs/' + str(attempt_id) + '.png'
         exists = os.path.exists(path)
         if not exists:
-            print(attempt_id)
             accuracy_graph = self.draw_accuracy_graph(session_json)
             exporter = exporters.ImageExporter(accuracy_graph.plotItem)
             exporter.parameters()['width'] = 500

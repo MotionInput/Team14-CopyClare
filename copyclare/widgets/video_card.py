@@ -1,9 +1,8 @@
 import os
 
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QFrame
 
-from copyclare.common import AppSingleton, load_ui
+from copyclare.common import AppSingleton
 from copyclare.data import DATA_DIR
 from copyclare.pyui.video_card import Ui_Form
 from copyclare import UiElement
