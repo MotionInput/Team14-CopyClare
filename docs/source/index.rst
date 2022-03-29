@@ -57,15 +57,16 @@ The development team
 
    :badge:`Software Architect,badge-info`
    :badge:`client-liaison,badge-info`
-   :badge:`Back-end,badge-info`
+   :badge:`Full-Stack,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
-   *"I give all of my devices pokemon names."
-   (I use emacs, btw)*
+   *"I give all of my devices pokemon names."*
 
    ++++++++++++++++++++++++++
-   adi.bozzhanov.20@ucl.ac.uk
+   :octicon:`mail` adi.bozzhanov.20@ucl.ac.uk
+
+   :octicon:`mark-github` https://github.com/adibozzhanov
 
    ---
    :img-top: imgs/semi-professional-pic-yan.jpeg
@@ -74,18 +75,19 @@ The development team
 
    :badge:`UX/UI,badge-info`
    :badge:`Front-end,badge-info`
+   :badge:`Blog Editor,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
    *"I now know how to exit vim. I restart my laptop once a month."*
 
    ++++++++++++++++++++++++++
-   yan.lai.20@ucl.ac.uk
+   :octicon:`mail` yan.lai.20@ucl.ac.uk
 
    ---
    :img-top: imgs/semi-professionalpic-Sree.jpg
 
-   **Sree**
+   **Sree Sanakkayala**
 
    :badge:`Back-end,badge-info`
 
@@ -94,21 +96,22 @@ The development team
    <Sree insert your quote here>
 
    ++++++++++++++++++++++++++
-   <sree insert your links here>
+   :octicon:`mail` sree.sanakkayala.20@ucl.ac.uk
 
    ---
    :img-top: imgs/tianhao-chen-best-pic.jpg
 
    **Tianhao Chen**
 
-   :badge:`Back-end,badge-info`
+   :badge:`Full-Stack,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
-   <cth insert your quote here>
+   *"I know how to use* :kbd:`backspace` *in a .rst file in
+   Visual Studio Code."*
 
    ++++++++++++++++++++++++++
-   <cth insert your links here>
+   :octicon:`mail` tianhao.chen.20@ucl.ac.uk
 
 
 
