@@ -36,10 +36,10 @@ class Exporter():
         })
         quantitative_data.append({
             "reps": attempt.num_of_repetitons,
-            "duration": attempt.duration,
+            "duration": round(attempt.duration, 2),
         })
         qualitative_data.append({
-            "accuracy": attempt.accuracy,
+            "accuracy": round(attempt.accuracy, 2),
             # "accuracy_graph": attempt.accuracy_graph,
         })
 

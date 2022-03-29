@@ -32,9 +32,9 @@ class ThreadManager:
                 None,
                 dt_string,
                 self.worker.num_of_repetitions,
-                time.time() - self.worker.beginning,
+                round(time.time() - self.worker.beginning, 2),
                 json.dumps(self.worker.accuracy_vals, indent=4),
-                avg,
+                round(avg, 2),
                 self.worker.exercise.id,
             )
 
