@@ -143,6 +143,7 @@ class App:
             banner.ui.horizontalLayout.insertWidget(0,
                                                     banner.cards[str(ex.id)])
 
+    # TODO - use database delete()
     def remove_from_my_exercises(self, ex):
         pass
 

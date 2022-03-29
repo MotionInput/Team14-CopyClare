@@ -13,6 +13,7 @@ class VideoCardWidget(UiElement):
 
         super().__init__(master, "video_card", Ui_Form)
         self.exercise = exercise
+        self.app = AppSingleton.get_app()
 
         #self.ui.video_image.setStyleSheet("background-image: url(" + DATA_PATH + "/assets/default-video-img.png)")
 
@@ -26,20 +27,19 @@ class VideoCardWidget(UiElement):
         self.ui.description.setText(exercise.description)
 
         # TODO - if already in my_exercises, then need to be on 'remove' function state
+        #      - button text = "remove"; button function = remove_click()
+        # else - button text = "add"; button function = add_click()
         self.ui.add_btn.clicked.connect(self.add_click)
 
         self.mouseReleaseEvent = self.clicked
 
     def add_click(self, event):
-        app = AppSingleton.get_app()
-        app.move_to_my_exercises(self.exercise)
+        self.app.move_to_my_exercises(self.exercise)
         self.ui.add_btn.setText("remove")
         self.ui.add_btn.clicked.connect(self.remove_click)
 
-    # TODO - if clicked, moves back to library
     def remove_click(self):
-        app = AppSingleton.get_app()
-        app.remove_from_my_exercises(self.exercise)
+        self.app.remove_from_my_exercises(self.exercise)
         self.ui.add_btn.setText("add")
         self.ui.add_btn.clicked.connect(self.add_click)
 
