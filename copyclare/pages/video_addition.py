@@ -1,20 +1,21 @@
 import os
 import sys
 
-from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtMultimedia import QMediaPlayer
 from PySide6.QtMultimediaWidgets import QVideoWidget
 
 from copyclare.common import AppSingleton
-from copyclare.model.accuracy_v2 import AccuracyModel
 from copyclare.data.objects import Exercise
+from copyclare.model.accuracy_v2 import AccuracyModel
+from copyclare.pyui.video_addition import Ui_video_addition
 
-from .page import Page
+from copyclare import UiElement
 
 
-class VideoAddition(Page):
+class VideoAddition(UiElement):
     def __init__(self, master):
-        super().__init__(master, "video_addition")
+        super().__init__(master, "video_addition", Ui_video_addition)
 
         self.app = AppSingleton.get_app()
 

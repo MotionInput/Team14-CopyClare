@@ -4,13 +4,14 @@ from PySide6.QtWidgets import QFrame
 
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR
+from copyclare.pyui.tutorial_popup import Ui_Tutorial
+from copyclare import UiElement
 
 
-class TutorialPopupWidget(QFrame):
+class TutorialPopupWidget(UiElement):
     def __init__(self):
-        super().__init__()
-        self.ui = load_ui("tutorial_popup")
-        self.ui.setupUi(self)
+        super().__init__(None, "tutorial_popup", Ui_Tutorial)
+
 
         self.tutorial_page = 0
 

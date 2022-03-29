@@ -7,14 +7,14 @@ AnalysisPage`
 import json
 import pyqtgraph as pg
 
+from copyclare.pyui.analysis import Ui_analysis_page
 from copyclare.common import AppSingleton
+from copyclare import UiElement
 
-from .page import Page
 
-
-class AnalysisPage(Page):
+class AnalysisPage(UiElement):
     def __init__(self, master, attempt):
-        super().__init__(master, "analysis")
+        super().__init__(master, "analysis", Ui_analysis_page)
         self.attempt = attempt
 
         self.app = AppSingleton.get_app()

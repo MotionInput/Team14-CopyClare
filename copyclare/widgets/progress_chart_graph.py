@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QFrame
 
 from copyclare.common import load_ui
+from copyclare.pyui.progress_chart_graph import Ui_Frame
+from copyclare import UiElement
 
 
-class ProgressChartGraphWidget(QFrame):
+class ProgressChartGraphWidget(UiElement):
     def __init__(self, master):
-        super().__init__(master)
-        self.ui = load_ui("progress_chart_graph")
-        self.ui.setupUi(self)
+        super().__init__(master, "progress_chart_graph", Ui_Frame)

@@ -1,20 +1,17 @@
 import pyqtgraph as pg
-
-from PySide6.QtWidgets import QFrame, QLabel, QTabWidget
-
 from PySide6.QtCharts import QChart, QChartView, QLineSeries
 from PySide6.QtCore import QMargins
 from PySide6.QtWidgets import QFrame, QLabel, QTabWidget
 
 from copyclare.common import AppSingleton, load_ui
 from copyclare.widgets.progress_chart_graph import ProgressChartGraphWidget
+from copyclare.pyui.progress_chart import Ui_Frame
+from copyclare import UiElement
 
 
-class ProgressChartWidget(QFrame):
+class ProgressChartWidget(UiElement):
     def __init__(self, master, all_ex_attempt):
-        super().__init__(master)
-        self.ui = load_ui("progress_chart")
-        self.ui.setupUi(self)
+        super().__init__(master, "progress_chart", Ui_Frame)
 
         self.app = AppSingleton.get_app()
         self.tabWidget = QTabWidget()
@@ -44,14 +41,23 @@ class ProgressChartWidget(QFrame):
                     y_axis.append(ex_type[i].accuracy)
 
                 self.graphWidget.setBackground('w')
-                self.graphWidget.setTitle("Average Accuracy (for each attempt)", color="black", size="15pt")
+                self.graphWidget.setTitle(
+                    "Average Accuracy (for each attempt)",
+                    color="black",
+                    size="15pt")
                 self.graphWidget.getPlotItem().hideAxis('bottom')
                 self.graphWidget.showGrid(x=True, y=True)
                 self.graphWidget.setXRange(1, len(ex_type), padding=0)
                 self.graphWidget.setYRange(0, 100, padding=0)
 
                 pen = pg.mkPen(color=(0, 20, 40), width=3)
-                self.graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=8, symbolBrush=('#003366'))
+                self.graphWidget.plot(x_axis,
+                                      y_axis,
+                                      name="",
+                                      pen=pen,
+                                      symbol='o',
+                                      symbolSize=8,
+                                      symbolBrush=('#003366'))
 
                 temp_widget.ui.verticalLayout.addWidget(self.graphWidget)
 

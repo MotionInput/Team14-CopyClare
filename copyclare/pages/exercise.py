@@ -8,21 +8,21 @@ from PySide6.QtCore import Signal, Slot
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtMultimedia import QMediaPlayer
 
+from copyclare.pyui.exercise import Ui_exercise_frame
 from copyclare.common import AppSingleton
 from copyclare.video import CameraThread, ThreadManager, VideoThread
-
-from .page import Page
+from copyclare import UiElement
 
 # when the page is loaded start 2 threads
 
 # user camera thread, that will manage user camera
 
 
-class ExercisePage(Page):
+class ExercisePage(UiElement):
     done = Signal()
 
     def __init__(self, master, exercise):
-        super().__init__(master, "exercise")
+        super().__init__(master, "exercise", Ui_exercise_frame)
 
         self.exercise = exercise
         self.tm = ThreadManager()
