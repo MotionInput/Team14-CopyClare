@@ -2,8 +2,7 @@ import os
 import sys
 
 from PySide6 import QtCore, QtGui, QtWidgets
-from PySide6.QtMultimedia import QMediaPlayer
-from PySide6.QtMultimediaWidgets import QVideoWidget
+
 
 from copyclare.common import AppSingleton
 from copyclare.data.objects import Exercise
@@ -30,7 +29,6 @@ class VideoAddition(UiElement):
         self.ui.confirm_button.clicked.connect(self.confirm)
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
-        self.player = QMediaPlayer()
         self.player.setVideoOutput(self.ui.video)
 
     def open_file(self):
