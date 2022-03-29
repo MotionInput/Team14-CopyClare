@@ -27,32 +27,34 @@ class AnalysisPage(UiElement):
         self.ui.repetitions.setText(str(self.attempt.num_of_repetitons))
         self.ui.accuracy.setText(str(self.attempt.accuracy))
 
-        self._draw_accuracy_graph()
+        graphWidget = self.draw_accuracy_graph(self.attempt.session_json)
+        self.ui.verticalLayout_graph.addWidget(graphWidget)
 
         # TODO things to set for QGraphicsView - heatmap
 
         self.ui.back_button.clicked.connect(
             lambda x: self.app.load_page("progress"))
 
-    def _draw_accuracy_graph(self):
-        self.graphWidget = pg.PlotWidget()
+    def draw_accuracy_graph(self, session_json):
+        graphWidget = pg.PlotWidget()
 
         x_axis = []
         y_axis = []
 
-        self.accuracy = json.loads(self.attempt.session_json)
+        accuracy = json.loads(session_json)
 
-        for pair in self.accuracy:
+        for pair in accuracy:
             x_axis.append(pair[0]) # timestamp
             y_axis.append(pair[1]) # accuracy
 
-        self.graphWidget.setBackground('w')
-        self.graphWidget.setTitle("Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
-        self.graphWidget.showGrid(x=True, y=True)
-        self.graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
-        self.graphWidget.setYRange(0, 100, padding=0)
+        graphWidget.setBackground('w')
+        graphWidget.setTitle("Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
+        graphWidget.showGrid(x=True, y=True)
+        graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
+        graphWidget.setYRange(0, 100, padding=0)
 
         pen = pg.mkPen(color=(0, 20, 40), width=3)
-        self.graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
+        graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
 
-        self.ui.verticalLayout_graph.addWidget(self.graphWidget)
+        return graphWidget
+        
