@@ -46,52 +46,72 @@ The development team
 --------------------
 
 .. panels::
+   :header: text-center
+   :img-top-cls: p-0 m-0
+   :body: text-center
+
+   ---
+   :img-top: imgs/cool-pic-adi.jpg
 
    **Adi Bozzhanov**
 
+   :badge:`Software Architect,badge-info`
+   :badge:`client-liaison,badge-info`
+   :badge:`Back-end,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   *"I give all of my devices pokemon names."
+   (I use emacs, btw)*
+
+   ++++++++++++++++++++++++++
    adi.bozzhanov.20@ucl.ac.uk
 
-   .. image:: imgs/cool-pic-adi.jpg
-
-   **Role:** :badge:`Software Architect,badge-primary`
-
-	      I use emacs.
-
    ---
+   :img-top: imgs/semi-professional-pic-yan.jpeg
 
    **Yan Lai**
 
+   :badge:`UX/UI,badge-info`
+   :badge:`Front-end,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   *"I now know how to exit vim. I restart my laptop once a month."*
+
+   ++++++++++++++++++++++++++
    yan.lai.20@ucl.ac.uk
 
-   .. image:: imgs/semi-professional-pic-yan.jpeg
+   ---
+   :img-top: imgs/semi-professionalpic-Sree.jpg
 
-   **Role:** :badge:`<type your role>,badge-primary`
+   **Sree**
 
-	      I now know how to exit vim.
+   :badge:`Back-end,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   <Sree insert your quote here>
+
+   ++++++++++++++++++++++++++
+   <sree insert your links here>
 
    ---
-
-   **Sree Sanakkayala**
-
-   sree.sanakkayala.20@ucl.ac.uk
-
-   .. image:: imgs/semi-professionalpic-Sree.jpg
-
-   **Role:** :badge:`<type your role>,badge-primary`
-
-	      As a tech-for-good enthusiastic, I love undertaking projects like this for their real world impact.
-
-   ---
+   :img-top: imgs/tianhao-chen-best-pic.jpg
 
    **Tianhao Chen**
 
-   tianhao.chen.20@ucl.ac.uk
+   :badge:`Back-end,badge-info`
 
-   .. image:: imgs/tianhao-chen-best-pic.jpg
+   ^^^^^^^^^^^^^^^^^
 
-   **Role:** :badge:`<type your role>,badge-primary`
+   <cth insert your quote here>
 
-	      I know how to use :kbd:`Backspace` in a .rst file in Visual Studio Code
+   ++++++++++++++++++++++++++
+   <cth insert your links here>
+
+
+
 
 
 
