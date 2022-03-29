@@ -1,13 +1,14 @@
 from copyclare.common import AppSingleton
 from copyclare.data import Database
 from copyclare.widgets import BannerWidget
+from copyclare.pyui.home import Ui_Home
 
-from .page import Page
+from copyclare import UiElement
 
 
-class HomePage(Page):
+class HomePage(UiElement):
     def __init__(self, master):
-        super().__init__(master, "home")
+        super().__init__(master, "home", Ui_Home)
 
         self.app = AppSingleton.get_app()
         self.banners = {}
@@ -17,6 +18,7 @@ class HomePage(Page):
                                       all_exercises)
         self.ui.vertical_layout.insertWidget(0, library_banner)
 
+        # TODO - if tag.tag_name == "My Exercises", set to True (remove state)
         tags = self.app.db.get_all_tags()
         for tag in tags:
             exercises = self.app.db.get_exercises_by_tag(tag)

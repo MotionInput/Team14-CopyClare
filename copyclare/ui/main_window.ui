@@ -132,8 +132,8 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../../data/home.png</normaloff>../../data/home.png</iconset>
+             <iconset resource="../../res.qrc">
+              <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -155,8 +155,8 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../../data/progress.png</normaloff>../../data/progress.png</iconset>
+             <iconset resource="../../res.qrc">
+              <normaloff>:/icons/progress.png</normaloff>:/icons/progress.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -175,8 +175,8 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../../data/settings.png</normaloff>../../data/settings.png</iconset>
+             <iconset resource="../../res.qrc">
+              <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -193,6 +193,16 @@
            <widget class="QPushButton" name="addvideo_button">
             <property name="text">
              <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../res.qrc">
+              <normaloff>:/icons/icon-addvideo.png</normaloff>:/icons/icon-addvideo.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>64</width>
+              <height>64</height>
+             </size>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -278,6 +288,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

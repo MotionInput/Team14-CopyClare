@@ -1,22 +1,22 @@
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QLabel, QWidget, QStackedWidget, QTabWidget
-
-from copyclare.widgets.history_card import HistoryCardWidget
-from copyclare.widgets.past_attempts_banner import PastAttemptsBannerWidget
-from copyclare.widgets.progress_banner import ProgressBannerWidget
-from copyclare.widgets.progress_chart import ProgressChartWidget
+from PySide6.QtWidgets import QLabel, QStackedWidget, QTabWidget, QWidget
 
 from copyclare.common import AppSingleton
 from copyclare.data.objects import Attempt
 from copyclare.widgets import (HistoryCardWidget, ProgressBannerWidget,
                                ProgressChartWidget)
+from copyclare.widgets.history_card import HistoryCardWidget
+from copyclare.widgets.past_attempts_banner import PastAttemptsBannerWidget
+from copyclare.widgets.progress_banner import ProgressBannerWidget
+from copyclare.widgets.progress_chart import ProgressChartWidget
+from copyclare.pyui.profile import Ui_profile_page
 
-from .page import Page
+from copyclare import UiElement
 
 
-class ProfilePage(Page):
+class ProfilePage(UiElement):
     def __init__(self, master):
-        super().__init__(master, "profile")
+        super().__init__(master, "profile", Ui_profile_page)
 
         self.app = AppSingleton.get_app()
 
@@ -27,7 +27,6 @@ class ProfilePage(Page):
         self.ui.verticalLayout_2.insertWidget(0, self.progress_chart_banner)
 
         all_ex_attempt = self.app.db.get_attempt_in_exercise()
-        print(all_ex_attempt)
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
         self.progress_chart_banner.ui.verticalLayout_2.insertWidget(
             0, self.progress_chart)

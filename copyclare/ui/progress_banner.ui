@@ -49,7 +49,7 @@ color: #ffffff;</string>
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>400</height>
+       <height>425</height>
       </size>
      </property>
      <property name="frameShape">

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>606</width>
-    <height>300</height>
+    <width>664</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -88,6 +88,9 @@ color: #000000;</string>
         <property name="text">
          <string>image here</string>
         </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -145,6 +148,8 @@ color: #000000;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

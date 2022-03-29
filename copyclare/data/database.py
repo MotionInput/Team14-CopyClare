@@ -154,7 +154,7 @@ class Database:
         try:
             self._execute_with_params("insert_tag.sql", params)
         except sqlite3.IntegrityError as err:  # tag already exists
-            print(f"Tag '{tag.tag_name}' already exists")
+            pass
         else:
             self.conn.commit()
 
@@ -167,7 +167,7 @@ class Database:
             self._execute_with_params("insert_tags_to_exercise.sql",
                                       (t_name, e_id))
         except sqlite3.IntegrityError as err:
-            print(f"Excercise already has tag '{t_name}'")
+            pass
         self.conn.commit()
 
     def get_exercise_tags(self, exercise):

@@ -1,37 +1,26 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap
-from PySide6.QtWidgets import QFrame
+from PySide6.QtWidgets import QFileDialog
 
-from copyclare.common import AppSingleton, load_ui
+from copyclare.common import AppSingleton
 from copyclare.data import DATA_DIR, Exporter
+from copyclare.pyui.history_card import Ui_Form
+from copyclare import UiElement
 
+import res_rc
 
-class HistoryCardWidget(QFrame):
+class HistoryCardWidget(UiElement):
     def __init__(self, master, attempt, img_path):
-        super().__init__(master)
+        super().__init__(master, "history_card", Ui_Form)
         self.app = AppSingleton.get_app()
-        self.ui = load_ui("history_card")
-        self.ui.setupUi(self)
 
         self.ui.exercise_img.setPixmap(
-            QPixmap(DATA_DIR + "/assets/default-video-img.png"))
+            QPixmap(":icons/default-video-img.png"))
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
             attempt.exercise_id)
         self.ui.title.setText(name)
         self.ui.date.setText(attempt.date)
-
-        icon = QIcon()
-        icon.addFile(DATA_DIR + "/assets/analysis.png", QSize(), QIcon.Normal,
-                     QIcon.Off)
-        self.ui.analysis_button.setIcon(icon)
-        self.ui.analysis_button.setIconSize(QSize(64, 64))
-
-        icon = QIcon()
-        icon.addFile(DATA_DIR + "/assets/export.png", QSize(), QIcon.Normal,
-                     QIcon.Off)
-        self.ui.export_button.setIcon(icon)
-        self.ui.export_button.setIconSize(QSize(64, 64))
 
         self.ui.analysis_button.clicked.connect(
             lambda x: self._create_analysis_page(attempt))
@@ -42,8 +31,9 @@ class HistoryCardWidget(QFrame):
     def _create_analysis_page(self, attempt):
         self.app.load_page("analysis", attempt)
 
-    # TODO link export button to function
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
-        print(attempt_id)
-        exporter.export(DATA_DIR + "/results/" + "Results.docx", attempt_id)
+        file_path, selectedFilter = QFileDialog.getSaveFileName(
+            filter="*.docx")
+        exporter.export(file_path.strip(
+        )+".docx" if "." not in file_path else file_path.strip(), attempt_id)
