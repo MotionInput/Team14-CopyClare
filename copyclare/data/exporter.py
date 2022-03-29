@@ -40,6 +40,7 @@ class Exporter():
         })
         qualitative_data.append({
             "accuracy": attempt.accuracy,
+            "accuracy_graph": attempt.accuracy_graph,
         })
 
 
@@ -97,3 +98,5 @@ class DocumentWriter():
         hdr_cells[0].text = 'Accuracy'
         row_cells = table.add_row().cells
         row_cells[0].text = str(qualitative_data['accuracy'])
+        # self.document.add_picture(
+        #     exercise["accuracy_graph"])
