@@ -36,7 +36,6 @@ class VideoAddition(UiElement):
 
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
-        self.player.setVideoOutput(self.ui.video)
 
         self.exercise = Exercise(None,None,None,None,None,None)
 
@@ -44,16 +43,13 @@ class VideoAddition(UiElement):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
             self, "Select video file",
             os.getcwd() + "/data/videos", "video files(*.mp4)")
-        self.fileName = fileName
+        self.fileName = os.path.relpath(fileName,DATA_DIR)
         # print(self.fileName)
         self.ui.input_area.setVisible(True)
         self.ui.video_trimmer.setVisible(True)
 
         self.ui.browse_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
-
-        #self.player.setMedia(QMediaContent(QFileDialog.getOpenFileUrl()[0]))
-        self.player.play()
 
     def upload(self):
         joints = [
@@ -82,9 +78,9 @@ class VideoAddition(UiElement):
 
     def play(self):
         self.frame_counter = 0
-        vidcap = cv2.VideoCapture(self.exercise.video_directory)
+        vidcap = cv2.VideoCapture(DATA_DIR+self.fileName)
         fps = vidcap.get(cv2.CAP_PROP_FPS)
-        videoWriter = cv2.VideoWriter(self.exercise.video_directory,cv2.VideoWriter_fourcc('M','P',"4",'V'),fps,(1920,1080))
+        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc('M','P',"4",'V'),fps,(1920,1080))
         self.video_state = 1
         while vidcap.isOpened() and self.video_state == 1:
              
