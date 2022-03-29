@@ -14,6 +14,7 @@ from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
 from copyclare.config import DEBUG
 
+
 class App:
 
     pages = {
@@ -43,32 +44,6 @@ class App:
 
         self.ui.exercise_frame.hide()
         self.current_exercise_page = None
-
-        # edit for the ui button
-        icon = QIcon()
-        icon.addFile(DATA_DIR + "/assets/home.png", QSize(), QIcon.Normal,
-                     QIcon.Off)
-
-        self.ui.home_button.setIcon(icon)
-        self.ui.home_button.setIconSize(QSize(64, 64))
-
-        icon1 = QIcon()
-        icon1.addFile(DATA_DIR + "/assets/progress.png", QSize(), QIcon.Normal,
-                      QIcon.Off)
-        self.ui.progress_button.setIcon(icon1)
-        self.ui.progress_button.setIconSize(QSize(64, 64))
-
-        icon2 = QIcon()
-        icon2.addFile(DATA_DIR + "/assets/settings.png", QSize(), QIcon.Normal,
-                      QIcon.Off)
-        self.ui.settings_button.setIcon(icon2)
-        self.ui.settings_button.setIconSize(QSize(64, 64))
-
-        icon3 = QIcon()
-        icon3.addFile(DATA_DIR + "/assets/icon-addvideo.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.addvideo_button.setIcon(icon3)
-        self.ui.addvideo_button.setIconSize(QSize(64, 64))
 
         self.window.show()
 

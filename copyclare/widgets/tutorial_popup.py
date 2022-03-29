@@ -6,6 +6,7 @@ from copyclare.common import load_ui
 from copyclare.data import DATA_DIR
 from copyclare.pyui.tutorial_popup import Ui_Tutorial
 from copyclare import UiElement
+import res_rc
 
 
 class TutorialPopupWidget(UiElement):
@@ -17,13 +18,13 @@ class TutorialPopupWidget(UiElement):
 
         self.tutorial_texts = [
             ("Home Page:", "Click on a video card to get started.",
-             "/assets/tutorial-home.png"),
+             ":icons/tutorial-home.png"),
             ("Exercise Page:",
              "Press 'End exercise' button to stop exercise & store attempt.",
-             "/assets/tutorial-ex.jpg"),
+             ":icons/tutorial-ex.jpg"),
             ("Profile Page:",
              "Check your progess and all past attempts here. Export function available.",
-             "/assets/tutorial-profile.jpg")
+             ":icons/tutorial-profile.jpg")
         ]
 
         self.ui.prev_button.clicked.connect(lambda x: self.load_prev())
@@ -44,6 +45,6 @@ class TutorialPopupWidget(UiElement):
     def _load_texts(self):
         self.ui.name.setText(self.tutorial_texts[self.tutorial_page][0])
         self.ui.desc.setText(self.tutorial_texts[self.tutorial_page][1])
-        pixmap = QPixmap(DATA_DIR + self.tutorial_texts[self.tutorial_page][2])
+        pixmap = QPixmap(self.tutorial_texts[self.tutorial_page][2])
         pixmap = pixmap.scaled(700, 500, Qt.KeepAspectRatio)
         self.ui.image.setPixmap(pixmap)
