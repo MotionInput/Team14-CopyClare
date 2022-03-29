@@ -72,6 +72,6 @@ Additional Resources/References:
 
    * https://www.youtube.com/watch?v=MV_sZNAiVts&t=145s (angle calculations)
    * https://bess.ac.uk/exercises-for-shoulder-pain/
-   * R. Tucker, “The effect of a five-week hippotherapy programme on gait in a child with Angelman's syndrome. A case study using the Wee Glasgow Gait Index (Weeggi),” International Journal of Therapy and Rehabilitation, vol. 26, no. 6, pp. 4–4, 2019. [Accessed: Feb. 7, 2022]
-   * N. Tennant, L. Wiggins, H. Read, B. Meadows, "The Wee Glasgow Gait Index - A Screening Tool.", APCP Journal, 3(2): 39-48, 2012. [Accessed: Feb. 6, 2022]
-   * H. Read, M. Hazlewood, S. Hillman, R. Prescott, J. Robb , "Edinburgh visual gait score for use in cerebral palsy.", Journal of pediatric orthopedics, 23(3), 296–301. [Accessed: Feb. 7, 2022]
+   * `R. Tucker, “The effect of a five-week hippotherapy programme on gait in a child with Angelman's syndrome. A case study using the Wee Glasgow Gait Index (Weeggi),” International Journal of Therapy and Rehabilitation, vol. 26, no. 6, pp. 4–4, 2019. [Accessed: Feb. 7, 2022]`
+   * `N. Tennant, L. Wiggins, H. Read, B. Meadows, "The Wee Glasgow Gait Index - A Screening Tool.", APCP Journal, 3(2): 39-48, 2012. [Accessed: Feb. 6, 2022]`
+   * `H. Read, M. Hazlewood, S. Hillman, R. Prescott, J. Robb , "Edinburgh visual gait score for use in cerebral palsy.", Journal of pediatric orthopedics, 23(3), 296–301. [Accessed: Feb. 7, 2022]`
