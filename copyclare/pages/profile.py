@@ -1,8 +1,4 @@
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QLabel, QStackedWidget, QTabWidget, QWidget
-
 from copyclare.common import AppSingleton
-from copyclare.data.objects import Attempt
 from copyclare.widgets import (HistoryCardWidget, ProgressBannerWidget,
                                ProgressChartWidget)
 from copyclare.widgets.history_card import HistoryCardWidget
@@ -10,6 +6,7 @@ from copyclare.widgets.past_attempts_banner import PastAttemptsBannerWidget
 from copyclare.widgets.progress_banner import ProgressBannerWidget
 from copyclare.widgets.progress_chart import ProgressChartWidget
 from copyclare.pyui.profile import Ui_profile_page
+from copyclare.pages.analysis import AnalysisPage
 
 from copyclare import UiElement
 
@@ -38,11 +35,15 @@ class ProfilePage(UiElement):
 
         _all_attempts = self.app.db.get_all_attempts()
 
-        for _attempt in _all_attempts:
-            _history_card = HistoryCardWidget(
-                self.past_attempts_banner.ui.scrollArea, _attempt, None)
-            self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
-                0, _history_card)
+        if len(_all_attempts) > 0:
+            analysis = AnalysisPage(self, _all_attempts[0])
+
+            for _attempt in _all_attempts:
+                _history_card = HistoryCardWidget(
+                    self.past_attempts_banner.ui.scrollArea, _attempt, None)
+                self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
+                    0, _history_card)
+                analysis.export_accuracy_graph(_attempt.session_json, _attempt.id)
 
     def add_attempt(self, attempt):
         _history_card = HistoryCardWidget(
