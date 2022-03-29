@@ -26,6 +26,8 @@ class VideoCardWidget(QFrame):
                 QPixmap(DATA_DIR + "/assets/default-video-img.png"))
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
+
+        # TODO - if already in my_exercises, then need to be on 'remove' function state
         self.ui.add_btn.clicked.connect(self.add_click)
 
         self.mouseReleaseEvent = self.clicked
@@ -33,11 +35,15 @@ class VideoCardWidget(QFrame):
     def add_click(self, event):
         app = AppSingleton.get_app()
         app.move_to_my_exercises(self.exercise)
+        self.ui.add_btn.setText("remove")
+        self.ui.add_btn.clicked.connect(self.remove_click)
 
-        # TODO - rename to "remove"; if clicked, moves back to library
-
+    # TODO - if clicked, moves back to library
     def remove_click(self):
-        pass
+        app = AppSingleton.get_app()
+        app.remove_from_my_exercises(self.exercise)
+        self.ui.add_btn.setText("add")
+        self.ui.add_btn.clicked.connect(self.add_click)
 
     def clicked(self, event):
         # spawns an exercise page
