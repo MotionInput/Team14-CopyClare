@@ -40,7 +40,7 @@ class Exporter():
         })
         qualitative_data.append({
             "accuracy": attempt.accuracy,
-            "accuracy_graph": attempt.accuracy_graph,
+            # "accuracy_graph": attempt.accuracy_graph,
         })
 
 
