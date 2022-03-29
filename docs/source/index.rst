@@ -51,9 +51,9 @@ I use emacs
 I now know how to exit vim
 
 .. admonition:: Sree Sanakkayala (sree.sanakkayala.20@ucl.ac.uk)
-   
+
    .. image:: imgs/semi-professionalpic-Sree.jpg
-   As a tech-for-good enthusiastic, I love undertaking projects like this for a real impact in the world.
+   As a tech-for-good enthusiastic, I love undertaking projects like this for their real world impact.
 
 * Tianhao Chen (tianhao.chen.20@ucl.ac.uk)
 I know how to use :kbd:`Backspace` in a .rst file in Visual Studio Code
