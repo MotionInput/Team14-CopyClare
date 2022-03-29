@@ -1,0 +1,15 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="icons">
+        <file alias="analysis.png">copyclare/assets/analysis.png</file>
+	<file alias="default-video-img.png">copyclare/assets/default-video-img.png</file>
+	<file alias="export.png">copyclare/assets/export.png</file>
+	<file alias="home.png">copyclare/assets/home.png</file>
+	<file alias="icon-addvideo.png">copyclare/assets/icon-addvideo.png</file>
+	<file alias="progress.png">copyclare/assets/progress.png</file>
+	<file alias="settings.png">copyclare/assets/settings.png</file>
+	<file alias="tutorial-ex.jpg">copyclare/assets/tutorial-ex.jpg</file>
+	<file alias="tutorial-home.png">copyclare/assets/tutorial-home.png</file>
+	<file alias="tutorial-profile.jpg">copyclare/assets/tutorial-profile.jpg</file>
+    </qresource>
+</RCC>
