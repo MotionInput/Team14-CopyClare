@@ -4,9 +4,12 @@ AnalysisPage`
 
 """
 
+import os
 import json
 import pyqtgraph as pg
+from pyqtgraph import exporters
 
+from copyclare.data import DATA_DIR
 from copyclare.pyui.analysis import Ui_analysis_page
 from copyclare.common import AppSingleton
 from copyclare import UiElement
@@ -29,6 +32,8 @@ class AnalysisPage(UiElement):
 
         graphWidget = self.draw_accuracy_graph(self.attempt.session_json)
         self.ui.verticalLayout_graph.addWidget(graphWidget)
+
+        self.export_accuracy_graph(self.attempt.session_json, self.attempt.id)
 
         # TODO things to set for QGraphicsView - heatmap
 
@@ -57,4 +62,14 @@ class AnalysisPage(UiElement):
         graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
 
         return graphWidget
-        
+
+    def export_accuracy_graph(self, session_json, attempt_id):
+        path = DATA_DIR + '/accuracy-graphs/' + str(attempt_id) + '.png'
+        exists = os.path.exists(path)
+        if not exists:
+            print(attempt_id)
+            accuracy_graph = self.draw_accuracy_graph(session_json)
+            exporter = exporters.ImageExporter(accuracy_graph.plotItem)
+            exporter.parameters()['width'] = 500
+            exporter.parameters()['height'] = 400
+            exporter.export(path)
