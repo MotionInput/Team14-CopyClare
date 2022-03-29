@@ -1,8 +1,8 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap
-from PySide6.QtWidgets import QFrame
+from PySide6.QtWidgets import QFileDialog
 
-from copyclare.common import AppSingleton, load_ui
+from copyclare.common import AppSingleton
 from copyclare.data import DATA_DIR, Exporter
 from copyclare.pyui.history_card import Ui_Form
 from copyclare import UiElement
@@ -42,7 +42,9 @@ class HistoryCardWidget(UiElement):
     def _create_analysis_page(self, attempt):
         self.app.load_page("analysis", attempt)
 
-    # TODO link export button to function
     def _export(self, attempt_id):
         exporter = Exporter(self.app.db)
-        exporter.export(DATA_DIR + "/results/" + "Results.docx", attempt_id)
+        file_path, selectedFilter = QFileDialog.getSaveFileName(
+            filter="*.docx")
+        exporter.export(file_path.strip(
+        )+".docx" if "." not in file_path else file_path.strip(), attempt_id)

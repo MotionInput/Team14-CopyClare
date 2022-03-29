@@ -15,7 +15,8 @@ class Exporter():
             export_title = "Results for all attempts"
             attempts = self.database.get_all_attempts()
             for attempt in attempts:
-                self.get_data(attempt, quantitative_data, qualitative_data)
+                self.get_data(
+                    attempt, exercise_info, quantitative_data, qualitative_data)
         else:
             export_title = "Results for attempt %s" % attempt_id
             attempt = self.database.get_one_attempt_by_ID(attempt_id)
@@ -52,19 +53,19 @@ class DocumentWriter():
     def create_document(self, saveAs, export_title, exercise_info,
                         quantitative_data, qualitative_data):
         self.document.add_heading(export_title, 0)
-        self.add_name_and_description(exercise_info)
-        self.add_quantitative_section(quantitative_data)
-        self.add_qualitative_section(qualitative_data)
+        for i in range(len(exercise_info)):
+            self.add_name_and_description(exercise_info[i])
+            self.add_quantitative_section(quantitative_data[i])
+            self.add_qualitative_section(qualitative_data[i])
         self.document.save(saveAs)
 
     def add_name_and_description(self, exercise_info):
-        for exercise in exercise_info:
-            self.document.add_heading('Exercise Name: %s' % exercise["name"],
-                                      level=2)
-            # self.document.add_picture(
-            #     exercise["image"])
-            self.document.add_paragraph('Descripiton:  %s' %
-                                        exercise["description"])
+        self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
+                                  level=2)
+        # self.document.add_picture(
+        #     exercise["image"])
+        self.document.add_paragraph('Description:  %s' %
+                                    exercise_info["description"])
 
 # which different exercises they performed
 # number of repetition, time take
@@ -75,10 +76,9 @@ class DocumentWriter():
         hdr_cells = table.rows[0].cells
         hdr_cells[0].text = 'Repetitions'
         hdr_cells[1].text = 'Duration'
-        for item in quantitative_data:
-            row_cells = table.add_row().cells
-            row_cells[0].text = str(item['reps'])
-            row_cells[1].text = str(item['duration'])
+        row_cells = table.add_row().cells
+        row_cells[0].text = str(quantitative_data['reps'])
+        row_cells[1].text = str(quantitative_data['duration'])
 
 
 # What we would ideally like to see is information
@@ -95,7 +95,5 @@ class DocumentWriter():
         table = self.document.add_table(rows=1, cols=1)
         hdr_cells = table.rows[0].cells
         hdr_cells[0].text = 'Accuracy'
-        print("this is qualitative data", qualitative_data)
-        for item in qualitative_data:
-            row_cells = table.add_row().cells
-            row_cells[0].text = str(item['accuracy'])
+        row_cells = table.add_row().cells
+        row_cells[0].text = str(qualitative_data['accuracy'])
