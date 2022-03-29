@@ -44,19 +44,79 @@ The demo video
 
 The development team
 --------------------
-* Adi Bozzhanov (adi.bozzhanov.20@ucl.ac.uk)
-I use emacs
 
-* Yan Lai (yan.lai.20@ucl.ac.uk)
-I now know how to exit vim
+.. panels::
+   :header: text-center
+   :img-top-cls: p-0 m-0
+   :body: text-center
 
-.. admonition:: Sree Sanakkayala (sree.sanakkayala.20@ucl.ac.uk)
-   
-   .. image:: imgs/semi-professionalpic-Sree.jpg
-   As a tech-for-good enthusiastic, I love undertaking projects like this for a real impact in the world.
+   ---
+   :img-top: imgs/cool-pic-adi.jpg
 
-* Tianhao Chen (tianhao.chen.20@ucl.ac.uk)
-I know how to use :kbd:`Backspace` in a .rst file in Visual Studio Code
+   **Adi Bozzhanov**
+
+   :badge:`Software Architect,badge-info`
+   :badge:`client-liaison,badge-info`
+   :badge:`Full-Stack,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   *"I give all of my devices pokemon names."*
+
+   ++++++++++++++++++++++++++
+   :octicon:`mail` adi.bozzhanov.20@ucl.ac.uk
+
+   :octicon:`mark-github` https://github.com/adibozzhanov
+
+   ---
+   :img-top: imgs/semi-professional-pic-yan.jpeg
+
+   **Yan Lai**
+
+   :badge:`UX/UI,badge-info`
+   :badge:`Front-end,badge-info`
+   :badge:`Blog Editor,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   *"I now know how to exit vim. I restart my laptop once a month."*
+
+   ++++++++++++++++++++++++++
+   :octicon:`mail` yan.lai.20@ucl.ac.uk
+
+   ---
+   :img-top: imgs/semi-professionalpic-Sree.jpg
+
+   **Sree Sanakkayala**
+
+   :badge:`Back-end,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   <Sree insert your quote here>
+
+   ++++++++++++++++++++++++++
+   :octicon:`mail` sree.sanakkayala.20@ucl.ac.uk
+
+   ---
+   :img-top: imgs/tianhao-chen-best-pic.jpg
+
+   **Tianhao Chen**
+
+   :badge:`Full-Stack,badge-info`
+
+   ^^^^^^^^^^^^^^^^^
+
+   *"I know how to use* :kbd:`backspace` *in a .rst file in
+   Visual Studio Code."*
+
+   ++++++++++++++++++++++++++
+   :octicon:`mail` tianhao.chen.20@ucl.ac.uk
+
+
+
+
+
 
 Project management
 ------------------

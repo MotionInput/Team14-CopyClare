@@ -5,3 +5,4 @@ __pycache__/
 venv
 copyclare/pyui/
 res_rc.py
+data
