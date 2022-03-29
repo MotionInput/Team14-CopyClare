@@ -44,19 +44,56 @@ The demo video
 
 The development team
 --------------------
-* Adi Bozzhanov (adi.bozzhanov.20@ucl.ac.uk)
-I use emacs
 
-* Yan Lai (yan.lai.20@ucl.ac.uk)
-I now know how to exit vim
+.. panels::
 
-.. admonition:: Sree Sanakkayala (sree.sanakkayala.20@ucl.ac.uk)
+   **Adi Bozzhanov**
+
+   adi.bozzhanov.20@ucl.ac.uk
+
+   .. image:: imgs/cool-pic-adi.jpg
+
+   **Role:** :badge:`Software Architect,badge-primary`
+
+	      I use emacs.
+
+   ---
+
+   **Yan Lai**
+
+   yan.lai.20@ucl.ac.uk
+
+   .. image:: imgs/semi-professional-pic-yan.jpeg
+
+   **Role:** :badge:`<type your role>,badge-primary`
+
+	      I now know how to exit vim.
+
+   ---
+
+   **Sree Sanakkayala**
+
+   sree.sanakkayala.20@ucl.ac.uk
 
    .. image:: imgs/semi-professionalpic-Sree.jpg
-   As a tech-for-good enthusiastic, I love undertaking projects like this for their real world impact.
 
-* Tianhao Chen (tianhao.chen.20@ucl.ac.uk)
-I know how to use :kbd:`Backspace` in a .rst file in Visual Studio Code
+   **Role:** :badge:`<type your role>,badge-primary`
+
+	      As a tech-for-good enthusiastic, I love undertaking projects like this for their real world impact.
+
+   ---
+
+   **Tianhao Chen**
+
+   tianhao.chen.20@ucl.ac.uk
+
+   .. image:: imgs/tianhao-chen-best-pic.jpg
+
+   **Role:** :badge:`<type your role>,badge-primary`
+
+	      I know how to use :kbd:`Backspace` in a .rst file in Visual Studio Code
+
+
 
 Project management
 ------------------
