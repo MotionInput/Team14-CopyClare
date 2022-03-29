@@ -1,9 +1,10 @@
-import cv2
-from PySide6.QtGui import QImage
-from PySide6.QtCore import Qt, QThread, Signal, QRect
-
-from copyclare import DATA_PATH
 import time
+
+import cv2
+from PySide6.QtCore import QRect, Qt, QThread, Signal
+from PySide6.QtGui import QImage
+
+from copyclare.data import DATA_DIR
 
 
 class VideoThread(QThread):
@@ -22,23 +23,28 @@ class VideoThread(QThread):
             if not self._running:
                 break
             _, _, width, height = self.container.frameGeometry().getRect()
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            h, w, ch = frame.shape
-            img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
-            if (w / h > 1):
-                offset = (w - (width * h / height)) / 2
-            else:
-                offset = 0
-            rect = QRect(offset, 0, w, h)
-            img = img.copy(rect)
-            img = img.scaled(width, height, Qt.KeepAspectRatioByExpanding)
-            self.update_frame.emit(img)
+
+            try:
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                h, w, ch = frame.shape
+                img = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
+                if (w / h > 1):
+                    offset = (w - (width * h / height)) / 2
+                else:
+                    offset = 0
+                rect = QRect(offset, 0, w, h)
+                img = img.copy(rect)
+                img = img.scaled(width, height, Qt.KeepAspectRatioByExpanding)
+                self.update_frame.emit(img)
+            except:
+                pass
         self.quit()
 
 
 class VideoWorker:
     def __init__(self, exercise):
-        self.video_path = DATA_PATH + exercise.video_directory
+        self.video_path = DATA_DIR + exercise.video_directory
 
     def work(self):
         # TODO: Replace with a model call
@@ -56,4 +62,5 @@ class VideoWorker:
                 frame_count = 0
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
             time.sleep(1 / fps)
+            frame = cv2.flip(frame, 1)
             yield frame

@@ -1,11 +1,13 @@
 from PySide6.QtWidgets import QFrame
 
-from copyclare.widgets import VideoCardWidget
 from copyclare.common import load_ui
+from copyclare.widgets import VideoCardWidget
+from copyclare.pyui.progress_banner import Ui_Frame
+from copyclare import UiElement
 
 
-class ProgressBannerWidget(QFrame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.ui = load_ui("progress_banner")
-        self.ui.setupUi(self)
+
+class ProgressBannerWidget(UiElement):
+    def __init__(self, master, title):
+        super().__init__(master, "progress_banner", Ui_Frame)
+        self.ui.category_title.setText(title)

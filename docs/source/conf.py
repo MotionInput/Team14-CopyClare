@@ -16,12 +16,12 @@ import sys
 from sphinx.application import Sphinx
 from sphinx.util.docfields import Field
 
-sys.path.insert(0, os.path.abspath('../../copyclare'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'CopyClare'
-copyright = '2022, MotionInput'
+copyright = '2022, CopyClare -'
 author = 'Adi Bozzhanov, Yan Lai, Tianhao Chen, Sricharan Sanakkayala'
 
 # -- General configuration ---------------------------------------------------

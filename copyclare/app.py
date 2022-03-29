@@ -1,17 +1,18 @@
 import sys
 
-from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
-from copyclare.model.database import DB_DIR
-from copyclare.model import Database, Attempt
-from copyclare import DATA_PATH
-from copyclare.pages.analysis import AnalysisPage
 
-from .common import load_ui
-from .pages import HomePage, NotFound, ProfilePage, ExercisePage
-from .pages.video_addition import Video_Addition
+from copyclare.common import load_ui
+from copyclare.data import DATA_DIR, DB_DIR, Database
+from copyclare.data.objects import Attempt, Tag
+from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, NotFound,
+                             ProfilePage, VideoAddition)
+from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
+from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
+from copyclare.config import DEBUG
 
 
 class App:
@@ -20,7 +21,7 @@ class App:
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
-        #"video_addition": Video_Addition,
+        "video_addition": VideoAddition,
     }
 
     def start_ui(self):
@@ -31,37 +32,18 @@ class App:
         app = QApplication(sys.argv)
         self.window = QMainWindow()
         self.window.showMaximized()
-        self.ui = load_ui("main_window")
+
+
+        # Ui load optimisation
+        if DEBUG:
+            self.ui = load_ui("main_window")
+        else:
+            self.ui = compiled_ui()
+
         self.ui.setupUi(self.window)
 
         self.ui.exercise_frame.hide()
         self.current_exercise_page = None
-
-        # edit for the ui button
-        icon = QIcon()
-        icon.addFile(DATA_PATH + "/assets/home.png", QSize(), QIcon.Normal,
-                     QIcon.Off)
-
-        self.ui.home_button.setIcon(icon)
-        self.ui.home_button.setIconSize(QSize(64, 64))
-
-        icon1 = QIcon()
-        icon1.addFile(DATA_PATH + "/assets/progress.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.progress_button.setIcon(icon1)
-        self.ui.progress_button.setIconSize(QSize(64, 64))
-
-        icon2 = QIcon()
-        icon2.addFile(DATA_PATH + "/assets/settings.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.settings_button.setIcon(icon2)
-        self.ui.settings_button.setIconSize(QSize(64, 64))
-
-        icon3 = QIcon()
-        icon3.addFile(DATA_PATH + "/assets/navlines.png", QSize(),
-                      QIcon.Normal, QIcon.Off)
-        self.ui.nav_button.setIcon(icon3)
-        self.ui.settings_button.setIconSize(QSize(64, 64))
 
         self.window.show()
 
@@ -75,8 +57,11 @@ class App:
             lambda x: self.load_page("settings"))
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
+        self.ui.addvideo_button.clicked.connect(
+            lambda x: self.load_page("video_addition"))
 
-        self.ui.nav_button.clicked.connect(self.nav_click)
+        tutorial_popup = TutorialPopupWidget()
+        tutorial_popup.show()
 
         sys.exit(app.exec())
 
@@ -118,6 +103,25 @@ class App:
 
         return self.pages.keys()
 
+    def move_to_my_exercises(self, ex):
+        tag = Tag("My Exercises")
+        banner = self.pages["home"].banners[tag.tag_name]
+
+        # database stuff
+        if str(ex.id) not in banner.cards:
+
+            self.db.add_tag_to_exercise(tag, ex)
+
+            # Video card object
+            banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea,
+                                                       ex)
+            banner.ui.horizontalLayout.insertWidget(0,
+                                                    banner.cards[str(ex.id)])
+
+    # TODO - use database delete()
+    def remove_from_my_exercises(self, ex):
+        pass
+
     def init_pages(self):
         for page in self.pages:
             _page_obj = self.pages[page](self.ui.pages_frame)
@@ -143,7 +147,3 @@ class App:
             self.current_page = self.pages["not_found"]
 
         self.current_page.show()
-
-    def nav_click(self):
-
-        print("nav clicked!")

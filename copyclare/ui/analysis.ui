@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Home</class>
- <widget class="QFrame" name="Home">
+ <class>analysis_page</class>
+ <widget class="QFrame" name="analysis_page">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -78,7 +78,7 @@
         <property name="styleSheet">
          <string notr="true">QLabel{
 	color: #ffffff;
-	background-color: #955fff;
+	background-color: #35638e;
 }</string>
         </property>
         <property name="text">
@@ -131,7 +131,7 @@
          <item>
           <widget class="QFrame" name="text_frame">
            <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
@@ -140,7 +140,7 @@
             <item>
              <widget class="QFrame" name="name_frame">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -172,7 +172,7 @@
             <item>
              <widget class="QFrame" name="description_frame">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -204,7 +204,7 @@
             <item>
              <widget class="QFrame" name="date_frame">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -236,7 +236,7 @@
             <item>
              <widget class="QFrame" name="repetitions_frame">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -251,14 +251,14 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string># of sets   |   # of reps</string>
+                  <string># of reps</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="repetitions">
                  <property name="text">
-                  <string>3   |   10</string>
+                  <string>10</string>
                  </property>
                 </widget>
                </item>
@@ -268,7 +268,7 @@
             <item>
              <widget class="QFrame" name="accuracy_frame">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
@@ -283,7 +283,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>Avg. Accuracy:</string>
+                  <string>Avg. Accuracy (%):</string>
                  </property>
                 </widget>
                </item>
@@ -300,7 +300,8 @@
             <item>
              <widget class="QPushButton" name="back_button">
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(171, 185, 255);</string>
+               <string notr="true">background-color: #90b6d6;
+</string>
               </property>
               <property name="text">
                <string>Back</string>
@@ -312,6 +313,12 @@
          </item>
          <item>
           <widget class="QFrame" name="graphics_frame">
+           <property name="minimumSize">
+            <size>
+             <width>500</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>500</width>
@@ -319,17 +326,38 @@
             </size>
            </property>
            <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QGraphicsView" name="heatmap"/>
+             <widget class="QGraphicsView" name="heatmap">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>300</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="accuracy_graph"/>
+             <widget class="QFrame" name="accuracy_graph">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>400</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_graph"/>
+             </widget>
             </item>
            </layout>
           </widget>

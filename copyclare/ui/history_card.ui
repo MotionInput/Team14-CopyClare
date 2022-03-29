@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>871</width>
-    <height>228</height>
+    <height>200</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>200</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -23,6 +29,12 @@ border-left-color: rgb(255, 255, 255);</string>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <widget class="QFrame" name="horizontalFrame">
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: none;
 </string>
@@ -30,6 +42,12 @@ border-left-color: rgb(255, 255, 255);</string>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="exercise_img">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>i</string>
         </property>
@@ -37,6 +55,12 @@ border-left-color: rgb(255, 255, 255);</string>
       </item>
       <item>
        <widget class="QFrame" name="verticalFrame">
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">border: none;
 </string>
@@ -52,7 +76,7 @@ border-left-color: rgb(255, 255, 255);</string>
            </property>
            <property name="font">
             <font>
-             <pointsize>20</pointsize>
+             <pointsize>16</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -75,7 +99,7 @@ border-left-color: rgb(255, 255, 255);</string>
            </property>
            <property name="font">
             <font>
-             <pointsize>20</pointsize>
+             <pointsize>16</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -115,13 +139,13 @@ border-left-color: rgb(255, 255, 255);</string>
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-analysis.png</normaloff>../../../../📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-analysis.png</iconset>
+      <iconset resource="../../res.qrc">
+       <normaloff>:/icons/analysis.png</normaloff>:/icons/analysis.png</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>150</width>
-       <height>150</height>
+       <width>64</width>
+       <height>64</height>
       </size>
      </property>
      <property name="flat">
@@ -139,13 +163,13 @@ border-left-color: rgb(255, 255, 255);</string>
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-export.png</normaloff>../../../../📚/--UCL/-STUDY STUFF/YEAR 2/COMP0016 Systems Engineering/copyclare/prototype/pages/icon-export.png</iconset>
+      <iconset resource="../../res.qrc">
+       <normaloff>:/icons/export.png</normaloff>:/icons/export.png</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>150</width>
-       <height>150</height>
+       <width>64</width>
+       <height>64</height>
       </size>
      </property>
      <property name="flat">
@@ -155,6 +179,8 @@ border-left-color: rgb(255, 255, 255);</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../res.qrc"/>
+ </resources>
  <connections/>
 </ui>
