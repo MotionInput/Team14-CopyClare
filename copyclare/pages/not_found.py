@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 from copyclare.pyui.not_found import Ui_not_found
 
 from copyclare import UiElement

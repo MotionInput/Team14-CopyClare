@@ -1,11 +1,14 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
+
 import json
 import os
-import sys
-import time
 
 import cv2
 
-from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6 import QtWidgets
 from PySide6.QtGui import QImage, QPixmap
 
 from copyclare.common import AppSingleton

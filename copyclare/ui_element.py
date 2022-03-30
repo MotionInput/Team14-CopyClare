@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 from PySide6.QtWidgets import QFrame
 
 from copyclare.config import DEBUG

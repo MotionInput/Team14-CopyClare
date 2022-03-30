@@ -1,3 +1,7 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
 
 from .ui_element import UiElement
 from .app import App

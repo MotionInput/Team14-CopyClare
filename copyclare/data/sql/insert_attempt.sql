@@ -1,3 +1,5 @@
+--Contributors: Adi Bozzhanov
+
 INSERT INTO attempts (
        attempt_date,
        num_of_repetitions,

@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
+
 import json
 import math
 import os

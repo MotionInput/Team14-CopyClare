@@ -1,4 +1,9 @@
 """
+Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
+
+"""
+
+"""
 database.py
 
 copyclare.data.Database
@@ -75,7 +80,7 @@ class Database:
                 None,
                 "Push-ups against a wall",
                 "/videos/clare1.mp4",
-                "null",
+                "/images/1.png",
                 clare1_desc,
                 json1,
             ),
@@ -83,7 +88,7 @@ class Database:
                 None,
                 "Shoulder Rotation",
                 "/videos/clare2.mp4",
-                "null",
+                "/images/2.png",
                 clare2_desc,
                 json2,
             ),
@@ -91,7 +96,7 @@ class Database:
                 None,
                 "Wall Slide",
                 "/videos/clare3.mp4",
-                "null",
+                "/images/3.png",
                 clare3_desc,
                 json3,
             ),
@@ -164,10 +169,6 @@ class Database:
         params = (tag_name, ex_id)
 
         self._execute_with_params("delete_tag_from_exercise.sql", params)
-
-
-
-
 
     def add_tag_to_exercise(self, tag, exercise):
 
@@ -304,8 +305,5 @@ def main():
     ts = database.get_exercise_tags(ex)
 
     print(ts)
-
-
-
 
     return database

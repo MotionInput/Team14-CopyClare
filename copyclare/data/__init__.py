@@ -1,4 +1,9 @@
 """
+Contributors: Adi Bozzhanov
+
+"""
+
+"""
 Data module
 
 Provides functionality to manage copyclare data. Defines global variables

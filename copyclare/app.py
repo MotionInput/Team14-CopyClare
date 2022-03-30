@@ -1,14 +1,17 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 import sys
 
-from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PySide6.QtWidgets import QApplication, QMainWindow
 
 
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.exporter import AccuracyGraphExporter
-from copyclare.data.objects import Attempt, Tag
+from copyclare.data.objects import Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
                              ProfilePage, VideoAddition)
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
@@ -127,17 +130,10 @@ class App:
 
             self.db.remove_tag_from_exercise(tag, ex)
 
-            for i in reversed(range(banner.ui.horizontalLayout.count() - 1)): # horizontal spacer
-                banner.ui.horizontalLayout.itemAt(i).widget().deleteLater()
-
-            exercises = self.db.get_exercises_by_tag(tag)
-            banner.cards = {}
-            for exercise in exercises:
-                banner.cards[str(exercise.id)] = VideoCardMyExWidget(
-                    banner.ui.scrollArea, exercise)
-                banner.ui.horizontalLayout.insertWidget(0,
-                                                    banner.cards[str(exercise.id)])
-
+            for i in range(banner.ui.horizontalLayout.count() - 1): # horizontal spacer
+                if banner.ui.horizontalLayout.itemAt(i).widget().id == ex.id:
+                    banner.ui.horizontalLayout.itemAt(i).widget().deleteLater()
+                    banner.cards.pop(str(ex.id))
 
     def init_pages(self):
         for page in self.pages:

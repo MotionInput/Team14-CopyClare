@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 import json
 # for testing
 import random
@@ -6,10 +11,8 @@ import time
 from PySide6.QtCharts import QChart, QChartView, QLineSeries
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtMultimedia import QMediaPlayer
 
 from copyclare.pyui.exercise import Ui_exercise_frame
-from copyclare.common import AppSingleton
 from copyclare.video import CameraThread, ThreadManager, VideoThread
 from copyclare import UiElement
 
@@ -81,7 +84,10 @@ class ExercisePage(UiElement):
 
         self.series.clear()
 
-        now = accuracy_vals[-1][0]
+        if len(accuracy_vals) == 0:
+            now = 0
+        else:
+            now = accuracy_vals[-1][0]
 
         for t, accuracy in accuracy_vals:
             self.series.append(t, accuracy)

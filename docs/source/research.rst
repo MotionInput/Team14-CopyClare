@@ -1,9 +1,9 @@
-Research
-========
+:octicon:`mortar-board` Research
+================================
 
 
-Understanding Physiotheraphy
-----------------------------
+:octicon:`book` Understanding Physiotheraphy
+--------------------------------------------
 
 Our team has begun research very early in the process. From our conversations with the
 with our client and the NeuroPhysiotherapy team, we learned that there are various
@@ -34,8 +34,8 @@ progress over time. Althought this is out of the scope of our project, we though
 `Wee Gait Glasgow Index <https://www.quest.scot.nhs.uk/hc/en-gb/articles/360000547917-The-Wee-Glasgow-Gait-Index/>`_ and `Edinburgh Visual Gait Score <https://pubmed.ncbi.nlm.nih.gov/12724590/>`_ are
 very interesting ways of calcualting Gait scores.
 
-Similar Tools
--------------
+:octicon:`tools` Similar Tools
+------------------------------
 
 Upon further research, we've learned that there are two tools similar to CopyClare:
 `Kinovea <https://www.kinovea.org/>`_ and `Dartfish <https://www.dartfish.com/healthcare>`_.
@@ -48,8 +48,8 @@ Here is how CopyClare compares with them:
   :alt: Comparision of similar tools
 
 
-Technology Review
------------------
+:octicon:`plug` Technology Review
+---------------------------------
 
 From our research of the existing tooks, we realised that they were focused on sports analysis.
 Additionally, we were able to identify the key features, such as video manipulation, annotation, measurements,

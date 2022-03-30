@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
+
 class Attempt:
     def __init__(self, id, date, num_of_repetitons, duration, session_json,
                  accuracy, exercise_id):
