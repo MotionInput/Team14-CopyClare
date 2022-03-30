@@ -1,4 +1,11 @@
+import os
+import json
+import pyqtgraph as pg
+
+from pyqtgraph import exporters
 from docx import Document
+
+from copyclare.data import DATA_DIR
 
 
 class Exporter():
@@ -100,3 +107,38 @@ class DocumentWriter():
         row_cells[0].text = str(qualitative_data['accuracy'])
         # self.document.add_picture(
         #     exercise["accuracy_graph"])
+
+
+class AccuracyGraphExporter:
+    def draw_accuracy_graph(self, session_json):
+        graphWidget = pg.PlotWidget()
+
+        x_axis = []
+        y_axis = []
+
+        accuracy = json.loads(session_json)
+
+        for pair in accuracy:
+            x_axis.append(pair[0]) # timestamp
+            y_axis.append(pair[1]) # accuracy
+
+        graphWidget.setBackground('w')
+        graphWidget.setTitle("Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
+        graphWidget.showGrid(x=True, y=True)
+        graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
+        graphWidget.setYRange(0, 100, padding=0)
+
+        pen = pg.mkPen(color=(0, 20, 40), width=3)
+        graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
+
+        return graphWidget
+
+    def export_accuracy_graph(self, session_json, attempt_id):
+        path = DATA_DIR + '/accuracy-graphs/' + str(attempt_id) + '.png'
+        exists = os.path.exists(path)
+        if not exists:
+            accuracy_graph = self.draw_accuracy_graph(session_json)
+            exporter = exporters.ImageExporter(accuracy_graph.plotItem)
+            exporter.parameters()['width'] = 500
+            exporter.parameters()['height'] = 400
+            exporter.export(path)
