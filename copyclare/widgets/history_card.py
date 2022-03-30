@@ -1,5 +1,5 @@
 import os
-from PySide6.QtCore import QSize
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QFileDialog
 
@@ -18,10 +18,13 @@ class HistoryCardWidget(UiElement):
 
         img_path = DATA_DIR + f"/images/{attempt.exercise_id}.png"
         if os.path.exists(img_path):
-            self.ui.exercise_img.setPixmap(QPixmap(img_path))
+            pixmap = QPixmap(img_path)
+            pixmap = pixmap.scaled(500, 280, Qt.KeepAspectRatio)
+            self.ui.exercise_img.setPixmap(pixmap)
         else:
-            self.ui.exercise_img.setPixmap(
-                QPixmap(":icons/default-video-img.png"))
+            pixmap = QPixmap(":icons/default-video-img.png")
+            pixmap = pixmap.scaled(500, 280, Qt.KeepAspectRatio)
+            self.ui.exercise_img.setPixmap(pixmap)
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
             attempt.exercise_id)
