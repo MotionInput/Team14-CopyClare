@@ -33,7 +33,6 @@ class App:
         self.window = QMainWindow()
         self.window.showMaximized()
 
-
         # Ui load optimisation
         if DEBUG:
             self.ui = load_ui("main_window")
@@ -53,8 +52,6 @@ class App:
 
         # buttons init
         self.ui.home_button.clicked.connect(lambda x: self.load_page("home"))
-        self.ui.settings_button.clicked.connect(
-            lambda x: self.load_page("settings"))
         self.ui.progress_button.clicked.connect(
             lambda x: self.load_page("progress"))
         self.ui.addvideo_button.clicked.connect(
