@@ -9,6 +9,8 @@ physiotherapy flow within itself.
 :octicon:`workflow` Architecture
 --------------------------------
 
+.. image:: imgs/architecture-diagram.png
+
 
 
 
