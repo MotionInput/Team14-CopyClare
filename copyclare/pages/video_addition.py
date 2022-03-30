@@ -18,7 +18,6 @@ from copyclare.pyui.video_addition import Ui_video_addition
 
 from copyclare import UiElement
 from copyclare.data import DATA_DIR
-from copyclare.video.video import VideoWorker
 
 
 class VideoAddition(UiElement):
@@ -102,7 +101,7 @@ class VideoAddition(UiElement):
 
     def change_display_start(self):
         value = self.ui.start_slider.value()
-        frame_num = round(value/100 *(len(self.frames)+1))
+        frame_num = round(value/100 *(len(self.frames)-1))
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame.shape
@@ -111,7 +110,7 @@ class VideoAddition(UiElement):
     
     def change_display_end(self):
         value = self.ui.end_slider.value()
-        frame_num = round(value/100 *(len(self.frames)+1))
+        frame_num = round(value/100 *(len(self.frames)-1))
         print(value,frame_num)
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -123,9 +122,9 @@ class VideoAddition(UiElement):
     def cut(self):
         videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
         Svalue = self.ui.start_slider.value()
-        Sframe_num = round(Svalue/100 *(len(self.frames)+1))
+        Sframe_num = round(Svalue/100 *(len(self.frames)-1))
         Evalue = self.ui.end_slider.value()
-        Eframe_num = round(Evalue/100 *(len(self.frames)+1))
+        Eframe_num = round(Evalue/100 *(len(self.frames)-1))
         for index in range(len(self.frames)):
             if index > Eframe_num:
                 break
