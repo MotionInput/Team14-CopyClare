@@ -42,7 +42,7 @@ class VideoAddition(UiElement):
         self.ui.start_slider.valueChanged[int].connect(self.change_display_start)
         self.ui.end_slider.setMinimum(0)
         self.ui.end_slider.setMaximum(100)
-        self.ui.end_slider.setValue(100)
+        self.ui.end_slider.setValue(99)
         self.ui.end_slider.valueChanged[int].connect(self.change_display_end)
 
         self.ui.input_area.setVisible(False)
@@ -112,6 +112,7 @@ class VideoAddition(UiElement):
     def change_display_end(self):
         value = self.ui.end_slider.value()
         frame_num = round(value/100 *(len(self.frames)+1))
+        print(value,frame_num)
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame.shape
