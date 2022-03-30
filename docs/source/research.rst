@@ -8,8 +8,10 @@ Understanding Physiotheraphy
 Our team has begun research very early in the process. From our conversations with the
 with our client and the NeuroPhysiotherapy team, we learned that there are various
 types of `physiotherapy <https://mjphysio.ca/types-of-physiotherapy/>`_. For our project we will be working on a tool to aid:
-   #. Musculoskeletal physiotherapy (client requirement)
-   #. Neurological physiotheraphy (NeuroPhysiotherapy team requirement)
+
+#. Musculoskeletal physiotherapy (client requirement)
+
+#. Neurological physiotheraphy (NeuroPhysiotherapy team requirement)
 
 Although both types of therapy have different exercises, the characteristics of their exercises are
 the same. The exercise tend to be slow, repetitive, and rely mostly on body weight.

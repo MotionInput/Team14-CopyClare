@@ -36,6 +36,7 @@ extensions = [
     'recommonmark',
     'sphinx_panels',
     'sphinx_design',
+    'sphinxcontrib.youtube'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

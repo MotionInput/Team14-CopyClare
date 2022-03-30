@@ -10,10 +10,10 @@ Welcome to Copyclare
 
    requirements
    research
-   algorithms
    ui-design
    system-design
    implementation
+   algorithms
    testing
    evaluation
    documentation
@@ -21,6 +21,8 @@ Welcome to Copyclare
 
 
 Your personal physiotherapy assistant.
+
+.. youtube:: dQw4w9WgXcQ
 
 Abstract
 --------

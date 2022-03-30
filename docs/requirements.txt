@@ -4,3 +4,4 @@ recommonmark
 sphinx-panels
 sphinxawesome-theme
 sphinx-design
+sphinxconrtib.youtube

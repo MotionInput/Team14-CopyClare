@@ -10,8 +10,9 @@ with any exercise video.
 
 When developing the algorithm we were working with the following goal in mind:
 
-- Each frame we should get an "Accuracy" score that would represent how close
-  the user currently is to the desired motion
+.. admonition:: Goal
+
+   Each frame we should get an "Accuracy" score that would represent how close the user currently is to the desired motion
 
 With that we came up with a following function signature.
 

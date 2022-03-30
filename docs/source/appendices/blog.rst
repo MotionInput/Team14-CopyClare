@@ -92,3 +92,26 @@ Blog
    For work on MotionInput:
 
    Tianhao and Yan’s work on the (wrist) Joystick Module is almost complete. However, it has yet to be tested. Sree has completed the Hands Module UI for MotionInput to be used to demo to the Microsoft team.
+
+.. blogfield:: 13-03-2022
+
+   Our database has been set up, along with Python scripts to access it. This allowed us to use actual exercise videos during testing and store all attempts.
+
+   Our accuracy analysis algorithm is almost complete. It is working, but there are minor bugs, making the analysis less accurate.
+
+   Lots of work have been done on the UI, with most pages set up using QtDesigner, and ready to be integrated with the back-end.
+
+   Next, we will complete the remaining features of the application.
+
+
+.. blogfield:: 27-03-2022
+
+   The biggest achievement was that accuracy measurement works. The app is now also able to count the number of repetitions a patient has done during each exercise.
+
+   We have also completed most of Joseph’s requirements (for the UI), with the most important ones being the progress chart and a pop-up tutorial.
+
+   Another important feature that has been implemented is the export tool, which exports the analysis data of the patients’ attempts as a document.
+
+   We have completed our 4 minute presentation on a summary of our achievements.
+
+   Next, we will work on the group portfolio, and refine the features of our application as required.
