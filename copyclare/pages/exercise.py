@@ -81,7 +81,10 @@ class ExercisePage(UiElement):
 
         self.series.clear()
 
-        now = accuracy_vals[-1][0]
+        if len(accuracy_vals) == 0:
+            now = 0
+        else:
+            now = accuracy_vals[-1][0]
 
         for t, accuracy in accuracy_vals:
             self.series.append(t, accuracy)
