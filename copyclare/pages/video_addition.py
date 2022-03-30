@@ -47,7 +47,7 @@ class VideoAddition(UiElement):
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
 
-        self.exercise = Exercise(None,None,None,None,None,None)
+        self.exercise = Exercise(None,None,None,None,None,"-1")
         self.h = None
         self.w = None
 
@@ -82,7 +82,7 @@ class VideoAddition(UiElement):
             "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
         accuracymodel = AccuracyModel(self.exercise,joints)
-        self.exercise.angles_json = json.dumps(accuracymodel.get_angles(self.exercise.video_directory))
+        self.exercise.angles_json = json.dumps(accuracymodel.get_angles(DATA_DIR+self.exercise.video_directory))
         # print(exercise.angles_json)
         self.app.db.add_exercise(self.exercise)        
         self.app.load_page("home")
@@ -140,12 +140,10 @@ class VideoAddition(UiElement):
         Eframe_num = round(Evalue/100 *(len(self.frames)-1))
         for index in range(len(self.frames)):
             if index > Eframe_num:
-                print(3)
                 break
             if index > Sframe_num:
-                print(2)
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
-                print(1)
                 cv2.imwrite(DATA_DIR+"/"+self.exercise.name+".png",self.frames[index])
+                self.exercise.image_directory = "/"+self.exercise.name+".png"
                 videoWriter.write(self.frames[index])

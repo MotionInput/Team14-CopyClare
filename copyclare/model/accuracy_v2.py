@@ -60,8 +60,8 @@ class AccuracyModel:
         video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
         if not video.isOpened():
             print("Error Opening a video file")
-        fps = video.get(cv2.CAP_PROP_FPS)
-        self.step = 1 / fps
+            fps = video.get(cv2.CAP_PROP_FPS)
+            self.step = 1 / fps
 
         self.offset = 20
 
