@@ -43,9 +43,21 @@ class HistoryCardWidget(UiElement):
             lambda x: self._export(attempt.id))
 
     def _create_analysis_page(self, attempt):
+        """
+        Args:
+            attempt (Attempt): The corresponding attempt to create an analysis page for.
+
+        """        
         self.app.load_page("analysis", attempt)
 
     def _export(self, attempt_id):
+        """
+        Export the analysis for a single attempt as a docx document.
+
+        Args:
+            attempt_id (int): The id of attempt to export analysis document for.
+
+        """
         exporter = Exporter(self.app.db)
         file_path, selectedFilter = QFileDialog.getSaveFileName(
             filter="*.docx")
