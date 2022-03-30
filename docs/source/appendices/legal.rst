@@ -1,8 +1,8 @@
-Legal
-=====
+:octicon:`law` Legal
+====================
 
-GDPR and Privacy of Data Statement
-----------------------------------
+:octicon:`law` GDPR and Privacy of Data Statement
+-------------------------------------------------
 
 Our application, CopyClare, is a personalised physiotherapy assistant to patients.
 Since CopyClare deals with medical data, we have put a considerable amount of thought
@@ -15,8 +15,8 @@ does not store any recorded footage of patients, and it does not transmit any pa
 The sample videos in the this build of CopyClare are from the British Elbow & Shoulder Society (BESS)
 and a NeuroPhysiotherapy team from UCL (Kunica Mehta, Tanisha Gilani, and Sally Davenport)
 
-Licenses and Intellectual Property
-----------------------------------
+:octicon:`law` Licenses and Intellectual Property
+-------------------------------------------------
 
 All software that is used in this project that was not directly developed by us are captured below.
 All of them allow for commercial use and disribution.
