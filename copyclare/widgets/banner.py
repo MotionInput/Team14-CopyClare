@@ -21,7 +21,13 @@ class BannerWidget(UiElement):
             self.init_exercises(exercises)
 
     def init_exercises(self, exercises):
+        """
+        Initialise video cards in banner for all tags except for 'My Exercises'.
 
+        Args:
+            exercises ([Exercise]): List of Exercise objects holding the same tag.
+
+        """
         for exercise in exercises:
             self.cards[str(exercise.id)] = VideoCardWidget(
                 self.ui.scrollArea, exercise)
@@ -29,6 +35,13 @@ class BannerWidget(UiElement):
                                                   self.cards[str(exercise.id)])
 
     def init_my_exercises(self, exercises):
+        """
+        Initialise video cards in banner for 'My Exercises' tag.
+
+        Args:
+            exercises ([Exercise]): List of Exercise objects holding the 'My Exercises' tag.
+
+        """
         for exercise in exercises:
             self.cards[str(exercise.id)] = VideoCardMyExWidget(
                 self.ui.scrollArea, exercise)

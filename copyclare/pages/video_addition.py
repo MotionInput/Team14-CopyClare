@@ -42,6 +42,7 @@ class VideoAddition(UiElement):
         self.ui.start_slider.valueChanged[int].connect(self.change_display_start)
         self.ui.end_slider.setMinimum(0)
         self.ui.end_slider.setMaximum(100)
+        self.ui.end_slider.setValue(100)
         self.ui.end_slider.valueChanged[int].connect(self.change_display_end)
 
         self.ui.input_area.setVisible(False)
@@ -97,16 +98,7 @@ class VideoAddition(UiElement):
 
         self.ui.upload_button.setStyleSheet(
             "QPushButton{background-color: rgb(0, 255, 127);}")
-
-    def generate_video(self,frames,end_frame_num):
-        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
-        for frame in frames:
-            index = frames.index(frame)
-            if index > end_frame_num:
-                break
-            if index == 0:
-                cv2.imwrite(self.exercise.name+".png")
-            videoWriter.write(frame)
+        
 
     def change_display_start(self):
         value = self.ui.start_slider.value()
@@ -127,6 +119,17 @@ class VideoAddition(UiElement):
         self.ui.video.setPixmap(QPixmap.fromImage(Qimg))
 
 
-
     def cut(self):
-        self.video_state = 0
+        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
+        Svalue = self.ui.start_slider.value()
+        Sframe_num = round(Svalue/100 *(len(self.frames)+1))
+        Evalue = self.ui.end_slider.value()
+        Eframe_num = round(Evalue/100 *(len(self.frames)+1))
+        for index in range(len(self.frames)):
+            if index > Eframe_num:
+                break
+            if index > Sframe_num:
+                videoWriter.write(self.frames[index])
+            elif index == Sframe_num:
+                cv2.imwrite(DATA_DIR+"/"+self.exercise.name+".png",self.frames[index])
+                videoWriter.write(self.frames[index])

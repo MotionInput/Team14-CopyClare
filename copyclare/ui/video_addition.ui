@@ -499,14 +499,14 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
                   <item>
-                   <widget class="QSlider" name="end_slider">
+                   <widget class="QSlider" name="start_slider">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSlider" name="start_slider">
+                   <widget class="QSlider" name="end_slider">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
