@@ -55,7 +55,7 @@ class Exporter():
         exe = self.database.get_one_exercise_by_ID(exe_id)
         exercise_info.append({
             "name": exe.name,
-            "image": exe.image_directory,
+            "image": DATA_DIR + exe.image_directory,
             "description": exe.description,
             "id": exe.id,
         })
@@ -100,8 +100,8 @@ class DocumentWriter():
     def _add_name_and_description(self, exercise_info):
         self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
                                   level=2)
-        self.document.add_picture(DATA_DIR +
-                                  exercise_info["image"])
+        self.document.add_picture(
+            exercise_info["image"], width=DOCX_MAX_IMAGE_WIDTH)
         self.document.add_paragraph('Description:  %s' %
                                     exercise_info["description"])
 
@@ -123,8 +123,8 @@ class DocumentWriter():
         row_cells = table.add_row().cells
         row_cells[0].text = str(qualitative_data['accuracy'])+"%"
         self.document.add_heading('Accuracy graph for attempt', level=3)
-        self.document.add_picture(DATA_DIR +
-                                  qualitative_data["accuracy_graph"], width=DOCX_MAX_IMAGE_WIDTH)
+        self.document.add_picture(
+            qualitative_data["accuracy_graph"], width=DOCX_MAX_IMAGE_WIDTH)
 
 
 class AccuracyGraphExporter:
