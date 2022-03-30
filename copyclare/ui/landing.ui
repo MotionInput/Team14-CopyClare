@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Frame</class>
- <widget class="QFrame" name="Frame">
+ <class>landing_frame</class>
+ <widget class="QFrame" name="landing_frame">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -158,7 +158,8 @@ COLOR: #ffffff;</string>
       <item>
        <widget class="QFrame" name="supervisor_frame">
         <property name="styleSheet">
-         <string notr="true">padding: 10px;</string>
+         <string notr="true">padding: 10px;
+</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>

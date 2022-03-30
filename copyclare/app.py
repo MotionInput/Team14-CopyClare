@@ -9,7 +9,7 @@ from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.data.objects import Attempt, Tag
-from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, NotFound,
+from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
                              ProfilePage, VideoAddition)
 from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
@@ -19,6 +19,7 @@ from copyclare.config import DEBUG
 class App:
 
     pages = {
+        "landing": LandingPage,
         "home": HomePage,
         "not_found": NotFound,
         "progress": ProfilePage,
@@ -43,6 +44,9 @@ class App:
 
         self.ui.setupUi(self.window)
 
+        # landing page
+        self.ui.side_nav.hide()
+
         self.ui.exercise_frame.hide()
         self.current_exercise_page = None
 
@@ -60,9 +64,6 @@ class App:
             lambda x: self.load_page("progress"))
         self.ui.addvideo_button.clicked.connect(
             lambda x: self.load_page("video_addition"))
-
-        tutorial_popup = TutorialPopupWidget()
-        tutorial_popup.show()
 
         sys.exit(app.exec())
 
@@ -132,7 +133,7 @@ class App:
             self.pages[page] = _page_obj
             self.ui.pages_layout.addWidget(_page_obj)
 
-    def load_page(self, page="home", attempt=None):
+    def load_page(self, page="landing", attempt=None):
         """
         Loads a page given the page name
         """
