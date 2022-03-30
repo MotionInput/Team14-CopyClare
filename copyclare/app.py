@@ -119,9 +119,35 @@ class App:
             banner.ui.horizontalLayout.insertWidget(0,
                                                     banner.cards[str(ex.id)])
 
-    # TODO - use database delete()
     def remove_from_my_exercises(self, ex):
-        pass
+        tag = Tag("My Exercises")
+        banner = self.pages["home"].banners[tag.tag_name]
+
+        self.db.remove_tag_from_exercise(tag, ex)
+        print("removed tag from db")
+        
+        # TODO - remove widget from banner
+        # find out the index position in banner.cards
+        # then use banner.ui.horizontalLayout.takeAt(index)
+        # TODO - remove all then insert again
+        if str(ex.id) in banner.cards:
+            for i in range(len(banner.cards)):
+                removed_widget = banner.ui.horizontalLayout.takeAt(0)
+                removed_widget.widget().deleteLater()
+            """while True:
+                print("in loop")
+                removed_widget = banner.ui.horizontalLayout.takeAt(0)
+                if removed_widget is not None:
+                    removed_widget.widget().deleteLater()
+            print("out of loop")"""
+            print("delete done")
+            exercises = self.db.get_exercises_by_tag(tag)
+            for exercise in exercises:
+                banner.cards[str(exercise.id)] = VideoCardWidget(
+                    banner.ui.scrollArea, exercise, True)
+                banner.ui.horizontalLayout.insertWidget(0,
+                                                    banner.cards[str(exercise.id)])
+
 
     def init_pages(self):
         for page in self.pages:

@@ -8,7 +8,7 @@ from copyclare.pyui.video_card import Ui_Form
 from copyclare import UiElement
 
 class VideoCardWidget(UiElement):
-    def __init__(self, master, exercise):
+    def __init__(self, master, exercise, remove_state):
 
         super().__init__(master, "video_card", Ui_Form)
         self.exercise = exercise
@@ -26,9 +26,12 @@ class VideoCardWidget(UiElement):
         self.ui.description.setText(exercise.description)
 
         # TODO - if already in my_exercises, then need to be on 'remove' function state
-        #      - button text = "remove"; button function = remove_click()
-        # else - button text = "add"; button function = add_click()
-        self.ui.add_btn.clicked.connect(self.add_click)
+        if remove_state:
+            self.ui.add_btn.setText("remove")
+            self.ui.add_btn.clicked.connect(self.remove_click)
+        else:
+            self.ui.add_btn.setText("add")
+            self.ui.add_btn.clicked.connect(self.add_click)
 
         self.mouseReleaseEvent = self.clicked
 
