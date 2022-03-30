@@ -60,6 +60,8 @@ class VideoAddition(UiElement):
 
         self.ui.browse_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.confirm_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
 
         cap = cv2.VideoCapture(DATA_DIR+self.fileName)
         if not cap.isOpened():
@@ -94,9 +96,10 @@ class VideoAddition(UiElement):
         self.exercise.video_directory = self.fileName
         self.exercise.description = description
         
-
-        self.ui.upload_button.setStyleSheet(
-            "QPushButton{background-color: rgb(0, 255, 127);}")
+        self.ui.confirm_button.setStyleSheet(
+            "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.cut_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
         
 
     def change_display_start(self):
@@ -120,6 +123,10 @@ class VideoAddition(UiElement):
 
 
     def cut(self):
+        self.ui.cut_button.setStyleSheet(
+            "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.upload_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
         videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
         Svalue = self.ui.start_slider.value()
         Sframe_num = round(Svalue/100 *(len(self.frames)-1))
