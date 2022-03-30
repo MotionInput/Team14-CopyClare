@@ -9,7 +9,7 @@ User acceptance testing (UAT)
 
 - **Why we did this test**
 
-This is because 'usability' is our main priority. Therefore, we need feedback from users (and potential users) themselves to know how the app works for them. The most straightforward way to achieve this is through UAT.
+This test is mainly used to test our UI. This is because 'usability' is our main priority. Therefore, we need feedback from users (and potential users) themselves to know how the app works for them. The most straightforward way to achieve this is through UAT.
 
 
 
