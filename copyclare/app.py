@@ -127,17 +127,10 @@ class App:
 
             self.db.remove_tag_from_exercise(tag, ex)
 
-            for i in reversed(range(banner.ui.horizontalLayout.count() - 1)): # horizontal spacer
-                banner.ui.horizontalLayout.itemAt(i).widget().deleteLater()
-
-            exercises = self.db.get_exercises_by_tag(tag)
-            banner.cards = {}
-            for exercise in exercises:
-                banner.cards[str(exercise.id)] = VideoCardMyExWidget(
-                    banner.ui.scrollArea, exercise)
-                banner.ui.horizontalLayout.insertWidget(0,
-                                                    banner.cards[str(exercise.id)])
-
+            for i in range(banner.ui.horizontalLayout.count() - 1): # horizontal spacer
+                if banner.ui.horizontalLayout.itemAt(i).widget().id == ex.id:
+                    banner.ui.horizontalLayout.itemAt(i).widget().deleteLater()
+                    banner.cards.pop(str(ex.id))
 
     def init_pages(self):
         for page in self.pages:

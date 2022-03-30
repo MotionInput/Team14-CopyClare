@@ -12,6 +12,7 @@ class VideoCardMyExWidget(UiElement):
 
         super().__init__(master, "video_card_my_ex", Ui_Form)
         self.exercise = exercise
+        self.id = self.exercise.id
         self.app = AppSingleton.get_app()
 
         img_path = DATA_DIR + f"/test/{exercise.id}.png"
