@@ -4,7 +4,7 @@ from PySide6.QtGui import QPixmap
 
 from copyclare.common import AppSingleton
 from copyclare.data import DATA_DIR
-from copyclare.pyui.video_card import Ui_Form
+from copyclare.pyui.video_card_my_ex import Ui_Form
 from copyclare import UiElement
 
 class VideoCardMyExWidget(UiElement):
