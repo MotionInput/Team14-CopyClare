@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>analysis_page</class>
- <widget class="QFrame" name="analysis_page">
+ <class>Home</class>
+ <widget class="QFrame" name="Home">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -333,7 +333,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QGraphicsView" name="heatmap">
+             <widget class="QGraphicsView" name="ex_image">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>

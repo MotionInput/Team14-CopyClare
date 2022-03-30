@@ -74,13 +74,14 @@ MoSCoW requirement list
    "6", "Login / Register", "Could have"
    "7", "Users to be able to understand and receive feedback from clinicians about which videos use for therapy", "Could have"
 
-.. csv-table:: Non-Functional requirements
+.. csv-table:: Non-functional requirements
    :header: "ID", "Requirements", "Priority"
    :widths: 30, 600, 100
 
-   "1", "Hi", "Must have"
-   "2", "Hi", "Should have"
-   "3", "Hi", "Could have"
+   "1", "**Usability:** Hi", "Must have"
+   "1", "**Performance:** Hi", "Must have"
+   "2", "**Extensibility:** Hi", "Should have"
+   "3", "**Security:** Hi", "Could have"
 
 
 

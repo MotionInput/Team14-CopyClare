@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
+from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.data.objects import Attempt, Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, NotFound,
                              ProfilePage, VideoAddition)
@@ -85,6 +86,8 @@ class App:
         self.ui.pages_frame.show()
         self.db.add_attempt(attempt)
         self.pages["progress"].add_attempt(attempt)
+        accuracyGraphExporter = AccuracyGraphExporter()
+        accuracyGraphExporter.export_accuracy_graph(attempt.session_json, attempt.id)
 
         if self.current_exercise_page is not None:
             self.current_exercise_page.deleteLater()
