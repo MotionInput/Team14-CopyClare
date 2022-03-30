@@ -1,8 +1,8 @@
-UI Design
-=========
+:octicon:`image` UI Design
+===========================
 
-Design Requirements
--------------------
+:octicon:`checklist` Design Requirements
+-------------------------------------------
 
 Based on our MoSCow list, we need to needed to build a user-centric design. We simply began with the UX/UI requirements.
 
@@ -26,8 +26,8 @@ The 3 main Usabilty Goals we focused on were:
 
 You will see how we have incorporated our understanding of HCI to our work on CopyClare's UX & UI.
 
-UI Sketches
------------
+:octicon:`pencil` UI Sketches
+-----------------------------
 
 Here are our initial sketches for CopyClare:
 
@@ -54,8 +54,8 @@ With this design, we were able to accomplish our usablity goals:
     * The buttons and graphs that we show are very carefully placed to help the user to actually use the features
 
 
-Feedback & UI Mockup
---------------------
+:octicon:`arrow-both` Feedback & UI Mockup
+------------------------------------------
 
 Our conversations with our clients and the NeuroPhysiotherapy team has led us to modify our sketches. Here is the high fidelity design of our updated designs: https://cheryl237771.invisionapp.com/console/share/FAJ4M6HG3B7/881016074
 
@@ -69,8 +69,7 @@ Our conversations with our clients and the NeuroPhysiotherapy team has led us to
   :alt: Invision mockup of analysis page
 
 
-Final changes
--------------
+:octicon:`diff` Final changes
+-----------------------------
 
 As we are implementing our UI, we have had to make subtle changes to the designs (such as color scheme, additional buttons, etc.) to make room for additional features that the client and the NeuroPhysiotherapy team requested
-
