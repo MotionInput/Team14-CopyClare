@@ -22,7 +22,6 @@ Welcome to Copyclare
 
 Your personal physiotherapy assistant.
 
-.. youtube:: dQw4w9WgXcQ
 
 Abstract
 --------

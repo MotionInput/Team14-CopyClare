@@ -78,10 +78,13 @@ MoSCoW requirement list
    :header: "ID", "Requirements", "Priority"
    :widths: 30, 600, 100
 
-   "1", "**Usability:** Hi", "Must have"
-   "1", "**Performance:** Hi", "Must have"
-   "2", "**Extensibility:** Hi", "Should have"
-   "3", "**Security:** Hi", "Could have"
+   "1", "**Usability:** As our users are patients undergoing physiotherapy, the main requirement is that the app must be easy to use so that patients will not get put off trying to understand how to navigate it, and requires as few clicks as possible for users to perform an action in the app so that they do not strain themselves or have to move too much.", "Must have"
+   "1", "**Performance:** This is most relevant to our Exercise page, as the app is required to provide live feedback on the patient's accuracy as they work on the exercise. The live feedback involves using colour coding to notify patients of whether they are doing the exercises correctly, a repetition counter, as well as a live accuracy graph. In order to provide instantaneous feedback, the back-end must be as optimised as possible to achieve the most accurate analysis.", "Must have"
+   "2", "**Security:** Hi", "Should have"
+   "3", "**Extensibility:** Hi", "Could have"
+
+
+
 
 
 
