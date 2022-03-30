@@ -53,10 +53,32 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
 :octicon:`table` Use cases
 --------------------------
 
-1) use case diagram
+1) **Use case diagram**
 
-2) list of use cases
+.. image:: imgs/use-case-diagram.jpg
+  :alt: Use case diagram.
 
+2) **Use case list**
+
+.. csv-table:: List of use cases
+   :header: "ID", "Use Case for Patient"
+   :widths: 100, 600
+
+   "LE1", "Start the app"
+   "H1E1", "Add exercise from library"
+   "H1E2", "Do exercise"
+   "H2E1", "View progress and all past attempts"
+   "PE1", "Export report"
+
+.. csv-table:: Use case description
+   :header: "ID", "Actor", "Description", "Main flow", "Result"
+   :widths: 100, 100, 600, 600, 600
+
+   "LE1", "Patient", "Start the app", "1. Click the start button on the landing page", "Go to home page"
+   "H1E1", "Patient", "Add exercise from library to 'My Exercises'", "1. Click the add button on the video card of the exercise they want", "The video card is added to My Exercises successfully"
+   "H1E2", "Patient", "Do exercise", "1. Click the image on the video card of the exercise they want 2. Do exercise based on the top left video 3. Improve their movement based on the colour of the line and accuracy graph 4. Click 'end exercise' button to end exercise", "Go to home page"
+   "H2E1", "Patient", "View progress and all past attempts", "1. Click the bar chart icon on the side bar 2. Go to profile page 3. Progress chart is generated properly and all past attempts is under 'past attempt' 4. Click the line chart button could go to detailed information of an attempt", "Exercise ends properly and return to the home page. A new corresponding attempt is generated"
+   "PE1", "Patient", "Export report", "1. Click the export button on the profile page", "Corresponding docx file is generated"
 
 
 :octicon:`list-ordered` MoSCoW requirement list
