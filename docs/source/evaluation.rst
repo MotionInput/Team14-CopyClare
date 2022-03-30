@@ -17,7 +17,9 @@ Summary of achievements
    "2", "Requirement description 2", "Should", "Y", "All"
    "3", "Requirement description 3", "Could", "X", "Peter Pan"
 
-(There's 2 more rows to include for this that shows overall completed %)
+**Key Functionalities (must have & should have):** 90% completed
+**Optional Functionalities (could have):** 70% completed
+
 
 - A list of known bugs
 
