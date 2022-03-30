@@ -90,13 +90,17 @@ The development team
    **Sree Sanakkayala**
 
    :badge:`Back-end,badge-info`
+   :badge:`UX/UI,badge-info`
+   :badge:`client-liaison,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
-   <Sree insert your quote here>
+   *"I use Visual Studio Code most frequently."*
 
    ++++++++++++++++++++++++++
    :octicon:`mail` sree.sanakkayala.20@ucl.ac.uk
+
+   :octicon:`mark-github` https://github.com/Sree5835
 
    ---
    :img-top: imgs/tianhao-chen-best-pic.jpg
