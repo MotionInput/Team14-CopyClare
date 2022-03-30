@@ -58,7 +58,7 @@ class Exporter():
         exe = self.database.get_one_exercise_by_ID(exe_id)
         exercise_info.append({
             "name": exe.name,
-            "image": exe.image_directory,
+            "image": DATA_DIR + exe.image_directory,
             "description": exe.description,
             "id": exe.id,
         })
@@ -103,8 +103,8 @@ class DocumentWriter():
     def _add_name_and_description(self, exercise_info):
         self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
                                   level=2)
-        # self.document.add_picture(
-        #     exercise["image"])
+        self.document.add_picture(
+            exercise_info["image"], width=DOCX_MAX_IMAGE_WIDTH)
         self.document.add_paragraph('Description:  %s' %
                                     exercise_info["description"])
 
@@ -122,7 +122,7 @@ class DocumentWriter():
         self.document.add_heading('Qualitative', level=2)
         table = self.document.add_table(rows=1, cols=1)
         hdr_cells = table.rows[0].cells
-        hdr_cells[0].text = 'Accuracy'
+        hdr_cells[0].text = 'Avg. Accuracy'
         row_cells = table.add_row().cells
         row_cells[0].text = str(qualitative_data['accuracy'])+"%"
         self.document.add_heading('Accuracy graph for attempt', level=3)
@@ -160,7 +160,7 @@ class AccuracyGraphExporter:
         return graphWidget
 
     def export_accuracy_graph(self, session_json, attempt_id):
-        path = DATA_DIR + '/accuracy-graphs/' + str(attempt_id) + '.png'
+        path = DATA_DIR + f'/accuracy-graphs/{attempt_id}.png'
         exists = os.path.exists(path)
         if not exists:
             accuracy_graph = self.draw_accuracy_graph(session_json)
