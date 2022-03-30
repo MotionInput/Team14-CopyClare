@@ -85,6 +85,8 @@ The development team
    ++++++++++++++++++++++++++
    :octicon:`mail` yan.lai.20@ucl.ac.uk
 
+   :octicon:`mark-github` https://github.com/cheryllyt
+
    ---
    :img-top: imgs/semi-professionalpic-Sree.jpg
 
