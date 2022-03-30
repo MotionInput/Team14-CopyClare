@@ -120,6 +120,8 @@ The development team
    ++++++++++++++++++++++++++
    :octicon:`mail` tianhao.chen.20@ucl.ac.uk
 
+   :octicon:`mark-github` https://github.com/climax-form
+
 
 
 

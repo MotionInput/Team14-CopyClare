@@ -111,7 +111,7 @@ class VideoAddition(UiElement):
     def change_display_end(self):
         value = self.ui.end_slider.value()
         frame_num = round(value/100 *(len(self.frames)-1))
-        print(value,frame_num)
+        #print(value,frame_num)
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame.shape
@@ -127,9 +127,12 @@ class VideoAddition(UiElement):
         Eframe_num = round(Evalue/100 *(len(self.frames)-1))
         for index in range(len(self.frames)):
             if index > Eframe_num:
+                print(3)
                 break
             if index > Sframe_num:
+                print(2)
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
+                print(1)
                 cv2.imwrite(DATA_DIR+"/"+self.exercise.name+".png",self.frames[index])
                 videoWriter.write(self.frames[index])
