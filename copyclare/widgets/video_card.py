@@ -7,6 +7,7 @@ from copyclare.data import DATA_DIR
 from copyclare.pyui.video_card import Ui_Form
 from copyclare import UiElement
 
+
 class VideoCardWidget(UiElement):
     def __init__(self, master, exercise):
 
@@ -16,12 +17,12 @@ class VideoCardWidget(UiElement):
 
         #self.ui.video_image.setStyleSheet("background-image: url(" + DATA_PATH + "/assets/default-video-img.png)")
 
-        img_path = DATA_DIR + f"/test/{exercise.id}.png"
+        img_path = DATA_DIR + f"/images/{self.exercise.id}.png"
         if os.path.exists(img_path):
             self.ui.video_image.setPixmap(QPixmap(img_path))
         else:
             self.ui.video_image.setPixmap(
-                QPixmap(DATA_DIR + "/assets/default-video-img.png"))
+                QPixmap(":icons/default-video-img.png"))
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
 

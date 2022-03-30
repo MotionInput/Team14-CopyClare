@@ -113,7 +113,7 @@ class DocumentWriter():
         hdr_cells[1].text = 'Duration'
         row_cells = table.add_row().cells
         row_cells[0].text = str(quantitative_data['reps'])
-        row_cells[1].text = str(quantitative_data['duration'])
+        row_cells[1].text = str(quantitative_data['duration']) + " Seconds"
 
     def _add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=2)
@@ -121,7 +121,7 @@ class DocumentWriter():
         hdr_cells = table.rows[0].cells
         hdr_cells[0].text = 'Accuracy'
         row_cells = table.add_row().cells
-        row_cells[0].text = str(qualitative_data['accuracy'])
+        row_cells[0].text = str(qualitative_data['accuracy'])+"%"
         self.document.add_heading('Accuracy graph for attempt', level=3)
         self.document.add_picture(
             qualitative_data["accuracy_graph"], width=DOCX_MAX_IMAGE_WIDTH)
