@@ -1,3 +1,4 @@
+import os
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QFileDialog
@@ -9,13 +10,18 @@ from copyclare import UiElement
 
 import res_rc
 
+
 class HistoryCardWidget(UiElement):
     def __init__(self, master, attempt, img_path):
         super().__init__(master, "history_card", Ui_Form)
         self.app = AppSingleton.get_app()
 
-        self.ui.exercise_img.setPixmap(
-            QPixmap(":icons/default-video-img.png"))
+        img_path = DATA_DIR + f"/images/{attempt.exercise_id}.png"
+        if os.path.exists(img_path):
+            self.ui.exercise_img.setPixmap(QPixmap(img_path))
+        else:
+            self.ui.exercise_img.setPixmap(
+                QPixmap(":icons/default-video-img.png"))
 
         name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
             attempt.exercise_id)
