@@ -11,9 +11,9 @@ from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.data.objects import Attempt, Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
                              ProfilePage, VideoAddition)
-from copyclare.widgets import TutorialPopupWidget, VideoCardWidget
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
 from copyclare.config import DEBUG
+from copyclare.widgets.video_card_my_ex import VideoCardMyExWidget
 
 
 class App:
@@ -114,14 +114,30 @@ class App:
             self.db.add_tag_to_exercise(tag, ex)
 
             # Video card object
-            banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea,
+            banner.cards[str(ex.id)] = VideoCardMyExWidget(banner.ui.scrollArea,
                                                        ex)
             banner.ui.horizontalLayout.insertWidget(0,
                                                     banner.cards[str(ex.id)])
 
-    # TODO - use database delete()
     def remove_from_my_exercises(self, ex):
-        pass
+        tag = Tag("My Exercises")
+        banner = self.pages["home"].banners[tag.tag_name]
+
+        if str(ex.id) in banner.cards:
+
+            self.db.remove_tag_from_exercise(tag, ex)
+
+            for i in reversed(range(banner.ui.horizontalLayout.count() - 1)): # horizontal spacer
+                banner.ui.horizontalLayout.itemAt(i).widget().deleteLater()
+
+            exercises = self.db.get_exercises_by_tag(tag)
+            banner.cards = {}
+            for exercise in exercises:
+                banner.cards[str(exercise.id)] = VideoCardMyExWidget(
+                    banner.ui.scrollArea, exercise)
+                banner.ui.horizontalLayout.insertWidget(0,
+                                                    banner.cards[str(exercise.id)])
+
 
     def init_pages(self):
         for page in self.pages:
