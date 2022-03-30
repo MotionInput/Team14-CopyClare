@@ -1,5 +1,5 @@
-Monthly Videos
-==============
+:octicon:`device-camera-video` Monthly Videos
+=============================================
 
 
 **Full playlist:** `YouTube <https://youtube.com/playlist?list=PL3f6w3jXvARNPlVsl1jVIbXLmgCfQcDjZ>`_
@@ -32,5 +32,3 @@ Monthly Videos
    https://youtu.be/2DAhznyu7PU
 
    .. youtube:: 2DAhznyu7PU
-
-

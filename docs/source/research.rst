@@ -1,5 +1,5 @@
-Research
-========
+:octicon:`mortar-board` Research
+================================
 
 
 Understanding Physiotheraphy
