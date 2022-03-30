@@ -1,9 +1,4 @@
-from copyclare.model import database
-from copyclare import DATA_PATH
-from copyclare.model.attempt import Attempt
-from copyclare.model.exercises import Exercise
-from copyclare.model.exporter import Exporter
-
+from copyclare.data import database
 if __name__ == "__main__":
     data = database.main()
 
@@ -24,6 +19,3 @@ if __name__ == "__main__":
     # print(x)
 
     # pass
-
-    exporter = Exporter(data)
-    exporter.export("test.docx")

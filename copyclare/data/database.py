@@ -158,6 +158,17 @@ class Database:
         else:
             self.conn.commit()
 
+    def remove_tag_from_exercise(self, tag, exercise):
+        tag_name = tag.tag_name
+        ex_id = exercise.id
+        params = (tag_name, ex_id)
+
+        self._execute_with_params("delete_tag_from_exercise.sql", params)
+
+
+
+
+
     def add_tag_to_exercise(self, tag, exercise):
 
         self.add_tag(tag)
@@ -278,4 +289,23 @@ def main():
 
     # create a database connection
     database = Database(DB_DIR)
+
+    t = Tag("My Exercises")
+    ex = database.get_one_exercise_by_ID(1)
+
+    ts = database.get_exercise_tags(ex)
+
+    print(t)
+    print(ex)
+    print(ts)
+
+    database.remove_tag_from_exercise(t, ex)
+
+    ts = database.get_exercise_tags(ex)
+
+    print(ts)
+
+
+
+
     return database
