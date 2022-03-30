@@ -13,7 +13,6 @@ class PastAttemptsBannerWidget(UiElement):
 
         self.ui.export_all_button.clicked.connect(lambda x: self._export_all())
 
-    # TODO - link export_all function here
     def _export_all(self):
         exporter = Exporter(self.app.db)
         file_path, selectedFilter = QFileDialog.getSaveFileName(
