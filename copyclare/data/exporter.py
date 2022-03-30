@@ -1,3 +1,17 @@
+
+
+"""
+
+This export module deals with everything related to exporting progress reports for the users
+
+.. code-block:: python
+
+   # sample usage:
+   from copyclare.data import Exporter
+
+   # Exporter is an object that allows for the exporting of progress reports
+"""
+
 import os
 import json
 import pyqtgraph as pg
@@ -98,7 +112,6 @@ class DocumentWriter():
 # from the normal range). For this we would want whole
 # limb through range data in relation to the reference movement.
 
-
     def _add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=2)
         table = self.document.add_table(rows=1, cols=1)
@@ -120,17 +133,19 @@ class AccuracyGraphExporter:
         accuracy = json.loads(session_json)
 
         for pair in accuracy:
-            x_axis.append(pair[0]) # timestamp
-            y_axis.append(pair[1]) # accuracy
+            x_axis.append(pair[0])  # timestamp
+            y_axis.append(pair[1])  # accuracy
 
         graphWidget.setBackground('w')
-        graphWidget.setTitle("Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
+        graphWidget.setTitle(
+            "Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
         graphWidget.showGrid(x=True, y=True)
         graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
         graphWidget.setYRange(0, 100, padding=0)
 
         pen = pg.mkPen(color=(0, 20, 40), width=3)
-        graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
+        graphWidget.plot(x_axis, y_axis, name="",  pen=pen,
+                         symbol='o', symbolSize=2, symbolBrush=('#003366'))
 
         return graphWidget
 
