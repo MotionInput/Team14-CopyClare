@@ -6,6 +6,7 @@ AnalysisPage`
 
 import os
 from copyclare.data import DATA_DIR
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QPixmap
 from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.pyui.analysis import Ui_analysis_page
@@ -33,13 +34,15 @@ class AnalysisPage(UiElement):
             self.attempt.session_json)
         self.ui.verticalLayout_graph.addWidget(graphWidget)
 
-        # TODO put exercise image here
         img_path = DATA_DIR + f"/images/{self.attempt.exercise_id}.png"
         if os.path.exists(img_path):
-            self.ui.ex_image.setPixmap(QPixmap(img_path))
+            pixmap = QPixmap(img_path)
+            pixmap = pixmap.scaled(420, 380, Qt.KeepAspectRatio)
+            self.ui.ex_image.setPixmap(pixmap)
         else:
-            self.ui.ex_image.setPixmap(
-                QPixmap(":icons/default-video-img.png"))
+            pixmap = QPixmap(":icons/default-video-img.png")
+            pixmap = pixmap.scaled(420, 380, Qt.KeepAspectRatio)
+            self.ui.ex_image.setPixmap(pixmap)
 
         self.ui.back_button.clicked.connect(
             lambda x: self.app.load_page("progress"))
