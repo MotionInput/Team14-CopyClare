@@ -2,41 +2,35 @@ Monthly Videos
 ==============
 
 
-Full playlist
--------------
-
-https://youtube.com/playlist?list=PL3f6w3jXvARNPlVsl1jVIbXLmgCfQcDjZ
+**Full playlist:** `YouTube <https://youtube.com/playlist?list=PL3f6w3jXvARNPlVsl1jVIbXLmgCfQcDjZ>`_
 
 
-Nov-Dec 2021
-------------
 
-https://youtu.be/5vrA5355YGM
+.. blogfield:: Nov-Dec 2021
 
-.. youtube:: 5vrA5355YGM
+   https://youtu.be/5vrA5355YGM
 
-
-Dec-Jan 2022
-------------
-
-https://youtu.be/kmr1TxTSdvs
-
-.. youtube:: kmr1TxTSdvs
+   .. youtube:: 5vrA5355YGM
 
 
-Jan-Feb 2022
-------------
+.. blogfield:: Dec-Jan 2022
 
-https://youtu.be/xntf0dvBeHY
+   https://youtu.be/kmr1TxTSdvs
 
-.. youtube:: xntf0dvBeHY
+   .. youtube:: kmr1TxTSdvs
 
 
-Feb-Mar 2022
-------------
+.. blogfield:: Jan-Feb 2022
 
-https://youtu.be/2DAhznyu7PU
+   https://youtu.be/xntf0dvBeHY
 
-.. youtube:: 2DAhznyu7PU
+   .. youtube:: xntf0dvBeHY
+
+
+.. blogfield:: Feb-Mar 2022
+
+   https://youtu.be/2DAhznyu7PU
+
+   .. youtube:: 2DAhznyu7PU
 
 
