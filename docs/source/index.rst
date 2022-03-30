@@ -57,7 +57,7 @@ The development team
    **Adi Bozzhanov**
 
    :badge:`Software Architect,badge-info`
-   :badge:`client-liaison,badge-info`
+   :badge:`Client-liaison,badge-info`
    :badge:`Full-Stack,badge-info`
 
    ^^^^^^^^^^^^^^^^^
@@ -80,7 +80,7 @@ The development team
 
    ^^^^^^^^^^^^^^^^^
 
-   *"I now know how to exit vim. I restart my laptop once a month."*
+   *"I now know how to exit vim."*
 
    ++++++++++++++++++++++++++
    :octicon:`mail` yan.lai.20@ucl.ac.uk
@@ -92,7 +92,7 @@ The development team
 
    :badge:`Back-end,badge-info`
    :badge:`UX/UI,badge-info`
-   :badge:`client-liaison,badge-info`
+   :badge:`Client-liaison,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
