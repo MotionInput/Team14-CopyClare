@@ -32,8 +32,8 @@ class Exporter():
         self.doc.create_document(saveAs, export_title, exercise_info,
                                  quantitative_data, qualitative_data)
 
-    def get_data(self, attempt, exercise_info, quantitative_data,
-                 qualitative_data):
+    def _get_data(self, attempt, exercise_info, quantitative_data,
+                  qualitative_data):
         exe_id = attempt.exercise_id
         exe = self.database.get_one_exercise_by_ID(exe_id)
         exercise_info.append({
@@ -67,7 +67,7 @@ class DocumentWriter():
             self.add_qualitative_section(qualitative_data[i])
         self.document.save(saveAs)
 
-    def add_name_and_description(self, exercise_info):
+    def _add_name_and_description(self, exercise_info):
         self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
                                   level=2)
         # self.document.add_picture(
@@ -78,7 +78,7 @@ class DocumentWriter():
 # which different exercises they performed
 # number of repetition, time take
 
-    def add_quantitative_section(self, quantitative_data):
+    def _add_quantitative_section(self, quantitative_data):
         self.document.add_heading('Quantitative', level=2)
         table = self.document.add_table(rows=1, cols=2)
         hdr_cells = table.rows[0].cells
@@ -98,7 +98,8 @@ class DocumentWriter():
 # from the normal range). For this we would want whole
 # limb through range data in relation to the reference movement.
 
-    def add_qualitative_section(self, qualitative_data):
+
+    def _add_qualitative_section(self, qualitative_data):
         self.document.add_heading('Qualitative', level=2)
         table = self.document.add_table(rows=1, cols=1)
         hdr_cells = table.rows[0].cells
