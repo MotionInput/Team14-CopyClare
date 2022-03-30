@@ -11,5 +11,6 @@
 	<file alias="tutorial-ex.jpg">copyclare/assets/tutorial-ex.jpg</file>
 	<file alias="tutorial-home.png">copyclare/assets/tutorial-home.png</file>
 	<file alias="tutorial-profile.jpg">copyclare/assets/tutorial-profile.jpg</file>
+	<file alias="tutorial-video-add.png">copyclare/assets/tutorial-video-add.png</file>
     </qresource>
 </RCC>

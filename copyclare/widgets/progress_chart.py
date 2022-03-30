@@ -28,6 +28,13 @@ class ProgressChartWidget(UiElement):
         self.export_progress_charts(all_ex_attempt)
 
     def _create_tab_widget(self, all_ex_attempt):
+        """
+        Create tab widget for progress charts.
+
+        Args:
+            all_ex_attempt ([[Attempt]]): List of lists of Attempts grouped by their exercise type.
+
+        """
         graphWidgets = self.draw_progress_charts(all_ex_attempt)
         for graph in graphWidgets:
             temp_widget = ProgressChartGraphWidget(self)
@@ -35,6 +42,14 @@ class ProgressChartWidget(UiElement):
             self.tabWidget.addTab(temp_widget, graph[1])
 
     def draw_progress_charts(self, all_ex_attempt):
+        """
+        Args:
+            all_ex_attempt ([[Attempt]]): List of lists of Attempts grouped by their exercise type.
+
+        Returns:
+            [[PlotWidget, string, int]]: List of lists containing the chart, name of exercise, and exercise id.
+
+        """
         app = AppSingleton.get_app()
         graphWidgets = []
         for ex_type in all_ex_attempt:
@@ -77,6 +92,13 @@ class ProgressChartWidget(UiElement):
         return graphWidgets
 
     def export_progress_charts(self, all_ex_attempt):
+        """
+        Export all progress charts as .png images.
+
+        Args:
+            all_ex_attempt ([[Attempt]]): List of lists of Attempts grouped by their exercise type.
+
+        """
         progress_charts = self.draw_progress_charts(all_ex_attempt)
         for chart in progress_charts:
             path = DATA_DIR + '/progress-charts/' + str(chart[2]) + '.png'

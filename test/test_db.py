@@ -1,7 +1,7 @@
 from unittest import TestCase
 from copyclare.data import Database
 
-# references: https://realpython.com/pytest-python-testing/
+# references:
 # https://www.softwaretestinghelp.com/pytest-tutorial/
 # https://realpython.com/pytest-python-testing/
 
