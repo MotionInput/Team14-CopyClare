@@ -1,6 +1,10 @@
 from unittest import TestCase
 from copyclare.data import Database
 
+# references: https://realpython.com/pytest-python-testing/
+# https://www.softwaretestinghelp.com/pytest-tutorial/
+# https://realpython.com/pytest-python-testing/
+
 
 class DB_Testing(TestCase):
 
