@@ -48,9 +48,4 @@ like C, and then compile the resultant C code. One of the tools that allows to d
 
 
 The only issue here is the compilation time. It takes around 20 minutes to compile our codebase to an executable.
-This is an unfavourable constraint,
-
-
-Dependencies:
-
-python3-devel
+This is an unfavourable constraint, however it is more than a reasonable tradoff for the advantages we gain from it.
