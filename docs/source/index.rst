@@ -22,7 +22,6 @@ Welcome to Copyclare
 
 Your personal physiotherapy assistant.
 
-.. youtube:: dQw4w9WgXcQ
 
 Abstract
 --------
@@ -58,7 +57,7 @@ The development team
    **Adi Bozzhanov**
 
    :badge:`Software Architect,badge-info`
-   :badge:`client-liaison,badge-info`
+   :badge:`Client-liaison,badge-info`
    :badge:`Full-Stack,badge-info`
 
    ^^^^^^^^^^^^^^^^^
@@ -81,10 +80,12 @@ The development team
 
    ^^^^^^^^^^^^^^^^^
 
-   *"I now know how to exit vim. I restart my laptop once a month."*
+   *"I now know how to exit vim."*
 
    ++++++++++++++++++++++++++
    :octicon:`mail` yan.lai.20@ucl.ac.uk
+
+   :octicon:`mark-github` https://github.com/cheryllyt
 
    ---
    :img-top: imgs/semi-professionalpic-Sree.jpg
@@ -93,7 +94,7 @@ The development team
 
    :badge:`Back-end,badge-info`
    :badge:`UX/UI,badge-info`
-   :badge:`client-liaison,badge-info`
+   :badge:`Client-liaison,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
