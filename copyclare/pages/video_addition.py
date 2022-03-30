@@ -48,6 +48,8 @@ class VideoAddition(UiElement):
         self.ui.video_trimmer.setVisible(False)
 
         self.exercise = Exercise(None,None,None,None,None,None)
+        self.h = None
+        self.w = None
 
     def open_file(self):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
@@ -108,6 +110,10 @@ class VideoAddition(UiElement):
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame.shape
+        if self.h == None:
+            self.h = h
+        if self.w == None:
+            self.w = w
         Qimg = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
         self.ui.video.setPixmap(QPixmap.fromImage(Qimg))
     
@@ -127,7 +133,7 @@ class VideoAddition(UiElement):
             "QPushButton{background-color: rgb(186, 186, 186);}")
         self.ui.upload_button.setStyleSheet(
             "QPushButton{background-color: rgb(187, 255, 200);}")
-        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
+        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(self.w,self.h))
         Svalue = self.ui.start_slider.value()
         Sframe_num = round(Svalue/100 *(len(self.frames)-1))
         Evalue = self.ui.end_slider.value()
