@@ -144,7 +144,10 @@ class AccuracyGraphExporter:
         graphWidget.setTitle(
             "Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
         graphWidget.showGrid(x=True, y=True)
-        graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
+        if len(x_axis) == 0:
+            graphWidget.setXRange(0, 0, padding=0)
+        else:
+            graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
         graphWidget.setYRange(0, 100, padding=0)
 
         pen = pg.mkPen(color=(0, 20, 40), width=3)

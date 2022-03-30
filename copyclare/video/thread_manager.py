@@ -27,7 +27,8 @@ class ThreadManager:
             avg = 0
             for t, each in self.worker.accuracy_vals:
                 avg += each
-            avg /= len(self.worker.accuracy_vals)
+            if len(self.worker.accuracy_vals) != 0:
+                avg /= len(self.worker.accuracy_vals)
             attempt = Attempt(
                 None,
                 dt_string,
