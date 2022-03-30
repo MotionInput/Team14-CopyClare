@@ -1,4 +1,9 @@
 """
+Contributors: Adi Bozzhanov
+
+"""
+
+"""
 copyclare.data.objects
 
 contains class definitions of interfaces for data that can be accessed from

@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 from .video_card import VideoCardWidget
 from .banner import BannerWidget
 from .history_card import HistoryCardWidget

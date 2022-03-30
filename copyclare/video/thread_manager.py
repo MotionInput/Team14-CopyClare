@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 import json
 import time
 from datetime import datetime

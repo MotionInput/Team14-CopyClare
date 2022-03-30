@@ -1,3 +1,5 @@
+--Contributors: Adi Bozzhanov
+
 INSERT INTO exercises (
        exercise_name,
        video_directory,

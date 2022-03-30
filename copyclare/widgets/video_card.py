@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 import os
 
 from PySide6.QtGui import QPixmap
@@ -14,8 +19,6 @@ class VideoCardWidget(UiElement):
         super().__init__(master, "video_card", Ui_Form)
         self.exercise = exercise
         self.app = AppSingleton.get_app()
-
-        #self.ui.video_image.setStyleSheet("background-image: url(" + DATA_PATH + "/assets/default-video-img.png)")
 
         img_path = DATA_DIR + f"/images/{self.exercise.id}.png"
         if os.path.exists(img_path):

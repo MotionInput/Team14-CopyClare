@@ -1,3 +1,8 @@
+"""
+Contributors: Yan Lai
+
+"""
+
 from copyclare.pyui.landing import Ui_landing_frame
 from copyclare.common import AppSingleton
 from copyclare.widgets.tutorial_popup import TutorialPopupWidget

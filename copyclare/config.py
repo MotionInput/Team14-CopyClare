@@ -1,10 +1,15 @@
 """
+Contributors: Adi Bozzhanov
+
+"""
+
+"""
 This file contains all necessary configuration global variables
 that need to be accessed everywhere across the codebase.
 
 """
 
-DEBUG = False
+DEBUG = True
 """
 Set this to either ``True`` or ``False`` depending on
 if you want to compile ui directly from ``.ui`` files

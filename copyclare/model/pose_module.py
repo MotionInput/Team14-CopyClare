@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
+
+"""
+
 import math
 from cmath import acos
 

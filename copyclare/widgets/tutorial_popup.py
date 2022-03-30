@@ -1,8 +1,11 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QFrame
 
-from copyclare.common import load_ui
 from copyclare.data import DATA_DIR
 from copyclare.pyui.tutorial_popup import Ui_Tutorial
 from copyclare import UiElement

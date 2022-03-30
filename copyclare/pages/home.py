@@ -1,5 +1,9 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 from copyclare.common import AppSingleton
-from copyclare.data import Database
 from copyclare.widgets import BannerWidget
 from copyclare.pyui.home import Ui_Home
 
