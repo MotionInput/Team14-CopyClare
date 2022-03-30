@@ -21,6 +21,7 @@ class VideoCardMyExWidget(UiElement):
         else:
             self.ui.video_image.setPixmap(
                 QPixmap(":icons/default-video-img.png"))
+
         self.ui.title.setText(exercise.name)
         self.ui.description.setText(exercise.description)
 
