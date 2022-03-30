@@ -1,6 +1,8 @@
-from PySide6.QtWidgets import QFrame
+"""
+Contributors: Adi Bozzhanov, Yan Lai
 
-from copyclare.common import load_ui
+"""
+
 from copyclare.pyui.progress_chart_graph import Ui_Frame
 from copyclare import UiElement
 

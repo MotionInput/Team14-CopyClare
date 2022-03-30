@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
+
 class Exercise:
     def __init__(self, id, exercise_name, video_directory, image_directory,
                  description, angles_json):

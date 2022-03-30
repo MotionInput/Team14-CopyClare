@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 from .analysis import AnalysisPage
 from .exercise import ExercisePage
 from .home import HomePage

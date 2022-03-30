@@ -1,10 +1,10 @@
-from PySide6.QtWidgets import QFrame
+"""
+Contributors: Adi Bozzhanov, Yan Lai
 
-from copyclare.common import load_ui
-from copyclare.widgets import VideoCardWidget
+"""
+
 from copyclare.pyui.progress_banner import Ui_Frame
 from copyclare import UiElement
-
 
 
 class ProgressBannerWidget(UiElement):

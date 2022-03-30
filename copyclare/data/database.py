@@ -1,4 +1,9 @@
 """
+Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
+
+"""
+
+"""
 database.py
 
 copyclare.data.Database

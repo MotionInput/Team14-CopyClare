@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 import os
 
 from PySide6.QtGui import QPixmap

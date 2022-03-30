@@ -1,6 +1,11 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 import os
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QFileDialog
 
 from copyclare.common import AppSingleton

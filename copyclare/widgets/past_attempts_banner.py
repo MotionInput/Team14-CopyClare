@@ -2,6 +2,11 @@ from PySide6.QtWidgets import QFileDialog
 
 from copyclare.common import AppSingleton
 from copyclare.data.exporter import Exporter
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 from copyclare.pyui.past_attempts_banner import Ui_Frame
 from copyclare import UiElement
 

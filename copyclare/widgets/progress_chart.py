@@ -1,12 +1,15 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 import os
 import pyqtgraph as pg
 from pyqtgraph import exporters
-from PySide6.QtCharts import QChart, QChartView, QLineSeries
-from PySide6.QtCore import QMargins
-from PySide6.QtWidgets import QFrame, QLabel, QTabWidget
+from PySide6.QtWidgets import QTabWidget
 
 from copyclare.data import DATA_DIR
-from copyclare.common import AppSingleton, load_ui
+from copyclare.common import AppSingleton
 from copyclare.widgets.progress_chart_graph import ProgressChartGraphWidget
 from copyclare.pyui.progress_chart import Ui_Frame
 from copyclare import UiElement

@@ -1,14 +1,17 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai
+
+"""
+
 import sys
 
-from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PySide6.QtWidgets import QApplication, QMainWindow
 
 
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.exporter import AccuracyGraphExporter
-from copyclare.data.objects import Attempt, Tag
+from copyclare.data.objects import Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
                              ProfilePage, VideoAddition)
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui

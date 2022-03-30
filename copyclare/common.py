@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 import os
 
 from PySide6.QtUiTools import loadUiType

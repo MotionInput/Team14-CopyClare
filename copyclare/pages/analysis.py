@@ -1,6 +1,5 @@
 """
-AnalysisPage`
-
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
 
 """
 
