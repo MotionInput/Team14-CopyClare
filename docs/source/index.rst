@@ -10,10 +10,10 @@ Welcome to Copyclare
 
    requirements
    research
-   algorithms
    ui-design
    system-design
    implementation
+   algorithms
    testing
    evaluation
    documentation
