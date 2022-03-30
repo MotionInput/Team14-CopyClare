@@ -1,4 +1,5 @@
 from unittest import TestCase
+from copyclare.data import Database
 
 
 class DB_Testing(TestCase):
