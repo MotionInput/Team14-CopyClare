@@ -57,11 +57,6 @@ class AccuracyModel:
             self.angles = self.get_angles(DATA_DIR + exercise.video_directory)
             with open(DATA_DIR + f"/test/{exercise.id}.json", "w") as f:
                 f.write(json.dumps(self.angles, indent=4))
-        video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
-        if not video.isOpened():
-            print("Error Opening a video file")
-            fps = video.get(cv2.CAP_PROP_FPS)
-            self.step = 1 / fps
 
         self.offset = 20
 
