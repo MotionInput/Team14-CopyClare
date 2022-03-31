@@ -163,6 +163,7 @@ class VideoAddition(UiElement):
             elif index == Sframe_num:
                 exes = self.app.db.get_all_exercises()
                 length = len(exes)
+                self.exercise.id = length + 1
                 #print(length)
                 cv2.imwrite(DATA_DIR+"/images/"+str(length+1)+".png",self.frames[index])
                 self.exercise.image_directory = "/images/"+str(length+1)+".png"
