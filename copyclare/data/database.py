@@ -71,7 +71,7 @@ class Database:
 
         #with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
         #    clare1_desc = f.read()
-        with open(DATA_DIR + "/images/clare2.txt", "r", encoding="UTF-8") as f:
+        with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
         #with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
         #    clare3_desc = f.read()
