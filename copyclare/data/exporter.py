@@ -132,6 +132,14 @@ class DocumentWriter():
 
 class AccuracyGraphExporter:
     def draw_accuracy_graph(self, session_json):
+        """
+        Args:
+            session_json ([[int,int]]]): A list of tuples containing timestamps and accuracy for an attempt.
+
+        Returns:
+            PlotWidget: The plotted graph widget.
+
+        """
         graphWidget = pg.PlotWidget()
 
         x_axis = []
@@ -160,6 +168,12 @@ class AccuracyGraphExporter:
         return graphWidget
 
     def export_accuracy_graph(self, session_json, attempt_id):
+        """
+        Args:
+            session_json ([[int,int]]]): A list of tuples containing timestamps and accuracy for an attempt.
+            attempt_id (int): The id of selected attempt.
+
+        """
         path = DATA_DIR + f'/accuracy-graphs/{attempt_id}.png'
         exists = os.path.exists(path)
         if not exists:

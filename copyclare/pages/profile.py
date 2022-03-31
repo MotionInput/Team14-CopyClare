@@ -16,6 +16,16 @@ from copyclare import UiElement
 
 
 class ProfilePage(UiElement):
+    """
+    Initialise the profile page.
+
+    Initalise progress chart banner and past attempts banner.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+
+    """
+    
     def __init__(self, master):
         super().__init__(master, "profile", Ui_profile_page)
 

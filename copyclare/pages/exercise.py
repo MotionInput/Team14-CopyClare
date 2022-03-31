@@ -22,6 +22,18 @@ from copyclare import UiElement
 
 
 class ExercisePage(UiElement):
+    """
+    Initialise and run the exercise page.
+
+    Update the live accuracy graph and repetition counter.
+    Display sample exercise video and patient's camera.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+        exercise (Exercise): 
+
+    """
+
     done = Signal()
 
     def __init__(self, master, exercise):

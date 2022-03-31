@@ -60,7 +60,7 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
 
 2) **Use case list**
 
-.. csv-table:: List of use cases 1
+.. csv-table:: List of use cases
    :header: "ID", "Use Case for Patient"
    :widths: 100, 600
 
@@ -68,13 +68,8 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "H1E1", "Add exercise from library"
    "H1E2", "Do exercise"
    "H2E1", "View progress and all past attempts"
-   "PE1", "Export report"
-
-.. csv-table:: List of use cases 2
-   :header: "ID", "Use Case for Physiotherapist"
-   :widths: 100, 600
-
    "H2E2", "Add new exercises to library"
+   "PE1", "Export report"
 
 .. csv-table:: Use case description
    :header: "ID", "Actor", "Description", "Main flow", "Result"
@@ -84,8 +79,9 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "H1E1", "Patient", "Add exercise from library to 'My Exercises'", "1. Click the add button on the video card of the exercise they want", "The video card is added to My Exercises successfully"
    "H1E2", "Patient", "Do exercise", "1. Click the image on the video card of the exercise they want 2. Do exercise based on the top left video 3. Improve their movement based on the colour of the line and accuracy graph 4. Click 'end exercise' button to end exercise", "Go to home page"
    "H2E1", "Patient", "View progress and all past attempts", "1. Click the bar chart icon on the side bar 2. Go to profile page 3. Progress chart is generated properly and all past attempts is under 'past attempt' 4. Click the line chart button could go to detailed information of an attempt", "Exercise ends properly and return to the home page. A new corresponding attempt is generated"
+   "H2E2", "Patient", "Add new exercises to library", "1. Click the add icon on the side bar 2. Go to video addition page 3. Click the 'browse' button 4. Text editor appears and enter information about the input exercise 5. Click the 'confirm' button 6. Video should appear on the right hand side. Move sliders to adjust start and stop time 7. Click the 'cut' button 8. Click the 'upload' button", "A new exercise is added to the exercise library"
    "PE1", "Patient", "Export report", "1. Click the export button on the profile page", "Corresponding docx file is generated"
-   "H2E2", "Physiotherapist", "Add new exercises to library", "1. Click the add icon on the side bar 2. Go to video addition page 3. Click the 'browse' button 4. Text editor appears and enter information about the input exercise 5. Click the 'confirm' button 6. Video should appear on the right hand side. Move sliders to adjust start and stop time 7. Click the 'cut' button 8. Click the 'upload' button", "A new exercise is added to the exercise library"
+
 
 
 :octicon:`list-ordered` MoSCoW requirement list
@@ -95,11 +91,11 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    :header: "ID", "Requirements", "Priority"
    :widths: 30, 600, 100
 
-   "1", "Enable users to view and replicate physiotherapy rehabilitation exercises", "Must have"
+   "1", "Enable users to view and replicate physiotherapy rehabilitation exercises (Design + Implementation)", "Must have"
    "2", "Give user feedback on how accurately users are doing the exercise to the video during the exercise regime set by the physiotherapist", "Must have"
    "3", "Accuracy metric of 2D translation", "Must have"
    "4", "Reports for progress over time (based on physiotherapy students)", "Should have"
-   "5", "Desktop Application", "Should have"
+   "5", "Desktop Application (Compilation)", "Should have"
    "6", "Video addition feature equipped with video trimmer", "Should have"
    "7", "Accuracy metric of 3D translation", "Could have"
    "8", "Login / Register", "Could have"
