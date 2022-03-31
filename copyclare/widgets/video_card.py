@@ -34,6 +34,10 @@ class VideoCardWidget(UiElement):
         self.mouseReleaseEvent = self.clicked
 
     def add_click(self, event):
+        """
+        Triggered when 'add' button is clicked. Adds 'My Exercises' tag to chosen exercise 
+
+        """
         self.app.move_to_my_exercises(self.exercise)
 
     def clicked(self, event):
