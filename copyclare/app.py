@@ -16,6 +16,7 @@ from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, 
                              ProfilePage, VideoAddition)
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
 from copyclare.config import DEBUG
+from copyclare.widgets.video_card import VideoCardWidget
 from copyclare.widgets.video_card_my_ex import VideoCardMyExWidget
 
 
@@ -119,6 +120,21 @@ class App:
         """
 
         return self.pages.keys()
+
+    def add_video_card_to_banner(self, ex):
+        """
+        Adds a new video card for newly-added exercise in the 'Exercise Library' banner.
+
+        Args:
+            ex (Exercise): The newly-added exercise to be added to 'Exercise Library'.
+
+        """
+        banner = self.pages["home"].banners["Exercise Library"]
+
+        banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea,
+                                                       ex)
+        banner.ui.horizontalLayout.insertWidget(0,
+                                                    banner.cards[str(ex.id)])
 
     def move_to_my_exercises(self, ex):
         """
