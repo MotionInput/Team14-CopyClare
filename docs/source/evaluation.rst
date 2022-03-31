@@ -59,20 +59,26 @@ Summary of achievements
 Evaluation of project
 ---------------------
 
-- User interface / user experience (if applicable)
-- functionality
-- stability
-- efficiency
-- compatibility
-- maintainability
-- project management
+.. csv-table:: Evaluation table
+   :header: "Aspect", "Evaluation", "Yan", "Tianhao", "Sree"
+   :widths: 200, 600
+
+   "UX / UI", "hello"
+   "Functionality", "hello"
+   "Stability", "hello"
+   "Efficiency", "hello"
+   "Compatibility", "hello"
+   "Maintainability", "hello"
+   "Project management", "hello"
 
 
 
 Future work
 -----------
 
+We have laid a solid foundation 
 - How could the project be extended if you have more time
+
 
 
 
