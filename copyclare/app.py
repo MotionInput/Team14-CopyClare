@@ -20,6 +20,10 @@ from copyclare.widgets.video_card_my_ex import VideoCardMyExWidget
 
 
 class App:
+    """
+    The App class manages all the switching between pages of the app.
+
+    """
 
     pages = {
         "landing": LandingPage,
