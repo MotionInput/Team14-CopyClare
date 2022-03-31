@@ -90,6 +90,7 @@ class App:
         self.ui.pages_frame.show()
         self.db.add_attempt(attempt)
         self.pages["progress"].add_attempt(attempt)
+        self.pages["progress"].update_progress_chart(self.db.get_attempt_in_exercise())
         accuracyGraphExporter = AccuracyGraphExporter()
         accuracyGraphExporter.export_accuracy_graph(attempt.session_json, attempt.id)
 

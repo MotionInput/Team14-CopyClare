@@ -51,3 +51,12 @@ class ProfilePage(UiElement):
             self.past_attempts_banner.ui.scrollArea, attempt, None)
         self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
             0, _history_card)
+
+    def update_progress_chart(self, all_ex_attempt):
+        # remove old progress chart
+        self.progress_chart_banner.ui.verticalLayout_2.itemAt(0).widget().deleteLater()
+
+        # add new progress chart
+        self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
+        self.progress_chart_banner.ui.verticalLayout_2.insertWidget(
+            0, self.progress_chart)

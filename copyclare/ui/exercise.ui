@@ -122,7 +122,7 @@
             </size>
            </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string>Sample exercise video</string>
            </property>
           </widget>
          </item>
@@ -283,7 +283,7 @@ QPushButton:pressed {
       <item>
        <widget class="QLabel" name="camera_label">
         <property name="text">
-         <string>TextLabel</string>
+         <string>User Camera</string>
         </property>
        </widget>
       </item>
