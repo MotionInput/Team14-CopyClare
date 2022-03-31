@@ -47,7 +47,9 @@ class VideoAddition(UiElement):
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
 
-        self.exercise = Exercise(None,None,None,None,None,None)
+        self.exercise = Exercise(None,None,None,None,None,"-1")
+        self.h = None
+        self.w = None
 
     def open_file(self):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
@@ -60,6 +62,8 @@ class VideoAddition(UiElement):
 
         self.ui.browse_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.confirm_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
 
         cap = cv2.VideoCapture(DATA_DIR+self.fileName)
         if not cap.isOpened():
@@ -78,7 +82,7 @@ class VideoAddition(UiElement):
             "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
         accuracymodel = AccuracyModel(self.exercise,joints)
-        self.exercise.angles_json = json.dumps(accuracymodel.get_angles(self.exercise.video_directory))
+        self.exercise.angles_json = json.dumps(accuracymodel.get_angles(DATA_DIR+self.exercise.video_directory))
         # print(exercise.angles_json)
         self.app.db.add_exercise(self.exercise)        
         self.app.load_page("home")
@@ -94,9 +98,10 @@ class VideoAddition(UiElement):
         self.exercise.video_directory = self.fileName
         self.exercise.description = description
         
-
-        self.ui.upload_button.setStyleSheet(
-            "QPushButton{background-color: rgb(0, 255, 127);}")
+        self.ui.confirm_button.setStyleSheet(
+            "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.cut_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
         
 
     def change_display_start(self):
@@ -105,6 +110,10 @@ class VideoAddition(UiElement):
         frame = self.frames[frame_num]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame.shape
+        if self.h == None:
+            self.h = h
+        if self.w == None:
+            self.w = w
         Qimg = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
         self.ui.video.setPixmap(QPixmap.fromImage(Qimg))
     
@@ -120,19 +129,21 @@ class VideoAddition(UiElement):
 
 
     def cut(self):
-        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(1920,1080))
+        self.ui.cut_button.setStyleSheet(
+            "QPushButton{background-color: rgb(186, 186, 186);}")
+        self.ui.upload_button.setStyleSheet(
+            "QPushButton{background-color: rgb(187, 255, 200);}")
+        videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(self.w,self.h))
         Svalue = self.ui.start_slider.value()
         Sframe_num = round(Svalue/100 *(len(self.frames)-1))
         Evalue = self.ui.end_slider.value()
         Eframe_num = round(Evalue/100 *(len(self.frames)-1))
         for index in range(len(self.frames)):
             if index > Eframe_num:
-                print(3)
                 break
             if index > Sframe_num:
-                print(2)
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
-                print(1)
                 cv2.imwrite(DATA_DIR+"/"+self.exercise.name+".png",self.frames[index])
+                self.exercise.image_directory = "/"+self.exercise.name+".png"
                 videoWriter.write(self.frames[index])

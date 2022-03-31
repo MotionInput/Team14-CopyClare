@@ -28,6 +28,7 @@ import sqlite3
 
 from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
 from copyclare.data.objects import Attempt, Exercise, Tag
+from copyclare.model.accuracy_v2 import AccuracyModel
 
 
 class Database:
@@ -61,52 +62,30 @@ class Database:
             Tag("My Exercises"),
         ]
 
-        with open(DATA_DIR + "/test/1.json", "r") as f:
-            json1 = f.read()
-        with open(DATA_DIR + "/test/2.json", "r") as f:
-            json2 = f.read()
-        with open(DATA_DIR + "/test/3.json", "r") as f:
-            json3 = f.read()
+        # with open(DATA_DIR + "/test/1.json", "r") as f:
+        #     json1 = f.read()
+        # with open(DATA_DIR + "/test/2.json", "r") as f:
+        #     json2 = f.read()
+        # with open(DATA_DIR + "/test/3.json", "r") as f:
+        #     json3 = f.read()
 
-        with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
-            clare1_desc = f.read()
+        #with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
+        #    clare1_desc = f.read()
         with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
-        with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
-            clare3_desc = f.read()
+        #with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
+        #    clare3_desc = f.read()
 
-        exercises = [
-            Exercise(
-                None,
-                "Push-ups against a wall",
-                "/videos/clare1.mp4",
-                "/images/1.png",
-                clare1_desc,
-                json1,
-            ),
-            Exercise(
-                None,
-                "Shoulder Rotation",
-                "/videos/clare2.mp4",
-                "/images/2.png",
-                clare2_desc,
-                json2,
-            ),
-            Exercise(
-                None,
-                "Wall Slide",
-                "/videos/clare3.mp4",
-                "/images/3.png",
-                clare3_desc,
-                json3,
-            ),
+        exercise = Exercise(None,"Shoulder Rotation","/videos/clare2.mp4","/images/2.png",clare2_desc,"-1")
+        joints = [
+            "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
+        accuracymodel = AccuracyModel(exercise,joints)
+        exercise.angles_json = json.dumps(accuracymodel.get_angles(DATA_DIR+exercise.video_directory))
+        self.add_exercise(exercise)
 
         for tag in tags:
             self.add_tag(tag)
-
-        for ex in exercises:
-            self.add_exercise(ex)
 
         t = Tag("My Exercises")
 
