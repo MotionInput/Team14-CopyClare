@@ -9,7 +9,7 @@ that need to be accessed everywhere across the codebase.
 
 """
 
-DEBUG = True
+DEBUG = False
 """
 Set this to either ``True`` or ``False`` depending on
 if you want to compile ui directly from ``.ui`` files
