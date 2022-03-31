@@ -59,6 +59,8 @@ The development team
    :badge:`Software Architect,badge-info`
    :badge:`Client-liaison,badge-info`
    :badge:`Full-Stack,badge-info`
+   :badge:`Researcher,badge-info`
+   :badge:`Programmer,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
@@ -77,6 +79,7 @@ The development team
    :badge:`UX/UI,badge-info`
    :badge:`Front-end,badge-info`
    :badge:`Blog Editor,badge-info`
+   :badge:`Programmer,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
@@ -95,6 +98,7 @@ The development team
    :badge:`Back-end,badge-info`
    :badge:`UX/UI,badge-info`
    :badge:`Client-liaison,badge-info`
+   :badge:`Researcher,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
@@ -111,6 +115,8 @@ The development team
    **Tianhao Chen**
 
    :badge:`Full-Stack,badge-info`
+   :badge:`Researcher,badge-info`
+   :badge:`Tester,badge-info`
 
    ^^^^^^^^^^^^^^^^^
 
