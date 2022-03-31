@@ -131,10 +131,10 @@ class App:
         """
         banner = self.pages["home"].banners["Exercise Library"]
 
-        banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea,
-                                                       ex)
-        banner.ui.horizontalLayout.insertWidget(0,
-                                                    banner.cards[str(ex.id)])
+        self.db.add_exercise(ex)
+
+        banner.cards[str(ex.id)] = VideoCardWidget(banner.ui.scrollArea, ex)
+        banner.ui.horizontalLayout.insertWidget(0, banner.cards[str(ex.id)])
 
     def move_to_my_exercises(self, ex):
         """
