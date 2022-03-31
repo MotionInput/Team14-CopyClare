@@ -5,9 +5,38 @@
 
 :octicon:`project` Project Structure
 ------------------------------------
+Here you can see our project file structure.
+
+.. code-block::
+
+   copyclare/
+   ├── app.py
+   ├── common.py
+   ├── __init__.py
+   ├── model
+   ├── pages
+   ├── widgets
+   ├── video
+   └── ui
 
 
+- ``app.py`` - contains the main app logic for user interaction. Manages which pages can be shown where.
+  currently it is implemented with a **Singleton** pattern such that app's interface is avalable all across
+  the codebase.
 
+- ``common.py`` - contains commonly used functionality.
+
+- ``model`` - subpackage that acts as an interface to mediapipe for landmark detection and angle_calculations.
+  Also currently contains database, and file handling related code.
+
+- ``pages`` - subpackage that implements every single page. Each page is implemented in a separate file.
+
+- ``widgets`` - subpackage that implements any repetitive ui elements in use.
+
+- ``video`` - implements threads for displaying a video and a camera on the screen.
+  Makes use of ``OpenCV`` and ``PySide6``'s threads.
+
+- ``ui`` - Contains ``.ui`` files that define the looks of our user interface.
 
 :octicon:`file` Data
 --------------------
@@ -16,31 +45,36 @@ All data that is used by our code **MUST** be stored in the data directory.
 .. code-block::
 
    data
-   ├── assets
-   ├── Copyclare.db
-   ├── test
-   └── videos
+   ├─accuracy-graphs
+   ├─images
+   ├─progress-charts
+   ├─results
+   ├─test
+   └─videos
 
-- ``assets``: icons and images used by our app
 - ``Copyclare.db``: sqlite database
+- ``accuracy-graph``: collect all accuracy graphs of attempts
+- ``progress-charts``: all outputted long term progress chart of some exercises
+- ``results``: all outputted reports
 - ``test``: files needed explicitely for testing
-- ``videos``: all the exercise videos are stored here
+- ``videos``: all the exercise videos and the images of the video are stored here
 
 In order to simplify the provess of referencing the data directory we have
-a global variable called ``DATA_PATH`` that contains a string representation
+a global variable called ``DATA_DIR`` that contains a string representation
 of the data path.
-
-to reference it use:
-
-.. code-block:: python
-
-   from copyclare import DATA_PATH
-
-   path = DATA_PATH + "/videos"
-
 
 :octicon:`device-camera-video` Embed OpenCV stream into UI
 ----------------------------------------------------------
+
+One of the challenges we needed to tackle for our implementation is to integrate the OpenCV camera stream
+within the native application. We have solved this problem by applying a sequence of format conversion to
+achieve full compatibility and efficiency. You can see the minimal code snippet that fully shows the
+process of conversion. 
+-The conversion can be summarised into 3 steps:
+
+    * First of all we need to convert a standard open cv frame from the BGR format into RGB.
+    * The next step is to use the resultant RGB frame to create a QImage instance. Which is already enough to display it on the screen.
+    * however if we want to also allow frequent and smooth updates to the ui, it is best to convert QImage into QPixmap, which will also make it incredibly simple to display the frame by using QLabels’s set pixmap method. It is important to note that the whole process must be running in a separate thread to prevent other ui elements from freezing.
 
 
 
