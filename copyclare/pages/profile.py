@@ -17,10 +17,9 @@ from copyclare import UiElement
 
 class ProfilePage(UiElement):
     """
-    Initialise the landing page. It is the first page to be loaded upon launching the app.
+    Initialise the profile page.
 
-    Display the text (CopyClare, Contributors & Supervisors).
-    Contains the 'start' button to go to home page.
+    Initalise progress chart banner and past attempts banner.
 
     Args:
         master (ParentWidget): The frame in which the page will be displayed in.
