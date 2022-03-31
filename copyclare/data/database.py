@@ -76,7 +76,7 @@ class Database:
         #with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
         #    clare3_desc = f.read()
 
-        exercise = Exercise(None,"Shoulder Rotation","/videos/clare2.mp4","/images/2.png",clare2_desc,"-1")
+        exercise = Exercise(None,"Shoulder Rotation","/videos/clare2.mp4","/videos/clare2.png",clare2_desc,"-1")
         joints = [
             "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
