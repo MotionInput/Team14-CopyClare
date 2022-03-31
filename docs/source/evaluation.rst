@@ -21,18 +21,19 @@ Summary of achievements
    "8", "Login / Register", "Could", "X", "N/A"
    "9", "Users to be able to receive and understand feedback from clinicians about which videos to use for therapy through the app", "Could", "X", "N/A"
 
-**Key Functionalities (must have & should have): 100%** completed
-**Optional Functionalities (could have): 33%** completed
+.. csv-table:: Overall Achievement table
+   :header: "Key Functionalities (must have & should have)", "Optional Functionalities (could have)"
+   :widths: 500, 500
+
+   "**100%** completed", "**33%** completed"
 
 
-
-- A list of known bugs
 
 .. csv-table:: Known bugs list
    :header: "ID", "Bug description", "Priority"
    :widths: 30, 600, 100
 
-   "1", "Bug description 1", "Must"
+   "1", "App crashes if camera is already on when opening an Exercise page", "Must"
    "2", "Bug description 2", "Should"
    "3", "Bug description 3", "Could"
 

@@ -61,6 +61,7 @@ padding: 8;</string>
     <widget class="QFrame" name="frame_2">
      <property name="styleSheet">
       <string notr="true">background-color: #ffffff;
+color: #000000;
 opacity: 0.6;</string>
      </property>
      <property name="frameShape">
