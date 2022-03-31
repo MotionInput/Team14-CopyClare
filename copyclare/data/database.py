@@ -91,7 +91,6 @@ class Database:
 
         exercises = self.get_all_exercises()
         self.add_tag_to_exercise(t, exercises[0])
-        self.add_tag_to_exercise(t, exercises[1])
 
     def _file_to_commands(self, sql_path):
         """
