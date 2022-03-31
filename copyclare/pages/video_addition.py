@@ -21,6 +21,17 @@ from copyclare.data import DATA_DIR
 
 
 class VideoAddition(UiElement):
+    """
+    Initialise the video addition page.
+
+    Allows user to browse videos, enter information,
+    trim video, and upload to database.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+
+    """
+
     def __init__(self, master):
         super().__init__(master, "video_addition", Ui_video_addition)
 
