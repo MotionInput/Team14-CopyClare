@@ -76,10 +76,15 @@ Evaluation of project
 Future work
 -----------
 
-We have laid a solid foundation 
-- How could the project be extended if you have more time
+We have laid a solid foundation for future work on CopyClare. Our research and code documentation will
+should set future team on the right path to begin.
 
+We believe that future work on this project should be on:
 
+- Calculating accuracy - a more robust way of comparing two videos is needed for advanced exercises
+- Create a way for the data to be shared online, so physiotherapists can monitor their patient's progress
+- Perform usability testing with the app to get feedback to improve the UX/UI
+- Experimentation with various types of cameras to see its effect on accuracy
 
 
 
