@@ -26,11 +26,27 @@ DOCX_MAX_IMAGE_WIDTH = Inches(6.5)
 
 
 class Exporter():
+    """
+    This class has the functions to gather all of the necessary information
+    to from the given database to create a progress report.
+
+    Args:
+        database : The database from which that data will be exported from
+    """
+
     def __init__(self, database):
         self.database = database
         self.doc = DocumentWriter()
 
     def export(self, saveAs, attempt_id=None):
+        """
+        Exports the data from the database to a .docx file.
+        Args:
+            saveAs : absolute path for where report needs to be saved.
+            attempt_id : the attempt id of the attempt that needs to be exported.
+                         if null, then the tool will export all
+
+        """
         exercise_info = []
         quantitative_data = []
         qualitative_data = []
@@ -51,6 +67,14 @@ class Exporter():
 
     def _get_data(self, attempt, exercise_info, quantitative_data,
                   qualitative_data):
+        """This is a helper function that gathers all of the data
+
+        Args:
+            attempt (_type_): The attempt that needs to be exported
+            exercise_info (_type_): the basic info of the exercise
+            quantitative_data (_type_): the quantitative data of the exercise (shown below)
+            qualitative_data (_type_): the qualitative data of the exercise (shown below)
+        """
         exe_id = attempt.exercise_id
         exe = self.database.get_one_exercise_by_ID(exe_id)
         exercise_info.append({
@@ -70,11 +94,23 @@ class Exporter():
 
 
 class DocumentWriter():
+    """ This is a helper class build the .docx file based on the inputted data
+    """
+
     def __init__(self):
         self.document = Document()
 
     def create_document(self, saveAs, export_title, exercise_info,
                         quantitative_data, qualitative_data):
+        """the main function to call to create a .docx file
+
+        Args:
+            saveAs (_type_): absolute path of where the file needs to be stored
+            export_title (_type_): the title of the document
+            exercise_info (_type_): basic info of the exercise
+            quantitative_data (_type_): quantitative data of the exercise (see above)
+            qualitative_data (_type_): qualitative data of the exercise (see above)
+        """
         self.document.add_heading(export_title, 0)
         self._add_all_progress_charts(exercise_info)
         for i in range(len(exercise_info)):
@@ -84,6 +120,11 @@ class DocumentWriter():
         self.document.save(saveAs)
 
     def _add_all_progress_charts(self, exercise_info):
+        """this is a helper to first add all the progress charts to the report
+
+        Args:
+            exercise_info (dict): basic info for the exercise
+        """
         displayed_exercises = set()
         for exercise in exercise_info:
             if exercise["id"] not in displayed_exercises:
@@ -95,6 +136,11 @@ class DocumentWriter():
                 displayed_exercises.add(exe_id)
 
     def _add_name_and_description(self, exercise_info):
+        """this is a helper to add the name and description of the exercise
+
+        Args:
+            exercise_info (dict): the basic info of the exercise
+        """
         self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
                                   level=2)
         self.document.add_picture(
@@ -103,6 +149,11 @@ class DocumentWriter():
                                     exercise_info["description"])
 
     def _add_quantitative_section(self, quantitative_data):
+        """this is a helper to add the quantitative data of the exercise
+
+        Args:
+            quantitative_data (dict): the quantitative data of the exercise
+        """
         self.document.add_heading('Quantitative', level=2)
         table = self.document.add_table(rows=1, cols=2)
         hdr_cells = table.rows[0].cells
@@ -113,6 +164,11 @@ class DocumentWriter():
         row_cells[1].text = str(quantitative_data['duration']) + " Seconds"
 
     def _add_qualitative_section(self, qualitative_data):
+        """this is a helper function to add qualitative_data to the report
+
+        Args:
+            qualitative_data (dict): qualitative data of the exercise
+        """
         self.document.add_heading('Qualitative', level=2)
         table = self.document.add_table(rows=1, cols=1)
         hdr_cells = table.rows[0].cells
