@@ -20,7 +20,7 @@ class VideoCardWidget(UiElement):
         self.exercise = exercise
         self.app = AppSingleton.get_app()
 
-        img_path = DATA_DIR + f"/images/{self.exercise.id}.png"
+        img_path = DATA_DIR + self.exercise.image_directory
         if os.path.exists(img_path):
             self.ui.video_image.setPixmap(QPixmap(img_path))
         else:

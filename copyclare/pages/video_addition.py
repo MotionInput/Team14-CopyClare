@@ -161,7 +161,10 @@ class VideoAddition(UiElement):
             if index > Sframe_num:
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
-                cv2.imwrite(DATA_DIR+"/images/"+self.exercise.name+".png",self.frames[index])
-                self.exercise.image_directory = "/images/"+self.exercise.name+".png"
-                print(self.exercise.image_directory)
+                exes = self.app.db.get_all_exercises()
+                length = len(exes)
+                #print(length)
+                cv2.imwrite(DATA_DIR+"/images/"+str(length)+".png",self.frames[index])
+                self.exercise.image_directory = "/images/"+str(length)+".png"
+                #print(self.exercise.image_directory)
                 videoWriter.write(self.frames[index])
