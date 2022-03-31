@@ -15,6 +15,7 @@ from copyclare.common import AppSingleton
 from copyclare.data.objects import Exercise
 from copyclare.model.accuracy_v2 import AccuracyModel
 from copyclare.pyui.video_addition import Ui_video_addition
+from copyclare.video import ProcessingThread
 
 from copyclare import UiElement
 from copyclare.data import DATA_DIR
@@ -78,26 +79,31 @@ class VideoAddition(UiElement):
 
         cap = cv2.VideoCapture(DATA_DIR+self.fileName)
         if not cap.isOpened():
-            print("Error opening a video file")        
-        self.frames = []        
+            print("Error opening a video file")
+        self.frames = []
         while (cap.isOpened):
             success, frame = cap.read()
             #print(frame_count)
             if not success:
                 print("Can't read from Camera")
-                break            
+                break
             self.frames.append(frame)
 
+    def upload_finished(self):
+        ex = self.upload_thread.exercise
+        self.app.add_video_card_to_banner(ex)
+
+
+
     def upload(self):
-        joints = [
-            "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
-        ]
-        accuracymodel = AccuracyModel(self.exercise,joints)
-        self.exercise.angles_json = json.dumps(accuracymodel.get_angles(DATA_DIR+self.exercise.video_directory))
-        # print(exercise.angles_json)
-        self.app.db.add_exercise(self.exercise)        
+
+        self.upload_thread = ProcessingThread(self.exercise)
+        self.upload_thread.finished.connect(self.upload_finished)
+        self.upload_thread.start()
         self.app.load_page("home")
-        pass
+
+
+
 
     def confirm(self):
         video_name = self.ui.video_name_editor.toPlainText()
@@ -108,12 +114,12 @@ class VideoAddition(UiElement):
         self.exercise.name = video_name
         self.exercise.video_directory = self.fileName
         self.exercise.description = description
-        
+
         self.ui.confirm_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
         self.ui.cut_button.setStyleSheet(
             "QPushButton{background-color: rgb(187, 255, 200);}")
-        
+
 
     def change_display_start(self):
         value = self.ui.start_slider.value()
@@ -127,7 +133,7 @@ class VideoAddition(UiElement):
             self.w = w
         Qimg = QImage(frame.data, w, h, w * ch, QImage.Format_RGB888)
         self.ui.video.setPixmap(QPixmap.fromImage(Qimg))
-    
+
     def change_display_end(self):
         value = self.ui.end_slider.value()
         frame_num = round(value/100 *(len(self.frames)-1))
@@ -156,5 +162,5 @@ class VideoAddition(UiElement):
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
                 cv2.imwrite(DATA_DIR+"/videos/"+self.exercise.name+".png",self.frames[index])
-                self.exercise.image_directory = "/videos"+self.exercise.name+".png"
+                self.exercise.image_directory = "/videos/"+self.exercise.name+".png"
                 videoWriter.write(self.frames[index])

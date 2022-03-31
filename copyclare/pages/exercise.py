@@ -30,7 +30,7 @@ class ExercisePage(UiElement):
 
     Args:
         master (ParentWidget): The frame in which the page will be displayed in.
-        exercise (Exercise): 
+        exercise (Exercise):
 
     """
 
