@@ -34,8 +34,7 @@ Summary of achievements
    :widths: 30, 600, 100
 
    "1", "App crashes if camera is already on when opening an Exercise page", "Must"
-   "2", "Bug description 2", "Should"
-   "3", "Bug description 3", "Could"
+   "2", "If video addition page has been used, and is opened again during the same session, the page does not return to initial state. However, the functions still work.", "Could"
 
 
 
@@ -74,7 +73,6 @@ Future work
 -----------
 
 - How could the project be extended if you have more time
-
 
 
 
