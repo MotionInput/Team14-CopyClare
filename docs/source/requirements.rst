@@ -101,8 +101,9 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "4", "Reports for progress over time (based on physiotherapy students)", "Should have"
    "5", "Desktop Application", "Should have"
    "6", "Video addition feature equipped with video trimmer", "Should have"
-   "7", "Login / Register", "Could have"
-   "8", "Users to be able to receive and understand feedback from clinicians about which videos to use for therapy through the app", "Could have"
+   "7", "Accuracy metric of 3D translation", "Could have"
+   "8", "Login / Register", "Could have"
+   "9", "Users to be able to receive and understand feedback from clinicians about which videos to use for therapy through the app", "Could have"
 
 .. csv-table:: Non-functional requirements
    :header: "ID", "Requirements", "Priority"
