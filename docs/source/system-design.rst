@@ -66,3 +66,10 @@ of each module shown.
 
 :octicon:`database` Database
 ----------------------------
+
+.. image:: imgs/er-diagram.png
+
+there are 3 main tables(exercises,attempts,tags). 
+   * Exercises table is used to take down all sorts of exercises. 
+   * An attempts informatation would be recorded into database when patients finish their exercise. 
+   * Tags are used to classify the exercise. And the tag_to_exercise table is generated because of the many to many relation between tags and exercises table.

@@ -11,7 +11,32 @@
 
 :octicon:`file` Data
 --------------------
+All data that is used by our code **MUST** be stored in the data directory.
 
+.. code-block::
+
+   data
+   ├── assets
+   ├── Copyclare.db
+   ├── test
+   └── videos
+
+- ``assets``: icons and images used by our app
+- ``Copyclare.db``: sqlite database
+- ``test``: files needed explicitely for testing
+- ``videos``: all the exercise videos are stored here
+
+In order to simplify the provess of referencing the data directory we have
+a global variable called ``DATA_PATH`` that contains a string representation
+of the data path.
+
+to reference it use:
+
+.. code-block:: python
+
+   from copyclare import DATA_PATH
+
+   path = DATA_PATH + "/videos"
 
 
 :octicon:`device-camera-video` Embed OpenCV stream into UI

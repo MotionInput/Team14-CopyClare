@@ -72,6 +72,8 @@ in the Algorithms page.
 
 Additional Resources/References:
 
+   * https://google.github.io/mediapipe/solutions/pose.html
+   * https://ai.googleblog.com/2020/08/on-device-real-time-body-pose-tracking.html
    * https://www.youtube.com/watch?v=MV_sZNAiVts&t=145s (angle calculations)
    * https://bess.ac.uk/exercises-for-shoulder-pain/
    * `R. Tucker, “The effect of a five-week hippotherapy programme on gait in a child with Angelman's syndrome. A case study using the Wee Glasgow Gait Index (Weeggi),” International Journal of Therapy and Rehabilitation, vol. 26, no. 6, pp. 4–4, 2019. [Accessed: Feb. 7, 2022]`
