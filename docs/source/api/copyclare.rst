@@ -1,20 +1,9 @@
-copyclare package
+Copyclare package
 =================
 
-Subpackages
------------
 
-.. toctree::
-   :maxdepth: 4
-
-   copyclare.data
-   copyclare.model
-
-Submodules
+App module
 ----------
-
-copyclare.app module
---------------------
 
 .. automodule:: copyclare.app
    :members:
@@ -29,10 +18,18 @@ copyclare.common module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+copyclare.config module
+-----------------------
 
-.. automodule:: copyclare
+.. automodule:: copyclare.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+copyclare.ui\_element module
+----------------------------
+
+.. automodule:: copyclare.ui_element
    :members:
    :undoc-members:
    :show-inheritance:
