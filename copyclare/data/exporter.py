@@ -11,20 +11,17 @@ This export module deals with everything related to exporting progress reports f
 
    # sample usage:
    from copyclare.data import Exporter
-
    # Exporter is an object that allows for the exporting of progress reports
 """
+
 
 import os
 import json
 import pyqtgraph as pg
-
 from pyqtgraph import exporters
 from docx import Document
 from docx.shared import Inches
-
 from copyclare.data import DATA_DIR
-
 DOCX_MAX_IMAGE_WIDTH = Inches(6.5)
 
 
@@ -70,9 +67,6 @@ class Exporter():
             "accuracy": round(attempt.accuracy, 2),
             "accuracy_graph": DATA_DIR+f"/accuracy-graphs/{attempt.id}.png",
         })
-
-
-# reference: https://roytuts.com/a-guide-to-write-word-file-using-python/
 
 
 class DocumentWriter():
