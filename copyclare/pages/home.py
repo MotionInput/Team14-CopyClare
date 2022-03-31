@@ -11,6 +11,17 @@ from copyclare import UiElement
 
 
 class HomePage(UiElement):
+    """
+    Initialise the home page.
+
+    Creates banners (which displays video cards) for all tags.
+    One banner for each tag.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+
+    """
+
     def __init__(self, master):
         super().__init__(master, "home", Ui_Home)
 

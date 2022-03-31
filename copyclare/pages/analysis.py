@@ -14,6 +14,18 @@ from copyclare import UiElement
 
 
 class AnalysisPage(UiElement):
+    """
+    Initialise the analysis page for selected attempt.
+
+    Set the text for all information, draw and display the accuracy graph,
+    and display the image of exercise.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+        attempt (Attempt): The attempt to be displayed.
+
+    """
+
     def __init__(self, master, attempt):
         super().__init__(master, "analysis", Ui_analysis_page)
         self.attempt = attempt

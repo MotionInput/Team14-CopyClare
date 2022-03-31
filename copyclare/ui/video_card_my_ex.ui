@@ -68,6 +68,12 @@ color: #000000;</string>
      <property name="styleSheet">
       <string notr="true">border: 0px;</string>
      </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -76,8 +82,8 @@ color: #000000;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>276</width>
-        <height>145</height>
+        <width>288</width>
+        <height>167</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">

@@ -10,6 +10,17 @@ from copyclare import UiElement
 
 
 class LandingPage(UiElement):
+    """
+    Initialise the landing page. It is the first page to be loaded upon launching the app.
+
+    Display the text (CopyClare, Contributors & Supervisors).
+    Contains the 'start' button to go to home page.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+
+    """
+
     def __init__(self, master):
         super().__init__(master, "landing", Ui_landing_frame)
 
