@@ -29,9 +29,9 @@ class HomePage(UiElement):
         self.banners = {}
 
         all_exercises = self.app.db.get_all_exercises()
-        library_banner = BannerWidget(self.ui.scroll_area, "Exercise Library",
+        self.banners["Exercise Library"] = BannerWidget(self.ui.scroll_area, "Exercise Library",
                                       all_exercises)
-        self.ui.vertical_layout.insertWidget(0, library_banner)
+        self.ui.vertical_layout.insertWidget(0, self.banners["Exercise Library"])
 
         tags = self.app.db.get_all_tags()
         for tag in tags:
