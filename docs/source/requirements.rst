@@ -60,7 +60,7 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
 
 2) **Use case list**
 
-.. csv-table:: List of use cases
+.. csv-table:: List of use cases 1
    :header: "ID", "Use Case for Patient"
    :widths: 100, 600
 
@@ -69,6 +69,12 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "H1E2", "Do exercise"
    "H2E1", "View progress and all past attempts"
    "PE1", "Export report"
+
+.. csv-table:: List of use cases 2
+   :header: "ID", "Use Case for Physiotherapist"
+   :widths: 100, 600
+
+   "H2E2", "Add new exercises to library"
 
 .. csv-table:: Use case description
    :header: "ID", "Actor", "Description", "Main flow", "Result"
@@ -79,6 +85,7 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "H1E2", "Patient", "Do exercise", "1. Click the image on the video card of the exercise they want 2. Do exercise based on the top left video 3. Improve their movement based on the colour of the line and accuracy graph 4. Click 'end exercise' button to end exercise", "Go to home page"
    "H2E1", "Patient", "View progress and all past attempts", "1. Click the bar chart icon on the side bar 2. Go to profile page 3. Progress chart is generated properly and all past attempts is under 'past attempt' 4. Click the line chart button could go to detailed information of an attempt", "Exercise ends properly and return to the home page. A new corresponding attempt is generated"
    "PE1", "Patient", "Export report", "1. Click the export button on the profile page", "Corresponding docx file is generated"
+   "H2E2", "Physiotherapist", "Add new exercises to library", "1. Click the add icon on the side bar 2. Go to video addition page 3. Click the 'browse' button 4. Text editor appears and enter information about the input exercise 5. Click the 'confirm' button 6. Video should appear on the right hand side. Move sliders to adjust start and stop time 7. Click the 'cut' button 8. Click the 'upload' button", "A new exercise is added to the exercise library"
 
 
 :octicon:`list-ordered` MoSCoW requirement list
@@ -88,13 +95,14 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    :header: "ID", "Requirements", "Priority"
    :widths: 30, 600, 100
 
-   "1", "CopyClare enables users to view and replicate physiotherapy rehabilitation exercises", "Must have"
-   "2", "We must give user feedback on how accurately users are doing the exercise to the video during the exercise regime set by the physiotherapist", "Must have"
+   "1", "Enable users to view and replicate physiotherapy rehabilitation exercises", "Must have"
+   "2", "Give user feedback on how accurately users are doing the exercise to the video during the exercise regime set by the physiotherapist", "Must have"
    "3", "Accuracy metric of 2D translation", "Must have"
-   "4", "Reports for progress over time based on physiotherapy students", "Should have"
+   "4", "Reports for progress over time (based on physiotherapy students)", "Should have"
    "5", "Desktop Application", "Should have"
-   "6", "Login / Register", "Could have"
-   "7", "Users to be able to understand and receive feedback from clinicians about which videos use for therapy", "Could have"
+   "6", "Video addition feature equipped with video trimmer", "Should have"
+   "7", "Login / Register", "Could have"
+   "8", "Users to be able to receive and understand feedback from clinicians about which videos to use for therapy through the app", "Could have"
 
 .. csv-table:: Non-functional requirements
    :header: "ID", "Requirements", "Priority"
@@ -103,3 +111,5 @@ The main goal of CopyClare is to provide the same support to patients as an in-p
    "1", "**Usability:** As our users are patients undergoing physiotherapy, the main requirement is that the app must be easy to use so that patients will not get put off trying to understand how to navigate it, and requires as few clicks as possible for users to perform an action in the app so that they do not strain themselves or have to move too much.", "Must have"
    "2", "**Performance:** This is most relevant to our Exercise page, as the app is required to provide live feedback on the patient's accuracy as they work on the exercise. The live feedback involves using colour coding to notify patients of whether they are doing the exercises correctly, a repetition counter, as well as a live accuracy graph. In order to provide instantaneous feedback, the back-end should be as optimised as possible to achieve the most accurate analysis.", "Should have"
    "3", "**Security:** As a person's health records are sensitive data, our app should prevent anyone else other than the patient themselves to access the data within the app. This is currently done by storing everything locally in the patient's device. In the future, the app can potentially have a 'Login/Register' system that would ensure only the patient have access to their own account.", "Could have"
+
+

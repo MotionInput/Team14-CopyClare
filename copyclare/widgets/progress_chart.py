@@ -3,7 +3,6 @@ Contributors: Adi Bozzhanov, Yan Lai
 
 """
 
-import os
 import pyqtgraph as pg
 from pyqtgraph import exporters
 from PySide6.QtWidgets import QTabWidget
@@ -102,9 +101,7 @@ class ProgressChartWidget(UiElement):
         progress_charts = self.draw_progress_charts(all_ex_attempt)
         for chart in progress_charts:
             path = DATA_DIR + '/progress-charts/' + str(chart[2]) + '.png'
-            exists = os.path.exists(path)
-            if not exists:
-                exporter = exporters.ImageExporter(chart[0].plotItem)
-                exporter.parameters()['width'] = 500
-                exporter.parameters()['height'] = 400
-                exporter.export(path)
+            exporter = exporters.ImageExporter(chart[0].plotItem)
+            exporter.parameters()['width'] = 500
+            exporter.parameters()['height'] = 400
+            exporter.export(path)
