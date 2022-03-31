@@ -70,7 +70,7 @@ class App:
     def start_exercise(self, exercise):
         """
         Hide all the contents including navbar
-        and create and exercise instacne
+        and create an exercise instance
 
         Upon completion of the exercise process,
         log the results of the attempt in the database.
@@ -85,11 +85,19 @@ class App:
         self.ui.exercise_layout.addWidget(ex_page)
 
     def end_exercise(self, attempt):
+        """
+        Hides and deletes exercise page,
+        and reveals all previously hidden contents
+
+        Updates Profile page with new history card and progress chart,
+        and exports accuracy graph of attempt
+
+        """
         self.ui.exercise_frame.hide()
         self.ui.side_nav.show()
         self.ui.pages_frame.show()
         self.db.add_attempt(attempt)
-        self.pages["progress"].add_attempt(attempt)
+        self.pages["progress"].add_attempt_history_card(attempt)
         self.pages["progress"].update_progress_chart(self.db.get_attempt_in_exercise())
         accuracyGraphExporter = AccuracyGraphExporter()
         accuracyGraphExporter.export_accuracy_graph(attempt.session_json, attempt.id)
@@ -109,6 +117,13 @@ class App:
         return self.pages.keys()
 
     def move_to_my_exercises(self, ex):
+        """
+        Adds a new video card for selected exercise in the 'My Exercises' banner.
+
+        Args:
+            ex (Exercise): The chosen exercise to be moved to 'My Exercises'.
+
+        """
         tag = Tag("My Exercises")
         banner = self.pages["home"].banners[tag.tag_name]
 
@@ -124,6 +139,13 @@ class App:
                                                     banner.cards[str(ex.id)])
 
     def remove_from_my_exercises(self, ex):
+        """
+        Removes video card for selected exercise in the 'My Exercises' banner.
+
+        Args:
+            ex (Exercise): The chosen exercise to be removed from 'My Exercises'.
+
+        """
         tag = Tag("My Exercises")
         banner = self.pages["home"].banners[tag.tag_name]
 

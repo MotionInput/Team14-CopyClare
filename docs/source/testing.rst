@@ -3,6 +3,14 @@ Testing
 
 
 
+Testing strategy
+----------------
+
+- motion input students test our compilation because they are the same
+- we use automatic compilation thingy idk what it means
+
+
+
 User acceptance testing (UAT)
 -----------------------------
 

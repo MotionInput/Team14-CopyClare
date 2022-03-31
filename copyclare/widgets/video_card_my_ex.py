@@ -35,7 +35,11 @@ class VideoCardMyExWidget(UiElement):
 
         self.mouseReleaseEvent = self.clicked
 
-    def remove_click(self):
+    def remove_click(self, event):
+        """
+        Triggered when 'remove' button is clicked. Removes 'My Exercises' tag from chosen exercise 
+
+        """
         self.app.remove_from_my_exercises(self.exercise)
 
     def clicked(self, event):

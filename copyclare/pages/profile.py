@@ -46,7 +46,7 @@ class ProfilePage(UiElement):
                 self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
                     0, _history_card)
 
-    def add_attempt(self, attempt):
+    def add_attempt_history_card(self, attempt):
         _history_card = HistoryCardWidget(
             self.past_attempts_banner.ui.scrollArea, attempt, None)
         self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
