@@ -14,7 +14,7 @@ thoroughly tested by all Motion Input v3 teams that were using similar dependenc
 
 
 Preprocessing benchmark Testing
-------------------------------
+-------------------------------
 
 As was mentioned in the Algorithms section of our website. One of the most compuationally
 expensive steps that our software does is preprocessing.
