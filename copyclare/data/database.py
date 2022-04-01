@@ -2,7 +2,6 @@
 Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
 
 """
-
 """
 database.py
 
@@ -76,12 +75,14 @@ class Database:
         #with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
         #    clare3_desc = f.read()
 
-        exercise = Exercise(None,"Shoulder Rotation","/videos/clare2.mp4","/images/1.png",clare2_desc,"-1")
+        exercise = Exercise(None, "Shoulder Rotation", "/videos/clare2.mp4",
+                            "/images/1.png", clare2_desc, "-1")
         joints = [
             "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
-        accuracymodel = AccuracyModel(exercise,joints)
-        exercise.angles_json = json.dumps(accuracymodel.get_angles(DATA_DIR+exercise.video_directory))
+        accuracymodel = AccuracyModel(exercise, joints)
+        exercise.angles_json = json.dumps(
+            accuracymodel.get_angles(DATA_DIR + exercise.video_directory))
         self.add_exercise(exercise)
 
         for tag in tags:
