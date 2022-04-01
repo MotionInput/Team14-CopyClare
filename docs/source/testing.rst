@@ -53,7 +53,7 @@ A member of our team would ask the user questions as they go through the tasks t
    :widths: 30, 600
 
    "1", "No quick overview of all attempts"
-   "2", "UI not intuitive enough"
+   "2", "Quick walkthrough of all features would be preferred"
    "3", "No landing page to properly launch app"
    "4", "Colour scheme is not 'professional'"
    "5", "User's camera is too small during exercise sessions"
@@ -78,7 +78,7 @@ We made the following changes to address the complaints:
    :widths: 30, 600, 600
 
    "1", "No quick overview of all attempts", "Progress chart"
-   "2", "UI not intuitive enough", "Pop-up tutorial"
+   "2", "Quick walkthrough of all features would be preferred", "Pop-up tutorial"
    "3", "No landing page to properly launch app", "Created landing page"
    "4", "Colour scheme is not 'professional'", "Changed colour theme to muted blue"
    "5", "User's camera is too small during exercise sessions", "Changed layout of Exercise page to maximise user's camera"
