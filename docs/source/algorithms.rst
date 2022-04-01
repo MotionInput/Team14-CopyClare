@@ -22,8 +22,7 @@ With that we came up with a following function signature.
    func get_accuracy(frame, time): -> accuracy
 
 The function takes in an OpenCV frame object, and a time stamp in seconds of the source video.
-The time is important to pass, in order to be able to distinguish between the beginning and the
-end of exercise motion.
+The time is important to pass, in order to be able to select a correct angle for comparison.
 
 
 
@@ -72,19 +71,43 @@ Sample JSON:
     }
 
 
-
-Experiments
------------
-
-
 Discussions
 -----------
+
+We have identified a number limitations of our comparison approach.
+
+#. Long preprocessing time
+
+   The primary source of long preprocessing time come from Lowess Smothing.
+   The values must be smoothed to reduce the noise in the data, yet it does
+   add a significant amount to the computation time.
+
+#. In accurate readings for videos where a body part of interest gets covered frequently.
+
+   This bit is primarily a limitation of the mediapipe library and nothing much we can do about it.
+
+#. Limited range of exercise camera angles.
+
+   We do not recommend adding exercises where the joint of interest is not visible in the video.
+   For instance, if we are talking about a push up from a side view, our model will not give accurate
+   results for both hands (one of the hands is simply not visible). The recommended exercise camera angle
+   is either top down or from the front side infront of the face.
+
+#. Not all exercises are even applicable
+
+   Some physiotherapy exercises simply cannot be done while watching at the camera, which
+   makes the whole point of real time feedback meaningless. An example of such an exercise
+   can be found here: https://www.youtube.com/watch?v=G_c3QztMZNQ .In this specific example
+   you are supposed to be  facing a wall, making it impossible for you to look at our screen
+   in parallel.
+
+
+
 
 
 Conclusion
 ----------
 
-
-
-References
-----------
+Our solution still remains to be a proof of concept with its own drawbacks and inefficiencies. However
+we have proven that real time video comparison without the need of extensive machine learning is possible
+and within sight.

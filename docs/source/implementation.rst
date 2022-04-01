@@ -14,6 +14,7 @@ Here you can see our project file structure.
    ├── common.py
    ├── __init__.py
    ├── model
+   ├── data
    ├── pages
    ├── widgets
    ├── video
@@ -27,7 +28,9 @@ Here you can see our project file structure.
 - ``common.py`` - contains commonly used functionality.
 
 - ``model`` - subpackage that acts as an interface to mediapipe for landmark detection and angle_calculations.
-  Also currently contains database, and file handling related code.
+
+
+- ``data`` - contains database, and file handling related code.
 
 - ``pages`` - subpackage that implements every single page. Each page is implemented in a separate file.
 
@@ -69,7 +72,7 @@ of the data path.
 One of the challenges we needed to tackle for our implementation is to integrate the OpenCV camera stream
 within the native application. We have solved this problem by applying a sequence of format conversion to
 achieve full compatibility and efficiency. You can see the minimal code snippet that fully shows the
-process of conversion. 
+process of conversion.
 -The conversion can be summarised into 3 steps:
 
     * First of all we need to convert a standard open cv frame from the BGR format into RGB.
