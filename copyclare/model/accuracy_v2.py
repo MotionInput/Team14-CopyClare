@@ -121,6 +121,15 @@ class AccuracyModel:
         return angles
 
     def color_frame(self, frame, landmark_list, accuracy):
+        """
+        Draws a skeleton on top of the user.
+
+        Args:
+           frame: opencv frame containing an image to be colored.
+           landmark_list: Contains coordinates of landmarks of interest
+           accuracy: a real number that's used to determine the color of
+               the skeleton
+        """
         done = set()
         clr = (255, 255, 255) if (accuracy > 90) else (0, 0, 0)
         if landmark_list:
@@ -158,6 +167,18 @@ class AccuracyModel:
         return angle
 
     def get_accuracy(self, angle, reltime, joint):
+        """
+        Calculats the accuracy given the angle, joint and the relative time.
+
+        Args:
+
+            angle: float angle value
+            reltime: float timestamp within the range (0-duration of the video)
+            joint: String value representing the joint to be considered.
+
+        Reurns:
+            accuracy value in the range 0-100
+        """
         form_time = round_decimals_up(int(reltime / self.step) * self.step, 4)
         a1 = angle
         rep = False

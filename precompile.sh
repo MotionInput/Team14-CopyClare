@@ -1,3 +1,5 @@
+mkdir copyclare/pyui
+
 for f in ./copyclare/ui/*
 do
     NAME="$(basename $f .ui)"
@@ -14,5 +16,8 @@ then
 else
     echo "Data does no exist. Initialising from data_clean"
     mkdir data
+    mkdir data/progress-charts
+    mkdir data/accuracy-graphs
     cp -r data_clean/* data
+
 fi
