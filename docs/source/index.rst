@@ -113,7 +113,7 @@ The development team
    :octicon:`mark-github` https://github.com/Sree5835
 
    ---
-   :img-top: imgs/tianhao-chen-best-pic.jpg
+   :img-top: imgs/cth.jpg
 
    **Tianhao Chen**
 
