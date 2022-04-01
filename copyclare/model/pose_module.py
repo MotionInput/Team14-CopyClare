@@ -1,22 +1,16 @@
+"""
+Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
+
+"""
+
 import math
-from cmath import acos
 
 import cv2
 import mediapipe as mp
-import numpy as np
 
 
 class PoseModule:
-    def __init__(
-        self,
-        mode=False,
-        up_body=False,
-        smooth=True,
-        detection_con=True,
-        track_con=True,
-        smooth_segmentation=False,
-    ):
-
+    def __init__(self):
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose(
@@ -27,6 +21,9 @@ class PoseModule:
         )
 
     def find_person(self, img, draw=False):
+        """
+        Find the person in the frame
+        """
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(img_rgb)
         if self.results.pose_landmarks and draw:
@@ -35,6 +32,13 @@ class PoseModule:
         return img
 
     def find_landmarks(self, img, draw=True):
+        """
+        Finds landmarks given the image
+
+        Returns:
+            landmark_list
+        """
+
         self.landmark_list = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
@@ -47,6 +51,15 @@ class PoseModule:
         return self.landmark_list
 
     def find_angle(self, img, p1, p2, p3, draw=True):
+        """
+
+        Calculates the angle given and image, and 3 joints
+
+        Returns:
+            float value of the angle in degrees
+
+        """
+
         # Get the landmarks
         z1, x1, y1 = self.landmark_list[p1]
         z2, x2, y2 = self.landmark_list[p2]
@@ -71,7 +84,7 @@ class PoseModule:
             cv2.circle(img, (x3, y3), 11, (0, 0, 255), cv2.FILLED)
             cv2.circle(img, (x3, y3), 16, (255, 60, 0), 2)
 
-            #cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 60),
+            # cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 60),
             #            cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1)
         return angle
 

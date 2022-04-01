@@ -1,7 +1,13 @@
+"""
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
+
+"""
+
 from PySide6.QtWidgets import QFileDialog
 
 from copyclare.common import AppSingleton
 from copyclare.data.exporter import Exporter
+
 from copyclare.pyui.past_attempts_banner import Ui_Frame
 from copyclare import UiElement
 
@@ -13,8 +19,11 @@ class PastAttemptsBannerWidget(UiElement):
 
         self.ui.export_all_button.clicked.connect(lambda x: self._export_all())
 
-    # TODO - link export_all function here
     def _export_all(self):
+        """
+        Export all progress charts and the analysis of all attempts as a docx document.
+
+        """
         exporter = Exporter(self.app.db)
         file_path, selectedFilter = QFileDialog.getSaveFileName(
             filter="*.docx")

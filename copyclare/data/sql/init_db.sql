@@ -1,3 +1,5 @@
+--Contributors: Adi Bozzhanov
+
 -- Exercises table
 
 CREATE TABLE IF NOT EXISTS exercises(

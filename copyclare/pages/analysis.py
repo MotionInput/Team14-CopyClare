@@ -1,18 +1,30 @@
 """
-AnalysisPage`
-
+Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
 
 """
 
-import json
-import pyqtgraph as pg
-
+import os
+from copyclare.data import DATA_DIR
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
+from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.pyui.analysis import Ui_analysis_page
 from copyclare.common import AppSingleton
 from copyclare import UiElement
 
 
 class AnalysisPage(UiElement):
+    """
+    Initialise the analysis page for selected attempt.
+
+    Set the text for all information, draw and display the accuracy graph,
+    and display the image of exercise.
+
+    Args:
+        master (ParentWidget): The frame in which the page will be displayed in.
+        attempt (Attempt): The attempt to be displayed.
+
+    """
     def __init__(self, master, attempt):
         super().__init__(master, "analysis", Ui_analysis_page)
         self.attempt = attempt
@@ -27,32 +39,20 @@ class AnalysisPage(UiElement):
         self.ui.repetitions.setText(str(self.attempt.num_of_repetitons))
         self.ui.accuracy.setText(str(self.attempt.accuracy))
 
-        self._draw_accuracy_graph()
+        self.accuracyGraphExporter = AccuracyGraphExporter()
+        graphWidget = self.accuracyGraphExporter.draw_accuracy_graph(
+            self.attempt.session_json)
+        self.ui.verticalLayout_graph.addWidget(graphWidget)
 
-        # TODO things to set for QGraphicsView - heatmap
+        img_path = DATA_DIR + f"/images/{self.attempt.exercise_id}.png"
+        if os.path.exists(img_path):
+            pixmap = QPixmap(img_path)
+            pixmap = pixmap.scaled(420, 380, Qt.KeepAspectRatio)
+            self.ui.ex_image.setPixmap(pixmap)
+        else:
+            pixmap = QPixmap(":icons/default-video-img.png")
+            pixmap = pixmap.scaled(420, 380, Qt.KeepAspectRatio)
+            self.ui.ex_image.setPixmap(pixmap)
 
         self.ui.back_button.clicked.connect(
             lambda x: self.app.load_page("progress"))
-
-    def _draw_accuracy_graph(self):
-        self.graphWidget = pg.PlotWidget()
-
-        x_axis = []
-        y_axis = []
-
-        self.accuracy = json.loads(self.attempt.session_json)
-
-        for pair in self.accuracy:
-            x_axis.append(pair[0]) # timestamp
-            y_axis.append(pair[1]) # accuracy
-
-        self.graphWidget.setBackground('w')
-        self.graphWidget.setTitle("Accuracy throughout exercise (recorded by second)", color="black", size="15pt")
-        self.graphWidget.showGrid(x=True, y=True)
-        self.graphWidget.setXRange(x_axis[0], x_axis[-1], padding=0)
-        self.graphWidget.setYRange(0, 100, padding=0)
-
-        pen = pg.mkPen(color=(0, 20, 40), width=3)
-        self.graphWidget.plot(x_axis, y_axis, name="",  pen=pen, symbol='o', symbolSize=2, symbolBrush=('#003366'))
-
-        self.ui.verticalLayout_graph.addWidget(self.graphWidget)

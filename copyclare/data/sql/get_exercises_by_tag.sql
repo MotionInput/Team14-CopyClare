@@ -1,3 +1,5 @@
+--Contributors: Adi Bozzhanov
+
 SELECT *
 FROM exercises
 WHERE exercise_id in (

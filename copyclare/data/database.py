@@ -1,4 +1,8 @@
 """
+Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
+
+"""
+"""
 database.py
 
 copyclare.data.Database
@@ -17,14 +21,15 @@ you can reference sql directory in the code by using ``SQL_DIR``.
    # SQL_DIR is a string containing the absulute path to our SQL queries.
 """
 
+
+
+
 import json
 import os
 import sqlite3
-
 from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
 from copyclare.data.objects import Attempt, Exercise, Tag
-
-
+from copyclare.model.accuracy_v2 import AccuracyModel
 class Database:
     def __init__(self, db_file):
         """ create a database connection to the SQLite database
@@ -56,58 +61,37 @@ class Database:
             Tag("My Exercises"),
         ]
 
-        with open(DATA_DIR + "/test/1.json", "r") as f:
-            json1 = f.read()
-        with open(DATA_DIR + "/test/2.json", "r") as f:
-            json2 = f.read()
-        with open(DATA_DIR + "/test/3.json", "r") as f:
-            json3 = f.read()
+        # with open(DATA_DIR + "/test/1.json", "r") as f:
+        #     json1 = f.read()
+        # with open(DATA_DIR + "/test/2.json", "r") as f:
+        #     json2 = f.read()
+        # with open(DATA_DIR + "/test/3.json", "r") as f:
+        #     json3 = f.read()
 
-        with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
-            clare1_desc = f.read()
+        # with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
+        #    clare1_desc = f.read()
         with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
-        with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
-            clare3_desc = f.read()
+        # with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
+        #    clare3_desc = f.read()
 
-        exercises = [
-            Exercise(
-                None,
-                "Push-ups against a wall",
-                "/videos/clare1.mp4",
-                "null",
-                clare1_desc,
-                json1,
-            ),
-            Exercise(
-                None,
-                "Shoulder Rotation",
-                "/videos/clare2.mp4",
-                "null",
-                clare2_desc,
-                json2,
-            ),
-            Exercise(
-                None,
-                "Wall Slide",
-                "/videos/clare3.mp4",
-                "null",
-                clare3_desc,
-                json3,
-            ),
+        exercise = Exercise(None, "Shoulder Rotation", "/videos/clare2.mp4",
+                            "/images/1.png", clare2_desc, "-1")
+        joints = [
+            "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
+        accuracymodel = AccuracyModel(exercise, joints)
+        exercise.angles_json = json.dumps(
+            accuracymodel.get_angles(DATA_DIR + exercise.video_directory))
+        self.add_exercise(exercise)
 
         for tag in tags:
             self.add_tag(tag)
-
-        for ex in exercises:
-            self.add_exercise(ex)
 
         t = Tag("My Exercises")
 
         exercises = self.get_all_exercises()
         self.add_tag_to_exercise(t, exercises[0])
-        self.add_tag_to_exercise(t, exercises[1])
 
     def _file_to_commands(self, sql_path):
         """
@@ -158,6 +142,13 @@ class Database:
         else:
             self.conn.commit()
 
+    def remove_tag_from_exercise(self, tag, exercise):
+        tag_name = tag.tag_name
+        ex_id = exercise.id
+        params = (tag_name, ex_id)
+
+        self._execute_with_params("delete_tag_from_exercise.sql", params)
+
     def add_tag_to_exercise(self, tag, exercise):
 
         self.add_tag(tag)
@@ -190,7 +181,6 @@ class Database:
 
     def add_exercise(self, exercise):
         # input an exercise object and keep it in the database
-        # TODO: add code to also add the tags of the exercise
         params = exercise.get_sql_tuple()
         self._execute_with_params("insert_exercise.sql", params)
         self.conn.commit()
@@ -278,4 +268,20 @@ def main():
 
     # create a database connection
     database = Database(DB_DIR)
+
+    t = Tag("My Exercises")
+    ex = database.get_one_exercise_by_ID(1)
+
+    ts = database.get_exercise_tags(ex)
+
+    print(t)
+    print(ex)
+    print(ts)
+
+    database.remove_tag_from_exercise(t, ex)
+
+    ts = database.get_exercise_tags(ex)
+
+    print(ts)
+
     return database

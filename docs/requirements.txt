@@ -3,3 +3,5 @@ sphinx-markdown-tables
 recommonmark
 sphinx-panels
 sphinxawesome-theme
+sphinx-design
+sphinxcontrib.youtube

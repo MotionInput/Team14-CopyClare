@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov
+
+"""
+
 import time
 
 import cv2
@@ -9,6 +14,11 @@ from copyclare.model import AccuracyModel
 
 
 class CameraThread(QThread):
+    """
+    Class responsible for updating the Exercise page with
+    camera_feed, accuracy_graph and a repetition count.
+    """
+
     update_frame = Signal(QImage)
     update_reps = Signal(int)
     update_graph = Signal(list)
@@ -21,6 +31,15 @@ class CameraThread(QThread):
         self.reps = 0
 
     def run(self):
+        """
+        Threads main run method
+
+        Invokes the camera worker and processes every frame of it to
+        update the ui.
+
+        emmits ``update_frame``, ``update_reps`` and ``update_graph`` signals
+
+        """
         count = 0
 
         for frame in self.worker.work():
@@ -46,6 +65,12 @@ class CameraThread(QThread):
 
 
 class CameraWorker:
+    """
+    Camera worker that can ignore ui and threading logic and process just
+    data.
+
+
+    """
     def __init__(self, exercise):
 
         self.exercise = exercise
@@ -58,6 +83,11 @@ class CameraWorker:
         self.model = AccuracyModel(exercise, joints)
 
     def work(self):
+        """
+        Generator that yields processed
+        frames and accesses AccuracyModel
+
+        """
 
         cap = cv2.VideoCapture(0)
 

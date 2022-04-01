@@ -1,3 +1,8 @@
+"""
+Contributors: Adi Bozzhanov, Tianhao Chen
+
+"""
+
 import json
 import math
 import os
@@ -48,10 +53,7 @@ class AccuracyModel:
             pass
         elif exercise.angles_json != "null":
             self.angles = json.loads(exercise.angles_json)
-        else:
-            self.angles = self.get_angles(DATA_DIR + exercise.video_directory)
-            with open(DATA_DIR + f"/test/{exercise.id}.json", "w") as f:
-                f.write(json.dumps(self.angles, indent=4))
+
         video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
         if not video.isOpened():
             print("Error Opening a video file")
@@ -68,6 +70,11 @@ class AccuracyModel:
 
     def get_angles(self, video_path):
         """
+        Initialises angles json for an exercise video
+
+        Args:
+            vieo_path: absolute path to the video
+
         Returns:
             a dictionary where each key is a joint and value is a
             list of angle/time pairs
@@ -114,6 +121,15 @@ class AccuracyModel:
         return angles
 
     def color_frame(self, frame, landmark_list, accuracy):
+        """
+        Draws a skeleton on top of the user.
+
+        Args:
+           frame: opencv frame containing an image to be colored.
+           landmark_list: Contains coordinates of landmarks of interest
+           accuracy: a real number that's used to determine the color of
+               the skeleton
+        """
         done = set()
         clr = (255, 255, 255) if (accuracy > 90) else (0, 0, 0)
         if landmark_list:
@@ -138,6 +154,15 @@ class AccuracyModel:
                 cv2.circle(frame, (x, y), 5, clr, cv2.FILLED)
 
     def find_angle(self, frame, joint, landmark_list):
+        """
+        Finds an angle of any given joint.
+
+        Args:
+            frame: OpenCV frame
+            joint: String value representing the joing
+            landmark_list: mediapipe landmark_list
+        """
+
         angle = -1
         if len(landmark_list) != 0:
             middle = self.joints_map[joint]
@@ -151,6 +176,18 @@ class AccuracyModel:
         return angle
 
     def get_accuracy(self, angle, reltime, joint):
+        """
+        Calculats the accuracy given the angle, joint and the relative time.
+
+        Args:
+
+            angle: float angle value
+            reltime: float timestamp within the range (0-duration of the video)
+            joint: String value representing the joint to be considered.
+
+        Reurns:
+            accuracy value in the range 0-100
+        """
         form_time = round_decimals_up(int(reltime / self.step) * self.step, 4)
         a1 = angle
         rep = False

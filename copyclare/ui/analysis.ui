@@ -333,12 +333,15 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QGraphicsView" name="heatmap">
+             <widget class="QLabel" name="ex_image">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>300</height>
+                <height>400</height>
                </size>
+              </property>
+              <property name="text">
+               <string>Image</string>
               </property>
              </widget>
             </item>
