@@ -10,6 +10,14 @@ from copyclare.common import load_ui
 
 
 class UiElement(QFrame):
+    """This class just calls UI differently based on debug mode
+
+    Args:
+        master: The parent widget
+        page_ui: The UI file to load
+        compiled_ui: The compiled UI function
+    """
+
     def __init__(self, master, page_ui, compiled_ui):
         super().__init__(master)
 
