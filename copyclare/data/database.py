@@ -21,15 +21,15 @@ you can reference sql directory in the code by using ``SQL_DIR``.
    # SQL_DIR is a string containing the absulute path to our SQL queries.
 """
 
+
+
+
 import json
 import os
 import sqlite3
-
 from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
 from copyclare.data.objects import Attempt, Exercise, Tag
 from copyclare.model.accuracy_v2 import AccuracyModel
-
-
 class Database:
     def __init__(self, db_file):
         """ create a database connection to the SQLite database
@@ -68,11 +68,11 @@ class Database:
         # with open(DATA_DIR + "/test/3.json", "r") as f:
         #     json3 = f.read()
 
-        #with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
+        # with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
         #    clare1_desc = f.read()
         with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
-        #with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
+        # with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
         #    clare3_desc = f.read()
 
         exercise = Exercise(None, "Shoulder Rotation", "/videos/clare2.mp4",
@@ -181,7 +181,6 @@ class Database:
 
     def add_exercise(self, exercise):
         # input an exercise object and keep it in the database
-        # TODO: add code to also add the tags of the exercise
         params = exercise.get_sql_tuple()
         self._execute_with_params("insert_exercise.sql", params)
         self.conn.commit()

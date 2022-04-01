@@ -52,7 +52,6 @@ class VideoWorker:
         self.video_path = DATA_DIR + exercise.video_directory
 
     def work(self):
-        # TODO: Replace with a model call
         cap = cv2.VideoCapture(self.video_path)
         fps = cap.get(cv2.CAP_PROP_FPS)
         if not cap.isOpened():
