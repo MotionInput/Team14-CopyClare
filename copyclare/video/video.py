@@ -13,6 +13,10 @@ from copyclare.data import DATA_DIR
 
 
 class VideoThread(QThread):
+    """
+    Thread that's responsible for displaying the
+    """
+
     update_frame = Signal(QImage)
 
     def __init__(self, container, exercise):
@@ -22,6 +26,12 @@ class VideoThread(QThread):
         self.worker = VideoWorker(exercise)
 
     def run(self):
+        """
+        Runs the video worker and updates the exercise page
+        with an exercie video feed.
+
+        emmits update_frame signal
+        """
 
         for frame in self.worker.work():
 
@@ -48,11 +58,22 @@ class VideoThread(QThread):
 
 
 class VideoWorker:
+    """
+    Video worker that uses opencv to display
+    video on the screen. This class does not
+    use any pyside logic but rather focuses
+    on producing the actual data.
+
+    """
     def __init__(self, exercise):
         self.video_path = DATA_DIR + exercise.video_directory
 
     def work(self):
-        # TODO: Replace with a model call
+        """
+        Generator that yields
+        opencv frames to be displayed
+        """
+
         cap = cv2.VideoCapture(self.video_path)
         fps = cap.get(cv2.CAP_PROP_FPS)
         if not cap.isOpened():

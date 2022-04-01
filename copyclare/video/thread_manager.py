@@ -12,18 +12,35 @@ from copyclare.data.objects import Attempt
 
 
 class ThreadManager:
+    """
+    Manages video and camera threads that are run
+    on the exercise page
+
+    """
     def __init__(self):
 
         self.thread_count = 0
         self.finished_count = 0
 
     def add_thread(self, thread, is_camera=False):
+        """
+        Adds a thread to the list of considered
+        threads
+        """
+
+
+
         self.thread_count += 1
         thread.finished.connect(self.thread_finished)
         if is_camera:
             self.worker = thread.worker
 
     def thread_finished(self):
+        """
+        Makes sure that both threads are finished
+        before an attempt intance is created in the db
+        """
+
         self.finished_count += 1
         if self.finished_count >= self.thread_count:
             # if all threads finished

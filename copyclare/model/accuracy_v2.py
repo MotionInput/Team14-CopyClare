@@ -60,11 +60,6 @@ class AccuracyModel:
         fps = video.get(cv2.CAP_PROP_FPS)
         self.step = 1 / fps
 
-        # else:
-        #     self.angles = self.get_angles(DATA_DIR + exercise.video_directory)
-        #     with open(DATA_DIR + f"/test/{exercise.id}.json", "w") as f:
-        #         f.write(json.dumps(self.angles, indent=4))
-
         self.offset = 20
 
     def _init_angles(self):
@@ -75,6 +70,11 @@ class AccuracyModel:
 
     def get_angles(self, video_path):
         """
+        Initialises angles json for an exercise video
+
+        Args:
+            vieo_path: absolute path to the video
+
         Returns:
             a dictionary where each key is a joint and value is a
             list of angle/time pairs
@@ -154,6 +154,15 @@ class AccuracyModel:
                 cv2.circle(frame, (x, y), 5, clr, cv2.FILLED)
 
     def find_angle(self, frame, joint, landmark_list):
+        """
+        Finds an angle of any given joint.
+
+        Args:
+            frame: OpenCV frame
+            joint: String value representing the joing
+            landmark_list: mediapipe landmark_list
+        """
+
         angle = -1
         if len(landmark_list) != 0:
             middle = self.joints_map[joint]

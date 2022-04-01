@@ -224,6 +224,7 @@ class AccuracyGraphExporter:
             session_json ([[int,int]]]): A list of tuples containing timestamps and accuracy for an attempt.
             attempt_id (int): The id of selected attempt.
 
+
         """
         path = DATA_DIR + f'/accuracy-graphs/{attempt_id}.png'
         exists = os.path.exists(path)
