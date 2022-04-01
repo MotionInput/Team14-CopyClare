@@ -4,10 +4,6 @@ Getting Started
 This section will help you get started with updating our codebase.
 
 
-
-
-
-
 Installation
 ------------
 Clone our github repository and navigate to the root directory.
@@ -25,11 +21,29 @@ This should be all you need to do to install all the requirements
 Running the code
 ----------------
 
-To run our software from command line run:
+Before you can run our software, you will need to compile all .ui and .qrc files
+for python to be able to load them. We wrote a quick script ``precompile.sh`` that will do just that.
+
+.. code-block::
+
+   bash precompile.sh
+
+Once precompiled you can now run the software.
 
 .. code-block::
 
    python run.py
+
+If you want to reset the database, delete the data folder and run the ``precompile.sh`` script again.
+This will copy contents of ``data_clean`` into the ``data`` directory, effectively initialising fresh
+db.
+
+Every time you make changes to the ``.ui`` files you have to run ``precompile.sh`` for your changes to take
+effect. However, if you look at ``copyclare/config.py``, set the ``DEBUG`` variable as needed when
+extensively editing the UI.
+
+.. literalinclude:: /../../copyclare/config.py
+   :language: python
 
 
 
