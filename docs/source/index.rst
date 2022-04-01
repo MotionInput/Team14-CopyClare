@@ -43,6 +43,9 @@ CopyClare is an exercise video analysis tool that provides real-time accuracy fe
 The demo video
 --------------
 
+.. youtube:: O8tfnhyXnAQ
+
+
 The development team
 --------------------
 
