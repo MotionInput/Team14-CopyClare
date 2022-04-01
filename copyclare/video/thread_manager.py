@@ -40,7 +40,7 @@ class ThreadManager:
         Makes sure that both threads are finished
         before an attempt intance is created in the db
         """
-
+        self.app = AppSingleton.get_app()
         self.finished_count += 1
         if self.finished_count >= self.thread_count:
             # if all threads finished
@@ -51,8 +51,10 @@ class ThreadManager:
                 avg += each
             if len(self.worker.accuracy_vals) != 0:
                 avg /= len(self.worker.accuracy_vals)
+            attempts = self.app.db.get_all_attempts()
+            length = len(attempts)
             attempt = Attempt(
-                None,
+                length+1,
                 dt_string,
                 self.worker.num_of_repetitions,
                 round(time.time() - self.worker.beginning, 2),
@@ -61,4 +63,4 @@ class ThreadManager:
                 self.worker.exercise.id,
             )
 
-            AppSingleton.get_app().end_exercise(attempt)
+            self.app.end_exercise(attempt)
