@@ -12,16 +12,7 @@ import numpy as np
 
 
 class PoseModule:
-    def __init__(
-        self,
-        mode=False,
-        up_body=False,
-        smooth=True,
-        detection_con=True,
-        track_con=True,
-        smooth_segmentation=False,
-    ):
-
+    def __init__(self):
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose(
@@ -31,6 +22,7 @@ class PoseModule:
             enable_segmentation=False,
         )
 
+# find the person in the frame
     def find_person(self, img, draw=False):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(img_rgb)
@@ -39,6 +31,7 @@ class PoseModule:
                                         self.mp_pose.POSE_CONNECTIONS)
         return img
 
+# find the coordinates of the joints that we are interested
     def find_landmarks(self, img, draw=True):
         self.landmark_list = []
         if self.results.pose_landmarks:
@@ -51,6 +44,7 @@ class PoseModule:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return self.landmark_list
 
+# 3D angle calculation
     def find_angle(self, img, p1, p2, p3, draw=True):
         # Get the landmarks
         z1, x1, y1 = self.landmark_list[p1]
@@ -84,3 +78,4 @@ class PoseModule:
         output_file = open(frame_num + ".csv", mode="a")
         output_file.write(angle + " , ")
         output_file.close()
+
