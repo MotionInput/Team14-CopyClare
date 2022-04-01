@@ -1,3 +1,5 @@
+mkdir copyclare/pyui
+
 for f in ./copyclare/ui/*
 do
     NAME="$(basename $f .ui)"
