@@ -28,8 +28,6 @@ class ThreadManager:
         threads
         """
 
-
-
         self.thread_count += 1
         thread.finished.connect(self.thread_finished)
         if is_camera:
@@ -40,7 +38,7 @@ class ThreadManager:
         Makes sure that both threads are finished
         before an attempt intance is created in the db
         """
-
+        self.app = AppSingleton.get_app()
         self.finished_count += 1
         if self.finished_count >= self.thread_count:
             # if all threads finished
