@@ -6,7 +6,7 @@ Contributors: Adi Bozzhanov, Yan Lai, Sree Sanakkayala
 import os
 from copyclare.data import DATA_DIR
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QPixmap
 from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.pyui.analysis import Ui_analysis_page
 from copyclare.common import AppSingleton
@@ -25,7 +25,6 @@ class AnalysisPage(UiElement):
         attempt (Attempt): The attempt to be displayed.
 
     """
-
     def __init__(self, master, attempt):
         super().__init__(master, "analysis", Ui_analysis_page)
         self.attempt = attempt
