@@ -46,7 +46,7 @@ Summary of achievements
    "Requirement analysis", "25%", "25%", "25%", "25%"
    "Research", "32%", "5%", "31%", "32%"
    "UI Design", "20%", "30%", "20%", "30%"
-   "Programming", "40%", "20%", "15%", "15%"
+   "Programming", "40%", "30%", "15%", "15%"
    "Testing", "20%", "20%", "40%", "20%"
    "Development blog", "10%", "60%", "10%", "20%"
    "Website editing", "28%", "20%", "25%", "27%"
@@ -60,7 +60,7 @@ Evaluation of project
 ---------------------
 
 .. csv-table:: Evaluation table
-   :header: "Aspect", "Evaluation", "Yan", "Tianhao", "Sree"
+   :header: "Aspect", "Evaluation"
    :widths: 200, 600
 
    "UX / UI", "hello"
