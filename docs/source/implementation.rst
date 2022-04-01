@@ -100,7 +100,7 @@ process is called "freezing", which results in a pretty reliable package yet com
 #. Poor app efficiency over all.
 
 There exists an alternative approach to "freezing" python code, which is to translate python to a compiled language
-like C, and then compile the resultant C code. One of the tools that allows to do that is `Nuitka <https://nuitka.net/index.html>`. There are a couple of advantages that we get from using it.
+like C, and then compile the resultant C code. One of the tools that allows to do that is `Nuitka <https://nuitka.net/index.html>`_. There are a couple of advantages that we get from using it.
 
 #. The resultant executable is faster than running the code with a python interpreter.
 
@@ -111,3 +111,16 @@ like C, and then compile the resultant C code. One of the tools that allows to d
 
 The only issue here is the compilation time. It takes around 20 minutes to compile our codebase to an executable.
 This is an unfavourable constraint, however it is more than a reasonable tradoff for the advantages we gain from it.
+
+In order to compile our code base you first need to install nuitka.
+
+.. code-block::
+
+   python -m pip install nuitka
+
+
+Once installed nuitka and all project dependencies just simply run.
+
+.. code-block::
+
+   deploy.sh
