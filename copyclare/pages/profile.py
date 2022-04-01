@@ -25,7 +25,7 @@ class ProfilePage(UiElement):
         master (ParentWidget): The frame in which the page will be displayed in.
 
     """
-    
+
     def __init__(self, master):
         super().__init__(master, "profile", Ui_profile_page)
 
@@ -52,19 +52,20 @@ class ProfilePage(UiElement):
         if len(_all_attempts) > 0:
             for _attempt in _all_attempts:
                 _history_card = HistoryCardWidget(
-                    self.past_attempts_banner.ui.scrollArea, _attempt, None)
+                    self.past_attempts_banner.ui.scrollArea, _attempt)
                 self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
                     0, _history_card)
 
     def add_attempt_history_card(self, attempt):
         _history_card = HistoryCardWidget(
-            self.past_attempts_banner.ui.scrollArea, attempt, None)
+            self.past_attempts_banner.ui.scrollArea, attempt)
         self.past_attempts_banner.ui.verticalLayout_2.insertWidget(
             0, _history_card)
 
     def update_progress_chart(self, all_ex_attempt):
         # remove old progress chart
-        self.progress_chart_banner.ui.verticalLayout_2.itemAt(0).widget().deleteLater()
+        self.progress_chart_banner.ui.verticalLayout_2.itemAt(
+            0).widget().deleteLater()
 
         # add new progress chart
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
