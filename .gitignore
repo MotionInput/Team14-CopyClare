@@ -6,4 +6,4 @@ venv
 copyclare/pyui/
 res_rc.py
 .idea/
-.data
+data
