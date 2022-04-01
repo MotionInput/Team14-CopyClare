@@ -91,25 +91,41 @@ All data that is used by our code **MUST** be stored in the data directory.
 
 .. code-block::
 
-   data
-   ├── assets
-   ├── Copyclare.db
-   ├── test
+   data/
+   ├── accuracy-graphs
+   ├── images
+   ├── progress-charts
    └── videos
+   └── Copyclare.db
 
-- ``assets``: icons and images used by our app
+
+
 - ``Copyclare.db``: sqlite database
-- ``test``: files needed explicitely for testing
 - ``videos``: all the exercise videos are stored here
+- ``images``: images that are displayed on exercise cards
+- ``progress-charts``: all progress charts are saved to separate images for export.
+- ``accuracy-graphs``: all accuracy graphs are also saved to separate images for export.
 
-In order to simplify the provess of referencing the data directory we have
-a global variable called ``DATA_PATH`` that contains a string representation
+
+An example of a clean ``data`` directory can be found in a ``data_clean`` directory.
+It should not be edited since this comes as a template for initiailing a new DB in case
+something goes wrong with the existing one.
+
+To reset the db from scratch run:
+
+.. code-block::
+
+   bash precompile.sh
+
+
+In order to simplify the process of referencing the data directory we have
+a global variable called ``DATA_DIR`` that contains a string representation
 of the data path.
 
 to reference it use:
 
 .. code-block:: python
 
-   from copyclare import DATA_PATH
+   from copyclare.data import DATA_DIR
 
-   path = DATA_PATH + "/videos"
+   path = DATA_DIR + "/videos"
