@@ -4,7 +4,7 @@ User Manual
 
 .. blogfield:: Landing page
 
-    click :kbd:`START` to start the app
+    Click :kbd:`START` to start the app
 
 .. blogfield:: Home page
     
