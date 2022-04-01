@@ -54,7 +54,11 @@ class AccuracyModel:
         elif exercise.angles_json != "null":
             self.angles = json.loads(exercise.angles_json)
 
-        # video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
+        video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
+        if not video.isOpened():
+            print("Error Opening a video file")
+        fps = video.get(cv2.CAP_PROP_FPS)
+        self.step = 1 / fps
 
         # else:
         #     self.angles = self.get_angles(DATA_DIR + exercise.video_directory)
