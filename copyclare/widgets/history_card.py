@@ -17,7 +17,7 @@ import res_rc
 
 
 class HistoryCardWidget(UiElement):
-    def __init__(self, master, attempt, img_path):
+    def __init__(self, master, attempt):
         super().__init__(master, "history_card", Ui_Form)
         self.app = AppSingleton.get_app()
 
@@ -47,7 +47,7 @@ class HistoryCardWidget(UiElement):
         Args:
             attempt (Attempt): The corresponding attempt to create an analysis page for.
 
-        """        
+        """
         self.app.load_page("analysis", attempt)
 
     def _export(self, attempt_id):
