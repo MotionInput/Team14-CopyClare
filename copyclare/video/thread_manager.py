@@ -51,8 +51,9 @@ class ThreadManager:
                 avg += each
             if len(self.worker.accuracy_vals) != 0:
                 avg /= len(self.worker.accuracy_vals)
+            length = len(AppSingleton.get_app().db.get_all_attempts())
             attempt = Attempt(
-                None,
+                length + 1,
                 dt_string,
                 self.worker.num_of_repetitions,
                 round(time.time() - self.worker.beginning, 2),
@@ -60,5 +61,4 @@ class ThreadManager:
                 round(avg, 2),
                 self.worker.exercise.id,
             )
-
             AppSingleton.get_app().end_exercise(attempt)
