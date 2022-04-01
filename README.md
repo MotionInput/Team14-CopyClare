@@ -1,3 +1,5 @@
 # Team14-CopyClare
 
-Checkout our team website at: https://sys-eng-team14.github.io/
+Setting up and installation requirements can be found on our project website documentation section.
+
+https://students.cs.ucl.ac.uk/2021/group14/documentation.html
