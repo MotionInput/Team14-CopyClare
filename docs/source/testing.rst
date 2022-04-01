@@ -13,7 +13,7 @@ we have also set up a remote compilation script via github actions. These script
 thoroughly tested by all Motion Input v3 teams that were using similar dependencies.
 
 
-Preprocessing benchmark Teting
+Preprocessing benchmark Testing
 ------------------------------
 
 As was mentioned in the Algorithms section of our website. One of the most compuationally
