@@ -28,8 +28,6 @@ class ThreadManager:
         threads
         """
 
-
-
         self.thread_count += 1
         thread.finished.connect(self.thread_finished)
         if is_camera:
@@ -51,6 +49,7 @@ class ThreadManager:
                 avg += each
             if len(self.worker.accuracy_vals) != 0:
                 avg /= len(self.worker.accuracy_vals)
+
             attempt = Attempt(
                 None,
                 dt_string,
