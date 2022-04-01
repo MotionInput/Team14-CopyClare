@@ -81,6 +81,7 @@ class Exporter():
             "name": exe.name,
             "image": DATA_DIR + exe.image_directory,
             "description": exe.description,
+            "date": attempt.date,
             "id": exe.id,
         })
         quantitative_data.append({
@@ -114,7 +115,7 @@ class DocumentWriter():
         self.document.add_heading(export_title, 0)
         self._add_all_progress_charts(exercise_info)
         for i in range(len(exercise_info)):
-            self._add_name_and_description(exercise_info[i])
+            self._add_exercise_details(exercise_info[i])
             self._add_quantitative_section(quantitative_data[i])
             self._add_qualitative_section(qualitative_data[i])
         self.document.save(saveAs)
@@ -135,13 +136,13 @@ class DocumentWriter():
                     DATA_DIR+f"/progress-charts/{exe_id}.png", width=DOCX_MAX_IMAGE_WIDTH)
                 displayed_exercises.add(exe_id)
 
-    def _add_name_and_description(self, exercise_info):
+    def _add_exercise_details(self, exercise_info):
         """this is a helper to add the name and description of the exercise
 
         Args:
             exercise_info (dict): the basic info of the exercise
         """
-        self.document.add_heading('Exercise Name: %s' % exercise_info["name"],
+        self.document.add_heading('Exercise Name: %s - %s' % (exercise_info["name"], exercise_info["date"]),
                                   level=2)
         self.document.add_picture(
             exercise_info["image"], width=DOCX_MAX_IMAGE_WIDTH)
