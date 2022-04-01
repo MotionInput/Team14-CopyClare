@@ -51,14 +51,33 @@ of each module shown.
 
 .. blogfield:: Pages Module
 
+   The ``Pages`` modules contains application logic of Pages.
+
 .. blogfield:: Widgets Module
 
+   The ``Widgets`` modules contains application logic of arbitrary UI elements,
+   that we create dynamically
+
+
+
 .. blogfield:: UiElement
+
+   The ``UiElement`` is an interface for all of our UI elements.
+   The biggest advantage we gain from it is, when debugging
+   we can avoid running precompilation script, and rather load
+   ui directly from qml files. Very useful for when we need to quickly
+   test the UI changes.
 
 
 .. blogfield:: App
 
+   The ``App`` modules cotntains main application logic. It is responsible changing pages,
+   and accessing the Database.
+
 .. blogfield:: Data Module
+
+   The ``Data`` module contains a SQLITE database interface and tools,
+   for managing the data from the DB.
 
 
 
@@ -69,7 +88,7 @@ of each module shown.
 
 .. image:: imgs/er-diagram.png
 
-there are 3 main tables(exercises,attempts,tags). 
-   * Exercises table is used to take down all sorts of exercises. 
-   * An attempts informatation would be recorded into database when patients finish their exercise. 
+there are 3 main tables(exercises,attempts,tags).
+   * Exercises table is used to take down all sorts of exercises.
+   * An attempts informatation would be recorded into database when patients finish their exercise.
    * Tags are used to classify the exercise. And the tag_to_exercise table is generated because of the many to many relation between tags and exercises table.
