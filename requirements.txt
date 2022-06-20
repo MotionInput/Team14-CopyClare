@@ -9,7 +9,7 @@ lxml==4.8.0
 matplotlib==3.5.1
 mediapipe==0.8.9.1
 numpy==1.20.0
-opencv-contrib-python==4.5.5.62
+opencv-contrib-python==4.5.3.56
 packaging==21.3
 pandas==1.4.1
 patsy==0.5.2
@@ -17,8 +17,6 @@ Pillow==9.0.0
 protobuf==3.19.3
 pycodestyle==2.8.0
 pyparsing==3.0.6
-PyQt5-Qt5==5.15.2
-PyQt5-sip==12.9.1
 PySide6==6.2.2.1
 python-dateutil==2.8.2
 python-docx==0.8.11
