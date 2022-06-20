@@ -61,6 +61,7 @@ class CameraThread(QThread):
             if count % 2 == 0:
                 self.update_graph.emit(self.worker.accuracy_vals)
 
+        self.worker.cap.release()
         self.quit()
 
 
@@ -74,6 +75,7 @@ class CameraWorker:
     def __init__(self, exercise):
 
         self.exercise = exercise
+        self.cap = None
         joints = {
             "left_shoulder",
             "left_elbow",
@@ -89,9 +91,9 @@ class CameraWorker:
 
         """
 
-        cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-        if not cap.isOpened():
+        if not self.cap.isOpened():
             print("Error opening a video file")
 
         self.beginning = time.time()
@@ -101,9 +103,9 @@ class CameraWorker:
         self.accuracy_vals = []
 
         start = time.time()
-        while (cap.isOpened):
+        while (self.cap.isOpened):
 
-            success, frame = cap.read()
+            success, frame = self.cap.read()
 
             self.accuracy, rep = self.model.accuracy(frame,
                                                      time.time() - start)

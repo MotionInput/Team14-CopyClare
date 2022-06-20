@@ -1,4 +1,5 @@
 
+python --version
 
 python -m nuitka --standalone --lto=no --assume-yes-for-downloads --plugin-enable=numpy --plugin-enable=pyside6 --output-dir=build/copyclare run.py
 
