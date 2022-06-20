@@ -81,7 +81,7 @@ class VideoAddition(UiElement):
         if not cap.isOpened():
             print("Error opening a video file")
         self.frames = []
-        while (cap.isOpened):
+        while (cap.isOpened()):
             success, frame = cap.read()
             #print(frame_count)
             if not success:

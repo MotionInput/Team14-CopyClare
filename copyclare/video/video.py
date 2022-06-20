@@ -78,9 +78,9 @@ class VideoWorker:
         self.cap = cv2.VideoCapture(self.video_path)
         fps = self.cap.get(cv2.CAP_PROP_FPS)
         if not self.cap.isOpened():
-            print("Error opening a video file")
+            print("Error opening a video file in video")
         frame_count = 0
-        while (self.cap.isOpened):
+        while (self.cap.isOpened()):
             success, frame = self.cap.read()
             if not success:
                 print("Can't read from Camera")

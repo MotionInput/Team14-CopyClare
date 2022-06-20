@@ -93,8 +93,11 @@ class CameraWorker:
 
         self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-        if not self.cap.isOpened():
-            print("Error opening a video file")
+        while not self.cap.isOpened():
+            print("Error opening a video file in camera, trying default api")
+            self.cap = cv2.VideoCapture(0)
+            if not self.cap.isOpened():
+                print("Error opening camera")
 
         self.beginning = time.time()
         self.accuracy = 0
@@ -103,8 +106,7 @@ class CameraWorker:
         self.accuracy_vals = []
 
         start = time.time()
-        while (self.cap.isOpened):
-
+        while (self.cap.isOpened()):
             success, frame = self.cap.read()
 
             self.accuracy, rep = self.model.accuracy(frame,
