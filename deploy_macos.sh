@@ -5,4 +5,6 @@ rm -r build/copyclare/run.app
 mv build/copyclare/run.dist build/copyclare/run.app
 mkdir build/copyclare/run.app/data
 cp -r  data_clean/* build/copyclare/run.app/data
+mkdir -p build/copyclare/run.app/copyclare/data/sql
+cp copyclare/data/sql/* build/copyclare/run.app/copyclare/data/sql/
 python copycv2configs.py
