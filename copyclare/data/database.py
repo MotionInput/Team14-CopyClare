@@ -46,6 +46,12 @@ class Database:
             local_data = pathlib.Path(__file__).parent.parent.parent.joinpath("data")
             copy_tree(local_data, DATA_DIR)
 
+        if not os.path.exists(os.path.join(DATA_DIR, "progress-charts")):
+            os.makedirs(os.path.join(DATA_DIR, "progress-charts"))
+        
+        if not os.path.exists(os.path.join(DATA_DIR, "accuracy-graphs")):
+            os.makedirs(os.path.join(DATA_DIR, "accuracy-graphs"))
+
         exists = os.path.exists(db_file)
         self.conn = None
         self.c = None
