@@ -27,7 +27,8 @@ you can reference sql directory in the code by using ``SQL_DIR``.
 import json
 import os
 import sqlite3
-from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
+from distutils.dir_util import copy_tree
+from copyclare.data import BASE_DIR, DATA_DIR, DB_DIR, SQL_DIR
 from copyclare.data.objects import Attempt, Exercise, Tag
 from copyclare.model.accuracy_v2 import AccuracyModel
 class Database:
@@ -37,6 +38,10 @@ class Database:
         :param db_file: database file
         :return: Connection object or None
         """
+        if not os.path.exists(BASE_DIR):
+            print("Initialising user data directory")
+            os.makedirs(BASE_DIR, exist_ok=True)
+            copy_tree('data', DATA_DIR)
 
         exists = os.path.exists(db_file)
         self.conn = None
@@ -102,6 +107,7 @@ class Database:
         the script MUST be in the sql directory
         """
         path = SQL_DIR + sql_path
+        print(path)
         with open(path, "r") as scripts:
             text = "".join(scripts.readlines())
             commands = [
