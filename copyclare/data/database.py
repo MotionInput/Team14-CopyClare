@@ -26,9 +26,10 @@ you can reference sql directory in the code by using ``SQL_DIR``.
 
 import json
 import os
+import pathlib
 import sqlite3
 from distutils.dir_util import copy_tree
-from copyclare.data import BASE_DIR, DATA_DIR, DB_DIR, SQL_DIR
+from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
 from copyclare.data.objects import Attempt, Exercise, Tag
 from copyclare.model.accuracy_v2 import AccuracyModel
 class Database:
@@ -38,10 +39,12 @@ class Database:
         :param db_file: database file
         :return: Connection object or None
         """
-        if not os.path.exists(BASE_DIR):
-            print("Initialising user data directory")
-            os.makedirs(BASE_DIR, exist_ok=True)
-            copy_tree('data', DATA_DIR)
+
+        if not os.path.exists(os.path.join(DATA_DIR, "videos")) or not os.path.exists(os.path.join(DATA_DIR, "images")):
+            print("Initialising usesr data directory")
+            os.makedirs(DATA_DIR, exist_ok=True)
+            local_data = pathlib.Path(__file__).parent.parent.parent.joinpath("data")
+            copy_tree(local_data, DATA_DIR)
 
         exists = os.path.exists(db_file)
         self.conn = None
