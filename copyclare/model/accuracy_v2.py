@@ -80,7 +80,7 @@ class AccuracyModel:
             a dictionary where each key is a joint and value is a
             list of angle/time pairs
         """
-
+        print("Attempting to process")
         angles = self._init_angles()
 
         video = cv2.VideoCapture(video_path)
@@ -107,7 +107,7 @@ class AccuracyModel:
         self.duration = count / fps
         video.release()
 
-
+        print("Done")
         return angles
 
     def color_frame(self, frame, landmark_list, accuracy):

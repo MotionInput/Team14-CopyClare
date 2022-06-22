@@ -67,7 +67,7 @@ class VideoAddition(UiElement):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
             self, "Select video file",
             DATA_DIR + "/videos", "video files(*.mp4)")
-        self.fileName = "/"+os.path.relpath(fileName,DATA_DIR)
+        self.fileName = "/"+os.path.relpath(fileName,DATA_DIR).replace("\\", "/")
         #print(self.fileName)
         self.ui.input_area.setVisible(True)
         self.ui.video_trimmer.setVisible(True)
@@ -114,6 +114,12 @@ class VideoAddition(UiElement):
         self.exercise.name = video_name
         self.exercise.video_directory = self.fileName
         self.exercise.description = description
+        exes = self.app.db.get_all_exercises()
+        length = len(exes)
+        self.exercise.id = length + 1
+        index = len(self.frames) // 2
+        cv2.imwrite(DATA_DIR+"/images/"+str(length+1)+".png",self.frames[index])
+        self.exercise.image_directory = "/images/"+str(length+1)+".png"
 
         self.ui.confirm_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
@@ -150,6 +156,7 @@ class VideoAddition(UiElement):
             "QPushButton{background-color: rgb(186, 186, 186);}")
         self.ui.upload_button.setStyleSheet(
             "QPushButton{background-color: rgb(187, 255, 200);}")
+        return
         videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(self.w,self.h))
         Svalue = self.ui.start_slider.value()
         Sframe_num = round(Svalue/100 *(len(self.frames)-1))
@@ -161,11 +168,5 @@ class VideoAddition(UiElement):
             if index > Sframe_num:
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
-                exes = self.app.db.get_all_exercises()
-                length = len(exes)
-                self.exercise.id = length + 1
-                #print(length)
-                cv2.imwrite(DATA_DIR+"/images/"+str(length+1)+".png",self.frames[index])
-                self.exercise.image_directory = "/images/"+str(length+1)+".png"
                 #print(self.exercise.image_directory)
                 videoWriter.write(self.frames[index])

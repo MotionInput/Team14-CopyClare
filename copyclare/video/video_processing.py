@@ -26,7 +26,7 @@ class ProcessingThread(QThread):
         Calls accuracy model to preprocess a video.
 
         """
-
+        print("Processing", self.exercise.video_directory)
         joints = [
             "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
         ]
@@ -34,5 +34,5 @@ class ProcessingThread(QThread):
         self.exercise.angles_json = json.dumps(
             accuracymodel.get_angles(DATA_DIR + self.exercise.video_directory))
         # print(exercise.angles_json)
-
+        print("quitting")
         self.quit()
