@@ -9,6 +9,7 @@ import os
 import time
 
 import cv2
+import statsmodels.api as sm
 
 from copyclare.common import AppSingleton
 from copyclare.data import DATA_DIR
@@ -106,6 +107,17 @@ class AccuracyModel:
 
         self.duration = count / fps
         video.release()
+        for joint in self.joints:
+            tmp = []
+            for time_stamp in angles[joint]:
+                tmp.append(angles[joint][time_stamp])
+
+            lowess = sm.nonparametric.lowess(tmp,
+                                             list(angles[joint].keys()),
+                                             frac=0.1)
+            ts, angs = list(lowess[:, 0]), list(lowess[:, 1])
+            for i in range(len(ts)):
+                angles[joint][str(ts[i])] = angs[i]
 
         print("Done")
         return angles
