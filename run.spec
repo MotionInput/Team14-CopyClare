@@ -74,4 +74,7 @@ app = BUNDLE(
     name='Copy Clare.app',
     icon=None,
     bundle_identifier=None,
+    info_plist={
+        'NSCameraUsageDescription': 'Access camera to track exercises',
+    }
 )
