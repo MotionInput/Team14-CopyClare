@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Home</class>
  <widget class="QFrame" name="Home">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>933</width>
-    <height>869</height>
-   </rect>
-  </property>
   <property name="sizePolicy">
    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>

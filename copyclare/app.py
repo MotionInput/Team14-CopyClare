@@ -41,7 +41,6 @@ class App:
         # App necessary setup
         app = QApplication(sys.argv)
         self.window = QMainWindow()
-        self.window.showMaximized()
 
         # Ui load optimisation
         if DEBUG:
@@ -69,7 +68,7 @@ class App:
             lambda x: self.load_page("progress"))
         self.ui.addvideo_button.clicked.connect(
             lambda x: self.load_page("video_addition"))
-
+        self.window.showMaximized()
         sys.exit(app.exec())
 
     def start_exercise(self, exercise):

@@ -12,16 +12,20 @@ cv2dir = pathlib.Path(cv2.__file__).parent
 extra_data = [("data_clean", "data"),
               (str(mediapipedir.joinpath("modules")), "mediapipe/modules"),
               ("copyclare/data/sql", "copyclare/data/sql"),
+              ("ucl_logo.png", "."),
               ]
 
 extra_binaries = []
-
+hidden = ['pyqtgraph.graphicsItems.ViewBox.axisCtrlTemplate_pyside6',
+          'pyqtgraph.graphicsItems.PlotItem.plotConfigTemplate_pyside6',
+          'pyqtgraph.imageview.ImageViewTemplate_pyside6',
+          ]
 a = Analysis(
     ['run.py'],
     pathex=[],
     binaries=extra_binaries,
     datas=extra_data,
-    hiddenimports=[],
+    hiddenimports=hidden,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
