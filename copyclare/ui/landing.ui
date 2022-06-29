@@ -20,7 +20,7 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #35638e;
+   <string notr="true">background-color: #005EB8;
 </string>
   </property>
   <property name="frameShape">
@@ -120,7 +120,7 @@ Yan Lai
 Tianhao Chen
 Sree Sanakkayala
 Giancarlo Grasso
-Jia Hui Shi
+Jiahui Shi
 Anelia Gaydardzhieva</string>
            </property>
            <property name="alignment">
@@ -198,7 +198,7 @@ Anelia Gaydardzhieva</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: #35638e;
+             <string notr="true">background-color: #005EB8;
 COLOR: #ffffff;</string>
             </property>
             <property name="text">
@@ -304,7 +304,7 @@ COLOR: #ffffff;</string>
            <property name="text">
             <string>Prof. Joseph Connor (NHS)
 Prof. Dean Mohamedally (UCL)
-Prof.Graham Roberts (UCL)</string>
+Prof. Graham Roberts (UCL)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

@@ -58,6 +58,9 @@ color: #000000;</string>
    </item>
    <item>
     <widget class="QPushButton" name="remove_btn">
+    <property name="styleSheet">
+               <string notr="true">background-color: #E5F1FA; COLOR: #000000;</string>
+     </property>
      <property name="text">
       <string>remove</string>
      </property>

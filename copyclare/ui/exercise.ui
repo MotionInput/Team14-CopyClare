@@ -223,17 +223,17 @@ padding: 10px;</string>
         <property name="styleSheet">
          <string notr="true">QPushButton {
 	border: none;
-	background-color: #fc8892;
+	background-color: #FAE100;
 	color: rgb(0,0,0);
 	height: 50;
 }
 
 QPushButton:hover {
-	background-color: #ff5260;
+	background-color: #FEF9CC;
 }
 
 QPushButton:pressed {
-	background-color: #ff949d;
+	background-color: #FEF9CC;
 }</string>
         </property>
         <property name="text">

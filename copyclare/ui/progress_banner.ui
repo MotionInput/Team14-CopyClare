@@ -34,7 +34,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #35638e;
+      <string notr="true">background-color: #005EB8;
 padding: 15px;
 font-size: 30px;
 color: #ffffff;</string>

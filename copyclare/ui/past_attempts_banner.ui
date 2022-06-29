@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #35638e;
+      <string notr="true">background-color: #005EB8;
 padding-left: 2px;
 padding-right: 15px;
 font-size: 30px;
@@ -77,7 +77,7 @@ color: #ffffff;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(209, 244, 255);
+         <string notr="true">background-color: #CCE3F5;
 color: rgb(0, 0, 0);
 font-size: 20px;
 padding-right: 0px;</string>

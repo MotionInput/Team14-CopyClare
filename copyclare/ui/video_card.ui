@@ -64,6 +64,9 @@ color: #000000;</string>
        <bold>false</bold>
       </font>
      </property>
+     <property name="styleSheet">
+               <string notr="true">background-color: #E5F1FA; COLOR: #000000;</string>
+     </property>
      <property name="text">
       <string>add</string>
      </property>

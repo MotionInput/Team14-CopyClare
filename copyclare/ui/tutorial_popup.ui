@@ -120,7 +120,7 @@ color: #000000;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #90b6d6;</string>
+         <string notr="true">background-color: #CCE3F5;</string>
         </property>
         <property name="text">
          <string>Previous</string>
@@ -136,7 +136,7 @@ color: #000000;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(102, 204, 255);</string>
+         <string notr="true">background-color: #0072CE;</string>
         </property>
         <property name="text">
          <string>Next</string>
