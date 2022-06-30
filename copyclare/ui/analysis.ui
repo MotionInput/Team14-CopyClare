@@ -72,7 +72,10 @@
         </property>
         <property name="font">
          <font>
+          <family>Arial</family>
           <pointsize>30</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -150,8 +153,9 @@
                 <widget class="QLabel" name="name_frame_title">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -161,6 +165,11 @@
                </item>
                <item>
                 <widget class="QLabel" name="name">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Shoulder exercise</string>
                  </property>
@@ -182,8 +191,9 @@
                 <widget class="QLabel" name="descriptions_frame_title">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -193,6 +203,11 @@
                </item>
                <item>
                 <widget class="QLabel" name="description">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Slowy raise your arm and else as well</string>
                  </property>
@@ -214,8 +229,9 @@
                 <widget class="QLabel" name="date_frame_title">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -225,6 +241,11 @@
                </item>
                <item>
                 <widget class="QLabel" name="date">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>22-02-2022 16:30</string>
                  </property>
@@ -246,8 +267,9 @@
                 <widget class="QLabel" name="repetitions_frame_title">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -257,6 +279,11 @@
                </item>
                <item>
                 <widget class="QLabel" name="repetitions">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>10</string>
                  </property>
@@ -278,8 +305,9 @@
                 <widget class="QLabel" name="accuracy_frame_title">
                  <property name="font">
                   <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -289,24 +317,50 @@
                </item>
                <item>
                 <widget class="QLabel" name="accuracy">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>74%</string>
                  </property>
                 </widget>
                </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="back_button">
-              <property name="styleSheet">
-               <string notr="true">background-color: #005EB8;
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="back_button">
+                 <property name="minimumSize">
+                  <size>
+                   <width>200</width>
+                   <height>80</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>238</width>
+                   <height>200</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>28</pointsize>
+                  </font>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border-radius:20px; background-color: #005EB8;
 COLOR: #ffffff;
 </string>
-              </property>
-              <property name="text">
-               <string>Back</string>
-              </property>
+                 </property>
+                 <property name="text">
+                  <string>Back</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -341,6 +395,11 @@ COLOR: #ffffff;
                 <height>400</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+               </font>
+              </property>
               <property name="text">
                <string>Image</string>
               </property>
@@ -348,6 +407,12 @@ COLOR: #ffffff;
             </item>
             <item>
              <widget class="QFrame" name="accuracy_graph">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>

@@ -40,6 +40,8 @@ color: #000000;</string>
      </property>
      <property name="font">
       <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -69,6 +71,12 @@ color: #000000;</string>
           <height>60</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">padding-bottom: 10px;</string>
         </property>
@@ -84,6 +92,12 @@ color: #000000;</string>
           <width>16777215</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>image here</string>
@@ -113,14 +127,28 @@ color: #000000;</string>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="prev_button">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>75</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>240</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="font">
          <font>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
+          <pointsize>28</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #CCE3F5;</string>
+         <string notr="true">border-radius:20px; background-color: #CCE3F5;</string>
         </property>
         <property name="text">
          <string>Previous</string>
@@ -129,14 +157,28 @@ color: #000000;</string>
       </item>
       <item>
        <widget class="QPushButton" name="next_button">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>75</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>240</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="font">
          <font>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
+          <pointsize>28</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #0072CE;</string>
+         <string notr="true">border-radius:20px; background-color: #0072CE;</string>
         </property>
         <property name="text">
          <string>Next</string>

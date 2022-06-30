@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>933</width>
-    <height>869</height>
+    <height>867</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -66,7 +66,10 @@
        <widget class="QLabel" name="title">
         <property name="font">
          <font>
+          <family>Arial</family>
           <pointsize>30</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -130,6 +133,11 @@
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLabel" name="header">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+               </font>
+              </property>
               <property name="text">
                <string>History</string>
               </property>
@@ -142,6 +150,11 @@
                 <width>200</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+               </font>
               </property>
               <property name="text">
                <string>Export All</string>
@@ -178,8 +191,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>917</width>
-              <height>654</height>
+              <width>913</width>
+              <height>709</height>
              </rect>
             </property>
            </widget>

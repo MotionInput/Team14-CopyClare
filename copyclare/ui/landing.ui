@@ -43,7 +43,9 @@
        <widget class="QLabel" name="copyclare_label">
         <property name="font">
          <font>
+          <family>Arial</family>
           <pointsize>80</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -98,8 +100,10 @@ opacity: 0.6;</string>
            </property>
            <property name="font">
             <font>
+             <family>Arial</family>
              <pointsize>18</pointsize>
-             <bold>true</bold>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -111,6 +115,7 @@ opacity: 0.6;</string>
           <widget class="QLabel" name="contrib">
            <property name="font">
             <font>
+             <family>Arial</family>
              <pointsize>15</pointsize>
             </font>
            </property>
@@ -152,6 +157,7 @@ Anelia Gaydardzhieva</string>
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
+              <family>Arial</family>
               <pointsize>18</pointsize>
              </font>
             </property>
@@ -179,10 +185,13 @@ Anelia Gaydardzhieva</string>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="start_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>200</width>
-              <height>50</height>
+              <width>370</width>
+              <height>190</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -193,12 +202,14 @@ Anelia Gaydardzhieva</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>20</pointsize>
-              <bold>true</bold>
+              <family>Arial</family>
+              <pointsize>62</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: #005EB8;
+             <string notr="true">border-radius:20px; background-color: #005EB8;
 COLOR: #ffffff;</string>
             </property>
             <property name="text">
@@ -285,8 +296,10 @@ COLOR: #ffffff;</string>
            </property>
            <property name="font">
             <font>
+             <family>Arial</family>
              <pointsize>18</pointsize>
-             <bold>true</bold>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -298,6 +311,7 @@ COLOR: #ffffff;</string>
           <widget class="QLabel" name="sup">
            <property name="font">
             <font>
+             <family>Arial</family>
              <pointsize>15</pointsize>
             </font>
            </property>

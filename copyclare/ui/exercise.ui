@@ -121,6 +121,11 @@
              <height>300</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Arial</family>
+            </font>
+           </property>
            <property name="text">
             <string>Sample exercise video</string>
            </property>
@@ -193,6 +198,7 @@
           <widget class="QLabel" name="reps_label">
            <property name="font">
             <font>
+             <family>Arial</family>
              <pointsize>27</pointsize>
              <weight>75</weight>
              <bold>true</bold>
@@ -217,12 +223,14 @@ padding: 10px;</string>
        <widget class="QPushButton" name="end_button">
         <property name="font">
          <font>
+          <family>Arial</family>
           <pointsize>15</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
 	border: none;
+        border-radius:20px;
 	background-color: #FAE100;
 	color: rgb(0,0,0);
 	height: 50;
@@ -282,6 +290,11 @@ QPushButton:pressed {
       </property>
       <item>
        <widget class="QLabel" name="camera_label">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+         </font>
+        </property>
         <property name="text">
          <string>User Camera</string>
         </property>

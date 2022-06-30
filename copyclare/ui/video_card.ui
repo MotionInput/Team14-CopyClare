@@ -56,16 +56,29 @@ color: #000000;</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="add_btn">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="font">
       <font>
-       <weight>50</weight>
-       <bold>false</bold>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-               <string notr="true">background-color: #E5F1FA; COLOR: #000000;</string>
+      <string notr="true">border-radius:20px; background-color: #E5F1FA; COLOR: #000000;
+</string>
      </property>
      <property name="text">
       <string>add</string>
@@ -91,8 +104,8 @@ color: #000000;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>288</width>
-        <height>167</height>
+        <width>282</width>
+        <height>147</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -106,8 +119,10 @@ color: #000000;</string>
          </property>
          <property name="font">
           <font>
-           <weight>75</weight>
-           <bold>true</bold>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="styleSheet">
@@ -120,6 +135,12 @@ color: #000000;</string>
        </item>
        <item>
         <widget class="QLabel" name="description">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
          </property>
