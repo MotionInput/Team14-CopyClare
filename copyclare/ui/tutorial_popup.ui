@@ -130,7 +130,7 @@ color: #000000;</string>
         <property name="minimumSize">
          <size>
           <width>100</width>
-          <height>75</height>
+          <height>70</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -160,7 +160,7 @@ color: #000000;</string>
         <property name="minimumSize">
          <size>
           <width>100</width>
-          <height>75</height>
+          <height>70</height>
          </size>
         </property>
         <property name="maximumSize">
