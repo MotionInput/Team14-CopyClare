@@ -13,7 +13,7 @@ from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.exporter import AccuracyGraphExporter
 from copyclare.data.objects import Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
-                             ProfilePage, VideoAddition)
+                             ProfilePage, VideoAddition, PlanPage, ttlPage)
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
 from copyclare.config import DEBUG
 from copyclare.widgets.video_card import VideoCardWidget
@@ -32,6 +32,8 @@ class App:
         "not_found": NotFound,
         "progress": ProfilePage,
         "video_addition": VideoAddition,
+        "plan": PlanPage,
+        "tutorial": ttlPage
     }
 
     def start_ui(self):
@@ -68,6 +70,9 @@ class App:
             lambda x: self.load_page("progress"))
         self.ui.addvideo_button.clicked.connect(
             lambda x: self.load_page("video_addition"))
+        self.ui.plan_button.clicked.connect(lambda x: self.load_page("plan"))
+        self.ui.info_button.clicked.connect(lambda x: self.load_page("tutorial"))
+
         self.window.showMaximized()
         sys.exit(app.exec())
 

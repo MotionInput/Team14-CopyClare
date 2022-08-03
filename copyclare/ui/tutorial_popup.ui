@@ -30,6 +30,24 @@ color: #000000;</string>
    <enum>QFrame::Raised</enum>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item alignment="Qt::AlignRight">
+    <widget class="QPushButton" name="exit_button">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:8px;
+font: Bold 13pt &quot;Arial&quot;;
+background-color: rgb(250, 225, 0);</string>
+     </property>
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QLabel" name="name">
      <property name="maximumSize">
@@ -143,8 +161,8 @@ color: #000000;</string>
          <font>
           <family>Arial</family>
           <pointsize>28</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -173,8 +191,8 @@ color: #000000;</string>
          <font>
           <family>Arial</family>
           <pointsize>28</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">

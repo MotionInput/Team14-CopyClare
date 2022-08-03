@@ -195,6 +195,28 @@
           <number>0</number>
          </property>
          <item>
+          <widget class="QProgressBar" name="progressBar">
+           <property name="styleSheet">
+            <string notr="true">QProgressBar{
+	
+	background-color: rgb(229, 241, 250);
+	color: rgb(0, 0, 0);
+	border-style: none;
+	text-align: center;
+
+}
+
+QProgressBar::chunk{
+	
+	background-color: rgb(0, 94, 184);
+}</string>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="reps_label">
            <property name="font">
             <font>

@@ -33,6 +33,6 @@ class LandingPage(UiElement):
     
     def _load_home_page(self):
         self.app.ui.side_nav.show()
-        #tutorial_popup = TutorialPopupWidget()
-        #tutorial_popup.show()
+        tutorial_popup = TutorialPopupWidget()
+        tutorial_popup.show()
         self.app.load_page("home")

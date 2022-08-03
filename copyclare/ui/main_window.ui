@@ -44,6 +44,9 @@
     </property>
     <item>
      <widget class="QFrame" name="side_nav">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -52,13 +55,13 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>80</width>
-        <height>80</height>
+        <width>70</width>
+        <height>70</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>80</width>
+        <width>70</width>
         <height>16777215</height>
        </size>
       </property>
@@ -132,13 +135,13 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../res.qrc">
+             <iconset>
               <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>64</width>
-              <height>64</height>
+              <width>49</width>
+              <height>49</height>
              </size>
             </property>
             <property name="autoDefault">
@@ -154,6 +157,7 @@
             <property name="font">
              <font>
               <family>Arial</family>
+              <pointsize>9</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -172,13 +176,13 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../res.qrc">
+             <iconset>
               <normaloff>:/icons/progress.png</normaloff>:/icons/progress.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>64</width>
-              <height>64</height>
+              <width>49</width>
+              <height>49</height>
              </size>
             </property>
             <property name="flat">
@@ -191,6 +195,7 @@
             <property name="font">
              <font>
               <family>Arial</family>
+              <pointsize>9</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -209,13 +214,13 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../res.qrc">
+             <iconset>
               <normaloff>:/icons/icon-addvideo.png</normaloff>:/icons/icon-addvideo.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>64</width>
-              <height>64</height>
+              <width>49</width>
+              <height>49</height>
              </size>
             </property>
             <property name="flat">
@@ -231,6 +236,7 @@
          <property name="font">
           <font>
            <family>Arial</family>
+           <pointsize>9</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -240,6 +246,53 @@
          </property>
          <property name="text">
           <string>ADD VIDEO</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="plan_button">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>57</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 94, 184);
+border:none;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/icons/plan.png</normaloff>:/icons/plan.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>49</width>
+           <height>49</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+</string>
+         </property>
+         <property name="text">
+          <string>PLAN</string>
          </property>
         </widget>
        </item>
@@ -255,6 +308,44 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="info_button">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>57</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 94, 184);
+border:none;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/icons/info.png</normaloff>:/icons/info.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>49</width>
+           <height>49</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+font: Bold 9pt &quot;Arial&quot;;</string>
+         </property>
+         <property name="text">
+          <string>HELP</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

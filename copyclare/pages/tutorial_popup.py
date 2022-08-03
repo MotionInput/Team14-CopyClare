@@ -1,21 +1,22 @@
-"""
-Contributors: Adi Bozzhanov, Yan Lai
-
-"""
+from copyclare.pyui.tutorial_popup import Ui_Tutorial
+from copyclare import UiElement
+from copyclare.widgets.tutorial_popup import TutorialPopupWidget
+from copyclare.common import AppSingleton
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 
 from copyclare.data import DATA_DIR
-from copyclare.pyui.tutorial_popup import Ui_Tutorial
-from copyclare import UiElement
 import res_rc
 
+# from copyclare.pages import (HomePage, AnalysisPage, LandingPage)
 
-class TutorialPopupWidget(UiElement):
-    def __init__(self):
-        super().__init__(None, "tutorial_popup", Ui_Tutorial)
+class ttlPage(UiElement):
 
+
+    def __init__(self, master):
+        super().__init__(master, "tutorial", Ui_Tutorial)
+        self.app = AppSingleton.get_app()
         self.tutorial_page = 0
 
         self.tutorial_texts = [
@@ -34,6 +35,8 @@ class TutorialPopupWidget(UiElement):
 
         self.ui.prev_button.clicked.connect(lambda x: self.load_prev())
         self.ui.next_button.clicked.connect(lambda x: self.load_next())
+        self.ui.exit_button.clicked.connect(
+            lambda x: self.app.load_page("home"))
 
         self._load_texts()
 
@@ -65,8 +68,3 @@ class TutorialPopupWidget(UiElement):
         pixmap = QPixmap(self.tutorial_texts[self.tutorial_page][2])
         pixmap = pixmap.scaled(600, 500, Qt.KeepAspectRatio)
         self.ui.image.setPixmap(pixmap)
-
-
-    def onButtonClick(self):
-
-        self.hide()
