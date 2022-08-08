@@ -57,11 +57,43 @@ color: #000000;</string>
     </widget>
    </item>
    <item alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="plan_btn">
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>180</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:15px; 
+background-color: #FEF9CC; 
+COLOR: #000000;</string>
+     </property>
+     <property name="text">
+      <string>make plans</string>
+     </property>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="remove_btn">
      <property name="minimumSize">
       <size>
-       <width>200</width>
-       <height>40</height>
+       <width>180</width>
+       <height>30</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -77,7 +109,7 @@ color: #000000;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-radius:20px; background-color: #E5F1FA; COLOR: #000000;</string>
+      <string notr="true">border-radius:15px; background-color: #E5F1FA; COLOR: #000000;</string>
      </property>
      <property name="text">
       <string>remove</string>
@@ -109,7 +141,7 @@ color: #000000;</string>
         <x>0</x>
         <y>0</y>
         <width>282</width>
-        <height>147</height>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">

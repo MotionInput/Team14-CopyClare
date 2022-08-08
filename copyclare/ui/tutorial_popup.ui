@@ -101,6 +101,9 @@ background-color: rgb(250, 225, 0);</string>
         <property name="text">
          <string>Page description</string>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -121,7 +124,7 @@ background-color: rgb(250, 225, 0);</string>
          <string>image here</string>
         </property>
         <property name="scaledContents">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
