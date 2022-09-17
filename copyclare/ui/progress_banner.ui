@@ -30,11 +30,14 @@
      </property>
      <property name="font">
       <font>
+       <family>Arial</family>
        <pointsize>-1</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #35638e;
+      <string notr="true">background-color: #005EB8;
 padding: 15px;
 font-size: 30px;
 color: #ffffff;</string>
@@ -66,8 +69,8 @@ color: #ffffff;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>758</width>
-        <height>436</height>
+        <width>764</width>
+        <height>444</height>
        </rect>
       </property>
       <property name="minimumSize">

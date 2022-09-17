@@ -13,13 +13,16 @@ Has functions to export the data from the database as well.
 """
 
 import os
+from appdirs import AppDirs
+
+BASE_DIR = AppDirs("Copy Clare", "UCL MI").user_data_dir
 
 DATA_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../data"))
+    os.path.join(BASE_DIR, "data"))
 
 SQL_DIR = os.path.dirname(os.path.realpath(__file__)) + "/sql/"
 
-DB_DIR = DATA_DIR + "/Copyclare.db"
+DB_DIR = os.path.join(DATA_DIR, "Copyclare.db")
 
 from .database import Database
 from .exporter import Exporter

@@ -31,10 +31,9 @@ class HistoryCardWidget(UiElement):
             pixmap = pixmap.scaled(500, 280, Qt.KeepAspectRatio)
             self.ui.exercise_img.setPixmap(pixmap)
 
-        name, desc = self.app.db.get_exercise_name_and_desc_by_ID(
-            attempt.exercise_id)
+        name, desc = attempt.exercise.name, attempt.exercise.description
         self.ui.title.setText(name)
-        self.ui.date.setText(attempt.date)
+        self.ui.date.setText(attempt.datetime.strftime("%m/%d/%Y, %H:%M:%S"))
 
         self.ui.analysis_button.clicked.connect(
             lambda x: self._create_analysis_page(attempt))

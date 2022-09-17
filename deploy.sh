@@ -1,6 +1,7 @@
 
+python --version
 
-python -m nuitka --lto=no --assume-yes-for-downloads --plugin-enable=numpy --plugin-enable=pyide6 --output-dir=build/copyclare run.py
+python -m nuitka --standalone --lto=no --assume-yes-for-downloads --plugin-enable=numpy --plugin-enable=pyside6 --output-dir=build/copyclare run.py
 
-mkdir build/copclare/run.dist/data
+mkdir build/copyclare/run.dist/data
 cp -r  data_clean/* build/copyclare/run.dist/data

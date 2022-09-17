@@ -36,12 +36,12 @@ class AnalysisPage(UiElement):
         self.ui.name.setText(name)
         self.ui.description.setText(desc)
         self.ui.date.setText(self.attempt.date)
-        self.ui.repetitions.setText(str(self.attempt.num_of_repetitons))
+        self.ui.repetitions.setText(str(self.attempt.reps))
         self.ui.accuracy.setText(str(self.attempt.accuracy))
 
         self.accuracyGraphExporter = AccuracyGraphExporter()
         graphWidget = self.accuracyGraphExporter.draw_accuracy_graph(
-            self.attempt.session_json)
+            self.attempt.accuracy)
         self.ui.verticalLayout_graph.addWidget(graphWidget)
 
         img_path = DATA_DIR + f"/images/{self.attempt.exercise_id}.png"

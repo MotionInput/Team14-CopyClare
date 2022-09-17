@@ -34,6 +34,8 @@ class VideoCardMyExWidget(UiElement):
 
         self.ui.remove_btn.clicked.connect(self.remove_click)
 
+        self.ui.plan_btn.clicked.connect(lambda x: self.app.load_plan(exercise))
+
         self.mouseReleaseEvent = self.clicked
 
     def remove_click(self, event):

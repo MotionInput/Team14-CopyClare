@@ -11,9 +11,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from copyclare.common import load_ui
 from copyclare.data import DATA_DIR, DB_DIR, Database
 from copyclare.data.exporter import AccuracyGraphExporter
-from copyclare.data.objects import Tag
 from copyclare.pages import (AnalysisPage, ExercisePage, HomePage, LandingPage, NotFound,
-                             ProfilePage, VideoAddition)
+                             ProfilePage, VideoAddition, PlanPage, ttlPage)
 from copyclare.pyui.main_window import Ui_MainWindow as compiled_ui
 from copyclare.config import DEBUG
 from copyclare.widgets.video_card import VideoCardWidget
@@ -32,6 +31,7 @@ class App:
         "not_found": NotFound,
         "progress": ProfilePage,
         "video_addition": VideoAddition,
+        "tutorial": ttlPage
     }
 
     def start_ui(self):
@@ -41,7 +41,6 @@ class App:
         # App necessary setup
         app = QApplication(sys.argv)
         self.window = QMainWindow()
-        self.window.showMaximized()
 
         # Ui load optimisation
         if DEBUG:
@@ -69,7 +68,9 @@ class App:
             lambda x: self.load_page("progress"))
         self.ui.addvideo_button.clicked.connect(
             lambda x: self.load_page("video_addition"))
+        self.ui.info_button.clicked.connect(lambda x: self.load_page("tutorial"))
 
+        self.window.showMaximized()
         sys.exit(app.exec())
 
     def start_exercise(self, exercise):
@@ -89,6 +90,12 @@ class App:
         self.current_exercise_page = ex_page
         self.ui.exercise_layout.addWidget(ex_page)
 
+    def load_plan(self, exercise):
+        plan_page = PlanPage(self.ui.pages_frame, exercise)
+        self.ui.pages_layout.addWidget(plan_page)
+        self.current_page = plan_page
+
+
     def end_exercise(self, attempt):
         """
         Hides and deletes exercise page,
@@ -103,9 +110,9 @@ class App:
         self.ui.pages_frame.show()
         self.db.add_attempt(attempt)
         self.pages["progress"].add_attempt_history_card(attempt)
-        self.pages["progress"].update_progress_chart(self.db.get_attempt_in_exercise())
+        self.pages["progress"].update_progress_chart(self.db.get_all_exercises())
         accuracyGraphExporter = AccuracyGraphExporter()
-        accuracyGraphExporter.export_accuracy_graph(attempt.session_json, attempt.id)
+        accuracyGraphExporter.export_accuracy_graph(attempt.accuracy, attempt.id)
 
         if self.current_exercise_page is not None:
             self.current_exercise_page.deleteLater()
@@ -144,8 +151,8 @@ class App:
             ex (Exercise): The chosen exercise to be moved to 'My Exercises'.
 
         """
-        tag = Tag("My Exercises")
-        banner = self.pages["home"].banners[tag.tag_name]
+        tag = self.db.get_tag_by_name("My Exercises")
+        banner = self.pages["home"].banners[tag.name]
 
         # database stuff
         if str(ex.id) not in banner.cards:
@@ -166,11 +173,10 @@ class App:
             ex (Exercise): The chosen exercise to be removed from 'My Exercises'.
 
         """
-        tag = Tag("My Exercises")
-        banner = self.pages["home"].banners[tag.tag_name]
+        tag = self.db.get_tag_by_name("My Exercises")
+        banner = self.pages["home"].banners[tag.name]
 
         if str(ex.id) in banner.cards:
-
             self.db.remove_tag_from_exercise(tag, ex)
 
             for i in range(banner.ui.horizontalLayout.count() - 1): # horizontal spacer

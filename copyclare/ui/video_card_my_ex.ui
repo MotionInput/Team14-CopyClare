@@ -56,8 +56,61 @@ color: #000000;</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="plan_btn">
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>180</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:15px; 
+background-color: #FEF9CC; 
+COLOR: #000000;</string>
+     </property>
+     <property name="text">
+      <string>make plans</string>
+     </property>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="remove_btn">
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:15px; background-color: #E5F1FA; COLOR: #000000;</string>
+     </property>
      <property name="text">
       <string>remove</string>
      </property>
@@ -65,6 +118,11 @@ color: #000000;</string>
    </item>
    <item>
     <widget class="QScrollArea" name="scrollArea">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: 0px;</string>
      </property>
@@ -82,8 +140,8 @@ color: #000000;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>288</width>
-        <height>167</height>
+        <width>282</width>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -97,8 +155,10 @@ color: #000000;</string>
          </property>
          <property name="font">
           <font>
-           <weight>75</weight>
-           <bold>true</bold>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="styleSheet">
@@ -111,6 +171,12 @@ color: #000000;</string>
        </item>
        <item>
         <widget class="QLabel" name="description">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
          </property>

@@ -12,7 +12,7 @@ from PySide6 import QtWidgets
 from PySide6.QtGui import QImage, QPixmap
 
 from copyclare.common import AppSingleton
-from copyclare.data.objects import Exercise
+from copyclare.data.database import Exercise
 from copyclare.model.accuracy_v2 import AccuracyModel
 from copyclare.pyui.video_addition import Ui_video_addition
 from copyclare.video import ProcessingThread
@@ -37,6 +37,7 @@ class VideoAddition(UiElement):
         super().__init__(master, "video_addition", Ui_video_addition)
 
         self.app = AppSingleton.get_app()
+        self.session = self.app.db.Session()
 
         # video_name = self.ui.video_name_editor.getText()
         # video_description = self.ui.description_editor.getText()
@@ -59,7 +60,6 @@ class VideoAddition(UiElement):
         self.ui.input_area.setVisible(False)
         self.ui.video_trimmer.setVisible(False)
 
-        self.exercise = Exercise(None,None,None,None,None,"-1")
         self.h = None
         self.w = None
 
@@ -67,7 +67,7 @@ class VideoAddition(UiElement):
         fileName, fileType = QtWidgets.QFileDialog.getOpenFileName(
             self, "Select video file",
             DATA_DIR + "/videos", "video files(*.mp4)")
-        self.fileName = "/"+os.path.relpath(fileName,DATA_DIR)
+        self.fileName = "/"+os.path.relpath(fileName,DATA_DIR).replace("\\", "/")
         #print(self.fileName)
         self.ui.input_area.setVisible(True)
         self.ui.video_trimmer.setVisible(True)
@@ -81,7 +81,7 @@ class VideoAddition(UiElement):
         if not cap.isOpened():
             print("Error opening a video file")
         self.frames = []
-        while (cap.isOpened):
+        while (cap.isOpened()):
             success, frame = cap.read()
             #print(frame_count)
             if not success:
@@ -90,14 +90,13 @@ class VideoAddition(UiElement):
             self.frames.append(frame)
 
     def upload_finished(self):
-        ex = self.upload_thread.exercise
+        ex = self.app.db.get_one_exercise_by_ID(self.exercise.id, session=self.session)
         self.app.add_video_card_to_banner(ex)
 
 
 
     def upload(self):
-
-        self.upload_thread = ProcessingThread(self.exercise)
+        self.upload_thread = ProcessingThread(self.exercise.id)
         self.upload_thread.finished.connect(self.upload_finished)
         self.upload_thread.start()
         self.app.load_page("home")
@@ -110,11 +109,16 @@ class VideoAddition(UiElement):
         description = self.ui.description_editor.toPlainText()
         # tags = self.ui.tags_editor.toPlainText()
         # tag = tags.split(",")
-
-        self.exercise.name = video_name
-        self.exercise.video_directory = self.fileName
-        self.exercise.description = description
-
+        index = len(self.frames) // 2
+        self.exercise = Exercise(
+            name=video_name,
+            description=description,
+            video_directory=self.fileName,
+            )
+        self.app.db.add_exercise(self.exercise)
+        self.exercise.image_directory = f"/images/{self.exercise.id}.png"
+        cv2.imwrite(f"{DATA_DIR}{self.exercise.image_directory}",self.frames[index])
+        self.app.db.session.commit()
         self.ui.confirm_button.setStyleSheet(
             "QPushButton{background-color: rgb(186, 186, 186);}")
         self.ui.cut_button.setStyleSheet(
@@ -150,6 +154,7 @@ class VideoAddition(UiElement):
             "QPushButton{background-color: rgb(186, 186, 186);}")
         self.ui.upload_button.setStyleSheet(
             "QPushButton{background-color: rgb(187, 255, 200);}")
+        return
         videoWriter = cv2.VideoWriter(DATA_DIR+self.fileName,cv2.VideoWriter_fourcc(*'mp4v'),30,(self.w,self.h))
         Svalue = self.ui.start_slider.value()
         Sframe_num = round(Svalue/100 *(len(self.frames)-1))
@@ -161,11 +166,5 @@ class VideoAddition(UiElement):
             if index > Sframe_num:
                 videoWriter.write(self.frames[index])
             elif index == Sframe_num:
-                exes = self.app.db.get_all_exercises()
-                length = len(exes)
-                self.exercise.id = length + 1
-                #print(length)
-                cv2.imwrite(DATA_DIR+"/images/"+str(length+1)+".png",self.frames[index])
-                self.exercise.image_directory = "/images/"+str(length+1)+".png"
                 #print(self.exercise.image_directory)
                 videoWriter.write(self.frames[index])

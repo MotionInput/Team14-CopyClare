@@ -54,6 +54,7 @@ class VideoThread(QThread):
                 self.update_frame.emit(img)
             except:
                 pass
+        self.worker.cap.release()
         self.quit()
 
 
@@ -74,19 +75,19 @@ class VideoWorker:
         opencv frames to be displayed
         """
 
-        cap = cv2.VideoCapture(self.video_path)
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        if not cap.isOpened():
-            print("Error opening a video file")
+        self.cap = cv2.VideoCapture(self.video_path)
+        fps = self.cap.get(cv2.CAP_PROP_FPS)
+        if not self.cap.isOpened():
+            print("Error opening a video file in video")
         frame_count = 0
-        while (cap.isOpened):
-            success, frame = cap.read()
+        while (self.cap.isOpened()):
+            success, frame = self.cap.read()
             if not success:
                 print("Can't read from Camera")
             frame_count += 1
-            if frame_count == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+            if frame_count == self.cap.get(cv2.CAP_PROP_FRAME_COUNT):
                 frame_count = 0
-                cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
             time.sleep(1 / fps)
             frame = cv2.flip(frame, 1)
             yield frame

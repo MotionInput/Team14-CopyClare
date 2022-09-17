@@ -81,15 +81,15 @@ class Exporter():
             "name": exe.name,
             "image": DATA_DIR + exe.image_directory,
             "description": exe.description,
-            "date": attempt.date,
+            "date": attempt.datetime,
             "id": exe.id,
         })
         quantitative_data.append({
-            "reps": attempt.num_of_repetitons,
+            "reps": attempt.reps,
             "duration": round(attempt.duration, 2),
         })
         qualitative_data.append({
-            "accuracy": round(attempt.accuracy, 2),
+            "accuracy": round(attempt.average_accuracy, 2),
             "accuracy_graph": DATA_DIR+f"/accuracy-graphs/{attempt.id}.png",
         })
 
@@ -182,7 +182,7 @@ class DocumentWriter():
 
 
 class AccuracyGraphExporter:
-    def draw_accuracy_graph(self, session_json):
+    def draw_accuracy_graph(self, accuracy):
         """
         Args:
             session_json ([[int,int]]]): A list of tuples containing timestamps and accuracy for an attempt.
@@ -195,8 +195,6 @@ class AccuracyGraphExporter:
 
         x_axis = []
         y_axis = []
-
-        accuracy = json.loads(session_json)
 
         for pair in accuracy:
             x_axis.append(pair[0])  # timestamp
@@ -218,7 +216,7 @@ class AccuracyGraphExporter:
 
         return graphWidget
 
-    def export_accuracy_graph(self, session_json, attempt_id):
+    def export_accuracy_graph(self, accuracy, attempt_id):
         """
         Args:
             session_json ([[int,int]]]): A list of tuples containing timestamps and accuracy for an attempt.
@@ -229,7 +227,7 @@ class AccuracyGraphExporter:
         path = DATA_DIR + f'/accuracy-graphs/{attempt_id}.png'
         exists = os.path.exists(path)
         if not exists:
-            accuracy_graph = self.draw_accuracy_graph(session_json)
+            accuracy_graph = self.draw_accuracy_graph(accuracy)
             exporter = exporters.ImageExporter(accuracy_graph.plotItem)
             exporter.parameters()['width'] = 500
             exporter.parameters()['height'] = 400

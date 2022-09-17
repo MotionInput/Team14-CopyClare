@@ -1,287 +1,293 @@
-"""
-Contributors: Adi Bozzhanov, Sree Sanakkayala, Tianhao Chen
-
-"""
-"""
-database.py
-
-copyclare.data.Database
-
-Our database module that provides and interface to our SQLITE database
-
-This module allows executing sctipts that are defined in a sql directory
-
-you can reference sql directory in the code by using ``SQL_DIR``.
-
-.. code-block:: python
-
-   # sample usage:
-   from copyclare.data import SQL_DIR
-
-   # SQL_DIR is a string containing the absulute path to our SQL queries.
-"""
-
-
-
-
 import json
 import os
-import sqlite3
-from copyclare.data import DATA_DIR, DB_DIR, SQL_DIR
-from copyclare.data.objects import Attempt, Exercise, Tag
+import pathlib
+from distutils.dir_util import copy_tree
+from copyclare.data import DATA_DIR
 from copyclare.model.accuracy_v2 import AccuracyModel
+
+from sqlalchemy import (
+    create_engine,
+    Column,
+    ForeignKey,
+    Integer,
+    String,
+    Float,
+    DateTime,
+    Table,
+)
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker, scoped_session
+
+JOINTS_MAP = {
+    "left_elbow": (13, 15, 11),
+    "right_elbow": (14, 12, 16),
+    "left_shoulder": (11, 13, 12),
+    "right_shoulder": (12, 11, 14),
+    "right_hip": (24, 12, 26),
+    "right_knee": (26, 24, 28),
+    "left_hip": (23, 11, 25),
+    "left_knee": (25, 23, 27),
+}
+
+Base = declarative_base()
+
+
 class Database:
+    class Decorators:
+        @classmethod
+        def session(cls, func):
+            def create_and_remove_session(obj, *args, session=None, **kwargs):
+                if session is None:
+                    session = obj.session
+                return func(obj, *args, session=session, **kwargs)
+            return create_and_remove_session
+
     def __init__(self, db_file):
-        """ create a database connection to the SQLite database
+        """create a database connection to the SQLite database
             specified by db_file
         :param db_file: database file
         :return: Connection object or None
         """
 
+        if not os.path.exists(os.path.join(DATA_DIR, "videos")) or not os.path.exists(
+            os.path.join(DATA_DIR, "images")
+        ):
+            print("Initialising usesr data directory")
+            os.makedirs(DATA_DIR, exist_ok=True)
+            local_data = pathlib.Path(__file__).parent.parent.parent.joinpath("data")
+            copy_tree(local_data, DATA_DIR)
+
+        if not os.path.exists(os.path.join(DATA_DIR, "progress-charts")):
+            os.makedirs(os.path.join(DATA_DIR, "progress-charts"))
+
+        if not os.path.exists(os.path.join(DATA_DIR, "accuracy-graphs")):
+            os.makedirs(os.path.join(DATA_DIR, "accuracy-graphs"))
+
         exists = os.path.exists(db_file)
-        self.conn = None
-        self.c = None
-        try:
-            self.conn = sqlite3.connect(db_file)
-            self.c = self.conn.cursor()
-        except sqlite3.DatabaseError as e:
-            print(e)
-
+        self.engine = create_engine(
+            f"sqlite+pysqlite:///{db_file}", echo=True, future=True
+        )
+        self.Session = scoped_session(sessionmaker(bind=self.engine))
+        self.session = self.Session()
         if not exists:
-            print("Database not found, creating and populating a new one")
-            self._execute_sql("init_db.sql")
+            Base.metadata.create_all(self.engine)
+            self._init_joints()
             self._init_debug_data()
-            self.conn.commit()
-        else:
-            print("Database exists")
+    
+    @Decorators.session
+    def _init_joints(self, session=None):
+        for joint_name, (center, adj1, adj2) in JOINTS_MAP.items():
+            joint = Joint(name=joint_name, center=center, adj1=adj1, adj2=adj2)
+            session.add(joint)
+        session.commit()
 
-    def _init_debug_data(self):
-
-        tags = [
-            Tag("My Exercises"),
-        ]
-
-        # with open(DATA_DIR + "/test/1.json", "r") as f:
-        #     json1 = f.read()
-        # with open(DATA_DIR + "/test/2.json", "r") as f:
-        #     json2 = f.read()
-        # with open(DATA_DIR + "/test/3.json", "r") as f:
-        #     json3 = f.read()
-
-        # with open(DATA_DIR + "/videos/clare1.txt", "r", encoding="UTF-8") as f:
-        #    clare1_desc = f.read()
+    @Decorators.session
+    def _init_debug_data(self, session=None):
+        tag = Tag(name="My Exercises")
         with open(DATA_DIR + "/videos/clare2.txt", "r", encoding="UTF-8") as f:
             clare2_desc = f.read()
-        # with open(DATA_DIR + "/videos/clare3.txt", "r", encoding="UTF-8") as f:
-        #    clare3_desc = f.read()
 
-        exercise = Exercise(None, "Shoulder Rotation", "/videos/clare2.mp4",
-                            "/images/1.png", clare2_desc, "-1")
-        joints = [
-            "left_elbow", "left_shoulder", "right_elbow", "right_shoulder"
-        ]
+        exercise = Exercise(
+            name="Shoulder Rotation",
+            video_directory="/videos/clare2.mp4",
+            image_directory="/images/1.png",
+            description=clare2_desc,
+        )
+
+        exercise.tags.append(tag)
+        joints = session.query(Joint).all()
         accuracymodel = AccuracyModel(exercise, joints)
-        exercise.angles_json = json.dumps(
-            accuracymodel.get_angles(DATA_DIR + exercise.video_directory))
-        self.add_exercise(exercise)
+        angles = accuracymodel.get_angles(DATA_DIR + exercise.video_directory)
+        for joint in joints:
+            for t, angle in angles[joint.name].items():
+                exercise.data.append(ExerciseData(exercise=exercise, joint=joint, time=t, angle=angle))
+        session.add(tag)
+        session.add(exercise)
+        session.commit()
 
-        for tag in tags:
-            self.add_tag(tag)
+    @Decorators.session
+    def add_tag(self, tag, session=None):
+        session.add(tag)
+        session.commit()
 
-        t = Tag("My Exercises")
+    @Decorators.session
+    def remove_tag_from_exercise(self, tag, exercise, session=None):
+        exercise.tags.remove(tag)
+        session.commit()
 
-        exercises = self.get_all_exercises()
-        self.add_tag_to_exercise(t, exercises[0])
-
-    def _file_to_commands(self, sql_path):
-        """
-        Given a file name of the script file
-        returns a list of string representations
-        of all commands
-
-        the script MUST be in the sql directory
-        """
-        path = SQL_DIR + sql_path
-        with open(path, "r") as scripts:
-            text = "".join(scripts.readlines())
-            commands = [
-                each for each in text.split(";") if len(each.strip()) > 0
-            ]
-        return commands
-
-    def _execute_sql(self, sql_path):
-        """
-        The script file can have more that 1 command
-
-        Will return results of the last ran command
-        """
-        commands = self._file_to_commands(sql_path)
-        for com in commands:
-            self.c.execute(com)
-
-        return [row for row in self.c]
-
-    def _execute_with_params(self, sql_path, params):
-        """
-        This function will only execute the first
-        command from the script file.
-        """
-
-        command = self._file_to_commands(sql_path)[0]
-        formatted = command % params
-        # print(formatted)
-        self.c.execute(formatted)
-        return [row for row in self.c]
-
-    def add_tag(self, tag):
-        params = tag.get_sql_tuple()
-        try:
-            self._execute_with_params("insert_tag.sql", params)
-        except sqlite3.IntegrityError as err:  # tag already exists
-            pass
-        else:
-            self.conn.commit()
-
-    def remove_tag_from_exercise(self, tag, exercise):
-        tag_name = tag.tag_name
-        ex_id = exercise.id
-        params = (tag_name, ex_id)
-
-        self._execute_with_params("delete_tag_from_exercise.sql", params)
-
-    def add_tag_to_exercise(self, tag, exercise):
-
-        self.add_tag(tag)
-        t_name = tag.tag_name
-        e_id = exercise.id
-        try:
-            self._execute_with_params("insert_tags_to_exercise.sql",
-                                      (t_name, e_id))
-        except sqlite3.IntegrityError as err:
-            pass
-        self.conn.commit()
+    @Decorators.session
+    def add_tag_to_exercise(self, tag, exercise, session=None):
+        exercise.tags.append(tag)
+        session.commit()
 
     def get_exercise_tags(self, exercise):
-        """
-        Given the exercise id returns a list of tag objects
-        """
-        e_id = exercise.id
+        return exercise.tags
 
-        result = self._execute_with_params("get_exercise_tags.sql", e_id)
-        tags = [Tag(each[0]) for each in result]
+    @Decorators.session
+    def get_all_tags(self, session=None):
+        return session.query(Tag).all()
 
-        return tags
-
-    def get_all_tags(self):
-        result = self._execute_sql("get_all_tags.sql")
-        tags = []
-        for name, in result:
-            tags.append(Tag(name))
-        return tags
-
-    def add_exercise(self, exercise):
-        # input an exercise object and keep it in the database
-        params = exercise.get_sql_tuple()
-        self._execute_with_params("insert_exercise.sql", params)
-        self.conn.commit()
-
-    def get_all_exercises(self):
-        """
-        Returns a list of all exercise objects
-        """
-
-        result = self._execute_sql("get_all_exercises.sql")
-        exercises = []
-        for p1, p2, p3, p4, p5, p6 in result:
-            exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
-
-        return exercises
-
+    @Decorators.session
+    def get_all_exercises(self, session=None):
+        return session.query(Exercise).all()
+    
     def get_exercises_by_tag(self, tag):
+        return tag.exercises
 
-        result = self._execute_with_params("get_exercises_by_tag.sql",
-                                           tag.get_sql_tuple())
-        exercises = []
-        for p1, p2, p3, p4, p5, p6 in result:
-            exercises.append(Exercise(p1, p2, p3, p4, p5, p6))
+    @Decorators.session
+    def get_one_exercise_by_ID(self, id, session=None):
+        return session.query(Exercise).filter(Exercise.id == id).first()
 
-        return exercises
+    @Decorators.session
+    def add_attempt(self, attempt, session=None):
+        session.add(attempt)
+        session.commit()
 
-    def get_one_exercise_by_ID(self, id):
-        result = self._execute_with_params("get_certain_exercise_by_id.sql",
-                                           id)
-        for p1, p2, p3, p4, p5, p6 in result:
-            return Exercise(p1, p2, p3, p4, p5, p6)
-
-    def add_attempt(self, attempt):
-
-        params = attempt.get_sql_tuple()
-        self._execute_with_params("insert_attempt.sql", params)
-        self.conn.commit()
-
-    def get_all_attempts(self):
-
-        result = self._execute_sql("get_all_attempts.sql")
-        attempts = []
-
-        for p1, p2, p3, p4, p5, p6, p7 in result:
-            attempts.append(Attempt(p1, p2, p3, p4, p5, p6, p7))
-
-        return attempts
-
-    def get_one_attempt_by_ID(self, id):
-        result = self._execute_with_params("get_certain_attempt_by_id.sql", id)
-        for p1, p2, p3, p4, p5, p6, p7 in result:
-            return Attempt(p1, p2, p3, p4, p5, p6, p7)
+    @Decorators.session
+    def get_one_attempt_by_ID(self, id, session=None):
+        return session.query(Attempt).filter(Attempt.id == id).first()
 
     def get_attempt_in_exercise(self):
-        exercises = [[]]
-        attempts = self.get_all_attempts()
-        for attempt in attempts:
-            flag = False
-            for exe in exercises:
-                if len(exe) == 0:
-                    exe.append(attempt)
-                    flag = True
-                elif exe[0].exercise_id == attempt.exercise_id:
-                    exe.append(attempt)
-                    flag = True
-            if flag == False:
-                exercises.append([attempt])
+        raise NotImplementedError
 
-        return exercises
-
-    def get_exercise_name_and_desc_by_ID(self, id):
-        exercise = self.get_one_exercise_by_ID(id)
+    @Decorators.session
+    def get_exercise_ame_ang_dec_by_ID(self, id, session=None):
+        exercise = self.get_one_exercise_by_ID(id, session)
         return exercise.name, exercise.description
 
     def delete(self, table_name, key_name, key):
-        self.c.execute("DELETE FROM %s WHERE %s = %s" %
-                       (table_name, key_name, key))
-        self.conn.commit()
+        raise NotImplementedError
 
-    def close(self):
-        self.conn.close()
+    @Decorators.session
+    def get_all_attempts(self, session=None):
+        return session.query(Attempt).all()
+
+    @Decorators.session
+    def add_exercise(self, exercise, session=None):
+        session.add(exercise)
+        session.commit()
+
+    @Decorators.session
+    def get_all_joints(self, session=None):
+        return session.query(Joint).all()
+
+    @Decorators.session
+    def get_exercise_name_and_desc_by_ID(self, exercise_id, session=None):
+        exercise = session.query(Exercise).filter(Exercise.id == exercise_id).first()
+        return exercise.name, exercise.description
+
+    @Decorators.session
+    def get_tag_by_name(self, tag_name, session=None):
+        return session.query(Tag).filter(Tag.name == tag_name).first()
+
+    @Decorators.session
+    def get_joint_by_name(self, joint_name, session=None):
+        return session.query(Joint).filter(Joint.name == joint_name).first()
+
+    @Decorators.session
+    def get_flipped_joint(self, joint, session=None):
+        if "right" in joint.name:
+            flipped_name = joint.name.replace("right", "left")
+        else:
+            flipped_name = joint.name.replace("left", "right")
+        return session.query(Joint).filter(Joint.name == flipped_name).first()
+
+    @Decorators.session
+    def get_joints_map(self, session=None):
+        joints = session.query(Joint).all()
+        return {joint.name:(joint.adj1, joint.center, joint.adj2) for joint in joints}
+
+exercise_tag_link = Table(
+    "exercise_tag_link",
+    Base.metadata,
+    Column("exercise_id", ForeignKey("exercise.id"), primary_key=True),
+    Column("tag_id", ForeignKey("tag.id"), primary_key=True),
+)
 
 
-def main():
+class Exercise(Base):
+    __tablename__ = "exercise"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    video_directory = Column(String(200))
+    image_directory = Column(String(200))
+    description = Column(String(5000))
+    prom_joint_id = Column(Integer, ForeignKey("joint.id"))
+    prom_joint = relationship("Joint")
+    data = relationship("ExerciseData", back_populates="exercise")
+    tags = relationship("Tag", secondary="exercise_tag_link", back_populates="exercises")
+    attempts = relationship("Attempt", back_populates="exercise")
+    plan = relationship("Plan", back_populates="exercise", uselist=False)
 
-    # create a database connection
-    database = Database(DB_DIR)
+    def get_angles(self):
+        angles = {}
+        for row in self.data:
+            if row.joint.name not in angles:
+                angles[row.joint.name] = {}
+            angles[row.joint.name][row.time] = row.angle
+        return angles
 
-    t = Tag("My Exercises")
-    ex = database.get_one_exercise_by_ID(1)
 
-    ts = database.get_exercise_tags(ex)
+class Joint(Base):
+    __tablename__ = "joint"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(30), unique=True)
+    center = Column(Integer)
+    adj1 = Column(Integer)
+    adj2 = Column(Integer)
 
-    print(t)
-    print(ex)
-    print(ts)
 
-    database.remove_tag_from_exercise(t, ex)
+class ExerciseData(Base):
+    __tablename__ = "exercise_data"
+    exercise_id = Column(Integer, ForeignKey("exercise.id"), primary_key=True)
+    exercise = relationship("Exercise", back_populates="data")
+    joint_id = Column(Integer, ForeignKey("joint.id"), primary_key=True)
+    joint = relationship("Joint")
+    time = Column(Float, primary_key=True)
+    angle = Column(Float)
 
-    ts = database.get_exercise_tags(ex)
 
-    print(ts)
+class Tag(Base):
+    __tablename__ = "tag"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    exercises = relationship("Exercise", secondary="exercise_tag_link", back_populates="tags")
 
-    return database
+
+class Attempt(Base):
+    __tablename__ = "attempt"
+    id = Column(Integer, primary_key=True)
+    exercise_id = Column(Integer, ForeignKey("exercise.id", ondelete="CASCADE"))
+    exercise = relationship("Exercise")
+    data = relationship("AttemptData", back_populates="attempt")
+    datetime = Column(DateTime)
+    reps = Column(Integer)
+    average_accuracy = Column(Float)
+    duration = Column(Float)
+
+    @property
+    def accuracy(self):
+        return [(data.time, data.accuracy) for data in self.data]
+
+    @property
+    def date(self):
+        return self.datetime.strftime("%m/%d/%Y, %H:%M:%S")
+
+class AttemptData(Base):
+    __tablename__ = "attempt_data"
+    id = Column(Integer, primary_key=True)
+    attempt_id = Column(Integer, ForeignKey("attempt.id", ondelete="CASCADE"))
+    attempt = relationship("Attempt")
+    time = Column(Float)
+    accuracy = Column(Float)
+
+
+class Plan(Base):
+    __tablename__ = "plan"
+    id = Column(Integer, primary_key=True)
+    exercise_id = Column(
+        Integer, ForeignKey("exercise.id", ondelete="CASCADE")
+    )
+    exercise = relationship("Exercise", back_populates="plan", single_parent=True, cascade="delete, delete-orphan")
+    days_per_week = Column(Integer)
+    sessions_per_day = Column(Integer)
+    reps_per_session = Column(Integer)
