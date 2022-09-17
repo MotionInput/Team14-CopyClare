@@ -41,29 +41,16 @@ class ExercisePage(UiElement):
 
         self.exercise = exercise
         self.tm = ThreadManager()
-        self.init_chart()
         self.init_video()
         self.init_camera()
         self.ui.end_button.clicked.connect(self.stop_all)
+        self.ui.flip_button.clicked.connect(self.camera_thread.toggle_flipped)
         self.start = time.time()
 
     def stop_all(self):
         print("Trying to stop stuff")
         self.video_thread._running = False
         self.camera_thread._running = False
-
-    def init_chart(self):
-
-        self.chart = QChart()
-        self.series = QLineSeries(self.chart)
-        self.chart.legend().hide()
-        self.chart.addSeries(self.series)
-
-        self.chart.createDefaultAxes()
-        self.chartView = QChartView(self.chart, parent=self.ui.graph_frame)
-        self.ui.graph_layout.addWidget(self.chartView)
-        self.ax1 = self.chart.axisX(self.series)
-        self.ax2 = self.chart.axisY(self.series)
 
     def init_video(self):
         self.video_thread = VideoThread(self.ui.video_frame, self.exercise)
@@ -72,11 +59,12 @@ class ExercisePage(UiElement):
         self.video_thread.start()
 
     def init_camera(self):
-        self.camera_thread = CameraThread(self.ui.camera_frame, self.exercise)
+        self.camera_thread = CameraThread(self.ui.camera_frame, self.exercise.id)
         self.tm.add_thread(self.camera_thread, True)
         self.camera_thread.update_frame.connect(self.update_camera)
         self.camera_thread.update_reps.connect(self.update_reps)
         self.camera_thread.update_graph.connect(self.update_graph)
+        self.camera_thread.update_progress.connect(self.update_progress)
         self.camera_thread.start()
 
     @Slot(QImage)
@@ -108,3 +96,7 @@ class ExercisePage(UiElement):
         self.ax2.setMin(100)
         self.ax1.setMin(now - 5)
         self.ax1.setMax(now)
+
+    @Slot(int)
+    def update_progress(self, progress):
+        self.ui.progressBar.setValue(progress)

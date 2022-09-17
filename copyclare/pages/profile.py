@@ -30,14 +30,13 @@ class ProfilePage(UiElement):
         super().__init__(master, "profile", Ui_profile_page)
 
         self.app = AppSingleton.get_app()
-
         # progress chart
 
         self.progress_chart_banner = ProgressBannerWidget(
             self, "Progress chart")
         self.ui.verticalLayout_2.insertWidget(0, self.progress_chart_banner)
 
-        all_ex_attempt = self.app.db.get_attempt_in_exercise()
+        all_ex_attempt = self.app.db.get_all_exercises()
         self.progress_chart = ProgressChartWidget(self, all_ex_attempt)
         self.progress_chart_banner.ui.verticalLayout_2.insertWidget(
             0, self.progress_chart)

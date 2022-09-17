@@ -122,51 +122,13 @@
             </size>
            </property>
            <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
+            <font/>
            </property>
            <property name="text">
             <string>Sample exercise video</string>
            </property>
           </widget>
          </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="graph_frame">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>200</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="lineWidth">
-         <number>0</number>
-        </property>
-        <layout class="QHBoxLayout" name="graph_layout">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
         </layout>
        </widget>
       </item>
@@ -220,9 +182,7 @@ QProgressBar::chunk{
           <widget class="QLabel" name="reps_label">
            <property name="font">
             <font>
-             <family>Arial</family>
              <pointsize>27</pointsize>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -238,6 +198,54 @@ padding: 10px;</string>
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="flip_button">
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	border: none;
+        border-radius:20px;
+	background-color: #005EB8;
+	color: rgb(1,1,1);
+	height: 50;
+}
+
+QPushButton:hover {
+	background-color: #FEF9CC;
+}
+
+QPushButton:pressed {
+	background-color: #005EB8;
+}</string>
+           </property>
+           <property name="text">
+            <string>Flip Side</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Maximum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </widget>
       </item>
@@ -245,7 +253,6 @@ padding: 10px;</string>
        <widget class="QPushButton" name="end_button">
         <property name="font">
          <font>
-          <family>Arial</family>
           <pointsize>15</pointsize>
          </font>
         </property>
@@ -313,9 +320,7 @@ QPushButton:pressed {
       <item>
        <widget class="QLabel" name="camera_label">
         <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
+         <font/>
         </property>
         <property name="text">
          <string>User Camera</string>

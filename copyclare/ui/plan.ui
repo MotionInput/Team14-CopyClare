@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
+ <class>planning</class>
  <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
@@ -159,7 +159,7 @@ border-radius:8px;</string>
          </spacer>
         </item>
         <item row="0" column="3">
-         <widget class="QComboBox" name="comboBox">
+         <widget class="QComboBox" name="days_per_week_combo">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -215,7 +215,7 @@ border-radius:8px;</string>
          </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="sessions_per_day">
           <property name="maximumSize">
            <size>
             <width>70</width>
@@ -285,7 +285,7 @@ border-radius:8px;</string>
            <string notr="true">font: 16pt &quot;Arial&quot;;</string>
           </property>
           <property name="text">
-           <string>Planned number of exercises per session:</string>
+           <string>Planned number of reps per session:</string>
           </property>
          </widget>
         </item>
@@ -303,7 +303,7 @@ border-radius:8px;</string>
          </spacer>
         </item>
         <item row="4" column="3">
-         <widget class="QLineEdit" name="lineEdit_2">
+         <widget class="QLineEdit" name="reps_per_session">
           <property name="maximumSize">
            <size>
             <width>70</width>
@@ -333,7 +333,7 @@ border-radius:8px;</string>
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="cancel_button">
           <property name="minimumSize">
            <size>
             <width>200</width>
@@ -365,7 +365,7 @@ background-color: rgb(250, 225, 0);
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="submit_button">
           <property name="minimumSize">
            <size>
             <width>200</width>

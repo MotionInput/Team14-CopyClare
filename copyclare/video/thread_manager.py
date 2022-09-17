@@ -8,7 +8,7 @@ import time
 from datetime import datetime
 
 from copyclare.common import AppSingleton
-from copyclare.data.objects import Attempt
+from copyclare.data.database import Attempt, AttemptData
 
 
 class ThreadManager:
@@ -43,20 +43,20 @@ class ThreadManager:
         if self.finished_count >= self.thread_count:
             # if all threads finished
             now = datetime.now()
-            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             avg = 0
-            for t, each in self.worker.accuracy_vals:
+            for _, each in self.worker.accuracy_vals:
                 avg += each
             if len(self.worker.accuracy_vals) != 0:
                 avg /= len(self.worker.accuracy_vals)
-            length = len(AppSingleton.get_app().db.get_all_attempts())
             attempt = Attempt(
-                length + 1,
-                dt_string,
-                self.worker.num_of_repetitions,
-                round(time.time() - self.worker.beginning, 2),
-                json.dumps(self.worker.accuracy_vals, indent=4),
-                round(avg, 2),
-                self.worker.exercise.id,
+                exercise=self.worker.exercise,
+                datetime=now,
+                reps=len(self.worker.accuracy_vals),
+                average_accuracy=avg,
+                duration=time.time() - self.worker.beginning
             )
+
+            for t, each in self.worker.accuracy_vals:
+                attempt.data.append(AttemptData(time=t, accuracy=each))
+
             AppSingleton.get_app().end_exercise(attempt)

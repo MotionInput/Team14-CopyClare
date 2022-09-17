@@ -53,17 +53,16 @@ class ProgressChartWidget(UiElement):
         graphWidgets = []
         for ex_type in all_ex_attempt:
             if ex_type:
-                name, desc = app.db.get_exercise_name_and_desc_by_ID(
-                    ex_type[0].exercise_id)
+                name, desc = ex_type.name, ex_type.description
 
                 graphWidget = pg.PlotWidget()
 
                 x_axis = []
                 y_axis = []
 
-                for i in range(len(ex_type)):
+                for i, attempt in enumerate(ex_type.attempts):
                     x_axis.append(i + 1)
-                    y_axis.append(ex_type[i].accuracy)
+                    y_axis.append(attempt.average_accuracy)
 
                 graphWidget.setBackground('w')
                 graphWidget.setTitle(
@@ -72,7 +71,7 @@ class ProgressChartWidget(UiElement):
                     size="15pt")
                 graphWidget.getPlotItem().hideAxis('bottom')
                 graphWidget.showGrid(x=True, y=True)
-                graphWidget.setXRange(1, len(ex_type), padding=0)
+                graphWidget.setXRange(1, len(ex_type.attempts), padding=0)
                 graphWidget.setYRange(0, 100, padding=0)
 
                 pen = pg.mkPen(color=(0, 20, 40), width=3)
@@ -85,7 +84,7 @@ class ProgressChartWidget(UiElement):
                                       symbolBrush=('#003366'))
 
                 graph = []
-                graph.append(graphWidget); graph.append(name); graph.append(ex_type[0].exercise_id)
+                graph.append(graphWidget); graph.append(name); graph.append(ex_type.id)
                 graphWidgets.append(graph)
 
         return graphWidgets

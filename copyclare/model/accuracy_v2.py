@@ -31,28 +31,12 @@ def round_decimals_up(number: float, decimals: int = 1):
 
 class AccuracyModel:
 
-    joints_map = {
-        "left_elbow": 13,
-        "right_elbow": 14,
-        "left_shoulder": 11,
-        "right_shoulder": 12,
-    }
-
-    joint_adjacent = {
-        "left_elbow": (15, 11),
-        "right_elbow": (12, 16),
-        "left_shoulder": (13, 12),
-        "right_shoulder": (11, 14),
-    }
-
     def __init__(self, exercise, joints):
         self.detector = PoseModule()
         self.joints = joints
 
-        if exercise.angles_json == "-1":
-            pass
-        elif exercise.angles_json != "null":
-            self.angles = json.loads(exercise.angles_json)
+        if exercise.data:
+            self.angles = exercise.load_angles()
 
         video = cv2.VideoCapture(DATA_DIR + exercise.video_directory)
         if not video.isOpened():
@@ -67,7 +51,7 @@ class AccuracyModel:
     def _init_angles(self):
         angles = {}
         for joint in self.joints:
-            angles[joint] = {}
+            angles[joint.name] = {}
         return angles
 
     def get_angles(self, video_path):
@@ -102,7 +86,7 @@ class AccuracyModel:
                 landmark_list = self.detector.find_landmarks(person,
                                                              draw=False)
                 a = self.find_angle(person, joint, landmark_list)
-                angles[joint][round_decimals_up(t, 4)] = a
+                angles[joint.name][round_decimals_up(t, 4)] = a
             count += 1
 
         self.duration = count / fps
@@ -110,10 +94,10 @@ class AccuracyModel:
         for joint in self.joints:
             tmp = []
             for time_stamp in angles[joint]:
-                tmp.append(angles[joint][time_stamp])
+                tmp.append(angles[joint.name][time_stamp])
 
             lowess = sm.nonparametric.lowess(tmp,
-                                             list(angles[joint].keys()),
+                                             list(angles[joint.name].keys()),
                                              frac=0.1)
             ts, angs = list(lowess[:, 0]), list(lowess[:, 1])
             for i in range(len(ts)):
@@ -136,11 +120,9 @@ class AccuracyModel:
         clr = (255, 255, 255) if (accuracy > 90) else (0, 0, 0)
         if landmark_list:
             for joint in self.joints:
-                x, y = landmark_list[self.joints_map[joint]][1:]
-                x_left, y_left = landmark_list[self.joint_adjacent[joint]
-                                               [0]][1:]
-                x_right, y_right = landmark_list[self.joint_adjacent[joint]
-                                                 [1]][1:]
+                x, y = landmark_list[joint.center][1:]
+                x_left, y_left = landmark_list[joint.adj1][1:]
+                x_right, y_right = landmark_list[joint.adj2][1:]
 
                 p1 = (x, y)
                 p2 = (x_left, y_left)
@@ -167,8 +149,8 @@ class AccuracyModel:
 
         angle = -1
         if len(landmark_list) != 0:
-            middle = self.joints_map[joint]
-            left, right = self.joint_adjacent[joint]
+            middle = joint.center
+            left, right = joint.adj1, joint.adj2
             angle = self.detector.find_angle(frame,
                                              left,
                                              middle,
@@ -217,3 +199,42 @@ class AccuracyModel:
         self.color_frame(person, landmark_list, accuracy)
 
         return accuracy, rep
+    
+    def get_angles(self, video_path):
+        """
+        Initialises angles json for an exercise video
+        Args:
+            vieo_path: absolute path to the video
+        Returns:
+            a dictionary where each key is a joint and value is a
+            list of angle/time pairs
+        """
+        print("Attempting to process")
+        angles = self._init_angles()
+
+        video = cv2.VideoCapture(video_path)
+        if not video.isOpened():
+            print("Error Opening a video file")
+        fps = video.get(cv2.CAP_PROP_FPS)
+        self.step = 1 / fps
+        count = 0
+        while video.isOpened():
+            success, frame = video.read()
+            if not success:
+                print("Can't read video")
+                break
+
+            for joint in self.joints:
+                t = count / fps
+                person = self.detector.find_person(frame)
+                landmark_list = self.detector.find_landmarks(person,
+                                                             draw=False)
+                a = self.find_angle(person, joint, landmark_list)
+                angles[joint.name][round_decimals_up(t, 4)] = a
+            count += 1
+
+        self.duration = count / fps
+        video.release()
+
+        print("Done")
+        return angles
